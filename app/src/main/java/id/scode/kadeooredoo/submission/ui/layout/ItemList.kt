@@ -46,6 +46,7 @@ class ItemList : AppCompatActivity(){
                     margin = dip(10)
                     gravity = android.R.attr.layout_centerVertical
                 }
+                
             }
         }
     }
