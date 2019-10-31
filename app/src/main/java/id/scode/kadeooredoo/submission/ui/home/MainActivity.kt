@@ -23,26 +23,30 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
  */
 
 class MainActivity : AppCompatActivity(){
-
-    companion object{
-        private val TAG_LOG = MainActivity::class.java.simpleName
-        private var itemClubFootballs: MutableList<ItemClubFootball> = mutableListOf()
-    }
-
+    /**
+     * Declare recycler and mutableList
+     */
+    private var itemClubFootballs: MutableList<ItemClubFootball> = mutableListOf()
     private lateinit var recyclerViewFootball: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        // create layout
         verticalLayout {
 
             padding = dip(16)
-            recyclerViewFootball = recyclerView()
+            recyclerViewFootball = recyclerView()  // assign the layout for initialize recycler
 
         }
-        initData()
+        initData() // set Data from string.xml
 
+        /**
+         * set layout for recycler
+         * set the adapter with RecyclerViewFootballAdapter with context and mutableList
+         * where the mutableList is alr set from initData
+         * and give the listener for action
+         */
         recyclerViewFootball.layoutManager = LinearLayoutManager(this)
         recyclerViewFootball.adapter = RvFootballAdapter(
             this,
@@ -54,13 +58,17 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun initData() {
+        /**
+         * Initialize the dataItemFootballLeague
+         */
         val idFootball = resources.getIntArray(R.array.club_id)
         val nameFootball = resources.getStringArray(R.array.club_name)
         val descFootball = resources.getStringArray(R.array.club_desc)
         val imageFootball = resources.obtainTypedArray(R.array.club_image)
 
-        itemClubFootballs.clear()
+        itemClubFootballs.clear() //clear the recycler | duplicate when alr load
 
+        // for assign data with loop | where i..length of item data nameFootball
         for (i in nameFootball.indices) {
             itemClubFootballs.add(
                 ItemClubFootball(
@@ -71,7 +79,7 @@ class MainActivity : AppCompatActivity(){
                 )
             )
         }
-
+        // recycle the imageFootball
         imageFootball.recycle()
     }
 

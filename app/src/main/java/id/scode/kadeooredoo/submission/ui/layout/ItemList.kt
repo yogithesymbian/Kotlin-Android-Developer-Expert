@@ -2,6 +2,7 @@ package id.scode.kadeooredoo.submission.ui.layout
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.*
 import id.scode.kadeooredoo.*
@@ -17,37 +18,36 @@ import id.scode.kadeooredoo.*
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class ItemList : AppCompatActivity(){
 
+class ItemListUI : AnkoComponent<ViewGroup> {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ItemListUI().setContentView(this)
+    companion object {
+        const val txtIdClubFootball = 1
+        const val txtNameClubFootball = 2
+        const val txtDescClubFootball = 3
+        const val imgClubFootball = 4
     }
 
-    class ItemListUI: AnkoComponent<ItemList>{
+    override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
 
-        override fun createView(ui: AnkoContext<ItemList>): View = with(ui) {
+        linearLayout {
 
-            linearLayout {
+            lparams(matchParent, wrapContent)
+            padding = dip(16)
 
-                lparams(matchParent, wrapContent)
-                padding = dip(16)
+            imageView {
+                id = imgClubFootball
+                backgroundColor = R.color.colorAccent
+            }.lparams(width = dip(50), height = dip(50))
 
-                var imageFootball = imageView{
-                    // layoutParams = LinearLayout.LayoutParams(dip(50), dip(50))
-                    backgroundColor = R.color.colorAccent
-                }.lparams(width= dip(50), height = dip(50))
-
-                var textFootballName= textView {
-                    // tools:text
-                    text = context.getString(R.string.item_list_footbal_name)
-                }.lparams(width= wrapContent, height = wrapContent){
-                    margin = dip(10)
-                    gravity = android.R.attr.layout_centerVertical
-                }
-                
+            textView {
+                id = txtNameClubFootball
+                text = context.getString(R.string.item_list_footbal_name)
+            }.lparams(width = wrapContent, height = wrapContent) {
+                margin = dip(10)
+                gravity = android.R.attr.layout_centerVertical
             }
+
         }
     }
 }

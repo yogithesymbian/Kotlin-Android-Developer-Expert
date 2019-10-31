@@ -1,15 +1,16 @@
 package id.scode.kadeooredoo.submission
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.submission.data.db.pojo.ItemClubFootball
+import id.scode.kadeooredoo.submission.ui.layout.ItemListUI
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_list.*
+import org.jetbrains.anko.AnkoContext
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -25,38 +26,36 @@ import kotlinx.android.synthetic.main.item_list.*
 class RvFootballAdapter (
 
     private val context: Context,
-    private val items: List<ItemClubFootball>,
+    private val itemClubFootball: List<ItemClubFootball>,
     private val listener: (ItemClubFootball) -> Unit
 
 ) : RecyclerView.Adapter<RvFootballAdapter.ViewHolder>(){
 
-    class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
+    inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
         LayoutContainer {
+
+        // i already use layoutcontainer but i still cast/ get the companion variable ,
+        private var txtFootBall : TextView = containerView.findViewById(ItemListUI.txtNameClubFootball)
+        private var imgFootBall : ImageView = containerView.findViewById(ItemListUI.imgClubFootball)
 
         fun bindItem(
             itemClubFootball: ItemClubFootball,
             listener: (ItemClubFootball) -> Unit
         ) {
 
-            txt_name.text = itemClubFootball.nameClubFootball
-            itemClubFootball.imageClubFootball.let { Picasso.get().load(it).fit().into(img_main) }
+            txtFootBall.text = itemClubFootball.nameClubFootball
+            itemClubFootball.imageClubFootball.let { Picasso.get().load(it).fit().into(imgFootBall) }
             containerView.setOnClickListener { listener(itemClubFootball) }
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.item_list,
-                parent,
-                false
-            )
-        )
+       ViewHolder(ItemListUI().createView(AnkoContext.Companion.create(context, parent)))
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = itemClubFootball.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(items[position], listener)
+        holder.bindItem(itemClubFootball[position], listener)
 
 }
