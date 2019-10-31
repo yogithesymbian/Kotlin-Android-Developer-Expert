@@ -11,17 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".anko.ui.SecondActivity"/>
-        <activity android:name=".anko.ui.MainActivity">
+        <activity android:name=".submission.ui.layout.ItemList"/>
+        <activity android:name=".submission.ui.home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.MainActivity">
 
-        </activity>
+        <activity android:name=".anko.ui.SecondActivity"/>
+        <activity android:name=".anko.ui.MainActivity"/>
+        <activity android:name=".ui.home.MainActivity"/>
     </application>
 
 </manifest>

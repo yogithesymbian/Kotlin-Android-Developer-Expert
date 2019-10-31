@@ -10,6 +10,7 @@ import id.scode.kadeooredoo.Item
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +32,7 @@ class MainActivity : AppCompatActivity() {
             this,
             items
         ){
-            Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
-                .show()
+            toast("${it.name}")
         }
 
     }

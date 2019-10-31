@@ -33,7 +33,7 @@ class SecondActivity : AppCompatActivity(){
             nameTextView = textView()
         }
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        val intent = intent.also {
+        intent.also {
             name = it.getStringExtra("name")
         }
         nameTextView.text = name
