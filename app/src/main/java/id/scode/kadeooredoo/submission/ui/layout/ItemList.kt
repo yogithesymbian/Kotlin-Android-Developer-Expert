@@ -1,12 +1,13 @@
 package id.scode.kadeooredoo.submission.ui.layout
 
-import android.os.Bundle
-import android.view.View
+import android.graphics.Color
+import android.text.TextUtils
+import android.view.Gravity
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.*
 import id.scode.kadeooredoo.*
 import org.jetbrains.anko.cardview.v7.cardView
+import org.jetbrains.anko.design.snackbar
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -26,7 +27,6 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
      * this like only item_layout.xml (create-new layout )
      * without activity
      */
-
     companion object {
         const val txtNameClubFootball = 2
         const val txtDescClubFormatError = 4
@@ -37,9 +37,10 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
 
         cardView {
-            lparams(matchParent, wrapContent){
+            lparams(matchParent, height = dip(110)) {
                 margin = dip(16)
             }
+            // for image , title, and favorite
             linearLayout {
 
                 lparams(matchParent, wrapContent)
@@ -49,7 +50,7 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
                     id = imgClubFootball
                 }.lparams(width = dip(50), height = dip(50))
 
-                textView {
+                val footBallName = textView {
                     id = txtNameClubFootball
                     text = context.getString(R.string.item_list_footbal_name)
                 }.lparams(width = wrapContent, height = wrapContent) {
@@ -60,24 +61,35 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
                 button {
                     id = btnFavClubFootball
                     backgroundColor = R.color.colorTransparent
+                    textColor = Color.BLACK
                     setBackgroundResource(R.drawable.ic_favorite_border_red_a400_24dp)
                     setOnClickListener {
                         info("fav is clicked")
                         debug(9)
                         error(null)
+                        alert(
+                            "Add to Favorite ${footBallName.text} ?",
+                            "Favorite"
+                        ) {
+                            yesButton { snackbar("coming soon") }
+                            noButton { } //it.dismiss
+                        }.show()
                     }
-                }.lparams(width= dip(30), height = dip(30)){
+                }.lparams(width = dip(30), height = dip(30)) {
                     margin = dip(10)
                     gravity = rightMargin
                 }
 
             }
+            // for describeSet
             verticalLayout {
-                textView{
+                textView {
                     id = txtDescClubFormatError
                     maxLines = 2
-
-                }
+                    ellipsize = TextUtils.TruncateAt.END
+                }.lparams { margin = dip(8) }
+            }.lparams(wrapContent, wrapContent) {
+                gravity = Gravity.BOTTOM
             }
         }
     }

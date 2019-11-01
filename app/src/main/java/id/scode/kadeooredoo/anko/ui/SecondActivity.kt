@@ -40,12 +40,4 @@ class SecondActivity : AppCompatActivity(){
 
 
     }
-//    class SecondActivityUI: AnkoComponent<SecondActivity>{
-//
-//
-//        override fun createView(ui: AnkoContext<SecondActivity>) = with(ui) {
-//
-//
-//        }
-//    }
 }

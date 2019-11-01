@@ -34,7 +34,9 @@ class RvFootballAdapter (
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         //LayoutContainer only for import kotlinx.android.synthetic then i need binding the anko-layout
-        private var txtFootBall : TextView = containerView.findViewById(ItemListUI.txtNameClubFootball)
+        private var txtNameFootBall : TextView = containerView.findViewById(ItemListUI.txtNameClubFootball)
+        private var txtDescFootBall : TextView = containerView.findViewById(ItemListUI.txtDescClubFormatError)
+
         private var imgFootBall : ImageView = containerView.findViewById(ItemListUI.imgClubFootball)
 
         fun bindItem(
@@ -42,16 +44,19 @@ class RvFootballAdapter (
             listener: (ItemClubFootball) -> Unit
         ) {
 
-            txtFootBall.text = itemClubFootball.nameClubFootball
-            itemClubFootball.imageClubFootball.let {
-                Picasso.get()
-                    .load(it)
-                    .fit()
-                    .into(imgFootBall)
+            itemClubFootball.also{
+
+                txtNameFootBall.text = it.nameClubFootball
+                txtDescFootBall.text = it.descClubFootball
+                it.imageClubFootball.let { img ->
+                    Picasso.get()
+                        .load(img)
+                        .fit()
+                        .into(imgFootBall)
+                }
+                containerView.setOnClickListener { _-> listener(it) }
+
             }
-            containerView.setOnClickListener { listener(itemClubFootball) }
-
-
         }
     }
 
