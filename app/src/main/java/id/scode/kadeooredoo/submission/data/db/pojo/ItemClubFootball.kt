@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 /**
  * @Authors scode | Yogi Arif Widodo
  * Created on 31 10/31/19 3:02 PM 2019
- * id.scode.kadeooredoo.submission.data.db.pojo
+ * idClubFootball.scode.kadeooredoo.submission.data.db.pojo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
  * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
@@ -16,7 +16,7 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class ItemClubFootball(
-    val id: Int?,
+    val idClubFootball: Int?,
     val nameClubFootball: String?,
     val descClubFootball: String?,
     val imageClubFootball: Int

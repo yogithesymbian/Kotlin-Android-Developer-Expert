@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_list.*
 /**
  * @Authors scode
  * Created on 30 10/30/19 9:27 PM 2019
- * id.scode.kadeooredoo
+ * idClubFootball.scode.kadeooredoo
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1

@@ -12,7 +12,7 @@ import org.jetbrains.anko.design.snackbar
 /**
  * @Authors scode
  * Created on 30 10/30/19 11:57 PM 2019
- * id.scode.kadeooredoo.anko.ui
+ * idClubFootball.scode.kadeooredoo.anko.ui
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -43,7 +43,9 @@ class MainActivity : AppCompatActivity() {
                     backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
                     setOnClickListener {
+
                         toast("Hello, ${name.text}")
+
                         info("button say hello clicked")
                         debug(7)
                         error(null)
@@ -58,8 +60,8 @@ class MainActivity : AppCompatActivity() {
                     textColor = Color.WHITE
                     setOnClickListener {
                         alert(
-                        "Happy Coding, ",
-                        "Hai ${name.text}!"
+                        "Add to Favorite ?",
+                        "Favorite ${name.text}!"
                     ){
                             yesButton { toast("ya....") }
                             noButton {  }

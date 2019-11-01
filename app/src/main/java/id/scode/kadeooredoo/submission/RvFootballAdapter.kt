@@ -15,7 +15,7 @@ import org.jetbrains.anko.AnkoContext
 /**
  * @Authors scode | Yogi Arif Widodo
  * Created on 31 10/31/19 2:52 PM 2019
- * id.scode.kadeooredoo.submission.ui
+ * idClubFootball.scode.kadeooredoo.submission.ui
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
  * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
@@ -33,8 +33,7 @@ class RvFootballAdapter (
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
         LayoutContainer {
-
-        // i already use layoutcontainer but i still cast/ get the companion variable ,
+        //LayoutContainer only for import kotlinx.android.synthetic then i need binding the anko-layout
         private var txtFootBall : TextView = containerView.findViewById(ItemListUI.txtNameClubFootball)
         private var imgFootBall : ImageView = containerView.findViewById(ItemListUI.imgClubFootball)
 
@@ -44,18 +43,24 @@ class RvFootballAdapter (
         ) {
 
             txtFootBall.text = itemClubFootball.nameClubFootball
-            itemClubFootball.imageClubFootball.let { Picasso.get().load(it).fit().into(imgFootBall) }
+            itemClubFootball.imageClubFootball.let {
+                Picasso.get()
+                    .load(it)
+                    .fit()
+                    .into(imgFootBall)
+            }
             containerView.setOnClickListener { listener(itemClubFootball) }
+
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-       ViewHolder(ItemListUI().createView(AnkoContext.Companion.create(context, parent)))
+       ViewHolder(ItemListUI().createView(AnkoContext.Companion.create(context, parent))) // direct for create layout from separate file as layout | anko layout
 
     override fun getItemCount(): Int = itemClubFootball.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(itemClubFootball[position], listener)
+        holder.bindItem(itemClubFootball[position], listener) //send data[withPosition] and Unit to anonymous bindItem func in Holder
 
 }

@@ -9,7 +9,7 @@ import org.jetbrains.anko.*
 /**
  * @Authors scode
  * Created on 31 10/31/19 7:15 AM 2019
- * id.scode.kadeooredoo.anko.ui
+ * idClubFootball.scode.kadeooredoo.anko.ui
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1

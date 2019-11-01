@@ -1,19 +1,24 @@
 package id.scode.kadeooredoo.submission.ui.home
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.anko.ui.SecondActivity
 import id.scode.kadeooredoo.submission.RvFootballAdapter
 import id.scode.kadeooredoo.submission.data.db.pojo.ItemClubFootball
 import org.jetbrains.anko.*
+import org.jetbrains.anko.design.bottomNavigationView
+import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 /**
  * @Authors scode | Yogi Arif Widodo
  * Created on 31 10/31/19 1:31 PM 2019
- * id.scode.kadeooredoo.submission.ui
+ * idClubFootball.scode.kadeooredoo.submission.ui
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
  * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
@@ -22,7 +27,7 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
  * Linux 5.2.0-kali3-amd64
  */
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity(), AnkoLogger{
     /**
      * Declare recycler and mutableList
      */
@@ -34,10 +39,26 @@ class MainActivity : AppCompatActivity(){
 
         // create layout
         verticalLayout {
+            toolbar{
 
-            padding = dip(16)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    logo = resources.getDrawable(R.drawable.ic_home_green_a400_24dp, context.theme)
+                    title = "League Football"
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        titleMarginStart = dip(32)
+                    }
+                    elevation = 12f
+                    backgroundColor = R.color.colorPrimary
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        setBackgroundColor(resources.getColor(R.color.colorPrimary, context.theme))
+                    }
+                }
+            }.lparams(matchParent, wrapContent){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    margin = dip(16)
+                }
+            }
             recyclerViewFootball = recyclerView()  // assign the layout for initialize recycler
-
         }
         initData() // set Data from string.xml
 
@@ -52,7 +73,10 @@ class MainActivity : AppCompatActivity(){
             this,
             itemClubFootballs
         ){
-            toast("${it.nameClubFootball}")
+            info("recycle got clicked")
+            debug(8)
+            error(null)
+            startActivity<DetailActivity>("detail" to it) //intent with the obj
         }
 
     }
