@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.submission.ui.layout
+package id.scode.kadeooredoo.ui.layout
 
 import android.graphics.Color
 import android.text.TextUtils

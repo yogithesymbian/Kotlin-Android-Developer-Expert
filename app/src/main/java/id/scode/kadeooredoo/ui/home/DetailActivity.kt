@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.submission.ui.home
+package id.scode.kadeooredoo.ui.home
 
 import android.os.Bundle
 import android.view.Gravity
@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import id.scode.kadeooredoo.submission.data.db.pojo.ItemClubFootball
+import id.scode.kadeooredoo.data.db.pojo.ItemClubFootball
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 

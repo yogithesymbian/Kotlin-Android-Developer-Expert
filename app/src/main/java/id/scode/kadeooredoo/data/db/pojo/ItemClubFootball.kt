@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.submission.data.db.pojo
+package id.scode.kadeooredoo.data.db.pojo
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
