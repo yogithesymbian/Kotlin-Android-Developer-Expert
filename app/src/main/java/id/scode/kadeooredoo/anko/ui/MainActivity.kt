@@ -7,10 +7,12 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import org.jetbrains.anko.*
 import id.scode.kadeooredoo.*
+import org.jetbrains.anko.design.snackbar
+
 /**
  * @Authors scode
  * Created on 30 10/30/19 11:57 PM 2019
- * id.scode.kadeooredoo.anko.ui
+ * idClubFootball.scode.kadeooredoo.anko.ui
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         MainActivityUI().setContentView(this)
     }
 
-    class MainActivityUI : AnkoComponent<MainActivity>{
+    class MainActivityUI : AnkoComponent<MainActivity>, AnkoLogger{
         override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
 
             verticalLayout {
@@ -38,20 +40,28 @@ class MainActivity : AppCompatActivity() {
                 }
                 // Button Show Toast
                 button("Say Hello"){
-                    backgroundColor = ContextCompat.getColor(context, R.color.colorAccent)
+                    backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
-                    setOnClickListener { toast("Hello, ${name.text}") }
+                    setOnClickListener {
+
+                        toast("Hello, ${name.text}")
+
+                        info("button say hello clicked")
+                        debug(7)
+                        error(null)
+
+                    }
                 }.lparams(width = matchParent){
                     topMargin = dip(5)
                 }
                 // Button Show Alert
                 button("Show Alert"){
-                    backgroundColor = ContextCompat.getColor(context, R.color.colorAccent)
+                    backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
                     setOnClickListener {
                         alert(
-                        "Happy Coding, ",
-                        "Hai ${name.text}!"
+                        "Add to Favorite ?",
+                        "Favorite ${name.text}!"
                     ){
                             yesButton { toast("ya....") }
                             noButton {  }
@@ -63,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
                 // Button Show Selector
                 button("Show Selector"){
-                    backgroundColor = ContextCompat.getColor(context, R.color.colorAccent)
+                    backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
                     setOnClickListener {
                         val club = listOf(
@@ -83,11 +93,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 // Button Show Snackbar
                 button("Show Snackbar"){
-                    backgroundColor = ContextCompat.getColor(context, R.color.colorAccent)
+                    backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
 
                     setOnClickListener {
                         Snackbar.make(it, "Snackbar", Snackbar.LENGTH_SHORT).show()
+                        it.snackbar("sandbar")
                     }
                 }.lparams(width = matchParent){
                     topMargin = dip(5)
@@ -95,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
                 // Button Go To Second Activity
                 button("Go To SecondActivity"){
-                    backgroundColor = ContextCompat.getColor(context, R.color.colorAccent)
+                    backgroundColor = R.color.colorAccent
                     textColor = Color.WHITE
 
                     setOnClickListener {

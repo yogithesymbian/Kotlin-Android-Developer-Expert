@@ -9,7 +9,7 @@ import org.jetbrains.anko.*
 /**
  * @Authors scode
  * Created on 31 10/31/19 7:15 AM 2019
- * id.scode.kadeooredoo.anko.ui
+ * idClubFootball.scode.kadeooredoo.anko.ui
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -33,19 +33,11 @@ class SecondActivity : AppCompatActivity(){
             nameTextView = textView()
         }
         @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        val intent = intent.also {
+        intent.also {
             name = it.getStringExtra("name")
         }
         nameTextView.text = name
 
 
     }
-//    class SecondActivityUI: AnkoComponent<SecondActivity>{
-//
-//
-//        override fun createView(ui: AnkoContext<SecondActivity>) = with(ui) {
-//
-//
-//        }
-//    }
 }

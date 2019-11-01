@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
@@ -14,7 +12,7 @@ import kotlinx.android.synthetic.main.item_list.*
 /**
  * @Authors scode
  * Created on 30 10/30/19 9:27 PM 2019
- * id.scode.kadeooredoo
+ * idClubFootball.scode.kadeooredoo
  * East Borneo
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1

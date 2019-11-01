@@ -8,7 +8,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "id.scode.kadeooredoo"
+        applicationId "idClubFootball.scode.kadeooredoo"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -39,12 +39,16 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     // NEW MATERIAL DESIGN
     implementation "com.google.android.material:material:1.2.0-alpha01"
+
+    // Anko All Dependecy
     implementation "org.jetbrains.anko:anko:$anko_version"
-    // Anko Commons
-//    implementation "org.jetbrains.anko:anko-commons:$anko_version"
-//
-//    // Anko Layouts
-//    implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
-//    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
+
+    // ConstraintLayout
+    implementation "org.jetbrains.anko:anko-constraint-layout:$anko_version"
+    // RecyclerView-v7
+    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+    // CardView
+    implementation "org.jetbrains.anko:anko-cardview-v7:$anko_version"
 
 }
