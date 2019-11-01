@@ -29,8 +29,9 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
 
     companion object {
         const val txtNameClubFootball = 2
-        const val imgClubFootball = 4
-        const val btnFavClubFootball = 6
+        const val txtDescClubFormatError = 4
+        const val imgClubFootball = 6
+        const val btnFavClubFootball = 8
     }
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
@@ -70,6 +71,13 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
                     gravity = rightMargin
                 }
 
+            }
+            verticalLayout {
+                textView{
+                    id = txtDescClubFormatError
+                    maxLines = 2
+
+                }
             }
         }
     }

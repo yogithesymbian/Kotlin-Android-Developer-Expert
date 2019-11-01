@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.submission.ui.home
 
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -39,20 +40,26 @@ class DetailActivity : AppCompatActivity() {
             cardView {
                 padding = dip(8)
                 txtNameClubFootball = textView {
+                    padding = dip(16)
                     textSize = 18f
-
+                }.lparams(wrapContent, wrapContent){
+                    margin = dip(16)
+                    gravity = Gravity.CENTER
                 }
             }.lparams(matchParent, wrapContent) {
                 margin = dip(8)
             }
 
-            imgClubFootball = imageView().lparams(width = dip(75), height = dip(75))
+            imgClubFootball = imageView()
+                .lparams(width = dip(125), height = dip(125)){
+                margin = dip(8)
+            }
 
             cardView {
                 padding = dip(8)
                 txtDetailClubFootBall = textView {
+                    padding = dip(16)
                     textSize = 16f
-                    maxLines = 5
                 }
             }.lparams(matchParent, wrapContent) {
                 margin = dip(8)
