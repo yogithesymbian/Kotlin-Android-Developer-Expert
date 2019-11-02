@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':thesportsdb'
 rootProject.name='KadeOoredoo'
