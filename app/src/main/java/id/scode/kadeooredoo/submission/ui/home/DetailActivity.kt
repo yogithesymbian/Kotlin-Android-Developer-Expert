@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.submission.data.db.pojo.ItemClubFootball
+import id.scode.kadeooredoo.submission.ui.home.MainActivity.Companion.DETAIL_KEY
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
@@ -68,7 +69,7 @@ class DetailActivity : AppCompatActivity() {
 
         // get Data from intent(#MainActivity)
         intent.also {
-            itemClubFootball = it.getParcelableExtra("detail")
+            itemClubFootball = it.getParcelableExtra(DETAIL_KEY)
         }
         // set Data for layout
         itemClubFootball.also {

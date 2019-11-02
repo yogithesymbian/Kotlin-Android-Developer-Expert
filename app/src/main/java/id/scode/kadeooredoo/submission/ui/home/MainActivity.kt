@@ -28,6 +28,10 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
  */
 
 class MainActivity : AppCompatActivity(), AnkoLogger{
+
+    companion object{
+        const val DETAIL_KEY = "detail_key"
+    }
     /**
      * Declare recycler and mutableList
      */
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     logo = resources.getDrawable(R.drawable.ic_home_green_a400_24dp, context.theme)
-                    title = "League Football"
+                    title = context.getString(R.string.main_activity_title_for_layout)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         titleMarginStart = dip(32)
                     }
@@ -76,7 +80,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger{
             info("recycle got clicked")
             debug(8)
             error(null)
-            startActivity<DetailActivity>("detail" to it) //intent with the obj
+            startActivity<DetailActivity>(DETAIL_KEY to it) //intent with the obj
         }
 
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">KadeOoredoo</string>
     <string name="item_list_footbal_name">football name</string>
+    <string name="main_activity_title_for_layout">League Football</string>
 
     <!--    <integer-array name="club_id">-->
     <!--    </integer-array>-->
