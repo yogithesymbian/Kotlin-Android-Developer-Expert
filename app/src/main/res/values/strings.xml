@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">KadeOoredoo</string>
+    <string name="app_name">yoBall</string>
     <string name="item_list_footbal_name">football name</string>
+    <string name="main_activity_title_for_layout">League Football</string>
 
-    <!--    <integer-array name="club_id">-->
-    <!--    </integer-array>-->
     <integer-array name="club_id">
         <item>4328</item>
         <item>4334</item>
@@ -105,16 +104,16 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     </string-array>
 
     <array name="club_image">
-        <item>@drawable/img_english_premier_league</item>
-        <item>@drawable/img_french_ligue_1</item>
-        <item>@drawable/img_german_bundesliga</item>
-        <item>@drawable/img_italian_serie_a</item>
-        <item>@drawable/img_spanish_la_liga</item>
-        <item>@drawable/img_american_mayor_league</item>
-        <item>@drawable/img_portugeuese_premiera_liga</item>
-        <item>@drawable/img_australian_a_league</item>
-        <item>@drawable/img_scotish_premier_league</item>
-        <item>@drawable/img_english_league_1</item>
+        <item>@drawable/ic_english_premier_league</item>
+        <item>@drawable/ic_french_ligue_1</item>
+        <item>@drawable/ic_german_bundesliga</item>
+        <item>@drawable/ic_italian_serie_a</item>
+        <item>@drawable/ic_spanish_la_liga</item>
+        <item>@drawable/ic_american_mayor_league</item>
+        <item>@drawable/ic_portugeuese_premiera_liga</item>
+        <item>@drawable/ic_australian_a_league</item>
+        <item>@drawable/ic_scotish_premier_league</item>
+        <item>@drawable/ic_english_league_1</item>
     </array>
 
 
