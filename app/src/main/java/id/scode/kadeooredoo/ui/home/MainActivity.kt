@@ -26,7 +26,7 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 class MainActivity : AppCompatActivity(), AnkoLogger{
 
     companion object{
-        const val DETAIL_KEY = "detail_key"
+        const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj
     }
     /**
      * Declare recycler and mutableList
