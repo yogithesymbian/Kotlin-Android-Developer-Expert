@@ -22,17 +22,6 @@ import org.jetbrains.anko.design.snackbar
  */
 
 class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
-    /**
-     * direct with param ViewGroup
-     * this like only item_layout.xml (create-new layout )
-     * without activity
-     */
-    companion object {
-        const val txtNameClubFootball = 2
-        const val txtDescClubFormatError = 4
-        const val imgClubFootball = 6
-        const val btnFavClubFootball = 8
-    }
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
 
@@ -47,11 +36,11 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
                 padding = dip(16)
 
                 imageView {
-                    id = imgClubFootball
+                    id = R.id.img_club_football
                 }.lparams(width = dip(50), height = dip(50))
 
                 val footBallName = textView {
-                    id = txtNameClubFootball
+                    id = R.id.txt_name_club_football
                     text = context.getString(R.string.item_list_footbal_name)
                 }.lparams(width = wrapContent, height = wrapContent) {
                     margin = dip(10)
@@ -59,7 +48,7 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
                 }
 
                 button {
-                    id = btnFavClubFootball
+                    id = R.id.btn_fav_club_football
                     backgroundColor = R.color.colorTransparent
                     textColor = Color.BLACK
                     setBackgroundResource(R.drawable.ic_favorite_border_red_a400_24dp)
@@ -84,7 +73,7 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
             // for describeSet
             verticalLayout {
                 textView {
-                    id = txtDescClubFormatError
+                    id = R.id.txt_desc_club_football
                     maxLines = 2
                     ellipsize = TextUtils.TruncateAt.END
                 }.lparams { margin = dip(8) }

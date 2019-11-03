@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="img_club_football" type="id" />
+    <item name="txt_name_club_football" type="id" />
+    <item name="btn_fav_club_football" type="id" />
+    <item name="txt_desc_club_football" type="id" />
+</resources>

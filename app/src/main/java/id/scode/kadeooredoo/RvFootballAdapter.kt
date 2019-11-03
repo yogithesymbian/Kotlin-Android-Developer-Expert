@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import id.scode.kadeooredoo.data.db.pojo.ItemClubFootball
+import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.ui.layout.ItemListUI
-import kotlinx.android.extensions.LayoutContainer
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.find
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -26,35 +26,33 @@ import org.jetbrains.anko.AnkoContext
 class RvFootballAdapter (
 
     private val context: Context,
-    private val itemClubFootball: List<ItemClubFootball>,
-    private val listener: (ItemClubFootball) -> Unit
+    private val teams: List<Team>,
+    private val listener: (Team) -> Unit
 
 ) : RecyclerView.Adapter<RvFootballAdapter.ViewHolder>(){
 
-    inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
-        LayoutContainer {
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         //LayoutContainer only for import kotlinx.android.synthetic then i need binding the anko-layout
-        private var txtNameFootBall : TextView = containerView.findViewById(ItemListUI.txtNameClubFootball)
-        private var txtDescFootBall : TextView = containerView.findViewById(ItemListUI.txtDescClubFormatError)
-
-        private var imgFootBall : ImageView = containerView.findViewById(ItemListUI.imgClubFootball)
+        private var txtNameFootBall : TextView = view.find(R.id.txt_name_club_football)
+        private var txtDescFootBall : TextView = view.find(R.id.txt_desc_club_football)
+        private var imgFootBall : ImageView = view.find(R.id.img_club_football)
 
         fun bindItem(
-            itemClubFootball: ItemClubFootball,
-            listener: (ItemClubFootball) -> Unit
+            team: Team,
+            listener: (Team) -> Unit
         ) {
 
-            itemClubFootball.also{
+            team.also{
 
-                txtNameFootBall.text = it.nameClubFootball
-                txtDescFootBall.text = it.descClubFootball
-                it.imageClubFootball.let { img ->
+                txtNameFootBall.text = it.teamName
+                txtDescFootBall.text = it.teamName
+                it.teamBadge.let { img ->
                     Picasso.get()
                         .load(img)
                         .fit()
                         .into(imgFootBall)
                 }
-                containerView.setOnClickListener { _-> listener(it) }
+                itemView.setOnClickListener { _-> listener(it) }
 
             }
         }
@@ -63,9 +61,9 @@ class RvFootballAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
        ViewHolder(ItemListUI().createView(AnkoContext.Companion.create(context, parent))) // direct for create layout from separate file as layout | anko layout
 
-    override fun getItemCount(): Int = itemClubFootball.size
+    override fun getItemCount(): Int = teams.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(itemClubFootball[position], listener) //send data[withPosition] and Unit to anonymous bindItem func in Holder
+        holder.bindItem(teams[position], listener) //send data[withPosition] and Unit to anonymous bindItem func in Holder
 
 }

@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import id.scode.kadeooredoo.data.db.pojo.ItemClubFootball
+import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_KEY
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
@@ -31,7 +31,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var txtDetailClubFootBall: TextView
     private lateinit var txtNameClubFootball: TextView
     private lateinit var imgClubFootball: ImageView
-    private var itemClubFootball: ItemClubFootball? = null
+
+    private var teams: Team? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,13 +70,13 @@ class DetailActivity : AppCompatActivity() {
 
         // get Data from intent(#MainActivity)
         intent.also {
-            itemClubFootball = it.getParcelableExtra(DETAIL_KEY)
+            teams = it.getParcelableExtra(DETAIL_KEY)
         }
         // set Data for layout
-        itemClubFootball.also {
-            txtNameClubFootball.text = it?.nameClubFootball
-            txtDetailClubFootBall.text = it?.descClubFootball
-            it?.imageClubFootball?.also { img ->
+        teams.also {
+            txtNameClubFootball.text = it?.teamName
+            txtDetailClubFootBall.text = it?.teamName
+            it?.teamBadge?.also { img ->
                 Picasso.get()
                     .load(img)
                     .fit()
