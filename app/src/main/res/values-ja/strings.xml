@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">yoBall</string>
     <string name="item_list_footbal_name">football name</string>
@@ -11,7 +12,5 @@
         <item>French Ligue 1</item>
         <item>Spanish La Liga</item>
     </array>
-    <string name="app_language">en_lang</string>
-
-
+    <string name="app_language">jp_lang</string>
 </resources>

@@ -13,6 +13,9 @@ import android.view.View
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
+const val EN_LANG = "en_lang"
+const val JP_LANG = "jp_lang"
+
 fun View.visible(){
     visibility = View.VISIBLE
 }

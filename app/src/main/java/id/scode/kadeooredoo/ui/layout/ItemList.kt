@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.ViewGroup
+import androidx.core.view.marginTop
 import org.jetbrains.anko.*
 import id.scode.kadeooredoo.*
 import org.jetbrains.anko.cardview.v7.cardView
@@ -72,14 +73,23 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
             }
             // for describeSet
             verticalLayout {
+
                 textView {
                     id = R.id.txt_desc_club_football
                     maxLines = 2
                     ellipsize = TextUtils.TruncateAt.END
                 }.lparams { margin = dip(8) }
+
+                view {
+                    backgroundColor = R.color.colorPrimaryDark
+                }.lparams(width = matchParent, height = dip(2)){
+
+                }
+
             }.lparams(wrapContent, wrapContent) {
                 gravity = Gravity.BOTTOM
             }
+
         }
     }
 }

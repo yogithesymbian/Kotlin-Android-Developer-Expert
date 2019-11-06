@@ -3,6 +3,7 @@ package id.scode.kadeooredoo.ui.home
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
+import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
@@ -96,6 +98,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
             }
 
             spinner = spinner()
+            button("Look League") {
+
+            }.lparams(width = matchParent, height = wrapContent){
+                gravity = Gravity.BOTTOM.and(Gravity.END)
+                margin = dip(8)
+            }
             swipeRefreshLayoutListTeam = swipeRefreshLayout {
                 setColorSchemeColors(
                     R.color.colorAccent,
@@ -117,6 +125,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                     }
                 }
             }
+
         } //end of view
 
 
@@ -125,7 +134,16 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
          * for the callBack a getTeamList
          */
         mainAdapter = RvFootballAdapter(this,teams){
-            info("recycle got clicked")
+            info("""
+                recycle got clicked
+                id league ${it.idLeague}
+                |
+                id team ${it.teamId}
+                |
+                id Soccer XML ${it.idSoccerXML}
+                |
+                team name ${it.teamName}
+            """.trimIndent())
             debug(8)
             error(null)
             startActivity<DetailActivity>(DETAIL_KEY to it) //intent with the obj

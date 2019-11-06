@@ -37,15 +37,25 @@ class RvFootballAdapter (
         private var txtDescFootBall : TextView = view.find(R.id.txt_desc_club_football)
         private var imgFootBall : ImageView = view.find(R.id.img_club_football)
 
+        private val language = context.resources.getString(R.string.app_language)
+
         fun bindItem(
             team: Team,
             listener: (Team) -> Unit
         ) {
 
+
             team.also{
 
                 txtNameFootBall.text = it.teamName
-                txtDescFootBall.text = it.teamName
+
+                txtDescFootBall.also {desc ->
+                    when (language) {
+                        EN_LANG -> desc.text = it.strDescriptionEN
+                        JP_LANG -> desc.text = it.strDescriptionJP
+                    }
+                }
+
                 it.teamBadge.let { img ->
                     Picasso.get()
                         .load(img)

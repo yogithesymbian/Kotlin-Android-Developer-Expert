@@ -17,12 +17,62 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Team(
+    val idLeague:String? = null,
+    val idSoccerXML: String? = null,
+
     @SerializedName("idTeam")
     var teamId: String? = null,
+
+    val intFormedYear: String? = null,
+    val intLoved: String? = null,
+    val intStadiumCapacity: String? = null,
+    val strAlternate: String? = null,
+    val strCountry: String? = null,
+    val strDescriptionCN: String? = null,
+    val strDescriptionDE: String? = null,
+    val strDescriptionEN: String? = null,
+    val strDescriptionES: String? = null,
+    val strDescriptionFR: String? = null,
+    val strDescriptionHU: String? = null,
+    val strDescriptionIL: String? = null,
+    val strDescriptionIT: String? = null,
+    val strDescriptionJP: String? = null,
+    val strDescriptionNL: String? = null,
+    val strDescriptionNO: String? = null,
+    val strDescriptionPL: String? = null,
+    val strDescriptionPT: String? = null,
+    val strDescriptionRU: String? = null,
+    val strDescriptionSE: String? = null,
+    val strDivision: String? = null,
+    val strFacebook: String? = null,
+    val strGender: String? = null,
+    val strInstagram: String? = null,
+    val strKeywords: String? = null,
+    val strLeague: String? = null,
+    val strLocked: String? = null,
+    val strManager: String? = null,
+    val strRSS: String? = null,
+    val strSport: String? = null,
+    val strStadium: String? = null,
+    val strStadiumDescription: String? = null,
+    val strStadiumLocation: String? = null,
+    val strStadiumThumb: String? = null,
 
     @SerializedName("strTeam")
     var teamName: String? = null,
 
     @SerializedName("strTeamBadge")
-    var teamBadge: String? = null
+    var teamBadge: String? = null,
+
+    val strTeamBanner: String? = null,
+    val strTeamFanart1: String? = null,
+    val strTeamFanart2: String? = null,
+    val strTeamFanart3: String? = null,
+    val strTeamFanart4: String? = null,
+    val strTeamJersey: String? = null,
+    val strTeamLogo: String? = null,
+    val strTeamShort: String? = null,
+    val strTwitter: String? = null,
+    val strWebsite: String? = null,
+    val strYoutube: String? = null
 ) : Parcelable
