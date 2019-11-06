@@ -26,4 +26,14 @@ object TheSportDbApi {
             .build()
             .toString()
     }
+
+//    Detail liga: https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id={idLeague}
+//
+//    Daftar next match: https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id={idLeague}
+//
+//    Daftar previous match:  https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id={idLeague}
+//
+//    Detail pertandingan: https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id={idEvent}
+//
+//    Pencarian pertandingan: https://www.thesportsdb.com/api/v1/json/1/searchevents.php?e={query}
 }
