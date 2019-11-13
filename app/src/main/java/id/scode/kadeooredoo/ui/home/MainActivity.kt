@@ -70,61 +70,73 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         super.onCreate(savedInstanceState)
 
         // view
-        linearLayout {
-            lparams(width = matchParent, height = wrapContent)
-            orientation = LinearLayout.VERTICAL
-            topPadding = dip(16)
-            leftPadding = dip(16)
-            rightPadding = dip(16)
+        verticalLayout {
 
-            toolbar {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    logo = resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
-                    title = context.getString(R.string.main_activity_title_for_layout)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        titleMarginStart = dip(32)
-                    }
-                    elevation = 12f
-                    backgroundColor = R.color.colorPrimary
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        setBackgroundColor(resources.getColor(R.color.colorPrimary, context.theme))
-                    }
-                }
-            }.lparams(matchParent, wrapContent) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    margin = dip(16)
-                }
-            }
-
-            spinner = spinner()
-            button("Look League") {
+            button("Detail League") {
 
             }.lparams(width = matchParent, height = wrapContent){
                 gravity = Gravity.BOTTOM.and(Gravity.END)
                 margin = dip(8)
             }
-            swipeRefreshLayoutListTeam = swipeRefreshLayout {
-                setColorSchemeColors(
-                    R.color.colorAccent,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light
-                )
-                relativeLayout {
-                    lparams(width = matchParent, height = wrapContent)
+            button("Detail League") {
 
-                    recyclerViewListTeam = recyclerView {
-                        lparams(width = matchParent, height = wrapContent)
-                        layoutManager = LinearLayoutManager(context)
+            }.lparams(width = matchParent, height = wrapContent){
+                gravity = Gravity.BOTTOM.and(Gravity.END)
+                margin = dip(8)
+            }
+            linearLayout {
+                lparams(width = matchParent, height = matchParent)
+                orientation = LinearLayout.VERTICAL
+                topPadding = dip(8)
+                leftPadding = dip(8)
+                rightPadding = dip(8)
+
+                toolbar {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        logo = resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
+                        title = context.getString(R.string.main_activity_title_for_layout)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            titleMarginStart = dip(32)
+                        }
+                        elevation = 12f
+                        backgroundColor = R.color.colorPrimary
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            setBackgroundColor(resources.getColor(R.color.colorPrimary, context.theme))
+                        }
                     }
-
-                    progressBar = progressBar {
-                    }.lparams {
-                        centerHorizontally()
+                }.lparams(matchParent, wrapContent) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                        margin = dip(16)
                     }
                 }
+
+                spinner = spinner()
+
+                swipeRefreshLayoutListTeam = swipeRefreshLayout {
+                    setColorSchemeColors(
+                        R.color.colorAccent,
+                        android.R.color.holo_green_light,
+                        android.R.color.holo_orange_light,
+                        android.R.color.holo_red_light
+                    )
+                    relativeLayout {
+                        //                    lparams(width = matchParent, height = wrapContent)
+
+                        recyclerViewListTeam = recyclerView {
+                            lparams(width = matchParent, height = dip(100))
+                            layoutManager = LinearLayoutManager(context)
+                        }
+
+                        progressBar = progressBar {
+                        }.lparams {
+                            centerHorizontally()
+                        }
+                    }
+                }.lparams(width = matchParent, height = wrapContent)
+
             }
+
 
         } //end of view
 
