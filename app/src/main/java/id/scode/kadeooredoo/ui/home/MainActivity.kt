@@ -3,9 +3,7 @@ package id.scode.kadeooredoo.ui.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import id.scode.kadeooredoo.Item
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.RecyclerViewAdapter
