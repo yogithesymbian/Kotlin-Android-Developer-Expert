@@ -3,6 +3,14 @@
     <string name="item_list_footbal_name">football name</string>
     <string name="main_activity_title_for_layout">League Football</string>
 
+    <array name="idLeague">
+        <item>4328</item>
+        <item>4329</item>
+        <item>4331</item>
+        <item>4332</item>
+        <item>4334</item>
+        <item>4335</item>
+    </array>
     <array name="league">
         <item>English Premier League</item>
         <item>English League Championship</item>
@@ -12,6 +20,10 @@
         <item>Spanish La Liga</item>
     </array>
     <string name="app_language">en_lang</string>
+    <string name="title_activity_detail_league">DetailLeagueActivity</string>
+    <string name="title_previous">Previous</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_next">Next</string>
 
 
 </resources>

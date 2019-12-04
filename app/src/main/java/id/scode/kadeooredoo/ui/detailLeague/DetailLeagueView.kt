@@ -1,11 +1,10 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.detailLeague
 
 import id.scode.kadeooredoo.data.db.entities.League
-import id.scode.kadeooredoo.data.db.entities.Team
 
 /**
  * @Authors scode | Yogi Arif Widodo
- * Created on 04 11/4/19 7:08 AM 2019
+ * Created on 03 12/3/19 2:55 PM 2019
  * id.scode.kadeooredoo.ui.home
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -14,11 +13,12 @@ import id.scode.kadeooredoo.data.db.entities.Team
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-interface MainView {
+
+interface DetailLeagueView {
 
     fun showLoading()
     fun hideLoading()
 
-    fun showTeamList(data: List<Team>?)
+    fun showDetailLeague(data: List<League>?)
 
 }

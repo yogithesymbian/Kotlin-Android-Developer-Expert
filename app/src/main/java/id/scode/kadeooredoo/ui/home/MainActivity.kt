@@ -16,6 +16,7 @@ import id.scode.kadeooredoo.RvFootballAdapter
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
+import id.scode.kadeooredoo.ui.detailLeague.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
     companion object {
         const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj
+        const val DETAIL_LEAGUE = "detail_league"
     }
 
     /**
@@ -72,18 +74,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         // view
         verticalLayout {
 
-            button("Detail League") {
-
-            }.lparams(width = matchParent, height = wrapContent){
-                gravity = Gravity.BOTTOM.and(Gravity.END)
-                margin = dip(8)
-            }
-            button("Detail League") {
-
-            }.lparams(width = matchParent, height = wrapContent){
-                gravity = Gravity.BOTTOM.and(Gravity.END)
-                margin = dip(8)
-            }
             linearLayout {
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
@@ -113,6 +103,13 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
                 spinner = spinner()
 
+                button("Detail League") {
+                    id = R.id.btn_det_1
+                    allCaps = false
+                }.lparams(width = matchParent, height = wrapContent){
+                    gravity = Gravity.BOTTOM.and(Gravity.END)
+                    margin = dip(8)
+                }
                 swipeRefreshLayoutListTeam = swipeRefreshLayout {
                     setColorSchemeColors(
                         R.color.colorAccent,
@@ -124,7 +121,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                         //                    lparams(width = matchParent, height = wrapContent)
 
                         recyclerViewListTeam = recyclerView {
-                            lparams(width = matchParent, height = dip(100))
+                            lparams(width = matchParent, height = dip(400))
                             layoutManager = LinearLayoutManager(context)
                         }
 
@@ -135,7 +132,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                     }
                 }.lparams(width = matchParent, height = wrapContent)
 
+
             }
+
 
 
         } //end of view
@@ -162,9 +161,22 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         }
         recyclerViewListTeam.adapter = mainAdapter
 
+
+
         val request = ApiRepository()
         val gson = Gson()
         mainPresenter = MainPresenter(this, request, gson)
+
+        // idLeague INIT LOKAL
+        var idLeague = ""
+        val btnDetSat = findViewById<View>(R.id.btn_det_1)
+//        btnDetSat.setOnClickListener{
+//            info ("hello detail clickeddddddddddddddd")
+//            RvFootballAdapter(this,teams){
+//                info ("hello detail clicked ${it.idLeague}")
+//            }
+//        }
+
 
         // spinner config
         val spinnerItems = resources.getStringArray(R.array.league)
@@ -185,6 +197,19 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
             ) {
                 info("spinner selected ${spinner.selectedItem}")
                 leagueName = spinner.selectedItem.toString()
+
+                btnDetSat.setOnClickListener{
+
+                    if (leagueName == "English Premier League"){
+                        idLeague = "4328"
+                        startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                    } else if (leagueName == "English League Championship"){
+                        idLeague = "4329"
+                        startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                    }
+
+                }
+
                 mainPresenter.getTeamList(leagueName)
             }
 
@@ -198,7 +223,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
             info("try swipe to refresh on select ${spinner.selectedItem}")
             mainPresenter.getTeamList(spinner.selectedItem.toString())
         }
-
     } //end of onCreate
 
 
