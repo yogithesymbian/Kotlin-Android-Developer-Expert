@@ -1,11 +1,12 @@
-package id.scode.kadeooredoo.ui.detailLeague
+package id.scode.kadeooredoo.ui.detailLeague.view
 
+import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.League
 
 /**
  * @Authors scode | Yogi Arif Widodo
- * Created on 03 12/3/19 2:55 PM 2019
- * id.scode.kadeooredoo.ui.home
+ * Created on 05 12/5/19 11:44 AM 2019
+ * id.scode.kadeooredoo.ui.detailLeague.view
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
  * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
@@ -13,12 +14,11 @@ import id.scode.kadeooredoo.data.db.entities.League
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-
-interface DetailLeagueView {
+interface NextMatchLeagueView {
 
     fun showLoading()
     fun hideLoading()
 
-    fun showDetailLeague(data: List<League>?)
+    fun showNextLeague(data: List<EventNext>?)
 
 }

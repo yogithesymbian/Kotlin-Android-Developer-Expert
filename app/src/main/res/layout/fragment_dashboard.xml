@@ -2,18 +2,304 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ProgressBar
+        android:id="@+id/progress_detail_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:text="hello world" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_fantart"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toStartOf="@+id/text_dashboard"
+        app:layout_constraintStart_toEndOf="@+id/text_dashboard"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carousel_fanart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            app:animateOnBoundary="true"
+            app:autoPlay="true"
+            app:fillColor="#FFFFFFFF"
+            app:indicatorGravity="bottom|center"
+            app:pageColor="#00000000"
+            app:pageTransformInterval="1500"
+            app:pageTransformer="flow"
+            app:radius="6dp"
+            app:slideInterval="3000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp">
+
+        </com.synnapps.carouselview.CarouselView>
+
+    </androidx.cardview.widget.CardView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_poster_league"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="4dp"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toTopOf="@+id/card_fantart"
+        app:layout_constraintVertical_bias="0.18"
+        tools:src="@mipmap/ic_launcher_yoball_round"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_str_league"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/img_poster_league"
+        tools:text="English Premiere League" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_str_soccer"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/txt_str_league"
+        tools:text="Soccer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_str_gender"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/txt_str_soccer"
+        tools:text="Male" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_str_country"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/card_desc"
+        app:layout_constraintStart_toStartOf="@+id/card_desc"
+        app:layout_constraintTop_toBottomOf="@+id/card_desc"
+        tools:text="Country : England" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_str_first_event"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/txt_str_gender"
+        tools:text="First Event 2008-08-18" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_desc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_str_first_event">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_desc_league"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:maxLines="11"
+            android:padding="8dp"
+            tools:ignore="RtlHardcoded"
+            tools:text="  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, architecto commodi delectus deleniti, dignissimos doloribus facilis impedit inventore iusto obcaecati odit optio quam quia quibusdam quod recusandae similique tempora voluptate!" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        app:icon="@drawable/ic_public_black_24dp"
+        app:iconTint="@android:color/holo_blue_light"
+        app:layout_constraintBottom_toBottomOf="@+id/img_poster_league"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/card_fantart"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media_yt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        android:visibility="gone"
+        app:icon="@drawable/ic_yt"
+        app:iconTint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media_tw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        android:visibility="gone"
+        app:icon="@drawable/ic_tw"
+        app:iconTint="@android:color/white"
+        app:iconTintMode="multiply"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toStartOf="@+id/float_social_media_yt"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        android:visibility="gone"
+        app:icon="@drawable/ic_fb"
+        app:iconTint="@android:color/white"
+        app:iconTintMode="multiply"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toStartOf="@+id/float_social_media_tw"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        android:visibility="gone"
+        app:icon="@drawable/ic_public_black_24dp"
+        app:iconTint="@android:color/holo_green_light"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toStartOf="@+id/float_social_media_fb"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/float_social_media_rss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@android:color/white"
+        android:tooltipText="media social"
+        android:visibility="gone"
+        app:icon="@drawable/ic_fd"
+        app:iconTint="@android:color/white"
+        app:iconTintMode="multiply"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toStartOf="@+id/float_social_media_web"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_trophy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.3"
+        android:elevation="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_str_country"
+        app:layout_constraintEnd_toEndOf="@+id/card_fantart"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toBottomOf="@+id/progress_detail_dashboard"
+        tools:ignore="UnusedAttribute"
+        tools:src="@drawable/ic_home_green_400_24dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

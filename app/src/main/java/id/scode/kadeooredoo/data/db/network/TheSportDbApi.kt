@@ -14,36 +14,13 @@ import id.scode.kadeooredoo.BuildConfig
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  *
- * Beberapa fitur yang harus dimodifikasi atau ditambahkan pada aplikasi:
-
-Daftar Liga
-Dikarenakan pada TheSportDB tidak terdapat endpoint khusus untuk liga sepak bola, maka data yang ditampilkan boleh tetap dari lokal.
-Detail Liga
-Menampilkan detail liga dengan data yang diperoleh dari API. Anda bisa memanfaatkan id liga sebagai parameternya.
-Jadwal Pertandingan
-Menampilkan daftar pertandingan (Next Match dan Previous Match) pada liga yang dipilih oleh pengguna dengan data yang diperoleh dari API.
-
-Detail Pertandingan
-Menampilkan detail pertandingan (logo tim, skor dan informasi lainnya) dari pertandingan yang dipilih dengan data yang diperoleh dari API.
-
-Pencarian Pertandingan
-Fitur untuk melakukan pencarian pertandingan.
+ *
  */
 object TheSportDbApi {
 
     private const val API = "api"
     private const val VERSI = "v1"
     private const val JSON = "json"
-
-//    Detail liga: https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id={idLeague}
-//
-//    Daftar next match: https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id={idLeague}
-//
-//    Daftar previous match:  https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id={idLeague}
-//
-//    Detail pertandingan: https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id={idEvent}
-//
-//    Pencarian pertandingan: https://www.thesportsdb.com/api/v1/json/1/searchevents.php?e={query}
 
     fun getTeams(league: String): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
@@ -89,6 +66,17 @@ object TheSportDbApi {
             .appendPath(BuildConfig.TSDB_API_KEY)
             .appendPath("eventspastleague.php")
             .appendQueryParameter("id", league)
+            .build()
+            .toString()
+    }
+    fun getLookupTeams(idTeam: String): String {
+        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
+            .appendPath(API)
+            .appendPath(VERSI)
+            .appendPath(JSON)
+            .appendPath(BuildConfig.TSDB_API_KEY)
+            .appendPath("lookupteam.php")
+            .appendQueryParameter("id", idTeam)
             .build()
             .toString()
     }

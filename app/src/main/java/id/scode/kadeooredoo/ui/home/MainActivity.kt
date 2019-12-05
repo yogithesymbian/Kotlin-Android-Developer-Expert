@@ -90,9 +90,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                             titleMarginStart = dip(32)
                         }
                         elevation = 12f
-                        backgroundColor = R.color.colorPrimary
+                        backgroundColor = R.color.colorPrimaryBar
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            setBackgroundColor(resources.getColor(R.color.colorPrimary, context.theme))
+                            setBackgroundColor(resources.getColor(R.color.colorPrimaryBar, context.theme))
                         }
                     }
                 }.lparams(matchParent, wrapContent) {
@@ -191,7 +191,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
-                view: View,
+                view: View?,
                 position: Int,
                 id: Long
             ) {
@@ -199,13 +199,31 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                 leagueName = spinner.selectedItem.toString()
 
                 btnDetSat.setOnClickListener{
-
-                    if (leagueName == "English Premier League"){
-                        idLeague = "4328"
-                        startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
-                    } else if (leagueName == "English League Championship"){
-                        idLeague = "4329"
-                        startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                    when (leagueName) {
+                        "English Premier League" -> {
+                            idLeague = "4328"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
+                        "English League Championship" -> {
+                            idLeague = "4329"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
+                        "German Bundesliga" -> {
+                            idLeague = "4331"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
+                        "Italian Serie A" -> {
+                            idLeague = "4332"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
+                        "French Ligue 1" -> {
+                            idLeague = "4334"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
+                        "Spanish La Liga" -> {
+                            idLeague = "4335"
+                            startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
+                        }
                     }
 
                 }
