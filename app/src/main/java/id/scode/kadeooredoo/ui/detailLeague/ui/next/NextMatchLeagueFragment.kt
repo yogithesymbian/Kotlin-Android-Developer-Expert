@@ -19,10 +19,13 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailLeague.adapter.RvNextMatchLeague
 import id.scode.kadeooredoo.ui.detailLeague.presenter.NextPresenter
+import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailLeague.view.NextMatchLeagueView
+import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivity
 
 class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
@@ -50,8 +53,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         // initialize binding
         val root = inflater.inflate(R.layout.fragment_next, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
+        progressBar = root.findViewById(R.id.progress_detail_next)
         recyclerView = root.findViewById(R.id.rv_next_match_leagues)
 
+        //set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
         // get pass data args
@@ -77,17 +82,17 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
          * declare & initialize adapter and presenter
          * for the callBack a getTeamList
          */
-        rvNextMatchLeagueAdapter = activity?.applicationContext?.let {
+        rvNextMatchLeagueAdapter = activity?.applicationContext?.let { context ->
             RvNextMatchLeague(
-                it,
+                context,
                 eventNextMutableList
             ) {
                 info(
                     """
-                            date : ${it.strAwayFormation}
+                    date : ${it.strAwayFormation}
                     """.trimIndent()
                 )
-                //            startActivity<DetailActivity>(DETAIL_KEY to it) //intent with the obj
+                context.startActivity<DetailMatchLeagueActivity>(DETAIL_NEXT_MATCH_LEAGUE to it)
             }
         }!!
         recyclerView.adapter = rvNextMatchLeagueAdapter
@@ -111,6 +116,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         }
         rvNextMatchLeagueAdapter.notifyDataSetChanged()
         info("try show event past list : done")
-        info("hello yogi ${eventNextMutableList[0].idHomeTeam}")
+        info("hello next ${eventNextMutableList[0].idHomeTeam}")
+    }
+
+    companion object{
+        const val DETAIL_NEXT_MATCH_LEAGUE = "detail_next_match_legaue"
     }
 }

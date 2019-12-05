@@ -34,8 +34,21 @@ class RvPrevMatchLeague (
 
         fun bindItem(item: EventPrevious, listener: (EventPrevious) -> Unit) {
 
-            txt_title_prev.text = item.strAwayTeam
-//            item.image.let { Picasso.get().load(it).fit().into(img_main) }
+            txt_str_events.text = item.strEvent
+            txt_str_seasons.text = item.strSeason
+
+            txt_home_team.text = item.strHomeTeam
+            txt_score_home.text = item.intHomeScore
+
+            txt_away_team.text = item.strAwayTeam
+            txt_score_away.text = item.intAwayScore
+
+            txt_date_event.text = item.dateEvent
+            txt_str_time_event.text = item.strTime
+            txt_unlocked_event.text = item.strLocked
+
+
+//            item.image.telet { Picasso.get().load(it).fit().into(img_main) }
             containerView.setOnClickListener { listener(item) }
 
         }

@@ -19,7 +19,7 @@ import org.jetbrains.anko.uiThread
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class DetailPresenter (
+class DetailLeaguePresenter (
     private val view: DetailLeagueView,
     private val apiRepository: ApiRepository,
     private val gson: Gson

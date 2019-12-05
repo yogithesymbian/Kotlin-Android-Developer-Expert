@@ -14,8 +14,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity"
+            android:label="@string/title_activity_detail_match_league"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ui.detailLeague.DetailLeagueActivity"
-            android:label="@string/title_activity_detail_league"></activity>
+            android:label="@string/title_activity_detail_league" />
         <activity android:name=".ui.home.DetailActivity" />
         <activity android:name=".ui.home.MainActivity">
             <intent-filter>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_lbl_formation"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_formation"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_lbl_goals"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_goals"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_formation" />
+
+    <TextView
+        android:id="@+id/txt_lbl_shoots"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_shoots"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_goals" />
+
+    <TextView
+        android:id="@+id/txt_lbl_cd"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_cards"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_shoots" />
+
+    <TextView
+        android:id="@+id/txt_lbl_red_cd"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_red"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_cd" />
+
+    <TextView
+        android:id="@+id/txt_lbl_yl_cd"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_yellow"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_red_cd" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_lineup"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_yl_cd" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln_gk"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_goalkeeper"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln_def"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_defense"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_gk" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln_md"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_midfield"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_def" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln_fw"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_forward"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_md" />
+
+    <TextView
+        android:id="@+id/txt_lbl_ln_sb"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_detail_match_league_more_substitutes"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_goals"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_goals"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_fw" />
+
+    <View
+        android:id="@+id/v_hr_left_1"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_cd"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_cd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_shoots" />
+
+    <View
+        android:id="@+id/v_hr_left_2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_ln"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_cd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_yl_cd" />
+
+    <View
+        android:id="@+id/v_hr_right_1"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_cd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_cd"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_shoots" />
+
+    <View
+        android:id="@+id/v_hr_right_2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_ln"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_cd"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_yl_cd" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_twitter1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:autoLink="web"
+        android:gravity="center"
+        android:padding="4dp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_sb"
+        tools:text="https://twitter.com/paddypower/status/1202326332845244426" />
+
+<!--    values homeTeam -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_goals_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_formation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_formation"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_shots"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_formation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_goals"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_formation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_formation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_lbl_formation"
+        tools:text="goals goals goals goals goals goals goals " />
+<!--    values away team-->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_goals_detail_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_formation"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_shots_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txt_goals_detail_aw"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_goals"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_formation_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toTopOf="@+id/txt_lbl_formation"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_red_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_cd"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_yl_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_red_cd"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_gk_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_def_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_gk"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_md_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_def"
+        tools:text="goals goals goals goals goals goals goals " />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_fw_aw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_formation"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_md"
+        tools:text="goals goals goals goals goals goals goals " />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

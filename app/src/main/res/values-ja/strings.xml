@@ -26,4 +26,20 @@
     <string name="title_previous">Previous</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_next">Next</string>
+    <string name="item_prev_match_league_seasons">Seasons</string>
+    <string name="item_next_match_league_date_event">DATE EVENT</string>
+    <string name="item_next_match_start_event">START EVENT</string>
+    <string name="item_prev_match_league_part">:</string>
+    <string name="content_detail_match_league_more_formation">Formation</string>
+    <string name="content_detail_match_league_more_goals">Goals</string>
+    <string name="content_detail_match_league_more_shoots">Shoots</string>
+    <string name="content_detail_match_league_more_cards">Cards</string>
+    <string name="content_detail_match_league_more_red">Red</string>
+    <string name="content_detail_match_league_more_yellow">Yellow</string>
+    <string name="content_detail_match_league_more_lineup">LineUp</string>
+    <string name="content_detail_match_league_more_goalkeeper">GoalKeeper</string>
+    <string name="content_detail_match_league_more_defense">Defense</string>
+    <string name="content_detail_match_league_more_midfield">Midfield</string>
+    <string name="content_detail_match_league_more_forward">Forward</string>
+    <string name="content_detail_match_league_more_substitutes">Substitutes</string>
 </resources>

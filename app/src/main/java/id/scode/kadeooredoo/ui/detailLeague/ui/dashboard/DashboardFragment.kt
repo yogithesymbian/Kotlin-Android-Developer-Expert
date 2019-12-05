@@ -21,7 +21,7 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.League
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailLeagueView
-import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailPresenter
+import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailLeaguePresenter
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -36,7 +36,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
      * to the this context
      */
     private var leaguesMutableList: MutableList<League> = mutableListOf()
-    private lateinit var detailPresenter: DetailPresenter
+    private lateinit var detailLeaguePresenter: DetailLeaguePresenter
     private lateinit var progressBar: ProgressBar
     private lateinit var carouselView: CarouselView
     private lateinit var fantArt: Array<String>
@@ -58,7 +58,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         // get pass data args
         idLeague = arguments?.getString("ID_LEAGUE")
 
-        // obs test
+        // test obs
         dashboardViewModel.text.observe(this, Observer {
             textView.text = "dashboard $idLeague"
         })
@@ -66,11 +66,11 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         // init the presenter for injecting the constructor
         val request = ApiRepository()
         val gson = Gson()
-        detailPresenter = DetailPresenter(this, request, gson)
+        detailLeaguePresenter = DetailLeaguePresenter(this, request, gson)
 
         // call the data api
         idLeague?.let {
-            detailPresenter.getDetailLeagueList(it)
+            detailLeaguePresenter.getDetailLeagueList(it)
         }
 
         return root
@@ -197,6 +197,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
            activity?.applicationContext?.let {
                Glide.with(it)
                    .load(fantArt[position])
+                   .error(R.color.design_default_color_error)
                    .into(imageView)
            }
         }

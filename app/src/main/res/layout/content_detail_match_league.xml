@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    app:cardCornerRadius="8dp"
-    app:cardUseCompatPadding="true">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity"
+    tools:showIn="@layout/activity_detail_match_league">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
+        <ProgressBar
+            android:id="@+id/progress_detail_match_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_str_events"
@@ -58,8 +71,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:maxLength="13"
             android:ellipsize="end"
+            android:maxLength="13"
             app:layout_constraintEnd_toStartOf="@+id/txt_score_home"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txt_str_events"
@@ -83,8 +96,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:maxLength="13"
             android:ellipsize="end"
+            android:maxLength="13"
             app:layout_constraintEnd_toEndOf="@+id/txt_str_events"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/txt_score_away"
@@ -219,7 +232,8 @@
             app:layout_constraintTop_toTopOf="@+id/txt_str_events"
             app:layout_constraintVertical_bias="0.83" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>

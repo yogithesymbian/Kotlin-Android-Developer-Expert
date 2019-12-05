@@ -5,24 +5,228 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
     android:orientation="vertical"
-    >
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_title_next"
+            android:id="@+id/txt_str_events_next"
             style="@style/TextAppearance.AppCompat.Headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#12B9B9B9"
             android:gravity="center"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Luffy soccer vs saskeh next" />
+            tools:text="Liverpool vs Everton" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_str_seasons_next"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1920" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_lbl_seasons_next"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/item_prev_match_league_seasons"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_str_seasons_next"
+            app:layout_constraintEnd_toStartOf="@+id/txt_str_seasons_next"
+            app:layout_constraintTop_toTopOf="@+id/txt_str_seasons_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_home_team_next"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLength="13"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/txt_score_home_next"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/img_home_team_jersey_next"
+            app:layout_constraintTop_toBottomOf="@+id/img_home_team_jersey_next"
+            tools:text="Liverpool" />
+
+        <ImageView
+            android:id="@+id/img_home_team_jersey_next"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_str_time_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_events_next"
+            android:src="@mipmap/ic_launcher_yoball_round"
+            tools:ignore="ContentDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_away_team_next"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxLength="13"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@+id/txt_str_events_next"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/txt_score_away_next"
+            app:layout_constraintTop_toBottomOf="@+id/img_away_team_jersey_next"
+            tools:text="Everton" />
+
+        <ImageView
+            android:id="@+id/img_away_team_jersey_next"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_str_time_next"
+            app:layout_constraintEnd_toEndOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_events_next"
+            android:src="@mipmap/ic_launcher_yoball_round"
+            tools:ignore="ContentDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_lbl_date_event_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/item_next_match_league_date_event"
+            android:textAllCaps="false"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_events_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_date_event_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:padding="4dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_date_event_next"
+            tools:text="2019-12-04" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_lbl_str_event_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/item_next_match_start_event"
+            android:textAllCaps="false"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_date_event_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_str_time_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:padding="4dp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_str_event_next"
+            tools:text="GMT+7 20:15:00" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_score_home_next"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/txt_lbl_score_part_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_time_next"
+            tools:text="@string/item_next_match_league_default_score_0"/>
+<!--        default score 0 -->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_score_away_next"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@+id/txt_lbl_score_part_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_time_next"
+            tools:text="@string/item_next_match_league_default_score_0"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_lbl_score_part_next"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_prev_match_league_part"
+            app:layout_constraintEnd_toEndOf="@+id/txt_lbl_str_event_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_str_event_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_time_next" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_unlocked_event_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_date_event_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_score_part_next"
+            tools:text="unlocked" />
+
+
+        <View
+            android:id="@+id/v_title"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/txt_str_events_next"
+            app:layout_constraintStart_toStartOf="@+id/txt_str_events_next"
+            app:layout_constraintTop_toBottomOf="@+id/txt_str_events_next" />
+
+
+        <View
+            android:id="@+id/v_title_left"
+            android:layout_width="30dp"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimary"
+            android:rotation="-60"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_str_events_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_str_events_next"
+            app:layout_constraintVertical_bias="0.83" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

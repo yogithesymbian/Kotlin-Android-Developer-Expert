@@ -19,10 +19,12 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailLeague.adapter.RvPrevMatchLeague
 import id.scode.kadeooredoo.ui.detailLeague.presenter.PreviousPresenter
+import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailLeague.view.PreviousMatchLeagueView
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.startActivity
 
 class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLogger{
 
@@ -55,6 +57,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         progressBar = root.findViewById(R.id.progress_detail_previous)
         recyclerView = root.findViewById(R.id.rv_prev_match_leagues)
 
+        // set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
         // get pass data args
@@ -81,9 +84,9 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
          * declare & initialize adapter and presenter
          * for the callBack a getTeamList
          */
-        rvPrevMatchLeagueAdapter = activity?.applicationContext?.let {
+        rvPrevMatchLeagueAdapter = activity?.applicationContext?.let { context ->
             RvPrevMatchLeague(
-                it,
+                context,
                 eventPreviousMutableList
             ) {
                 info(
@@ -91,7 +94,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
                             date : ${it.strDate}
                     """.trimIndent()
                 )
-                //            startActivity<DetailActivity>(DETAIL_KEY to it) //intent with the obj
+                context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
             }
         }!!
         recyclerView.adapter = rvPrevMatchLeagueAdapter
@@ -116,6 +119,10 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         }
         rvPrevMatchLeagueAdapter.notifyDataSetChanged()
         info("try show event past list : done")
-        info("hello yogi ${eventPreviousMutableList[0].idHomeTeam}")
+        info("hello prev ${eventPreviousMutableList[0].idHomeTeam}")
+    }
+
+    companion object{
+        const val DETAIL_PREV_MATCH_LEAGUE = "detail_prev_match_league"
     }
 }
