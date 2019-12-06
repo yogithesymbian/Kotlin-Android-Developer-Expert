@@ -83,7 +83,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                 toolbar {
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        logo = resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
+                        logo =
+                            resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
                         title = context.getString(R.string.main_activity_title_for_layout)
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             titleMarginStart = dip(32)
@@ -91,7 +92,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                         elevation = 12f
                         backgroundColor = R.color.colorPrimaryBar
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            setBackgroundColor(resources.getColor(R.color.colorPrimaryBar, context.theme))
+                            setBackgroundColor(
+                                resources.getColor(
+                                    R.color.colorPrimaryBar,
+                                    context.theme
+                                )
+                            )
                         }
                     }
                 }.lparams(matchParent, wrapContent) {
@@ -105,7 +111,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                 button("Detail League") {
                     id = R.id.btn_det_1
                     allCaps = false
-                }.lparams(width = matchParent, height = wrapContent){
+                }.lparams(width = matchParent, height = wrapContent) {
                     gravity = Gravity.BOTTOM.and(Gravity.END)
                     margin = dip(8)
                 }
@@ -135,7 +141,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
             }
 
 
-
         } //end of view
 
 
@@ -143,8 +148,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
-        mainAdapter = RvFootballAdapter(this,teams){
-            info("""
+        mainAdapter = RvFootballAdapter(this, teams) {
+            info(
+                """
                 recycle got clicked
                 id league ${it.idLeague}
                 |
@@ -153,7 +159,8 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                 id Soccer XML ${it.idSoccerXML}
                 |
                 team name ${it.teamName}
-            """.trimIndent())
+            """.trimIndent()
+            )
             debug(8)
             error(null)
             startActivity<DetailActivity>(DETAIL_KEY to it) //intent with the obj
@@ -161,13 +168,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         recyclerViewListTeam.adapter = mainAdapter
 
 
-
         val request = ApiRepository()
         val gson = Gson()
         mainPresenter = MainPresenter(this, request, gson)
 
         // idLeague INIT LOKAL
-        var idLeague = ""
+        var idLeague: String
         val btnDetSat = findViewById<View>(R.id.btn_det_1)
 //        btnDetSat.setOnClickListener{
 //            info ("hello detail clickeddddddddddddddd")
@@ -197,7 +203,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
                 info("spinner selected ${spinner.selectedItem}")
                 leagueName = spinner.selectedItem.toString()
 
-                btnDetSat.setOnClickListener{
+                btnDetSat.setOnClickListener {
                     when (leagueName) {
                         "English Premier League" -> {
                             idLeague = "4328"
@@ -253,7 +259,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
     }
 
     override fun showTeamList(data: List<Team>?) {
-        info ("try show team list : process")
+        info("try show team list : process")
         swipeRefreshLayoutListTeam.isRefreshing = false
         teams.clear()
         data?.let {
