@@ -63,10 +63,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cd_toolbar" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exception_search_nf_fp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_exception_search_not_found"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/text_home"

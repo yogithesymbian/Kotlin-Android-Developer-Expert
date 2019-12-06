@@ -6,6 +6,48 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryBar"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            tools:ignore="UnusedAttribute">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_next"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:navigationIcon="@drawable/ic_home_green_400_24dp"
+                app:popupTheme="@style/AppTheme.AppBarOverlay"
+                app:theme="@style/ToolbarColoredBackArrow"
+                app:title="Event Next League"
+                app:titleTextColor="@android:color/black"
+                tools:ignore="UnusedAttribute" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <ProgressBar
         android:id="@+id/progress_detail_next"
@@ -20,8 +62,20 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_next_match_leagues"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cd_toolbar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exception_search_nf_fn"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/ic_exception_search_not_found"
+        android:visibility="gone"
         />
 
     <TextView
@@ -37,4 +91,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

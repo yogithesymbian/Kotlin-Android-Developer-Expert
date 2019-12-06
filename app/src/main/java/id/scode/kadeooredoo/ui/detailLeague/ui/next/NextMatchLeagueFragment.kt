@@ -1,12 +1,15 @@
 package id.scode.kadeooredoo.ui.detailLeague.ui.next
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,16 +19,18 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailLeague.adapter.RvNextMatchLeague
 import id.scode.kadeooredoo.ui.detailLeague.presenter.NextPresenter
 import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailLeague.view.NextMatchLeagueView
-import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.visible
+import kotlinx.android.synthetic.main.fragment_next.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
@@ -40,6 +45,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     private lateinit var rvNextMatchLeagueAdapter: RvNextMatchLeague
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
+    private lateinit var searchView: SearchView
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -99,6 +105,47 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         return root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val toolbarNext = view.findViewById<Toolbar>(R.id.toolbar_next)
+        ((activity as AppCompatActivity)).setSupportActionBar(toolbarNext)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.toolbar_next, menu)
+
+        // search view with
+        val searchManager = activity?.applicationContext?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView = menu.findItem(R.id.option_search_next)?.actionView as SearchView
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+
+        searchView.queryHint = resources.getString(R.string.option_search_next)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                info("Search View onQueryTextSubmit")
+                toast(query)
+                resultSearch(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                info("Search View onQueryTextChange")
+//                resultAdapter.filter.filter(newText)
+                return false
+            }
+        })
+        searchView.setOnCloseListener {
+//            rvNextMatchLeagueAdapter.filter.filter("")
+            true
+        }
+    }
+
+    private fun resultSearch(query: String) {
+        nextPresenter.getSearchNextLeagueList(query)
+    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -116,7 +163,15 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         }
         rvNextMatchLeagueAdapter.notifyDataSetChanged()
         info("try show next event past list : done")
-        info("hello next ${eventNextMutableList[0].idHomeTeam}")
+        if (eventNextMutableList.isNullOrEmpty()){
+            toast(getString(R.string.exception_search_not_found))
+            img_exception_search_nf_fn.visible()
+            rv_next_match_leagues.gone()
+        } else {
+            img_exception_search_nf_fn.gone()
+            rv_next_match_leagues.visible()
+            info("hello prev ${eventNextMutableList[0].idHomeTeam}")
+        }
     }
 
     companion object{

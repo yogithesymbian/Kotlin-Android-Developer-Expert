@@ -1,7 +1,6 @@
 package id.scode.kadeooredoo.ui.detailLeague.view
 
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
-import id.scode.kadeooredoo.data.db.entities.EventSearch
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -21,5 +20,4 @@ interface PreviousMatchLeagueView {
     fun hideLoading()
 
     fun showPreviousLeague(data: List<EventPrevious>?)
-    fun showSearchPreviousLeague(data: List<EventSearch>?)
 }

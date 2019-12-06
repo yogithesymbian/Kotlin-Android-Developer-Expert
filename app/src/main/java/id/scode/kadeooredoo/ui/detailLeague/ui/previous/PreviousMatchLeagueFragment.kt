@@ -1,7 +1,6 @@
 package id.scode.kadeooredoo.ui.detailLeague.ui.previous
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
@@ -19,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
-import id.scode.kadeooredoo.data.db.entities.EventSearch
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailLeague.adapter.RvPrevMatchLeague
 import id.scode.kadeooredoo.ui.detailLeague.presenter.PreviousPresenter
@@ -42,7 +41,6 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
      * to the this context
      */
     private var eventPreviousMutableList: MutableList<EventPrevious> = mutableListOf()
-    private var eventSearchPreviousMutableList: MutableList<EventSearch> = mutableListOf()
     private lateinit var previousPresenter: PreviousPresenter
     private lateinit var rvPrevMatchLeagueAdapter: RvPrevMatchLeague
     private lateinit var progressBar: ProgressBar
@@ -174,20 +172,16 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         }
         rvPrevMatchLeagueAdapter.notifyDataSetChanged()
         info("try show event past list : done")
-        info("hello prev ${eventPreviousMutableList[0].idHomeTeam}")
-    }
-
-    override fun showSearchPreviousLeague(data: List<EventSearch>?) {
-        info ("try show search event past list : process")
-        eventSearchPreviousMutableList.clear()
-        data?.let {
-            eventSearchPreviousMutableList.addAll(it)
+        if (eventPreviousMutableList.isNullOrEmpty()){
+            toast(getString(R.string.exception_search_not_found))
+            img_exception_search_nf_fp.visible()
+            rv_prev_match_leagues.gone()
+        } else {
+            img_exception_search_nf_fp.gone()
+            rv_prev_match_leagues.visible()
+            info("hello prev ${eventPreviousMutableList[0].idHomeTeam}")
         }
-        rvPrevMatchLeagueAdapter.notifyDataSetChanged()
-        info("try show search event past list : done")
-        info("hello search prev ${eventSearchPreviousMutableList[0].idHomeTeam}")
     }
-
 
     companion object{
         const val DETAIL_PREV_MATCH_LEAGUE = "detail_prev_match_league"

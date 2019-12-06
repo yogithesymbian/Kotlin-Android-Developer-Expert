@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
+import id.scode.kadeooredoo.data.db.network.responses.NextLeagueSearchResponse
+import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailLeague.view.NextMatchLeagueView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -37,6 +39,22 @@ class NextPresenter (
             uiThread {
                 viewMatch.hideLoading()
                 viewMatch.showNextLeague(data.eventNexts)
+            }
+        }
+    }
+    //behaviours getSearchPrevLeagueList
+    fun getSearchNextLeagueList(teamVsTeam: String){
+        viewMatch.showLoading()
+        doAsync {
+            val data =
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDbApi.searchTeams(teamVsTeam)
+                    ), NextLeagueSearchResponse::class.java
+                )
+            uiThread {
+                viewMatch.hideLoading()
+                viewMatch.showNextLeague(data.eventSearch)
             }
         }
     }
