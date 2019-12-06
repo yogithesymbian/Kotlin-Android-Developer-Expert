@@ -52,6 +52,7 @@
             app:layout_constraintEnd_toStartOf="@+id/txt_str_seasons"
             app:layout_constraintTop_toTopOf="@+id/txt_str_seasons" />
 
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_home_team"
             style="@style/TextAppearance.AppCompat.Title"
@@ -76,6 +77,31 @@
             app:layout_constraintStart_toStartOf="@+id/txt_str_events"
             app:layout_constraintTop_toBottomOf="@+id/txt_str_events"
             tools:ignore="ContentDescription" />
+
+        <ProgressBar
+            android:id="@+id/progress_load_jersey_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/img_home_team_jersey"
+            app:layout_constraintEnd_toEndOf="@+id/img_home_team_jersey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_home_team_jersey"
+            tools:ignore="UnusedAttribute" />
+
+        <ProgressBar
+            android:id="@+id/progress_load_jersey_away"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/txt_away_team"
+            app:layout_constraintEnd_toEndOf="@+id/img_away_team_jersey"
+            app:layout_constraintStart_toStartOf="@+id/img_away_team_jersey"
+            app:layout_constraintTop_toTopOf="@+id/img_away_team_jersey"
+            tools:ignore="UnusedAttribute" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_away_team"

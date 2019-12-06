@@ -22,7 +22,7 @@ object TheSportDbApi {
     private const val VERSI = "v1"
     private const val JSON = "json"
 
-    fun getTeams(idLeague: String): String {
+    fun getLeagueTeams(idLeague: String): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()
             .appendPath("api")
             .appendPath("v1")
@@ -30,6 +30,19 @@ object TheSportDbApi {
             .appendPath(BuildConfig.TSDB_API_KEY)
             .appendPath("search_all_teams.php")
             .appendQueryParameter("l", idLeague)
+            .build()
+            .toString()
+    }
+
+
+    fun getLookupTeams(idTeam: String): String {
+        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
+            .appendPath(API)
+            .appendPath(VERSI)
+            .appendPath(JSON)
+            .appendPath(BuildConfig.TSDB_API_KEY)
+            .appendPath("lookupteam.php")
+            .appendQueryParameter("id", idTeam)
             .build()
             .toString()
     }
@@ -69,17 +82,7 @@ object TheSportDbApi {
             .build()
             .toString()
     }
-    fun getLookupTeams(idTeam: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("lookupteam.php")
-            .appendQueryParameter("id", idTeam)
-            .build()
-            .toString()
-    }
+
 
     fun getDetailMatchEventTeams(idEvent: String): String {
         return Uri.parse(BuildConfig.BASE_URL).buildUpon()

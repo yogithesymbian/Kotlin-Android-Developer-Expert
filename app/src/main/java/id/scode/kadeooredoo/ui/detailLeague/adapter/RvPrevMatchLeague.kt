@@ -1,19 +1,29 @@
 package id.scode.kadeooredoo.ui.detailLeague.adapter
 
 import android.annotation.SuppressLint
-import android.content.ClipData
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
+import id.scode.kadeooredoo.data.db.entities.Team
+import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.gone
+import id.scode.kadeooredoo.ui.home.MainView
+import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
+import id.scode.kadeooredoo.visible
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_previous_match_league.*
+import kotlinx.android.synthetic.main.item_previous_match_league.view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -30,9 +40,19 @@ class RvPrevMatchLeague(
     private val context: Context,
     private var items: List<EventPrevious>,
     private val listener: (EventPrevious) -> Unit
-) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable {
+) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable, MainView, AnkoLogger {
+
 
     private var itemsInit: List<EventPrevious> = items
+    /**
+     * apply the MainPresenter and MainAdapter
+     * to the this context
+     */
+    private var teams: MutableList<Team> = mutableListOf()
+    private var teamsAway: MutableList<Team> = mutableListOf()
+    private lateinit var mainPresenter: MainPresenter
+    private var progressBar: ProgressBar? = null
+    private var progressBarAway: ProgressBar? = null
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
@@ -52,27 +72,68 @@ class RvPrevMatchLeague(
             txt_str_time_event.text = item.strTime
             txt_unlocked_event.text = item.strLocked
 
-
-//            item.image.telet { Picasso.get().load(it).fit().into(img_main) }
             containerView.setOnClickListener { listener(item) }
 
         }
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.item_previous_match_league,
-                parent,
-                false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val onViewHolder =
+            ViewHolder(
+                LayoutInflater.from(context).inflate(
+                    R.layout.item_previous_match_league,
+                    parent,
+                    false
+                )
             )
-        )
+        progressBar = parent.progress_load_jersey_home
+        progressBarAway = parent.progress_load_jersey_away
+
+        val request = ApiRepository()
+        val gson = Gson()
+        mainPresenter = MainPresenter(this, request, gson)
+
+        return onViewHolder
+    }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(items[position], listener)
+
+        items[position].idHomeTeam?.let {
+
+            info("idHomeTeam : $it")
+            mainPresenter.getDetailLeagueTeamList(it)
+
+            if (!teams.isNullOrEmpty()) {
+
+                info("ohJersey : ${teams[0].strTeamJersey}")
+                Glide.with(holder.itemView)
+                    .load(teams[0].strTeamJersey)
+                    .into(holder.img_home_team_jersey)
+            } else {
+                info("ohJersey null, still loading")
+            }
+        }
+        items[position].idAwayTeam?.let {
+
+            info("idAwayTeam : $it")
+            mainPresenter.getDetailLeagueTeamAwayList(it)
+
+            if (!teamsAway.isNullOrEmpty()) {
+
+                info("ohJerseyAway : ${teamsAway[0].strTeamJersey}")
+                Glide.with(holder.itemView)
+                    .load(teamsAway[0].strTeamJersey)
+                    .into(holder.img_away_team_jersey)
+            } else {
+                info("ohJerseyAway null, still loading")
+            }
+        }
+
+    }
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -107,5 +168,34 @@ class RvPrevMatchLeague(
                 return filterResults
             }
         }
+    }
+
+
+    override fun showLoading() {
+        progressBar?.visible()
+        progressBarAway?.visible()
+    }
+
+    override fun hideLoading() {
+        progressBar?.gone()
+        progressBarAway?.gone()
+    }
+
+    override fun showTeamList(data: List<Team>?) {
+        info("try show jersey team list : process")
+        teams.clear()
+        data?.let {
+            teams.addAll(it)
+        }
+        info("try show jersey team list : done")
+    }
+
+    override fun showTeamAwayList(data: List<Team>?) {
+        info("try show jersey team away list : process")
+        teamsAway.clear()
+        data?.let {
+            teamsAway.addAll(it)
+        }
+        info("try show jersey team away list : done")
     }
 }

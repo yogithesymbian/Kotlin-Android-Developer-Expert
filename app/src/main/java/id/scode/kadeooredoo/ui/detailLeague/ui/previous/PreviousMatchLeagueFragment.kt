@@ -92,7 +92,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
 
         /**
          * declare & initialize adapter and presenter
-         * for the callBack a getTeamList
+         * for the callBack a getLeagueTeamList
          */
         rvPrevMatchLeagueAdapter = activity?.applicationContext?.let { context ->
             RvPrevMatchLeague(

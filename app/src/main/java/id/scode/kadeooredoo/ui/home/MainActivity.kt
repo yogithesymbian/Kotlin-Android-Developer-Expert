@@ -20,7 +20,6 @@ import id.scode.kadeooredoo.ui.detailLeague.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
-import org.jetbrains.anko.design.floatingActionButton
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
@@ -142,7 +141,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
         /**
          * declare & initialize adapter and presenter
-         * for the callBack a getTeamList
+         * for the callBack a getLeagueTeamList
          */
         mainAdapter = RvFootballAdapter(this,teams){
             info("""
@@ -228,7 +227,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
                 }
 
-                mainPresenter.getTeamList(leagueName)
+                mainPresenter.getLeagueTeamList(leagueName)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -239,7 +238,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         // pull-down
         swipeRefreshLayoutListTeam.onRefresh {
             info("try swipe to refresh on select ${spinner.selectedItem}")
-            mainPresenter.getTeamList(spinner.selectedItem.toString())
+            mainPresenter.getLeagueTeamList(spinner.selectedItem.toString())
         }
     } //end of onCreate
 
@@ -262,5 +261,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         }
         mainAdapter.notifyDataSetChanged()
         info("try show team list : done")
+    }
+
+    override fun showTeamAwayList(data: List<Team>?) {
+        // just for inside adapter previous
     }
 }

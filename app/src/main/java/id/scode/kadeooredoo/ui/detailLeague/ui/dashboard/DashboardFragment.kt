@@ -164,6 +164,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         }
 
+
     }
     override fun showLoading() {
         progressBar.visible()

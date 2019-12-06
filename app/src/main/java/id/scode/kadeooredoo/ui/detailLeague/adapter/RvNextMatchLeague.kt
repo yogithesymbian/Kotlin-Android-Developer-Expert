@@ -34,8 +34,6 @@ class RvNextMatchLeague(
 
         fun bindItem(item: EventNext, listener: (EventNext) -> Unit) {
 
-
-
             txt_str_events_next.text = item.strEvent
             txt_str_seasons_next.text = item.strSeason
 

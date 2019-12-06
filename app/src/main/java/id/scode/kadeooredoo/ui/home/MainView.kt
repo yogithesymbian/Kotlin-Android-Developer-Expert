@@ -20,5 +20,6 @@ interface MainView {
     fun hideLoading()
 
     fun showTeamList(data: List<Team>?)
+    fun showTeamAwayList(data: List<Team>?)
 
 }

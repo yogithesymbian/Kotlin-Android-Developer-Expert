@@ -86,7 +86,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         /**
          * declare & initialize adapter and presenter
-         * for the callBack a getTeamList
+         * for the callBack a getLeagueTeamList
          */
         rvNextMatchLeagueAdapter = activity?.applicationContext?.let { context ->
             RvNextMatchLeague(

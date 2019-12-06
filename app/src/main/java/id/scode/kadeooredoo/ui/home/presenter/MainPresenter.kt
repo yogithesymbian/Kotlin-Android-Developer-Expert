@@ -24,14 +24,14 @@ class MainPresenter (
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ){
-    //behaviours getTeamList
-    fun getTeamList(league: String){
+    //behaviours getLeagueTeamList
+    fun getLeagueTeamList(league: String){
         view.showLoading()
         doAsync {
             val data =
                 gson.fromJson(
                     apiRepository.doRequest(
-                        TheSportDbApi.getTeams(league)
+                        TheSportDbApi.getLeagueTeams(league)
                     ), TeamResponse::class.java
                 )
             uiThread {
@@ -40,4 +40,37 @@ class MainPresenter (
             }
         }
     }
+    //behaviours getLeagueTeamList
+    fun getDetailLeagueTeamList(idTeams: String){
+        view.showLoading()
+        doAsync {
+            val data =
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDbApi.getLookupTeams(idTeams)
+                    ), TeamResponse::class.java
+                )
+            uiThread {
+                view.hideLoading()
+                view.showTeamList(data.team)
+            }
+        }
+    }
+    //behaviours getLeagueTeamList
+    fun getDetailLeagueTeamAwayList(idTeams: String){
+        view.showLoading()
+        doAsync {
+            val data =
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDbApi.getLookupTeams(idTeams)
+                    ), TeamResponse::class.java
+                )
+            uiThread {
+                view.hideLoading()
+                view.showTeamAwayList(data.team)
+            }
+        }
+    }
+
 }

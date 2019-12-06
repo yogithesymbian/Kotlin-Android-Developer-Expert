@@ -24,7 +24,7 @@ class DetailLeaguePresenter (
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ){
-    //behaviours getTeamList
+    //behaviours getLeagueTeamList
     fun getDetailLeagueList(league: String){
         view.showLoading()
         doAsync {
