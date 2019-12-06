@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch

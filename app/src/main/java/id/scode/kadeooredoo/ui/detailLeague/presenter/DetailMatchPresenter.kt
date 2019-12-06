@@ -3,7 +3,6 @@ package id.scode.kadeooredoo.ui.detailLeague.presenter
 import com.google.gson.Gson
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
-import id.scode.kadeooredoo.data.db.network.responses.DetailLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.DetailMatchLeagueResponse
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
 import org.jetbrains.anko.doAsync

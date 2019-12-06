@@ -1,7 +1,6 @@
 package id.scode.kadeooredoo.ui.detailLeague.view
 
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
-import id.scode.kadeooredoo.data.db.entities.League
 
 /**
  * @Authors scode | Yogi Arif Widodo

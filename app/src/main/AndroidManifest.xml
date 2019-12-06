@@ -16,7 +16,7 @@
         <activity
             android:name=".ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.detailLeague.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league" />

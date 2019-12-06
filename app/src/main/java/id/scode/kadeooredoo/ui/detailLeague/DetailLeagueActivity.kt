@@ -3,16 +3,17 @@ package id.scode.kadeooredoo.ui.detailLeague
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.NavArgument
 import androidx.navigation.NavType
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.*
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.ui.detailLeague.ui.dashboard.DashboardFragment
 import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_LEAGUE
 
 class DetailLeagueActivity : AppCompatActivity() {

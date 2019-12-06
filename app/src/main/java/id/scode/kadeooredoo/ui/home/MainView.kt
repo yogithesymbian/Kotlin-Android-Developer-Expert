@@ -1,6 +1,5 @@
 package id.scode.kadeooredoo.ui.home
 
-import id.scode.kadeooredoo.data.db.entities.League
 import id.scode.kadeooredoo.data.db.entities.Team
 
 /**

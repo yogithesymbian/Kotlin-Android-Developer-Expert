@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventNext
-import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_next_match_league.*
-import kotlinx.android.synthetic.main.item_previous_match_league.*
 
 /**
  * @Authors scode | Yogi Arif Widodo

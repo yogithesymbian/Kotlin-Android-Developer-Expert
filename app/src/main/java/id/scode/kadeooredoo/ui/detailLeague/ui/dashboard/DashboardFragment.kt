@@ -265,7 +265,5 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = DashboardFragment()
     }
 }

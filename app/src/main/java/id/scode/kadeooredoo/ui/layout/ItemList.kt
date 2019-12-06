@@ -4,9 +4,8 @@ import android.graphics.Color
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.ViewGroup
-import androidx.core.view.marginTop
+import id.scode.kadeooredoo.R
 import org.jetbrains.anko.*
-import id.scode.kadeooredoo.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.design.snackbar
 
