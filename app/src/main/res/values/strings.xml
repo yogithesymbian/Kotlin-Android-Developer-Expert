@@ -28,9 +28,9 @@
     <string name="item_next_match_league_date_event">DATE EVENT</string>
     <string name="item_next_match_start_event">START EVENT</string>
     <string name="item_prev_match_league_part">:</string>
-    <string name="item_next_match_league_default_score_0">0</string>
-    <string name="title_activity_detail_match_league">DetailMatchLeagueActivity</string>
-    <string name="large_text">
+    <string name="item_next_match_league_default_score_0" translatable="false">0</string>
+    <string name="title_activity_detail_match_league" translatable="false">DetailMatchLeague</string>
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -119,7 +119,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <string name="content_detail_match_league_more_formation">Formation</string>
     <string name="content_detail_match_league_more_goals">Goals</string>
     <string name="content_detail_match_league_more_shoots">Shoots</string>
@@ -132,6 +132,9 @@
     <string name="content_detail_match_league_more_midfield">Midfield</string>
     <string name="content_detail_match_league_more_forward">Forward</string>
     <string name="content_detail_match_league_more_substitutes">Substitutes</string>
+    <string name="empty_strips">-</string>
+    <string name="toolbar_previous_search_event_past">Search Event Past</string>
+    <string name="option_search_previous">Search Event Past</string>
 
 
 </resources>

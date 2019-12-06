@@ -1,6 +1,9 @@
 package id.scode.kadeooredoo
 
+import android.annotation.SuppressLint
 import android.view.View
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -24,4 +27,12 @@ fun View.invisible(){
 }
 fun View.gone(){
     visibility = View.GONE
+}
+
+@SuppressLint("SimpleDateFormat")
+fun toGMTFormat(date: String, time: String): Date? { // nrohman dicoding discuss
+    val formatter = SimpleDateFormat("yy-MM-dd HH:mm:ss")
+    formatter.timeZone = TimeZone.getTimeZone("GMT+7")
+    val dateTime = "$date $time"
+    return formatter.parse(dateTime)
 }

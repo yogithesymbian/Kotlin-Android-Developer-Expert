@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueResponse
+import id.scode.kadeooredoo.data.db.network.responses.SearchLeagueResponse
 import id.scode.kadeooredoo.ui.detailLeague.view.PreviousMatchLeagueView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -24,7 +25,7 @@ class PreviousPresenter (
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ){
-    //behaviours getNextLeagueList
+    //behaviours getPrevLeagueList
     fun getPreviousLeagueList(league: String){
         viewMatch.showLoading()
         doAsync {
@@ -40,4 +41,21 @@ class PreviousPresenter (
             }
         }
     }
+    //behaviours getSearchPrevLeagueList
+    fun getSearchPreviousLeagueList(league: String){
+        viewMatch.showLoading()
+        doAsync {
+            val data =
+                gson.fromJson(
+                    apiRepository.doRequest(
+                        TheSportDbApi.searchTeams(league)
+                    ), SearchLeagueResponse::class.java
+                )
+            uiThread {
+                viewMatch.hideLoading()
+                viewMatch.showSearchPreviousLeague(data.eventSearch)
+            }
+        }
+    }
+
 }

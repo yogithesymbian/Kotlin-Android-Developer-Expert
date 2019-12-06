@@ -42,4 +42,7 @@
     <string name="content_detail_match_league_more_midfield">Midfield</string>
     <string name="content_detail_match_league_more_forward">Forward</string>
     <string name="content_detail_match_league_more_substitutes">Substitutes</string>
+    <string name="empty_strips">-</string>
+    <string name="toolbar_previous_search_event_past">Search Event Past</string>
+    <string name="option_search_previous">Search Event Past</string>
 </resources>

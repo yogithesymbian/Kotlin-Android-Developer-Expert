@@ -1,10 +1,13 @@
 package id.scode.kadeooredoo.ui.detailLeague.adapter
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.R
@@ -23,13 +26,15 @@ import kotlinx.android.synthetic.main.item_previous_match_league.*
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class RvPrevMatchLeague (
+class RvPrevMatchLeague(
     private val context: Context,
-    private val items: List<EventPrevious>,
+    private var items: List<EventPrevious>,
     private val listener: (EventPrevious) -> Unit
-) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(){
+) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable {
 
-    class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
+    private var itemsInit: List<EventPrevious> = items
+
+    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
         fun bindItem(item: EventPrevious, listener: (EventPrevious) -> Unit) {
@@ -56,11 +61,51 @@ class RvPrevMatchLeague (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_previous_match_league, parent, false))
+        ViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.item_previous_match_league,
+                parent,
+                false
+            )
+        )
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bindItem(items[position], listener)
 
+    override fun getFilter(): Filter {
+        return object : Filter() {
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence, results: FilterResults) {
+                items = results.values as List<EventPrevious>
+                notifyDataSetChanged()
+            }
+
+            @SuppressLint("DefaultLocale")
+            override fun performFiltering(constraint: CharSequence): FilterResults {
+                val charString = constraint.toString()
+                items = if (charString.isEmpty()) {
+                    itemsInit //save before result data shown and return this for isEmpty
+                } else {
+                    val filterListener: List<EventPrevious> = items
+                    for (row in items) {
+                        row.let {
+                            if (it.strHomeTeam?.toLowerCase()?.contains(charString.toLowerCase())!!
+                                ||
+                                it.strAwayTeam.toString().contains(charString.toLowerCase())
+                            ) {
+                                filterListener.toMutableList().add(row)
+                            }
+                        }
+                    }
+                    filterListener // set item from result filter
+                }
+                val filterResults = FilterResults()
+                filterResults.values = items
+                return filterResults
+            }
+        }
+    }
 }

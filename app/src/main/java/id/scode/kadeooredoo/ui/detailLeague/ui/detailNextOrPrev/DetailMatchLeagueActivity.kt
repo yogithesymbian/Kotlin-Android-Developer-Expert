@@ -2,9 +2,10 @@ package id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.widget.ProgressBar
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
@@ -12,17 +13,20 @@ import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
+import id.scode.kadeooredoo.toGMTFormat
 import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
-import kotlinx.android.synthetic.main.content_detail_match_league.*
+import kotlinx.android.synthetic.main.content_detail_match_league_more.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
+import java.text.SimpleDateFormat
 
-class DetailMatchLeagueActivity : AppCompatActivity() , DetailMatchView, AnkoLogger{
+class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogger {
 
     private var eventPrevious: EventPrevious? = null
     private var eventNext: EventNext? = null
@@ -76,7 +80,7 @@ class DetailMatchLeagueActivity : AppCompatActivity() , DetailMatchView, AnkoLog
     }
 
     override fun showDetailMatch(data: List<EventDetailMatch>?) {
-        info ("try show team list : process")
+        info("try show team list : process")
 
         eventDetailMatchMutableList.clear()
         data?.let {
@@ -88,6 +92,7 @@ class DetailMatchLeagueActivity : AppCompatActivity() , DetailMatchView, AnkoLog
         info("try show team list : done")
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun setDataMatch(item: EventDetailMatch) {
         info("i love you : ${item.strFilename}")
 
@@ -111,10 +116,258 @@ class DetailMatchLeagueActivity : AppCompatActivity() , DetailMatchView, AnkoLog
                 else -> it.text = scoreAway
             }
         }
-        txt_date_event.text = item.dateEvent
-        txt_str_time_event.text = item.strTime
+
+        item.dateEvent?.let { date ->
+            txt_date_event.text = date
+
+            item.strTime?.let { time ->
+
+               val timeEvent = toGMTFormat(date, time)
+                info("""
+                    GMT+7 event   : $timeEvent
+                    DEFAULT event : $date $time
+                """.trimIndent()) //GMT+8 ?
+
+                val timeFormat = SimpleDateFormat("HH:mm:ss")
+                timeEvent?.let {
+                    val getTime = timeFormat.format(it)
+                    txt_str_time_event.text = getTime
+                }
+
+            }
+        }
+
         txt_unlocked_event.text = item.strLocked
 
+
+        // description match
+        txt_formation.also { txt ->
+            txt.text = item.strHomeFormation
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_formation_aw.also { txt ->
+            txt.text = item.strAwayFormation
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_goals_detail.also { txt ->
+            txt.text = item.strHomeGoalDetails
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_goals_detail_aw.also { txt ->
+            txt.text = item.strAwayGoalDetails
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_shots.also { txt ->
+            txt.text = item.intHomeShots
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_shots_aw.also { txt ->
+            txt.text = item.intAwayShots
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_red.also { txt ->
+            txt.text = item.strHomeRedCards
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_red_aw.also { txt ->
+            txt.text = item.strAwayRedCards
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_yl.also { txt ->
+            txt.text = item.strHomeYellowCards
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_yl_aw.also { txt ->
+            txt.text = item.strAwayYellowCards
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+
+
+        txt_gk.also { txt ->
+            txt.text = item.strHomeLineupGoalkeeper
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_gk_aw.also { txt ->
+            txt.text = item.strAwayLineupGoalkeeper
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+
+        txt_def.also { txt ->
+            txt.text = item.strHomeLineupDefense
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_def_aw.also { txt ->
+            txt.text = item.strAwayLineupDefense
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_md.also { txt ->
+            txt.text = item.strHomeLineupMidfield
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_md_aw.also { txt ->
+            txt.text = item.strAwayLineupMidfield
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_fw.also { txt ->
+            txt.text = item.strHomeLineupForward
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_fw_aw.also { txt ->
+            txt.text = item.strAwayLineupForward
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+
+        txt_sb.also { txt ->
+            txt.text = item.strHomeLineupSubstitutes
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_sb_aw.also { txt ->
+            txt.text = item.strAwayLineupSubstitutes
+            txt.setOnClickListener {
+                it.snackbar("${txt.text}")
+            }
+            if (txt.text.isNullOrEmpty()) {
+                txt.text = getString(R.string.empty_strips)
+            }
+        }
+        txt_twitter1.text = item.strTweet1
+
         info("forgive aku :( : ${item.strDate}")
+        scrollMethodText()
+
+    }
+
+    private fun scrollMethodText() {
+        txt_goals_detail.movementMethod = ScrollingMovementMethod()
+        txt_formation.movementMethod = ScrollingMovementMethod()
+        txt_formation_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_goals_detail.movementMethod = ScrollingMovementMethod()
+        txt_goals_detail_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_red.movementMethod = ScrollingMovementMethod()
+        txt_red_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_yl.movementMethod = ScrollingMovementMethod()
+        txt_yl_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_gk.movementMethod = ScrollingMovementMethod()
+        txt_gk_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_def.movementMethod = ScrollingMovementMethod()
+        txt_def_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_md.movementMethod = ScrollingMovementMethod()
+        txt_md_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_fw.movementMethod = ScrollingMovementMethod()
+        txt_fw_aw.movementMethod = ScrollingMovementMethod()
+
+        txt_sb.movementMethod = ScrollingMovementMethod()
+        txt_sb_aw.movementMethod = ScrollingMovementMethod()
     }
 }

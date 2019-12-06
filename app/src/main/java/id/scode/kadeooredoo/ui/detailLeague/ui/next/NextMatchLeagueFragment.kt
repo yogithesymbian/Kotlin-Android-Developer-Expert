@@ -109,13 +109,13 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     override fun showNextLeague(data: List<EventNext>?) {
-        info("try show event past list : process")
+        info("try show next event past list : process")
         eventNextMutableList.clear()
         data?.let {
             eventNextMutableList.addAll(it)
         }
         rvNextMatchLeagueAdapter.notifyDataSetChanged()
-        info("try show event past list : done")
+        info("try show next event past list : done")
         info("hello next ${eventNextMutableList[0].idHomeTeam}")
     }
 
