@@ -1,14 +1,31 @@
 package id.scode.kadeooredoo.ui.detailLeague.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.entities.EventNext
+import id.scode.kadeooredoo.data.db.entities.Team
+import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.gone
+import id.scode.kadeooredoo.ui.home.MainView
+import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
+import id.scode.kadeooredoo.visible
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_next_match_league.*
+import kotlinx.android.synthetic.main.item_next_match_league.view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -23,48 +40,68 @@ import kotlinx.android.synthetic.main.item_next_match_league.*
  */
 class RvNextMatchLeague(
     private val context: Context,
-    private val items: List<EventNext>,
+    private var items: List<EventNext>,
     private val listener: (EventNext) -> Unit
-) : RecyclerView.Adapter<RvNextMatchLeague.ViewHolder>() {
+) : RecyclerView.Adapter<RvNextMatchLeague.ViewHolder>() , MainView, AnkoLogger, Filterable{
+
+    private var itemsInit: List<EventNext> = items
+    /**
+     * apply the MainPresenter and MainAdapter
+     * to the this context
+     */
+    private var teams: MutableList<Team> = mutableListOf()
+    private var teamsAway: MutableList<Team> = mutableListOf()
+    private lateinit var mainPresenter: MainPresenter
+    private var progressBar: ProgressBar? = null
+    private var progressBarAway: ProgressBar? = null
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
         fun bindItem(item: EventNext, listener: (EventNext) -> Unit) {
 
-            txt_str_events_next.text = item.strEvent
-            txt_str_seasons_next.text = item.strSeason
+            if(item.strSport == SPORT){
+                txt_str_events_next.text = item.strEvent
+                txt_str_seasons_next.text = item.strSeason
 
-            txt_home_team_next.text = item.strHomeTeam
-            val scoreHome = item.intHomeScore
-            txt_score_home_next.also {
-                when (scoreHome) {
-                    null -> it.text = "?"
-                    else -> it.text = scoreHome
+                txt_home_team_next.text = item.strHomeTeam
+                val scoreHome = item.intHomeScore
+                txt_score_home_next.also {
+                    when (scoreHome) {
+                        null -> it.text = "-"
+                        else -> it.text = scoreHome
+                    }
                 }
-            }
 
-            txt_away_team_next.text = item.strAwayTeam
-            val scoreAway = item.intAwayScore
-            txt_score_away_next.also {
-                when (scoreAway) {
-                    null -> it.text = "?"
-                    else -> it.text = scoreAway
+                txt_away_team_next.text = item.strAwayTeam
+                val scoreAway = item.intAwayScore
+                txt_score_away_next.also {
+                    when (scoreAway) {
+                        null -> it.text = "-"
+                        else -> it.text = scoreAway
+                    }
                 }
-            }
 
-            txt_date_event_next.text = item.dateEvent
-            txt_str_time_next.text = item.strTime
-            txt_unlocked_event_next.text = item.strLocked
-//            item.image.let { Picasso.get().load(it).fit().into(img_main) }
+                txt_date_event_next.text = item.dateEvent
+                txt_str_time_next.text = item.strTime
+                txt_unlocked_event_next.text = item.strLocked
+            } else {
+                Log.d(
+                    TAG_LOG, """
+                    the data is'nt soccer
+                    name team ${item.strFilename}
+                    home ${item.strHomeTeam}
+                """.trimIndent())
+            }
             containerView.setOnClickListener { listener(item) }
 
         }
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        val rootHolder = ViewHolder(
             LayoutInflater.from(context).inflate(
                 R.layout.item_next_match_league,
                 parent,
@@ -72,9 +109,120 @@ class RvNextMatchLeague(
             )
         )
 
+        progressBar = parent.progress_load_jersey_home_next
+        progressBarAway = parent.progress_load_jersey_away_next
+
+        val request = ApiRepository()
+        val gson = Gson()
+        mainPresenter = MainPresenter(this, request, gson)
+
+        return rootHolder
+    }
+
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(items[position], listener)
 
+        items[position].idHomeTeam?.let {
+
+            info("idHomeTeam : $it")
+            mainPresenter.getDetailLeagueTeamList(it)
+
+            if (!teams.isNullOrEmpty()) {
+
+                info("ohJersey : ${teams[0].strTeamLogo}")
+                Glide.with(holder.itemView)
+                    .load(teams[0].teamBadge)
+                    .into(holder.img_home_team_jersey_next)
+            } else {
+                info("ohJersey null, still loading")
+            }
+        }
+        items[position].idAwayTeam?.let {
+
+            info("idAwayTeam : $it")
+            mainPresenter.getDetailLeagueTeamAwayList(it)
+
+            if (!teamsAway.isNullOrEmpty()) {
+
+                info("ohJerseyAway : ${teamsAway[0].strTeamLogo}")
+                Glide.with(holder.itemView)
+                    .load(teamsAway[0].teamBadge)
+                    .into(holder.img_away_team_jersey_next)
+            } else {
+                info("ohJerseyAway null, still loading")
+            }
+        }
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence, results: FilterResults) {
+                items = results.values as List<EventNext>
+                notifyDataSetChanged()
+            }
+
+            @SuppressLint("DefaultLocale")
+            override fun performFiltering(constraint: CharSequence): FilterResults {
+                val charString = constraint.toString()
+                items = if (charString.isEmpty()) {
+                    itemsInit //save before result data shown and return this for isEmpty
+                } else {
+                    val filterListener: List<EventNext> = items
+                    for (row in items) {
+                        row.let {
+                            if (it.strHomeTeam?.toLowerCase()?.contains(charString.toLowerCase())!!
+                                ||
+                                it.strAwayTeam.toString().contains(charString.toLowerCase())
+                            ) {
+                                filterListener.toMutableList().add(row)
+                            }
+                        }
+                    }
+                    filterListener // set item from result filter
+                }
+                val filterResults = FilterResults()
+                filterResults.values = items
+                return filterResults
+            }
+        }
+    }
+
+
+
+
+    override fun showLoading() {
+        progressBar?.visible()
+        progressBarAway?.visible()
+    }
+
+    override fun hideLoading() {
+        progressBar?.gone()
+        progressBarAway?.gone()
+    }
+
+    override fun showTeamList(data: List<Team>?) {
+        info("try show jersey team LOOKUP : process")
+        teams.clear()
+        data?.let {
+            teams.addAll(it)
+        }
+        info("try show jersey team LOOKUP : done")
+    }
+
+    override fun showTeamAwayList(data: List<Team>?) {
+        info("try show jersey team away LOOKUP : process")
+        teamsAway.clear()
+        data?.let {
+            teamsAway.addAll(it)
+        }
+        info("try show jersey team away LOOKUP : done")
+    }
+
+    companion object{
+        val TAG_LOG = RvNextMatchLeague::class.java.simpleName
+    }
 }

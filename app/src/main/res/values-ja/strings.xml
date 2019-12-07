@@ -48,4 +48,16 @@
     <string name="toolbar_next_search_event_past">Search Event Next</string>
     <string name="option_search_next">Search Event Next</string>
     <string name="exception_search_not_found">The Teams Not Found</string>
+    <string name="league_epl">English Premier League</string>
+    <string name="league_elc">English League Championship</string>
+    <string name="league_gb">German Bundesliga</string>
+    <string name="league_isa">Italian Serie A</string>
+    <string name="league_fl1">French Ligue 1</string>
+    <string name="league_sll">Spanish La Liga</string>
+    <string name="league_epl_id">4328</string>
+    <string name="league_elc_id">4329</string>
+    <string name="league_gb_id">4331</string>
+    <string name="league_isa_id">4332</string>
+    <string name="league_fl1_id">4334</string>
+    <string name="league_sll_id">4335</string>
 </resources>

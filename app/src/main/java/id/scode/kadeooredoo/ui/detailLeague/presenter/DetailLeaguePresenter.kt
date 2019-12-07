@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.detailLeague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.DetailLeagueResponse
@@ -36,7 +37,7 @@ class DetailLeaguePresenter (
                 )
             uiThread {
                 view.hideLoading()
-                view.showDetailLeague(data.leagues)
+                view.showDetailLeague(data.leagues.filter { it.strSport == SPORT })
             }
         }
     }

@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
+import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.toGMTFormat
@@ -17,6 +19,8 @@ import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
+import id.scode.kadeooredoo.ui.home.MainView
+import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
@@ -25,10 +29,15 @@ import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
 
-class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogger {
+class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogger, MainView {
 
     private var eventPrevious: EventPrevious? = null
     private var eventNext: EventNext? = null
+
+    // lookUp the teams | Logo
+    private var teams: MutableList<Team> = mutableListOf()
+    private var teamsAway: MutableList<Team> = mutableListOf()
+
     private lateinit var progressBar: ProgressBar
 
     /**
@@ -37,6 +46,8 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
      */
     private var eventDetailMatchMutableList: MutableList<EventDetailMatch> = mutableListOf()
     private lateinit var detailMatchPresenter: DetailMatchPresenter
+    private lateinit var mainPresenter: MainPresenter
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +61,8 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         val request = ApiRepository()
         val gson = Gson()
         detailMatchPresenter = DetailMatchPresenter(this, request, gson)
+        mainPresenter = MainPresenter(this, request, gson)
+
 
         // get eventId ; but this will useless, i can pass all obj , why i need call api detail ?
         intent.also {
@@ -68,6 +81,35 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             }
         }
 
+    }
+
+
+    override fun showTeamList(data: List<Team>?) {
+        info("try show jersey team list : process")
+        teams.clear()
+        data?.let {
+            teams.addAll(it)
+        }
+
+        Glide.with(this)
+            .load(data?.get(0)?.teamBadge)
+            .into(img_home_team_jersey)
+
+        info("try show jersey team LOOKUP : done")
+    }
+
+    override fun showTeamAwayList(data: List<Team>?) {
+        info("try show jersey team away LOOKUP : process")
+        teamsAway.clear()
+        data?.let {
+            teamsAway.addAll(it)
+        }
+
+        Glide.with(this)
+            .load(data?.get(0)?.teamBadge)
+            .into(img_away_team_jersey)
+
+        info("try show jersey team away list : done")
     }
 
     override fun showLoading() {
@@ -93,7 +135,18 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     @SuppressLint("SimpleDateFormat")
     private fun setDataMatch(item: EventDetailMatch) {
-        info("i love you : ${item.strFilename}")
+
+        info("test : ${item.strFilename}")
+
+        // get Logo
+        item.idHomeTeam?.let {
+            mainPresenter.getDetailLeagueTeamList(it)
+            info("looking for logo $it")
+        }
+        item.idAwayTeam?.let {
+            mainPresenter.getDetailLeagueTeamAwayList(it)
+            info("looking for logo $it")
+        }
 
         txt_str_events.text = item.strEvent
         txt_str_seasons.text = item.strSeason
@@ -102,7 +155,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         val scoreHome = item.intHomeScore
         txt_score_home.also {
             when (scoreHome) {
-                null -> it.text = "?"
+                null -> it.text = "-"
                 else -> it.text = scoreHome
             }
         }
@@ -111,7 +164,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         val scoreAway = item.intAwayScore
         txt_score_away.also {
             when (scoreAway) {
-                null -> it.text = "?"
+                null -> it.text = "-"
                 else -> it.text = scoreAway
             }
         }
@@ -121,11 +174,13 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
             item.strTime?.let { time ->
 
-               val timeEvent = toGMTFormat(date, time)
-                info("""
+                val timeEvent = toGMTFormat(date, time)
+                info(
+                    """
                     GMT+7 event   : $timeEvent
                     DEFAULT event : $date $time
-                """.trimIndent()) //GMT+8 ?
+                """.trimIndent()
+                ) //GMT+8 ?
 
                 val timeFormat = SimpleDateFormat("HH:mm:ss")
                 timeEvent?.let {
@@ -370,3 +425,4 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         txt_sb_aw.movementMethod = ScrollingMovementMethod()
     }
 }
+

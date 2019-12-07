@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.home.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
@@ -52,7 +53,7 @@ class MainPresenter (
                 )
             uiThread {
                 view.hideLoading()
-                view.showTeamList(data.team)
+                view.showTeamList(data.team?.filter { it.strSport == SPORT })
             }
         }
     }
@@ -68,7 +69,7 @@ class MainPresenter (
                 )
             uiThread {
                 view.hideLoading()
-                view.showTeamAwayList(data.team)
+                view.showTeamAwayList(data.team?.filter { it.strSport == SPORT })
             }
         }
     }

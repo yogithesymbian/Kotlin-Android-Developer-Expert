@@ -141,7 +141,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
 
             override fun onQueryTextChange(newText: String): Boolean {
                 info("Search View onQueryTextChange")
-//                resultAdapter.filter.filter(newText)
+//                resultSearch(newText)
                 return false
             }
         })
@@ -170,6 +170,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         data?.let {
             eventPreviousMutableList.addAll(it)
         }
+
         rvPrevMatchLeagueAdapter.notifyDataSetChanged()
         info("try show event past list : done")
         if (eventPreviousMutableList.isNullOrEmpty()){

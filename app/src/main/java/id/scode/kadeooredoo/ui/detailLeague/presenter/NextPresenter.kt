@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.detailLeague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
@@ -52,8 +53,13 @@ class NextPresenter (
                     ), NextLeagueSearchResponse::class.java
                 )
             uiThread {
+
+                val filterOne = data.eventSearch.filter { it.strSport == SPORT }
+                val filterTwo = filterOne.filter { it.intHomeScore.isNullOrEmpty() } // next event not yet (score)
+                val filterThree = filterTwo.filter { it.intAwayScore.isNullOrEmpty() } // next event not yet (score)
+
                 viewMatch.hideLoading()
-                viewMatch.showNextLeague(data.eventSearch)
+                viewMatch.showNextLeague(filterThree)
             }
         }
     }

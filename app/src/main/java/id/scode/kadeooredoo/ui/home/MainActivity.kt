@@ -205,28 +205,28 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
                 btnDetSat.setOnClickListener {
                     when (leagueName) {
-                        "English Premier League" -> {
-                            idLeague = "4328"
+                        getString(R.string.league_epl) -> {
+                            idLeague = getString(R.string.league_epl_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
-                        "English League Championship" -> {
-                            idLeague = "4329"
+                        getString(R.string.league_elc) -> {
+                            idLeague = getString(R.string.league_elc_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
-                        "German Bundesliga" -> {
-                            idLeague = "4331"
+                        getString(R.string.league_gb) -> {
+                            idLeague = getString(R.string.league_gb_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
-                        "Italian Serie A" -> {
-                            idLeague = "4332"
+                        getString(R.string.league_isa) -> {
+                            idLeague = getString(R.string.league_isa_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
-                        "French Ligue 1" -> {
-                            idLeague = "4334"
+                        getString(R.string.league_fl1) -> {
+                            idLeague = getString(R.string.league_fl1_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
-                        "Spanish La Liga" -> {
-                            idLeague = "4335"
+                        getString(R.string.league_sll) -> {
+                            idLeague = getString(R.string.league_sll_id)
                             startActivity<DetailLeagueActivity>(DETAIL_LEAGUE to idLeague)
                         }
                     }

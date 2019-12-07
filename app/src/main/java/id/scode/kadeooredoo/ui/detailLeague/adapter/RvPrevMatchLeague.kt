@@ -2,6 +2,7 @@ package id.scode.kadeooredoo.ui.detailLeague.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
@@ -59,18 +61,27 @@ class RvPrevMatchLeague(
 
         fun bindItem(item: EventPrevious, listener: (EventPrevious) -> Unit) {
 
-            txt_str_events.text = item.strEvent
-            txt_str_seasons.text = item.strSeason
+            // twice checking measure data is soccer
+            if (item.strSport == SPORT){
+                txt_str_events.text = item.strEvent
+                txt_str_seasons.text = item.strSeason
 
-            txt_home_team.text = item.strHomeTeam
-            txt_score_home.text = item.intHomeScore
+                txt_home_team.text = item.strHomeTeam
+                txt_score_home.text = item.intHomeScore
 
-            txt_away_team.text = item.strAwayTeam
-            txt_score_away.text = item.intAwayScore
+                txt_away_team.text = item.strAwayTeam
+                txt_score_away.text = item.intAwayScore
 
-            txt_date_event.text = item.dateEvent
-            txt_str_time_event.text = item.strTime
-            txt_unlocked_event.text = item.strLocked
+                txt_date_event.text = item.dateEvent
+                txt_str_time_event.text = item.strTime
+                txt_unlocked_event.text = item.strSport
+            } else {
+                Log.d(TAG_LOG, """
+                    the data is'nt soccer
+                    name team ${item.strFilename}
+                    home ${item.strHomeTeam}
+                """.trimIndent())
+            }
 
             containerView.setOnClickListener { listener(item) }
 
@@ -109,9 +120,9 @@ class RvPrevMatchLeague(
 
             if (!teams.isNullOrEmpty()) {
 
-                info("ohJersey : ${teams[0].strTeamJersey}")
+                info("ohJersey : ${teams[0].strTeamLogo}")
                 Glide.with(holder.itemView)
-                    .load(teams[0].strTeamJersey)
+                    .load(teams[0].teamBadge)
                     .into(holder.img_home_team_jersey)
             } else {
                 info("ohJersey null, still loading")
@@ -124,9 +135,9 @@ class RvPrevMatchLeague(
 
             if (!teamsAway.isNullOrEmpty()) {
 
-                info("ohJerseyAway : ${teamsAway[0].strTeamJersey}")
+                info("ohJerseyAway : ${teamsAway[0].strTeamLogo}")
                 Glide.with(holder.itemView)
-                    .load(teamsAway[0].strTeamJersey)
+                    .load(teamsAway[0].teamBadge)
                     .into(holder.img_away_team_jersey)
             } else {
                 info("ohJerseyAway null, still loading")
@@ -182,20 +193,24 @@ class RvPrevMatchLeague(
     }
 
     override fun showTeamList(data: List<Team>?) {
-        info("try show jersey team list : process")
+        info("try show jersey team LOOKUP : process")
         teams.clear()
         data?.let {
             teams.addAll(it)
         }
-        info("try show jersey team list : done")
+        info("try show jersey team LOOKUP : done")
     }
 
     override fun showTeamAwayList(data: List<Team>?) {
-        info("try show jersey team away list : process")
+        info("try show jersey team away LOOKUP : process")
         teamsAway.clear()
         data?.let {
             teamsAway.addAll(it)
         }
-        info("try show jersey team away list : done")
+        info("try show jersey team away LOOKUP : done")
+    }
+
+    companion object{
+        val TAG_LOG = RvPrevMatchLeague::class.java.simpleName
     }
 }

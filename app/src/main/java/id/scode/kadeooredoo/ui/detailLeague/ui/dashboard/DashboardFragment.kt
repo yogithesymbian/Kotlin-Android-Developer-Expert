@@ -20,8 +20,8 @@ import com.synnapps.carouselview.ImageListener
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.League
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.ui.detailLeague.view.DetailLeagueView
 import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailLeaguePresenter
+import id.scode.kadeooredoo.ui.detailLeague.view.DetailLeagueView
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -264,6 +264,5 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         startActivity(intent)
     }
 
-    companion object {
-    }
+    companion object
 }
