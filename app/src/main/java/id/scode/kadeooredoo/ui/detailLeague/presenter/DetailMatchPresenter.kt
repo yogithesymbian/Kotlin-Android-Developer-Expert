@@ -36,8 +36,8 @@ class DetailMatchPresenter (
                     ), DetailMatchLeagueResponse::class.java
                 )
             uiThread {
-                view.hideLoading()
                 view.showDetailMatch(data.eventDetailMatches.filter { it.strSport == SPORT })
+                view.hideLoading()
             }
         }
     }

@@ -175,6 +175,11 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         }
     }
+    override fun exceptionNullObject(msg: String) {
+        toast("$msg ${getString(R.string.exception_search_not_found)}")
+        img_exception_search_nf_fn.visible()
+        rv_next_match_leagues.gone()
+    }
 
     companion object{
         const val DETAIL_NEXT_MATCH_LEAGUE = "detail_next_match_legaue"

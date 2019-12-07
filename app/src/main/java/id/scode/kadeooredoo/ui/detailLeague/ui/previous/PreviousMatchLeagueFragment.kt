@@ -184,6 +184,12 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         }
     }
 
+    override fun exceptionNullObject(msg: String) {
+        toast("$msg ${getString(R.string.exception_search_not_found)}")
+        img_exception_search_nf_fp.visible()
+        rv_prev_match_leagues.gone()
+    }
+
     companion object{
         const val DETAIL_PREV_MATCH_LEAGUE = "detail_prev_match_league"
     }

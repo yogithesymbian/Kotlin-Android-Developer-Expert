@@ -19,5 +19,6 @@ interface NextMatchLeagueView {
     fun hideLoading()
 
     fun showNextLeague(data: List<EventNext>?)
+    fun exceptionNullObject(msg: String)
 
 }

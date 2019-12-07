@@ -19,6 +19,7 @@ import java.util.*
 const val EN_LANG = "en_lang"
 const val JP_LANG = "jp_lang"
 const val SPORT = "Soccer"
+const val EXCEPTION_NULL = "exception_null"
 
 fun View.visible(){
     visibility = View.VISIBLE

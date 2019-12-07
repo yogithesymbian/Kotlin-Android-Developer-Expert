@@ -1,13 +1,16 @@
 package id.scode.kadeooredoo.ui.detailLeague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailLeague.view.PreviousMatchLeagueView
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 
 /**
@@ -25,7 +28,7 @@ class PreviousPresenter (
     private val viewMatch: PreviousMatchLeagueView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
-){
+): AnkoLogger{
     //behaviours getPrevLeagueList
     fun getPreviousLeagueList(league: String){
         viewMatch.showLoading()
@@ -53,13 +56,24 @@ class PreviousPresenter (
                     ), PreviousLeagueSearchResponse::class.java
                 )
             uiThread {
+                if (data.eventSearch.isNullOrEmpty()){
+                    info("data_x $EXCEPTION_NULL")
+                    viewMatch.exceptionNullObject("data_x $EXCEPTION_NULL")
+                    viewMatch.hideLoading()
+                } else {
+                    val filterOne = data.eventSearch.filter { it.strSport == SPORT }
+                    val filterTwo = filterOne.filter { !it.intHomeScore.isNullOrEmpty() } // previous event !not yet (score)
+                    val filterThree = filterTwo.filter { !it.intAwayScore.isNullOrEmpty() }// previous event !not yet (score)
 
-                val filterOne = data.eventSearch.filter { it.strSport == SPORT }
-                val filterTwo = filterOne.filter { !it.intHomeScore.isNullOrEmpty() } // previous event !not yet (score)
-                val filterThree = filterTwo.filter { !it.intAwayScore.isNullOrEmpty() }// previous event !not yet (score)
-
-                viewMatch.hideLoading()
-                viewMatch.showPreviousLeague(filterThree)
+                    if (!filterThree.isNullOrEmpty()){
+                        viewMatch.showPreviousLeague(filterThree)
+                        viewMatch.hideLoading()
+                    } else {
+                        info("data_y $EXCEPTION_NULL")
+                        viewMatch.exceptionNullObject("data_y $EXCEPTION_NULL")
+                        viewMatch.hideLoading()
+                    }
+                }
             }
         }
     }

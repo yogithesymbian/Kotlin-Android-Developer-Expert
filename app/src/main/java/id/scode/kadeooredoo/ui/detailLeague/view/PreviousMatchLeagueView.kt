@@ -20,4 +20,5 @@ interface PreviousMatchLeagueView {
     fun hideLoading()
 
     fun showPreviousLeague(data: List<EventPrevious>?)
+    fun exceptionNullObject(msg: String)
 }
