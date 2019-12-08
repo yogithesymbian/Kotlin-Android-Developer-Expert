@@ -18,6 +18,7 @@ import id.scode.kadeooredoo.ui.home.tmp.TeamsActivity.Companion.DETAIL_LEAGUE
 
 class DetailLeagueActivity : AppCompatActivity() {
 
+
     // Passing each menu ID as a set of Ids because each
     // menu should be considered as top level destinations.
     private val appBarConfiguration = AppBarConfiguration(
@@ -105,8 +106,8 @@ class DetailLeagueActivity : AppCompatActivity() {
         finish()
     }
 
-
     companion object{
         private val TAG_LOG = DetailLeagueActivity::class.java.simpleName
+
     }
 }

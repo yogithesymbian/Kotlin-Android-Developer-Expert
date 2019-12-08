@@ -84,10 +84,9 @@ class FavoriteTeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger {
 
                 recyclerView = recyclerView {
                     lparams(width = matchParent, height = wrapContent)
-                    layoutManager = LinearLayoutManager(ctx)
-
+                    layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
                 }
-            }
+            }.lparams(width = matchParent, height = wrapContent)
 
             imageView = imageView {
                 id = R.id.img_fav_empty
