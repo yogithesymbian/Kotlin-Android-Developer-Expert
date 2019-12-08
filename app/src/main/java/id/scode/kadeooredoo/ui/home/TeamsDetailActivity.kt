@@ -61,6 +61,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     private var teams: Team? = null
     private lateinit var id: String
 
+
     //menu favorite
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -241,12 +242,20 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             listOf(teams).toMutableList().addAll(it)
         }
 
+
         Picasso.get().load(data?.get(0)?.teamBadge).into(teamBadge)
 
         teamName.text = data?.get(0)?.teamName
         teamDescription.text = data?.get(0)?.strDescriptionEN
         teamFormedYear.text = data?.get(0)?.intFormedYear
         teamStadium.text = data?.get(0)?.strStadium
+
+        teams = Team(
+            teamId = data?.get(0)?.teamId,
+            teamName = data?.get(0)?.teamName,
+            teamBadge = data?.get(0)?.teamBadge
+        )
+
 
         info("try show team list : done")
         info("hello teams -> ${data?.get(0)?.teamName}")
