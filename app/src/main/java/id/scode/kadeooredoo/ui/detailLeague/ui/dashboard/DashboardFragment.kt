@@ -56,7 +56,8 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         carouselView = root.findViewById(R.id.carousel_fanart)
 
         // get pass data args
-        idLeague = arguments?.getString("ID_LEAGUE")
+        val idLeagueKey = resources.getString(R.string.key_id_league)
+        idLeague = arguments?.getString(idLeagueKey)
 
         // test obs
         dashboardViewModel.text.observe(this, Observer {

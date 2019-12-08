@@ -66,7 +66,8 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
         // get pass data args
-        idLeague = arguments?.getString("ID_LEAGUE")
+        val idLeagueKey = resources.getString(R.string.key_id_league)
+        idLeague = arguments?.getString(idLeagueKey)
 
         // init the presenter for injecting the constructor
         val request = ApiRepository()

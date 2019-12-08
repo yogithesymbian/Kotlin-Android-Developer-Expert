@@ -41,29 +41,30 @@ class DetailLeagueActivity : AppCompatActivity() {
         supportActionBar?.title = ""
         // setupActionBarWithNavController(navController, appBarConfiguration) //bug error
         navView.setupWithNavController(navController)
+        val idLeagueKey = resources.getString(R.string.key_id_league)
 
-        val bundle = bundleOf(ID_LEAGUE to idLeague)
+        val bundle = bundleOf(idLeagueKey to idLeague)
 
         navController.navigate(R.id.navigation_dashboard, bundle)
         val orderNav = navController.graph.findNode(R.id.navigation_dashboard)
         val orderNavPrev = navController.graph.findNode(R.id.navigation_previous)
         val orderNavNext = navController.graph.findNode(R.id.navigation_next)
         orderNav?.addArgument(
-            ID_LEAGUE, NavArgument.Builder()
+            idLeagueKey, NavArgument.Builder()
             .setType(NavType.StringType)
             .setDefaultValue(idLeague)
             .build()
         )
 
         orderNavPrev?.addArgument(
-            ID_LEAGUE, NavArgument.Builder()
+            idLeagueKey, NavArgument.Builder()
                 .setType(NavType.StringType)
                 .setDefaultValue(idLeague)
                 .build()
         )
 
         orderNavNext?.addArgument(
-            ID_LEAGUE, NavArgument.Builder()
+            idLeagueKey, NavArgument.Builder()
                 .setType(NavType.StringType)
                 .setDefaultValue(idLeague)
                 .build()
@@ -104,8 +105,8 @@ class DetailLeagueActivity : AppCompatActivity() {
         finish()
     }
 
+
     companion object{
         private val TAG_LOG = DetailLeagueActivity::class.java.simpleName
-        const val ID_LEAGUE = "ID_LEAGUE"
     }
 }

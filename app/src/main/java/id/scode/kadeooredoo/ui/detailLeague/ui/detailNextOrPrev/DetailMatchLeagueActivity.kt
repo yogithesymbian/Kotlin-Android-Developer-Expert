@@ -221,6 +221,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         info("try show team list : done")
     }
 
+    // !long code
     @SuppressLint("SimpleDateFormat")
     private fun setDataMatch(item: EventDetailMatch) {
 

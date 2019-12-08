@@ -65,4 +65,8 @@
     <string name="language_en">en_lang</string>
     <string name="title_team_detail">Team Detail</string>
     <string name="activity_detail_match_league_favorite">Favorite</string>
+    <string name="key_id_league">ID_LEAGUE</string>
+    <string name="utils_en_lang">en_lang</string>
+    <string name="utils_jp_lang">jp_lang</string>
+    <string name="utils_exception_null">exception_null</string>
 </resources>
