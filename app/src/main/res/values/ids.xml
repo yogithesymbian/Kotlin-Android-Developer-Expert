@@ -5,4 +5,5 @@
     <item name="btn_fav_club_football" type="id" />
     <item name="txt_desc_club_football" type="id" />
     <item name="btn_det_1" type="id" />
+    <item name="spinner" type="id" />
 </resources>

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.data.db.entities.Team
-import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.TeamsActivity.Companion.DETAIL_KEY
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
@@ -68,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        // get Data from intent(#MainActivity)
+        // get Data from intent(#TeamsActivity)
         intent.also {
             teams = it.getParcelableExtra(DETAIL_KEY)
         }

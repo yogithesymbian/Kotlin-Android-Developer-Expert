@@ -18,8 +18,8 @@ import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.home.MainView
-import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
+import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
+import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_previous_match_league.*
@@ -42,17 +42,18 @@ class RvPrevMatchLeague(
     private val context: Context,
     private var items: List<EventPrevious>,
     private val listener: (EventPrevious) -> Unit
-) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable, MainView, AnkoLogger {
+) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable,
+    TeamsView, AnkoLogger {
 
 
     private var itemsInit: List<EventPrevious> = items
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var teams: MutableList<Team> = mutableListOf()
     private var teamsAway: MutableList<Team> = mutableListOf()
-    private lateinit var mainPresenter: MainPresenter
+    private lateinit var teamsPresenter: TeamsPresenter
     private var progressBar: ProgressBar? = null
     private var progressBarAway: ProgressBar? = null
 
@@ -103,7 +104,7 @@ class RvPrevMatchLeague(
 
         val request = ApiRepository()
         val gson = Gson()
-        mainPresenter = MainPresenter(this, request, gson)
+        teamsPresenter = TeamsPresenter(this, request, gson)
 
         return onViewHolder
     }
@@ -116,7 +117,7 @@ class RvPrevMatchLeague(
         items[position].idHomeTeam?.let {
 
             info("idHomeTeam : $it")
-            mainPresenter.getDetailLeagueTeamList(it)
+            teamsPresenter.getDetailLeagueTeamList(it)
 
             if (!teams.isNullOrEmpty()) {
 
@@ -131,7 +132,7 @@ class RvPrevMatchLeague(
         items[position].idAwayTeam?.let {
 
             info("idAwayTeam : $it")
-            mainPresenter.getDetailLeagueTeamAwayList(it)
+            teamsPresenter.getDetailLeagueTeamAwayList(it)
 
             if (!teamsAway.isNullOrEmpty()) {
 

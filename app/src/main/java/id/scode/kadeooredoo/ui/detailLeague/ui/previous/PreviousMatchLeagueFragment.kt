@@ -37,7 +37,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
     private lateinit var previousLeagueViewModel: PreviousLeagueViewModel
     private var idLeague: String? = null
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var eventPreviousMutableList: MutableList<EventPrevious> = mutableListOf()

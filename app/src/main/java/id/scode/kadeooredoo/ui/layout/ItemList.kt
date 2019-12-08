@@ -81,7 +81,7 @@ class ItemListUI : AnkoComponent<ViewGroup>, AnkoLogger {
 
                 view {
                     backgroundColor = R.color.colorPrimaryDark
-                }.lparams(width = matchParent, height = dip(2)){
+                }.lparams(width = matchParent, height = dip(2)) {
 
                 }
 

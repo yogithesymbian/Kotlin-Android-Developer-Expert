@@ -32,7 +32,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     private lateinit var dashboardViewModel: DashboardViewModel
     private var idLeague: String? = null
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var leaguesMutableList: MutableList<League> = mutableListOf()

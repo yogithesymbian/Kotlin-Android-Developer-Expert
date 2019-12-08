@@ -14,19 +14,26 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity"
-            android:label="@string/title_activity_detail_match_league"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.detailLeague.DetailLeagueActivity"
-            android:label="@string/title_activity_detail_league" />
-        <activity android:name=".ui.home.DetailActivity" />
-        <activity android:name=".ui.home.MainActivity">
+            android:name=".ui.home.TeamsDetailActivity"
+            android:theme="@style/AppThemeWithBar"
+            />
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity"
+            android:label="@string/title_activity_detail_match_league"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.detailLeague.ui.DetailLeagueActivity"
+            android:label="@string/title_activity_detail_league" />
+        <activity android:name=".ui.home.DetailActivity" />
+        <activity android:name=".ui.home.TeamsActivity">
+
         </activity>
     </application>
 

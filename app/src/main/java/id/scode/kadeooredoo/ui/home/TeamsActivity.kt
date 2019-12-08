@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.RvFootballAdapter
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
-import id.scode.kadeooredoo.ui.detailLeague.DetailLeagueActivity
-import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
+import id.scode.kadeooredoo.ui.detailLeague.ui.DetailLeagueActivity
+import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
+import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
+import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -36,7 +37,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
  * Linux 5.2.0-kali3-amd64
  */
 
-class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
+class TeamsActivity : AppCompatActivity(), AnkoLogger, TeamsView {
 
     companion object {
         const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj
@@ -46,8 +47,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
     /**
      * Declare recycler and mutableList
      */
-//    private var itemClubFootballs: MutableList<ItemClubFootball> = mutableListOf()
-//    private lateinit var recyclerViewFootball: RecyclerView
 
     // declare a view
     private lateinit var recyclerViewListTeam: RecyclerView
@@ -56,12 +55,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
     private lateinit var spinner: Spinner
 
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var teams: MutableList<Team> = mutableListOf()
-    private lateinit var mainPresenter: MainPresenter
-    private lateinit var mainAdapter: RvFootballAdapter
+    private lateinit var teamsPresenter: TeamsPresenter
+    private lateinit var mainAdapter: TeamsAdapter
 
     //declare a view for choose
     private lateinit var leagueName: String //for spinner
@@ -148,7 +147,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
-        mainAdapter = RvFootballAdapter(this, teams) {
+        mainAdapter = TeamsAdapter(this, teams) {
             info(
                 """
                 recycle got clicked
@@ -170,14 +169,14 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
         val request = ApiRepository()
         val gson = Gson()
-        mainPresenter = MainPresenter(this, request, gson)
+        teamsPresenter = TeamsPresenter(this, request, gson)
 
         // idLeague INIT LOKAL
         var idLeague: String
         val btnDetSat = findViewById<View>(R.id.btn_det_1)
 //        btnDetSat.setOnClickListener{
 //            info ("hello detail clickeddddddddddddddd")
-//            RvFootballAdapter(this,teams){
+//            TeamsAdapter(this,teams){
 //                info ("hello detail clicked ${it.idLeague}")
 //            }
 //        }
@@ -233,7 +232,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
 
                 }
 
-                mainPresenter.getLeagueTeamList(leagueName)
+                teamsPresenter.getLeagueTeamList(leagueName)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -244,12 +243,12 @@ class MainActivity : AppCompatActivity(), AnkoLogger, MainView {
         // pull-down
         swipeRefreshLayoutListTeam.onRefresh {
             info("try swipe to refresh on select ${spinner.selectedItem}")
-            mainPresenter.getLeagueTeamList(spinner.selectedItem.toString())
+            teamsPresenter.getLeagueTeamList(spinner.selectedItem.toString())
         }
     } //end of onCreate
 
 
-    // implement of , MainView
+    // implement of , TeamsView
     override fun showLoading() {
         progressBar.visible()
     }

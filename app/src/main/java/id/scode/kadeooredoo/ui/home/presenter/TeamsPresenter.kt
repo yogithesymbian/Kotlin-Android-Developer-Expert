@@ -5,7 +5,7 @@ import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
-import id.scode.kadeooredoo.ui.home.MainView
+import id.scode.kadeooredoo.ui.home.view.TeamsView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -20,13 +20,13 @@ import org.jetbrains.anko.uiThread
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class MainPresenter (
-    private val view: MainView,
+class TeamsPresenter(
+    private val view: TeamsView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
-){
+) {
     //behaviours getLeagueTeamList
-    fun getLeagueTeamList(league: String){
+    fun getLeagueTeamList(league: String) {
         view.showLoading()
         doAsync {
             val data =
@@ -41,8 +41,9 @@ class MainPresenter (
             }
         }
     }
+
     //behaviours getLeagueTeamList
-    fun getDetailLeagueTeamList(idTeams: String){
+    fun getDetailLeagueTeamList(idTeams: String) {
         view.showLoading()
         doAsync {
             val data =
@@ -57,8 +58,9 @@ class MainPresenter (
             }
         }
     }
+
     //behaviours getLeagueTeamList
-    fun getDetailLeagueTeamAwayList(idTeams: String){
+    fun getDetailLeagueTeamAwayList(idTeams: String) {
         view.showLoading()
         doAsync {
             val data =

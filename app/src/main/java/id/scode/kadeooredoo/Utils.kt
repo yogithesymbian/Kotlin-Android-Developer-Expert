@@ -21,13 +21,15 @@ const val JP_LANG = "jp_lang"
 const val SPORT = "Soccer"
 const val EXCEPTION_NULL = "exception_null"
 
-fun View.visible(){
+fun View.visible() {
     visibility = View.VISIBLE
 }
-fun View.invisible(){
+
+fun View.invisible() {
     visibility = View.INVISIBLE
 }
-fun View.gone(){
+
+fun View.gone() {
     visibility = View.GONE
 }
 

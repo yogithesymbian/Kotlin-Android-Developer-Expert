@@ -37,7 +37,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     private lateinit var nextLeagueViewModel: NextLeagueViewModel
     private var idLeague: String? = null
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var eventNextMutableList: MutableList<EventNext> = mutableListOf()

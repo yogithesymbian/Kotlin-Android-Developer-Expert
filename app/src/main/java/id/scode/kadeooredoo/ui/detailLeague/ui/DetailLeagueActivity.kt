@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague
+package id.scode.kadeooredoo.ui.detailLeague.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +14,7 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.ui.home.MainActivity.Companion.DETAIL_LEAGUE
+import id.scode.kadeooredoo.ui.home.TeamsActivity.Companion.DETAIL_LEAGUE
 
 class DetailLeagueActivity : AppCompatActivity() {
 

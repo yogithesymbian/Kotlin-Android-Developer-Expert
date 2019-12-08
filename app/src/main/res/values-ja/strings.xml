@@ -60,4 +60,8 @@
     <string name="league_isa_id">4332</string>
     <string name="league_fl1_id">4334</string>
     <string name="league_sll_id">4335</string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorite</string>
+    <string name="language_en">en_lang</string>
+    <string name="title_team_detail">Team Detail</string>
 </resources>

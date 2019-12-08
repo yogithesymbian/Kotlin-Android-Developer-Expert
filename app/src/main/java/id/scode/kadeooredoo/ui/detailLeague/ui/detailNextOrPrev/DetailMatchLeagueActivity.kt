@@ -19,8 +19,8 @@ import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
-import id.scode.kadeooredoo.ui.home.MainView
-import id.scode.kadeooredoo.ui.home.presenter.MainPresenter
+import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
+import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
@@ -29,7 +29,8 @@ import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
 
-class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogger, MainView {
+class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogger,
+    TeamsView {
 
     private var eventPrevious: EventPrevious? = null
     private var eventNext: EventNext? = null
@@ -41,12 +42,12 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private lateinit var progressBar: ProgressBar
 
     /**
-     * apply the MainPresenter and MainAdapter
+     * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var eventDetailMatchMutableList: MutableList<EventDetailMatch> = mutableListOf()
     private lateinit var detailMatchPresenter: DetailMatchPresenter
-    private lateinit var mainPresenter: MainPresenter
+    private lateinit var teamsPresenter: TeamsPresenter
 
 
     @SuppressLint("SetTextI18n")
@@ -61,7 +62,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         val request = ApiRepository()
         val gson = Gson()
         detailMatchPresenter = DetailMatchPresenter(this, request, gson)
-        mainPresenter = MainPresenter(this, request, gson)
+        teamsPresenter = TeamsPresenter(this, request, gson)
 
 
         // get eventId ; but this will useless, i can pass all obj , why i need call api detail ?
@@ -140,11 +141,11 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
         // get Logo
         item.idHomeTeam?.let {
-            mainPresenter.getDetailLeagueTeamList(it)
+            teamsPresenter.getDetailLeagueTeamList(it)
             info("looking for logo $it")
         }
         item.idAwayTeam?.let {
-            mainPresenter.getDetailLeagueTeamAwayList(it)
+            teamsPresenter.getDetailLeagueTeamAwayList(it)
             info("looking for logo $it")
         }
 

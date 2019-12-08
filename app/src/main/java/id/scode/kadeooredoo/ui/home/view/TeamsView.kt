@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.home.view
 
 import id.scode.kadeooredoo.data.db.entities.Team
 
@@ -13,7 +13,7 @@ import id.scode.kadeooredoo.data.db.entities.Team
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-interface MainView {
+interface TeamsView {
 
     fun showLoading()
     fun hideLoading()
