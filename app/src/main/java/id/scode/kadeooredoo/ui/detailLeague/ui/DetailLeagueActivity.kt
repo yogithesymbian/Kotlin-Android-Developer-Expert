@@ -99,6 +99,11 @@ class DetailLeagueActivity : AppCompatActivity() {
     override fun onSupportNavigateUp() =
         findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     companion object{
         private val TAG_LOG = DetailLeagueActivity::class.java.simpleName
         const val ID_LEAGUE = "ID_LEAGUE"

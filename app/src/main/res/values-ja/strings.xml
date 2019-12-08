@@ -64,4 +64,5 @@
     <string name="favorites">Favorite</string>
     <string name="language_en">en_lang</string>
     <string name="title_team_detail">Team Detail</string>
+    <string name="activity_detail_match_league_favorite">Favorite</string>
 </resources>

@@ -157,6 +157,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="language_en">en_lang</string>
     <string name="title_team_detail">Team Detail</string>
+    <string name="activity_detail_match_league_favorite">Favorite</string>
 
 
 </resources>

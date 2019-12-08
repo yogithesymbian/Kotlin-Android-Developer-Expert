@@ -1,20 +1,26 @@
 package id.scode.kadeooredoo.ui.home
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.database
 import id.scode.kadeooredoo.data.db.entities.Favorite
+import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteTeamsAdapter
+import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -25,10 +31,11 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 /**
  * A simple [Fragment] subclass.
  */
-class FavoriteTeamsFragment : Fragment() ,AnkoComponent<Context> , AnkoLogger{
+class FavoriteTeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger {
 
     private var favoritesMutableList: MutableList<Favorite> = mutableListOf()
     private lateinit var favoriteTeamsAdapter: FavoriteTeamsAdapter
+    private lateinit var imageView: ImageView
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
@@ -36,7 +43,7 @@ class FavoriteTeamsFragment : Fragment() ,AnkoComponent<Context> , AnkoLogger{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        favoriteTeamsAdapter = FavoriteTeamsAdapter(favoritesMutableList){
+        favoriteTeamsAdapter = FavoriteTeamsAdapter(favoritesMutableList) {
             context?.startActivity<TeamsDetailActivity>(DETAIL_KEY to "${it.teamId}")
         }
 
@@ -58,9 +65,10 @@ class FavoriteTeamsFragment : Fragment() ,AnkoComponent<Context> , AnkoLogger{
     }
 
 
-    override fun createView(ui: AnkoContext<Context>): View = with(ui){
+    @SuppressLint("RtlHardcoded")
+    override fun createView(ui: AnkoContext<Context>): View = with(ui) {
         linearLayout {
-            lparams (width = matchParent, height = wrapContent)
+            lparams(width = matchParent, height = wrapContent)
             topPadding = dip(16)
             leftPadding = dip(16)
             rightPadding = dip(16)
@@ -70,18 +78,31 @@ class FavoriteTeamsFragment : Fragment() ,AnkoComponent<Context> , AnkoLogger{
                     R.color.colorAccent,
                     android.R.color.holo_green_light,
                     android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light)
+                    android.R.color.holo_red_light
+                )
+                visibility = View.VISIBLE
+
 
                 recyclerView = recyclerView {
-                    lparams (width = matchParent, height = wrapContent)
+                    lparams(width = matchParent, height = wrapContent)
                     layoutManager = LinearLayoutManager(ctx)
+
                 }
             }
+
+            imageView = imageView {
+                id = R.id.img_fav_empty
+                visibility = View.GONE
+                backgroundResource = R.drawable.ic_exception_favorite_empty_thanks_canva
+            }.lparams(width = matchParent, height = matchParent){
+                gravity = Gravity.CENTER
+            }
+
         }
     }
 
     // show data Anko SQLite
-    private fun showFavorite(){
+    private fun showFavorite() {
 
         favoritesMutableList.clear()
         context?.applicationContext?.database?.use {
@@ -89,7 +110,14 @@ class FavoriteTeamsFragment : Fragment() ,AnkoComponent<Context> , AnkoLogger{
             val result = select(Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<Favorite>())
             favoritesMutableList.addAll(favorite)
-            info("$ showing favorite ${favoritesMutableList[0].teamName}")
+            if (favoritesMutableList.isNullOrEmpty()) {
+                swipeRefreshLayout.gone()
+                imageView.visible()
+            } else {
+                info("$ showing favorite ${favoritesMutableList[0].teamName}")
+                swipeRefreshLayout.visible()
+                imageView.gone()
+            }
             favoriteTeamsAdapter.notifyDataSetChanged()
         }
     }

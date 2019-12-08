@@ -1,13 +1,16 @@
 package id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev
 
 import android.annotation.SuppressLint
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.data.db.databasePrevMatch
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
@@ -25,6 +28,7 @@ import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
@@ -36,18 +40,26 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private var eventNext: EventNext? = null
 
     // lookUp the teams | Logo
-    private var teams: MutableList<Team> = mutableListOf()
+//    private var teams: MutableList<Team> = mutableListOf()
+    private var teams: Team? = null
     private var teamsAway: MutableList<Team> = mutableListOf()
 
-    private lateinit var progressBar: ProgressBar
+    // for favorite
+    private var teamsPrevFavorite: Team? = null
+    private var eventDetailMatchMutableListFavorite: EventDetailMatch? = null
+    private var isFavorite: Boolean = false
+
 
     /**
      * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
-    private var eventDetailMatchMutableList: MutableList<EventDetailMatch> = mutableListOf()
+//    private var eventDetailMatchMutableList: MutableList<EventDetailMatch> = mutableListOf()
+    private var eventDetailMatchMutableList: EventDetailMatch? = null
     private lateinit var detailMatchPresenter: DetailMatchPresenter
     private lateinit var teamsPresenter: TeamsPresenter
+
+    private lateinit var progressBar: ProgressBar
 
 
     @SuppressLint("SetTextI18n")
@@ -76,20 +88,71 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             eventPrevious?.also {
                 it.idEvent?.let { it1 -> detailMatchPresenter.getDetailMatchList(it1) }
             }
+
+            fab_favorite.setOnClickListener{
+                if (isFavorite) info("soon") else addToFavorite()
+                isFavorite = !isFavorite
+                setFavorite()
+            }
         } else if (eventNext != null) {
             eventNext?.also {
                 it.idEvent?.let { it1 -> detailMatchPresenter.getDetailMatchList(it1) }
             }
+
+            fab_favorite.setOnClickListener{
+                info("soon")
+            }
         }
+
 
     }
 
 
+    private fun setFavorite() {
+        if (isFavorite)
+            fab_favorite?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+        else
+            fab_favorite?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
+    }
+
+    private fun addToFavorite() {
+        try {
+            databasePrevMatch.use {
+                info("inserting data ${eventDetailMatchMutableListFavorite?.strEvent} - ${teamsPrevFavorite?.teamBadge}")
+                insert(
+                    Team.TABLE_FAVORITE_PREV,
+                    Team.TEAM_ID to teamsPrevFavorite?.teamId,
+                    Team.TEAM_BADGE to teamsPrevFavorite?.teamBadge,
+
+                    EventDetailMatch.EVENT to eventDetailMatchMutableListFavorite?.strEvent,
+                    EventDetailMatch.SEASON to eventDetailMatchMutableListFavorite?.strSeason,
+                    EventDetailMatch.HOME_TEAM to eventDetailMatchMutableListFavorite?.strHomeTeam,
+                    EventDetailMatch.HOME_SCORE to eventDetailMatchMutableListFavorite?.intHomeScore,
+                    EventDetailMatch.AWAY_TEAM to eventDetailMatchMutableListFavorite?.strAwayTeam,
+                    EventDetailMatch.AWAY_SCORE to eventDetailMatchMutableListFavorite?.intAwayScore
+                )
+                fab_favorite.snackbar("Added to favorite").show()
+            }
+        } catch (e: SQLiteConstraintException) {
+            fab_favorite.snackbar("error ${e.localizedMessage}").show()
+        }
+    }
+
     override fun showTeamList(data: List<Team>?) {
         info("try show jersey team list : process")
-        teams.clear()
+
+        val zero = 0
+        listOf(teams).toMutableList().clear()
+
         data?.let {
-            teams.addAll(it)
+
+            listOf(teams).toMutableList().addAll(it)
+            teamsPrevFavorite = Team(
+                teamId = it[zero].teamId,
+                teamBadge = it[zero].teamBadge
+            )
         }
 
         Glide.with(this)
@@ -124,13 +187,37 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     override fun showDetailMatch(data: List<EventDetailMatch>?) {
         info("try show team list : process")
 
-        eventDetailMatchMutableList.clear()
-        data?.let {
-            eventDetailMatchMutableList.addAll(it)
-        }
-        val post = 0
-        setDataMatch(eventDetailMatchMutableList[post])
+        val zero = 0
 
+        listOf(eventDetailMatchMutableList).toMutableList().clear()
+
+        data?.let {
+
+            listOf(eventDetailMatchMutableList).toMutableList().addAll(it)
+
+            setDataMatch(it[zero])
+            eventDetailMatchMutableListFavorite = EventDetailMatch(
+                strEvent = it[zero].strEvent,
+                strSeason = it[zero].strSeason,
+
+                strHomeTeam = it[zero].strHomeTeam,
+                intHomeScore = it[zero].intHomeScore,
+
+                strAwayTeam = it[zero].strAwayTeam,
+                intAwayScore = it[zero].intAwayScore
+//
+//                dateEvent = it.dateEvent,
+//                strTime = it.strTime,
+//                strLocked = it.strLocked,
+//
+//                strHomeFormation = it.strHomeFormation,
+//                strAwayFormation = it.strAwayFormation,
+//
+//                strHomeGoalDetails = it.strHomeGoalDetails,
+//                strAwayGoalDetails = it.strAwayGoalDetails
+
+            )
+        }
         info("try show team list : done")
     }
 
@@ -396,6 +483,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     }
 
+    // detail scroll a textView
     private fun scrollMethodText() {
         txt_goals_detail.movementMethod = ScrollingMovementMethod()
         txt_formation.movementMethod = ScrollingMovementMethod()

@@ -35,5 +35,18 @@
 
     <include layout="@layout/content_detail_match_league" />
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/activity_detail_match_league_favorite"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:icon="@drawable/ic_add_to_favorites"
+        app:backgroundTint="@android:color/white"
+        tools:ignore="UnusedAttribute" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

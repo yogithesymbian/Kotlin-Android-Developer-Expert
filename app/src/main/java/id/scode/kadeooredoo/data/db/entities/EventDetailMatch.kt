@@ -59,4 +59,25 @@ data class EventDetailMatch(
     val strTweet2: String ?= null,
     val strTweet3: String ?= null,
     val strVideo: String ?= null
-)
+) {
+    companion object{
+        const val EVENT = "EVENT"
+        const val SEASON = "SEASON"
+
+        const val HOME_TEAM = "HOME_TEAM"
+        const val HOME_SCORE = "HOME_SCORE"
+
+        const val AWAY_TEAM = "AWAY_TEAM"
+        const val AWAY_SCORE = "ASCR"
+
+//        dateEvent = it.dateEvent,
+//        strTime = it.strTime,
+//        strLocked = it.strLocked,
+//
+//        strHomeFormation = it.strHomeFormation,
+//        strAwayFormation = it.strAwayFormation,
+//
+//        strHomeGoalDetails = it.strHomeGoalDetails,
+//        strAwayGoalDetails = it.strAwayGoalDetails
+    }
+}

@@ -68,6 +68,64 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
+        //CreateUI
+//        linearLayout {
+//            lparams(width = matchParent, height = wrapContent)
+//            orientation = LinearLayout.VERTICAL
+//            backgroundColor = Color.WHITE
+//
+//            swipeRefreshLayout = swipeRefreshLayout {
+//                setColorSchemeResources(
+//                    id.scode.kadeooredoo.R.color.colorAccent,
+//                    android.R.color.holo_green_light,
+//                    android.R.color.holo_orange_light,
+//                    android.R.color.holo_red_light
+//                )
+//
+//                scrollView {
+//                    isVerticalScrollBarEnabled = false
+//                    relativeLayout {
+//                        lparams(width = matchParent, height = wrapContent)
+//
+//                        linearLayout {
+//                            lparams(width = matchParent, height = wrapContent)
+//                            padding = dip(10)
+//                            orientation = LinearLayout.VERTICAL
+//                            gravity = Gravity.CENTER_HORIZONTAL
+//
+//                            teamBadge = imageView {}.lparams(height = dip(75))
+//
+//                            teamName = textView {
+//                                this.gravity = Gravity.CENTER
+//                                textSize = 20f
+//                                textColor = ContextCompat.getColor(context, id.scode.kadeooredoo.R.color.colorAccent)
+//                            }.lparams {
+//                                topMargin = dip(5)
+//                            }
+//
+//                            teamFormedYear = textView {
+//                                this.gravity = Gravity.CENTER
+//                            }
+//
+//                            teamStadium = textView {
+//                                this.gravity = Gravity.CENTER
+//                                textColor =
+//                                    ContextCompat.getColor(context, id.scode.kadeooredoo.R.color.colorPrimaryText)
+//                            }
+//
+//                            teamDescription = textView().lparams {
+//                                topMargin = dip(20)
+//                            }
+//                        }
+//                        progressBar = progressBar {
+//                        }.lparams {
+//                            centerHorizontally()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
         // get Data from intent(#TeamsActivity)
         intent.also {
             teams = it.getParcelableExtra(DETAIL_KEY)

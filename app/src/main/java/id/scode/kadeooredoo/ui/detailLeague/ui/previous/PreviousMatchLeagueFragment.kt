@@ -175,19 +175,19 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         info("try show event past list : done")
         if (eventPreviousMutableList.isNullOrEmpty()){
             toast(getString(R.string.exception_search_not_found))
-            img_exception_search_nf_fp.visible()
-            rv_prev_match_leagues.gone()
+            img_exception_search_nf_fp?.visible()
+            rv_prev_match_leagues?.gone()
         } else {
-            img_exception_search_nf_fp.gone()
-            rv_prev_match_leagues.visible()
+            img_exception_search_nf_fp?.gone()
+            rv_prev_match_leagues?.visible()
             info("hello prev ${eventPreviousMutableList[0].idHomeTeam}")
         }
     }
 
     override fun exceptionNullObject(msg: String) {
         toast("$msg ${getString(R.string.exception_search_not_found)}")
-        img_exception_search_nf_fp.visible()
-        rv_prev_match_leagues.gone()
+        img_exception_search_nf_fp?.visible()
+        rv_prev_match_leagues?.gone()
     }
 
     companion object{

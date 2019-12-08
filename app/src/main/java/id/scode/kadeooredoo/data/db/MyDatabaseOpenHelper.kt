@@ -2,7 +2,9 @@ package id.scode.kadeooredoo.data.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
 import id.scode.kadeooredoo.data.db.entities.Favorite
+import id.scode.kadeooredoo.data.db.entities.Team
 import org.jetbrains.anko.db.*
 
 /**
@@ -16,18 +18,18 @@ import org.jetbrains.anko.db.*
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class MyDatabaseOpenHelper (context: Context): ManagedSQLiteOpenHelper(
+class MyDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(
     context,
     "FavoriteTeam.db",
     null,
     1
-){
+) {
     companion object {
         private var instance: MyDatabaseOpenHelper? = null
 
         @Synchronized
         fun getInstance(ctx: Context): MyDatabaseOpenHelper {
-            if (instance == null){
+            if (instance == null) {
                 instance = MyDatabaseOpenHelper(ctx.applicationContext)
             }
             return instance as MyDatabaseOpenHelper
@@ -52,6 +54,50 @@ class MyDatabaseOpenHelper (context: Context): ManagedSQLiteOpenHelper(
     }
 }
 
+class MyDatabaseOpenHelperPrevMatch(context: Context) : ManagedSQLiteOpenHelper(
+    context,
+    "FavoritePrevMatch.db",
+    null,
+    1
+) {
+    companion object {
+        private var instance: MyDatabaseOpenHelperPrevMatch? = null
+
+        @Synchronized
+        fun getInstance(ctx: Context): MyDatabaseOpenHelperPrevMatch {
+            if (instance == null) {
+                instance = MyDatabaseOpenHelperPrevMatch(ctx.applicationContext)
+            }
+            return instance as MyDatabaseOpenHelperPrevMatch
+        }
+    }
+
+    override fun onCreate(db: SQLiteDatabase?) {
+        // create tables
+        db?.createTable(
+            Team.TABLE_FAVORITE_PREV,
+            true,
+            Team.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Team.TEAM_ID to TEXT + UNIQUE,
+            Team.TEAM_BADGE to TEXT,
+            EventDetailMatch.EVENT to TEXT,
+            EventDetailMatch.SEASON to TEXT,
+            EventDetailMatch.HOME_TEAM to TEXT,
+            EventDetailMatch.HOME_SCORE to TEXT,
+            EventDetailMatch.AWAY_TEAM to TEXT,
+            EventDetailMatch.AWAY_SCORE to TEXT
+        )
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        // for upgrade tables, as usual
+        db?.dropTable(Team.TABLE_FAVORITE_PREV, true)
+    }
+}
+
 // Access Property For Context
-val Context.database : MyDatabaseOpenHelper
+val Context.database: MyDatabaseOpenHelper
     get() = MyDatabaseOpenHelper.getInstance(applicationContext)
+
+val Context.databasePrevMatch: MyDatabaseOpenHelperPrevMatch
+    get() = MyDatabaseOpenHelperPrevMatch.getInstance(applicationContext)

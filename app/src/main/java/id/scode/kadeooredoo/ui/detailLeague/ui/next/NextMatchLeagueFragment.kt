@@ -166,11 +166,11 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         if (eventNextMutableList.isNullOrEmpty()){
             toast(getString(R.string.exception_search_not_found))
-            img_exception_search_nf_fn.visible()
-            rv_next_match_leagues.gone()
+            img_exception_search_nf_fn?.visible()
+            rv_next_match_leagues?.gone()
         } else {
-            img_exception_search_nf_fn.gone()
-            rv_next_match_leagues.visible()
+            img_exception_search_nf_fn?.gone()
+            rv_next_match_leagues?.visible()
             info("hello prev ${eventNextMutableList[0].idHomeTeam}")
 
         }

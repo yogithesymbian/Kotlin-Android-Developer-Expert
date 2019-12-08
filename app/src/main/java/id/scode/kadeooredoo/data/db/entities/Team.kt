@@ -75,4 +75,13 @@ data class Team(
     val strTwitter: String? = null,
     val strWebsite: String? = null,
     val strYoutube: String? = null
-) : Parcelable
+) : Parcelable {
+
+    companion object{
+        const val TABLE_FAVORITE_PREV: String = "TABLE_FAVORITE_PREV"
+        const val ID: String = "ID_"
+        const val TEAM_ID: String = "TEAM_ID"
+        const val TEAM_BADGE: String = "TEAM_BADGE"
+    }
+
+}
