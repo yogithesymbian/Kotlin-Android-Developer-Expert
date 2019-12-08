@@ -71,14 +71,9 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         teamsAdapter = TeamsAdapter(requireContext(), teamsMutableList) {
             info(
                 """
-                recycle got clicked
-                id league ${it.idLeague}
-                |
-                id team ${it.teamId}
-                |
-                id Soccer XML ${it.idSoccerXML}
-                |
-                team name ${it.teamName}
+                recycle got clicked  
+                id league ${it.idLeague} | id team ${it.teamId}
+                id Soccer XML ${it.idSoccerXML} | team name ${it.teamName}
             """.trimIndent()
             )
             debug(8)

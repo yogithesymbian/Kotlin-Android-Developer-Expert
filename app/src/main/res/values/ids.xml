@@ -6,4 +6,6 @@
     <item name="txt_desc_club_football" type="id" />
     <item name="btn_det_1" type="id" />
     <item name="spinner" type="id" />
+    <item name="team_badge" type="id"/>
+    <item name="team_name" type="id"/>
 </resources>

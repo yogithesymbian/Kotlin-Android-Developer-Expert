@@ -1,8 +1,11 @@
 package id.scode.kadeooredoo.ui.home
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -13,6 +16,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.data.db.database
+import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
@@ -21,6 +26,10 @@ import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
@@ -49,12 +58,23 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     private lateinit var teamDescription: TextView
 
     private lateinit var teamsPresenter: TeamsPresenter
-    private var teamsMutableList: MutableList<Team> = mutableListOf()
-    private var id: String? = null
+    private var teams: Team? = null
+    private lateinit var id: String
+
+    //menu favorite
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val intent = intent
+        id = intent.getStringExtra(DETAIL_KEY)!!
+        supportActionBar?.title = getString(R.string.title_team_detail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        //CreateUI
         linearLayout {
             lparams(width = matchParent, height = wrapContent)
             orientation = LinearLayout.VERTICAL
@@ -112,25 +132,97 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             }
         }
 
-        supportActionBar?.title = getString(R.string.title_team_detail)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val intent = intent
-        id = intent.getStringExtra(DETAIL_KEY)
 
+        favoriteState()
         val request = ApiRepository()
         val gson = Gson()
-
         teamsPresenter = TeamsPresenter(this, request, gson)
-        id?.let {
-            info("call api with team id : $it")
-            teamsPresenter.getDetailLeagueTeamList(it)
-        }
+
+//            info("call api with team id : $it")
+        teamsPresenter.getDetailLeagueTeamList(id)
 
         swipeRefreshLayout.onRefresh {
-            id?.let { teamsPresenter.getDetailLeagueTeamList(it) }
+            teamsPresenter.getDetailLeagueTeamList(id)
         }
     }
+
+    private fun favoriteState() {
+        database.use {
+            val result =
+                select(Favorite.TABLE_FAVORITE)
+                    .whereArgs(
+                        "(TEAM_ID = {id})",
+                        "id" to id
+                    )
+            val favorite = result.parseList(classParser<Favorite>())
+            if (favorite.isNotEmpty()) isFavorite = true
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            R.id.add_to_favorite -> {
+                if (isFavorite) info("soon") else addToFavorite()
+                isFavorite = !isFavorite
+                setFavorite()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                info("inserting data ${teams?.teamId} - ${teams?.teamName}")
+                insert(
+                    Favorite.TABLE_FAVORITE,
+                    Favorite.TEAM_ID to teams?.teamId,
+                    Favorite.TEAM_NAME to teams?.teamName,
+                    Favorite.TEAM_BADGE to teams?.teamBadge
+                )
+                swipeRefreshLayout.snackbar("Added to favorite").show()
+            }
+        } catch (e: SQLiteConstraintException) {
+            swipeRefreshLayout.snackbar("error ${e.localizedMessage}").show()
+        }
+    }
+
+//    private fun removeFromFavorite() {
+//        try {
+//            database.use {
+//                delete(
+//                    Favorite.TABLE_FAVORITE,
+//                    "(TEAM_ID = {id})",
+//                    "id" to id
+//                )
+//            }
+//            swipeRefreshLayout.snackbar("Removed to favorite").show()
+//        } catch (e: SQLiteConstraintException) {
+//            swipeRefreshLayout.snackbar("error ${e.localizedMessage}").show()
+//        }
+//    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -145,9 +237,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         info("try show team list : process")
 
         swipeRefreshLayout.isRefreshing = false
-
         data?.let {
-            teamsMutableList.addAll(it)
+            listOf(teams).toMutableList().addAll(it)
         }
 
         Picasso.get().load(data?.get(0)?.teamBadge).into(teamBadge)
@@ -158,6 +249,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         teamStadium.text = data?.get(0)?.strStadium
 
         info("try show team list : done")
+        info("hello teams -> ${data?.get(0)?.teamName}")
     }
 
     override fun showTeamAwayList(data: List<Team>?) {

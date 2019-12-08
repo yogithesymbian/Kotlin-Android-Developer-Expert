@@ -16,6 +16,7 @@
         <activity
             android:name=".ui.home.TeamsDetailActivity"
             android:theme="@style/AppThemeWithBar"
+            android:parentActivityName=".ui.home.HomeActivity"
             />
         <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
@@ -31,8 +32,8 @@
         <activity
             android:name=".ui.detailLeague.ui.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league" />
-        <activity android:name=".ui.home.DetailActivity" />
-        <activity android:name=".ui.home.TeamsActivity">
+        <activity android:name=".ui.home.tmp.DetailActivity" />
+        <activity android:name=".ui.home.tmp.TeamsActivity">
 
         </activity>
     </application>

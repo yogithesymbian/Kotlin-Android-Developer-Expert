@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.home.tmp
 
 import android.os.Bundle
 import android.view.Gravity
@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.data.db.entities.Team
-import id.scode.kadeooredoo.ui.home.TeamsActivity.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.tmp.TeamsActivity.Companion.DETAIL_KEY
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
