@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import id.scode.kadeooredoo.*
-import id.scode.kadeooredoo.data.db.databasePrevMatch
 import id.scode.kadeooredoo.data.db.entities.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailMatchPresenter
@@ -24,6 +23,9 @@ import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
