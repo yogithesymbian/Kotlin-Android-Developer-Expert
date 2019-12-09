@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.scode.kadeooredoo.ui.home.subFavorite.eventNext.FavNextFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="next" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_exception_search_not_found"
+        />
+
+</FrameLayout>

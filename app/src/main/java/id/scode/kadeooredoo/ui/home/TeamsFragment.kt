@@ -259,7 +259,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     companion object {
-        const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj
+        const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj // match and other see on ctrl + click
+        const val DETAIL_KEY_FAV_TEAM = "detail_key_fav_team"
         const val DETAIL_LEAGUE = "detail_league"
     }
 

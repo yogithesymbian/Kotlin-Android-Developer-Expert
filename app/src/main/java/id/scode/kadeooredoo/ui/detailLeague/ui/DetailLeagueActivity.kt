@@ -108,6 +108,5 @@ class DetailLeagueActivity : AppCompatActivity() {
 
     companion object{
         private val TAG_LOG = DetailLeagueActivity::class.java.simpleName
-
     }
 }

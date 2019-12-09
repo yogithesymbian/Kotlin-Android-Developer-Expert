@@ -61,6 +61,7 @@ data class EventDetailMatch(
     val strVideo: String ?= null
 ) {
     companion object{
+        const val EVENT_ID = "EVENT_ID"
         const val EVENT = "EVENT"
         const val SEASON = "SEASON"
 
@@ -70,14 +71,42 @@ data class EventDetailMatch(
         const val AWAY_TEAM = "AWAY_TEAM"
         const val AWAY_SCORE = "ASCR"
 
-//        dateEvent = it.dateEvent,
-//        strTime = it.strTime,
-//        strLocked = it.strLocked,
-//
-//        strHomeFormation = it.strHomeFormation,
-//        strAwayFormation = it.strAwayFormation,
-//
-//        strHomeGoalDetails = it.strHomeGoalDetails,
-//        strAwayGoalDetails = it.strAwayGoalDetails
+        const val DATE_EVENT = "DATE_EVENT"
+        const val TIME_EVENT = "TIME_EVENT"
+
+        const val LOCKED = "LOCKED"
+        const val SPORT_STR = "SPORT_STR"
+
+        const val HOME_FORMATION = "HOME_FORMATION"
+        const val AWAY_FORMATION = "AWAY_FORMATION"
+
+        const val HOME_GOALS_DETAIL = "HOME_GOALS_DETAIL"
+        const val AWAY_GOALS_DETAIL = "AWAY_GOALS_DETAIL"
+
+        const val HOME_SHOTS = "HOME_SHOTS"
+        const val AWAY_SHOTS = "AWAY_SHOTS"
+
+        const val HOME_RED_CARD = "HOME_RED_CARD"
+        const val AWAY_RED_CARD = "AWAY_RED_CARD"
+
+        const val HOME_YL_CARD = "HOME_YL_CARD"
+        const val AWAY_YL_CARD = "AWAY_YL_CARD"
+
+        const val HOME_GK_LINE = "HOME_GK_LINE"
+        const val AWAY_GK_LINE = "AWAY_GK_LINE"
+
+        const val HOME_DEF_LINE = "HOME_DEF_LINE"
+        const val AWAY_DEF_LINE = "AWAY_DEF_LINE"
+
+        const val HOME_MID_LINE = "HOME_MID_LINE"
+        const val AWAY_MID_LINE = "AWAY_MID_LINE"
+
+        const val HOME_FW_LINE = "HOME_FW_LINE"
+        const val AWAY_FW_LINE = "AWAY_FW_LINE"
+
+        const val HOME_SUBST = "HOME_SUBST"
+        const val AWAY_SUBST = "AWAY_SUBST"
+
+        const val LINK_TW = "LINK_TW"
     }
 }

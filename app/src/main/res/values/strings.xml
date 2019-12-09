@@ -154,13 +154,19 @@
     <string name="favorites">Favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="language_en">en_lang</string>
+    <string name="language_en" tools:keep="@string/language_en">en_lang</string>
     <string name="title_team_detail">Team Detail</string>
     <string name="activity_detail_match_league_favorite">Favorite</string>
     <string name="key_id_league">ID_LEAGUE</string>
-    <string name="utils_en_lang">en_lang</string>
-    <string name="utils_jp_lang">jp_lang</string>
-    <string name="utils_exception_null">exception_null</string>
+    <string name="utils_en_lang" tools:keep="@string/utils_en_lang">en_lang</string>
+    <string name="utils_jp_lang" tools:keep="@string/utils_jp_lang">jp_lang</string>
+    <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
+    <string name="fragment_favorite_main_event_prev">Event Prev</string>
+    <string name="fragment_favorite_main_event_next">Event Next</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" tools:keep="@string/hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="detail_match_lague_activity_favorite_state">favorite</string>
 
 
 </resources>

@@ -78,14 +78,57 @@ class MyDatabaseOpenHelperPrevMatch(context: Context) : ManagedSQLiteOpenHelper(
             Team.TABLE_FAVORITE_PREV,
             true,
             Team.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+
             Team.TEAM_ID to TEXT + UNIQUE,
+            Team.TEAM_ID_AWAY to TEXT + UNIQUE,
             Team.TEAM_BADGE to TEXT,
+            Team.TEAM_BADGE_AWAY to TEXT,
+
+            EventDetailMatch.EVENT_ID to TEXT + UNIQUE,
             EventDetailMatch.EVENT to TEXT,
             EventDetailMatch.SEASON to TEXT,
+
             EventDetailMatch.HOME_TEAM to TEXT,
             EventDetailMatch.HOME_SCORE to TEXT,
+
             EventDetailMatch.AWAY_TEAM to TEXT,
-            EventDetailMatch.AWAY_SCORE to TEXT
+            EventDetailMatch.AWAY_SCORE to TEXT,
+
+            EventDetailMatch.DATE_EVENT to TEXT,
+            EventDetailMatch.TIME_EVENT to TEXT,
+
+            EventDetailMatch.LOCKED to TEXT,
+            EventDetailMatch.SPORT_STR to TEXT,
+
+            EventDetailMatch.HOME_FORMATION to TEXT,
+            EventDetailMatch.AWAY_FORMATION to TEXT,
+
+            EventDetailMatch.HOME_GOALS_DETAIL to TEXT,
+            EventDetailMatch.AWAY_GOALS_DETAIL to TEXT,
+
+            EventDetailMatch.HOME_SHOTS to TEXT,
+            EventDetailMatch.AWAY_SHOTS to TEXT,
+
+            EventDetailMatch.HOME_RED_CARD to TEXT,
+            EventDetailMatch.AWAY_RED_CARD to TEXT,
+
+            EventDetailMatch.HOME_YL_CARD to TEXT,
+            EventDetailMatch.AWAY_YL_CARD to TEXT,
+
+            EventDetailMatch.HOME_GK_LINE to TEXT,
+            EventDetailMatch.AWAY_GK_LINE to TEXT,
+
+            EventDetailMatch.HOME_DEF_LINE to TEXT,
+            EventDetailMatch.AWAY_DEF_LINE to TEXT,
+            EventDetailMatch.HOME_MID_LINE to TEXT,
+            EventDetailMatch.AWAY_MID_LINE to TEXT,
+
+            EventDetailMatch.HOME_FW_LINE to TEXT,
+            EventDetailMatch.AWAY_FW_LINE to TEXT,
+            EventDetailMatch.HOME_SUBST to TEXT,
+            EventDetailMatch.AWAY_SUBST to TEXT,
+
+            EventDetailMatch.LINK_TW to TEXT
         )
     }
 

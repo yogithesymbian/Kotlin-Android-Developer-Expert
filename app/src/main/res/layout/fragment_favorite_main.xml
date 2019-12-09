@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txt_lbl_fav_teams"
@@ -12,13 +13,18 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:padding="4dp"
         android:text="@string/teams"
+        android:textColor="@color/colorPrimaryDark"
         android:textAllCaps="false"
         android:visibility="visible"
+        android:elevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swrl_teams"
@@ -48,10 +54,9 @@
         android:id="@+id/img_exception_favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_exception_favorite_empty_thanks_canva"
-        android:visibility="gone"
+        android:src="@drawable/ic_exception_favorite_empty_team_thanks_canva"
+        android:visibility="visible"
         />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,5 +6,5 @@
     <color name="colorPrimaryLight" tools:keep="@color/colorPrimaryLight">#66ffa5</color>
     <color name="colorAccent">#008577</color>
     <color name="colorTransparent">#00000000</color>
-    <color name="colorPrimaryText">#000000</color>
+    <color name="colorPrimaryText" tools:keep="@color/colorPrimaryText">#000000</color>
 </resources>

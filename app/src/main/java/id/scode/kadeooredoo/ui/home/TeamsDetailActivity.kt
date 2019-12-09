@@ -19,6 +19,7 @@ import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
@@ -46,17 +47,20 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
 
     private lateinit var progressBar: ProgressBar
-//    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private lateinit var teamBadge: ImageView
     private lateinit var teamName: TextView
-    //    private lateinit var teamFormedYear: TextView
-//    private lateinit var teamStadium: TextView
+
     private lateinit var teamDescription: TextView
 
     private lateinit var teamsPresenter: TeamsPresenter
     private var teams: Team? = null
+
     private lateinit var id: String
+    private var idOnline: String? = null
+
+    private var favoriteStateDataSet: String? = null
+
 
 
     //menu favorite
@@ -67,8 +71,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = intent
-        id = intent.getStringExtra(DETAIL_KEY)!!
+        intent.also {
+            idOnline = intent.getStringExtra(DETAIL_KEY)
+        }
+
         supportActionBar?.title = getString(R.string.title_team_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -113,12 +119,23 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         val gson = Gson()
         teamsPresenter = TeamsPresenter(this, request, gson)
 
-        teamsPresenter.getDetailLeagueTeamList(id)
-
-        favoriteState() // check the team has been save ? return boolean true
+        when {
+            idOnline != null -> {
+                id = idOnline as String
+                teamsPresenter.getDetailLeagueTeamList(id)
+                favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
+            }
+            idOnline == null -> {
+                @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+                id = intent.getStringExtra(DETAIL_KEY_FAV_TEAM)
+                favoriteStateDataSet =
+                    getString(R.string.detail_match_lague_activity_favorite_state)
+                favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
+            }
+        }
     }
 
-    private fun favoriteState() {
+    private fun favoriteState(fromState: String?) {
         database.use {
             val result =
                 select(Favorite.TABLE_FAVORITE)
@@ -127,8 +144,23 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                         "id" to id
                     )
             val favorite = result.parseList(classParser<Favorite>())
-            if (favorite.isNotEmpty()) isFavorite = true
+            val zero = 0
+            if (favorite.isNotEmpty()) {
+                isFavorite = true
+                if (fromState == getString(R.string.detail_match_lague_activity_favorite_state)) setDataTeamFavorite(
+                    favorite[zero]
+                )
+            }
         }
+    }
+
+    private fun setDataTeamFavorite(item: Favorite) {
+
+        Picasso.get().load(item.teamBadge).into(teamBadge)
+        teamName.text = item.teamName
+        teamDescription.text = item.teamName
+        progressBar.gone()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -165,8 +197,9 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     }
 
     private fun addToFavorite() {
-        if (teams?.teamId.isNullOrEmpty()){
-            teamBadge.snackbar("Please wait data loads, and try against").show() // debug with low connection can insert null obj
+        if (teams?.teamId.isNullOrEmpty()) {
+            teamBadge.snackbar("Please wait data loads, and try against")
+                .show() // debug with low connection can insert null obj
             isFavorite = !isFavorite
         } else {
             try {
@@ -221,7 +254,6 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
             teamName.text = it[zero].teamName
             teamDescription.text = it[zero].teamName
-//            teamDescription.text = it[zero].strDescriptionEN
 
             teams = Team(
                 teamId = it[zero].teamId,

@@ -102,7 +102,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
             ) {
                 info(
                     """
-                            date : ${it.strDate}
+                           date : ${it.strDate}
                     """.trimIndent()
                 )
                 context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,13 +7,75 @@
     android:layout_height="match_parent"
     tools:context="id.scode.kadeooredoo.ui.home.HomeActivity">
 
+
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_above="@id/bottom_layout"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        style="@style/Widget.MaterialComponents.TabLayout.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        android:focusable="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+        app:tabBackground="@android:color/white"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabMode="fixed"
+        app:tabPaddingStart="10dp"
+        app:tabRippleColor="@color/colorPrimaryDark"
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabTextColor="@color/colorPrimary"
+        tools:ignore="UnusedAttribute">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_favorite_main_event_prev" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_favorite_main_event_next" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_container_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:isScrollContainer="true"
+        android:nestedScrollingEnabled="true"
+        android:visibility="gone"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:layout_constraintBottom_toBottomOf="@+id/main_container"
+        app:layout_constraintEnd_toEndOf="@+id/tabs"
+        app:layout_constraintStart_toStartOf="@+id/tabs"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"
+        tools:ignore="UnusedAttribute" />
+
+
 
     <LinearLayout
         android:id="@+id/bottom_layout"
@@ -21,12 +83,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@drawable/shadow"
-            />
+            android:background="@drawable/shadow" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -36,12 +100,12 @@
             app:itemBackground="@android:color/white"
             app:itemIconTint="@drawable/bottom_navigation_colors"
             app:itemTextColor="@drawable/bottom_navigation_colors"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:labelVisibilityMode="selected"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_insetEdge="bottom"
             app:menu="@menu/bottom_nav_menu_home"
             tools:ignore="BottomAppBar" />
 
 
     </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
