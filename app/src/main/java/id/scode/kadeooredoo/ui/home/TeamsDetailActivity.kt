@@ -165,19 +165,24 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     }
 
     private fun addToFavorite() {
-        try {
-            database.use {
-                info("inserting data ${teams?.teamId} - ${teams?.teamName}")
-                insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.TEAM_ID to teams?.teamId,
-                    Favorite.TEAM_NAME to teams?.teamName,
-                    Favorite.TEAM_BADGE to teams?.teamBadge
-                )
-                teamBadge.snackbar("Added to favorite").show()
+        if (teams?.teamId.isNullOrEmpty()){
+            teamBadge.snackbar("Please wait data loads, and try against").show() // debug with low connection can insert null obj
+            isFavorite = !isFavorite
+        } else {
+            try {
+                database.use {
+                    info("inserting data ${teams?.teamId} - ${teams?.teamName}")
+                    insert(
+                        Favorite.TABLE_FAVORITE,
+                        Favorite.TEAM_ID to teams?.teamId,
+                        Favorite.TEAM_NAME to teams?.teamName,
+                        Favorite.TEAM_BADGE to teams?.teamBadge
+                    )
+                    teamBadge.snackbar("Added to favorite").show()
+                }
+            } catch (e: SQLiteConstraintException) {
+                teamBadge.snackbar("error ${e.localizedMessage}").show()
             }
-        } catch (e: SQLiteConstraintException) {
-            teamBadge.snackbar("error ${e.localizedMessage}").show()
         }
     }
 
