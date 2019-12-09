@@ -78,12 +78,16 @@ data class Team(
 ) : Parcelable {
 
     companion object{
+
         const val TABLE_FAVORITE_PREV: String = "TABLE_FAVORITE_PREV"
+        const val TABLE_FAVORITE_NEXT: String = "TABLE_FAVORITE_NEXT"
+
         const val ID: String = "ID_"
         const val TEAM_ID: String = "TEAM_ID"
         const val TEAM_ID_AWAY: String = "TEAM_ID_AWAY"
         const val TEAM_BADGE: String = "TEAM_BADGE"
         const val TEAM_BADGE_AWAY: String = "TEAM_BADGE_AWAY"
+
     }
 
 }

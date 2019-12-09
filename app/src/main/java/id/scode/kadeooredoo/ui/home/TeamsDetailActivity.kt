@@ -13,10 +13,10 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.data.db.database
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.databaseTeams
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
@@ -136,7 +136,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     }
 
     private fun favoriteState(fromState: String?) {
-        database.use {
+        databaseTeams.use {
             val result =
                 select(Favorite.TABLE_FAVORITE)
                     .whereArgs(
@@ -203,7 +203,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             isFavorite = !isFavorite
         } else {
             try {
-                database.use {
+                databaseTeams.use {
                     info("inserting data ${teams?.teamId} - ${teams?.teamName}")
                     insert(
                         Favorite.TABLE_FAVORITE,
@@ -221,7 +221,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private fun removeFromFavorite() {
         try {
-            database.use {
+            databaseTeams.use {
                 delete(
                     Favorite.TABLE_FAVORITE,
                     "(TEAM_ID = {id})",

@@ -24,9 +24,6 @@ import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.delete
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import java.text.SimpleDateFormat
@@ -156,7 +153,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     // SCRIPT offline ['Anko SQLite']
     private fun favoriteState(fromState: String?) {
-        databasePrevMatch.use {
+        databaseEventPrevMatch.use {
             val result =
                 select(Team.TABLE_FAVORITE_PREV)
                     .whereArgs(
@@ -198,7 +195,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     // !long code CTRL + [dot] fold | SCRIPT offline ['Anko SQLite']
     private fun addToFavorite() {
         try {
-            databasePrevMatch.use {
+            databaseEventPrevMatch.use {
                 info(
                     """
                         inserting data 
@@ -272,7 +269,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private fun removeFromFavorite() {
         try {
             info("try remove event id : $id, process")
-            databasePrevMatch.use {
+            databaseEventPrevMatch.use {
                 delete(
                     Team.TABLE_FAVORITE_PREV,
                     "(EVENT_ID = {id})",

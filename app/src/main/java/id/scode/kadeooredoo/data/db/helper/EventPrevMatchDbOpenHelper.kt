@@ -1,16 +1,15 @@
-package id.scode.kadeooredoo.data.db
+package id.scode.kadeooredoo.data.db.helper
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
-import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import org.jetbrains.anko.db.*
 
 /**
  * @Authors scode | Yogi Arif Widodo
- * Created on 08 12/8/19 3:50 PM 2019
- * id.scode.kadeooredoo.data.db
+ * Created on 10 12/10/19 7:08 AM 2019
+ * id.scode.kadeooredoo.data.db.helper
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
  * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
@@ -18,57 +17,23 @@ import org.jetbrains.anko.db.*
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class MyDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(
-    context,
-    "FavoriteTeam.db",
-    null,
-    1
-) {
-    companion object {
-        private var instance: MyDatabaseOpenHelper? = null
 
-        @Synchronized
-        fun getInstance(ctx: Context): MyDatabaseOpenHelper {
-            if (instance == null) {
-                instance = MyDatabaseOpenHelper(ctx.applicationContext)
-            }
-            return instance as MyDatabaseOpenHelper
-        }
-    }
-
-    override fun onCreate(db: SQLiteDatabase?) {
-        // create tables
-        db?.createTable(
-            Favorite.TABLE_FAVORITE,
-            true,
-            Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
-            Favorite.TEAM_ID to TEXT + UNIQUE,
-            Favorite.TEAM_NAME to TEXT,
-            Favorite.TEAM_BADGE to TEXT
-        )
-    }
-
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // for upgrade tables, as usual
-        db?.dropTable(Favorite.TABLE_FAVORITE, true)
-    }
-}
-
-class MyDatabaseOpenHelperPrevMatch(context: Context) : ManagedSQLiteOpenHelper(
+class EventPrevMatchDbOpenHelper(context: Context) : ManagedSQLiteOpenHelper(
     context,
     "FavoritePrevMatch.db",
     null,
     1
 ) {
     companion object {
-        private var instance: MyDatabaseOpenHelperPrevMatch? = null
+        private var instance: EventPrevMatchDbOpenHelper? = null
 
         @Synchronized
-        fun getInstance(ctx: Context): MyDatabaseOpenHelperPrevMatch {
+        fun getInstance(ctx: Context): EventPrevMatchDbOpenHelper {
             if (instance == null) {
-                instance = MyDatabaseOpenHelperPrevMatch(ctx.applicationContext)
+                instance =
+                    EventPrevMatchDbOpenHelper(ctx.applicationContext)
             }
-            return instance as MyDatabaseOpenHelperPrevMatch
+            return instance as EventPrevMatchDbOpenHelper
         }
     }
 
@@ -137,10 +102,3 @@ class MyDatabaseOpenHelperPrevMatch(context: Context) : ManagedSQLiteOpenHelper(
         db?.dropTable(Team.TABLE_FAVORITE_PREV, true)
     }
 }
-
-// Access Property For Context
-val Context.database: MyDatabaseOpenHelper
-    get() = MyDatabaseOpenHelper.getInstance(applicationContext)
-
-val Context.databasePrevMatch: MyDatabaseOpenHelperPrevMatch
-    get() = MyDatabaseOpenHelperPrevMatch.getInstance(applicationContext)

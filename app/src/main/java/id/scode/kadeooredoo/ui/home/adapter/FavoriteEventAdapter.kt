@@ -24,10 +24,10 @@ import org.jetbrains.anko.AnkoLogger
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class FavoriteEventPrevAdapter(
+class FavoriteEventAdapter(
     private var items: List<FavTeamJoinDetail>,
     private val listener: (FavTeamJoinDetail) -> Unit
-) : RecyclerView.Adapter<FavoriteEventPrevAdapter.ViewHolder>(), AnkoLogger {
+) : RecyclerView.Adapter<FavoriteEventAdapter.ViewHolder>(), AnkoLogger {
 
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

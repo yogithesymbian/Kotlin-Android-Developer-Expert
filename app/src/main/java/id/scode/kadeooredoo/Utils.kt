@@ -1,7 +1,11 @@
 package id.scode.kadeooredoo
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.View
+import id.scode.kadeooredoo.data.db.helper.EventNextMatchDbOpenHelper
+import id.scode.kadeooredoo.data.db.helper.EventPrevMatchDbOpenHelper
+import id.scode.kadeooredoo.data.db.helper.TeamDatabaseOpenHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,3 +44,13 @@ fun toGMTFormat(date: String, time: String): Date? { // nrohman dicoding discuss
     val dateTime = "$date $time"
     return formatter.parse(dateTime)
 }
+
+// Access Property For Context
+val Context.databaseTeams: TeamDatabaseOpenHelper
+    get() = TeamDatabaseOpenHelper.getInstance(applicationContext)
+
+val Context.databaseEventPrevMatch: EventPrevMatchDbOpenHelper
+    get() = EventPrevMatchDbOpenHelper.getInstance(applicationContext)
+
+val Context.databaseEventNextMatch: EventNextMatchDbOpenHelper
+    get() = EventNextMatchDbOpenHelper.getInstance(applicationContext)

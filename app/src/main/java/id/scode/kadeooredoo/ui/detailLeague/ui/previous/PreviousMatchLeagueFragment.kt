@@ -62,8 +62,6 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         // initialize binding
         val root = inflater.inflate(R.layout.fragment_previous, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-//        (activity as AppCompatActivity).setSupportActionBar(toolbar_previous)
-//        setHasOptionsMenu(true)
         progressBar = root.findViewById(R.id.progress_detail_previous)
         recyclerView = root.findViewById(R.id.rv_prev_match_leagues)
 

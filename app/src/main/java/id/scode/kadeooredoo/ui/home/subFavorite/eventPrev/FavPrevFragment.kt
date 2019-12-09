@@ -18,7 +18,7 @@ import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
-import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventPrevAdapter
+import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventAdapter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
@@ -33,7 +33,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 class FavPrevFragment : Fragment(), AnkoLogger {
 
     private var favoritesMutableList: MutableList<FavTeamJoinDetail> = mutableListOf()
-    private lateinit var favoriteEventPrevAdapter: FavoriteEventPrevAdapter
+    private lateinit var favoriteEventAdapter: FavoriteEventAdapter
     private lateinit var imageView: ImageView
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -41,12 +41,12 @@ class FavPrevFragment : Fragment(), AnkoLogger {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        favoriteEventPrevAdapter = FavoriteEventPrevAdapter(favoritesMutableList) {
+        favoriteEventAdapter = FavoriteEventAdapter(favoritesMutableList) {
             info("move with ${it.eventId} - ${it.teamBadge}")
             context?.startActivity<DetailMatchLeagueActivity>(DETAIL_KEY to "${it.eventId}")
         }
 
-        recyclerView.adapter = favoriteEventPrevAdapter
+        recyclerView.adapter = favoriteEventAdapter
 
         swipeRefreshLayout.onRefresh {
             info("onRefresh showFav")
@@ -102,7 +102,7 @@ class FavPrevFragment : Fragment(), AnkoLogger {
             }
 
             // getNot-if the adapter if change
-            favoriteEventPrevAdapter.notifyDataSetChanged()
+            favoriteEventAdapter.notifyDataSetChanged()
         }
     }
 
