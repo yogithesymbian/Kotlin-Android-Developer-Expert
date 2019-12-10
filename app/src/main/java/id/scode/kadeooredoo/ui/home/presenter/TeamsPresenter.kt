@@ -6,8 +6,9 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -28,51 +29,45 @@ class TeamsPresenter(
     //behaviours getLeagueTeamList
     fun getLeagueTeamList(league: String) {
         view.showLoading()
-        doAsync {
+
+        GlobalScope.launch(Dispatchers.Main) {
+
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.getLeagueTeams(league)
-                    ), TeamResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.getLeagueTeams(league)).await(),
+                    TeamResponse::class.java
                 )
-            uiThread {
-                view.hideLoading()
-                view.showTeamList(data.team)
-            }
+            view.hideLoading()
+            view.showTeamList(data.team)
+
         }
     }
 
     //behaviours getLeagueTeamList
     fun getDetailLeagueTeamList(idTeams: String) {
         view.showLoading()
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.getLookupTeams(idTeams)
-                    ), TeamResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.getLookupTeams(idTeams)).await(),
+                    TeamResponse::class.java
                 )
-            uiThread {
-                view.hideLoading()
-                view.showTeamList(data.team?.filter { it.strSport == SPORT })
-            }
+            view.hideLoading()
+            view.showTeamList(data.team?.filter { it.strSport == SPORT })
         }
     }
 
     //behaviours getLeagueTeamList
     fun getDetailLeagueTeamAwayList(idTeams: String) {
         view.showLoading()
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.getLookupTeams(idTeams)
-                    ), TeamResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.getLookupTeams(idTeams)).await(),
+                    TeamResponse::class.java
                 )
-            uiThread {
-                view.hideLoading()
-                view.showTeamAwayList(data.team?.filter { it.strSport == SPORT })
-            }
+            view.hideLoading()
+            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT })
         }
     }
 

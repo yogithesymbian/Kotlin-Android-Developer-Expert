@@ -6,8 +6,9 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.DetailLeagueResponse
 import id.scode.kadeooredoo.ui.detailleague.view.DetailLeagueView
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -20,25 +21,23 @@ import org.jetbrains.anko.uiThread
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class DetailLeaguePresenter (
+class DetailLeaguePresenter(
     private val view: DetailLeagueView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
-){
+) {
     //behaviours getLeagueTeamList
-    fun getDetailLeagueList(league: String){
+    fun getDetailLeagueList(league: String) {
         view.showLoading()
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.getDetailLeagueTeams(league)
-                    ), DetailLeagueResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.getDetailLeagueTeams(league)).await(),
+                    DetailLeagueResponse::class.java
                 )
-            uiThread {
-                view.showDetailLeague(data.leagues.filter { it.strSport == SPORT })
-                view.hideLoading()
-            }
+
+            view.showDetailLeague(data.leagues.filter { it.strSport == SPORT })
+            view.hideLoading()
         }
     }
 }

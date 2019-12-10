@@ -8,10 +8,11 @@ import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.info
-import org.jetbrains.anko.uiThread
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -24,55 +25,52 @@ import org.jetbrains.anko.uiThread
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class PreviousPresenter (
+class PreviousPresenter(
     private val viewMatch: PreviousMatchLeagueView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
-): AnkoLogger{
+) : AnkoLogger {
     //behaviours getPrevLeagueList
-    fun getPreviousLeagueList(league: String){
+    fun getPreviousLeagueList(league: String) {
         viewMatch.showLoading()
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.getPreviousMatchTeams(league)
-                    ), PreviousLeagueResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.getPreviousMatchTeams(league)).await(),
+                    PreviousLeagueResponse::class.java
                 )
-            uiThread {
-                viewMatch.hideLoading()
-                viewMatch.showPreviousLeague(data.eventPrevious)
-            }
+            viewMatch.hideLoading()
+            viewMatch.showPreviousLeague(data.eventPrevious)
         }
     }
+
     //behaviours getSearchPrevLeagueList
-    fun getSearchPreviousLeagueList(teamVsTeam: String){
+    fun getSearchPreviousLeagueList(teamVsTeam: String) {
         viewMatch.showLoading()
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(
-                        TheSportDbApi.searchTeams(teamVsTeam)
-                    ), PreviousLeagueSearchResponse::class.java
+                    apiRepository.doRequest(TheSportDbApi.searchTeams(teamVsTeam)).await(),
+                    PreviousLeagueSearchResponse::class.java
                 )
-            uiThread {
-                if (data.eventSearch.isNullOrEmpty()){
-                    info("data_x $EXCEPTION_NULL")
-                    viewMatch.exceptionNullObject("data_x $EXCEPTION_NULL")
+            if (data.eventSearch.isNullOrEmpty()) {
+                info("data_x $EXCEPTION_NULL")
+                viewMatch.exceptionNullObject("data_x $EXCEPTION_NULL")
+                viewMatch.hideLoading()
+            } else {
+                val filterOne = data.eventSearch.filter { it.strSport == SPORT }
+                val filterTwo =
+                    filterOne.filter { !it.intHomeScore.isNullOrEmpty() } // previous event !not yet (score)
+                val filterThree =
+                    filterTwo.filter { !it.intAwayScore.isNullOrEmpty() }// previous event !not yet (score)
+
+                if (!filterThree.isNullOrEmpty()) {
+                    viewMatch.showPreviousLeague(filterThree)
                     viewMatch.hideLoading()
                 } else {
-                    val filterOne = data.eventSearch.filter { it.strSport == SPORT }
-                    val filterTwo = filterOne.filter { !it.intHomeScore.isNullOrEmpty() } // previous event !not yet (score)
-                    val filterThree = filterTwo.filter { !it.intAwayScore.isNullOrEmpty() }// previous event !not yet (score)
-
-                    if (!filterThree.isNullOrEmpty()){
-                        viewMatch.showPreviousLeague(filterThree)
-                        viewMatch.hideLoading()
-                    } else {
-                        info("data_y $EXCEPTION_NULL")
-                        viewMatch.exceptionNullObject("data_y $EXCEPTION_NULL")
-                        viewMatch.hideLoading()
-                    }
+                    info("data_y $EXCEPTION_NULL")
+                    viewMatch.exceptionNullObject("data_y $EXCEPTION_NULL")
+                    viewMatch.hideLoading()
                 }
             }
         }
