@@ -1,10 +1,10 @@
-package id.scode.kadeooredoo.ui.detailLeague.view
+package id.scode.kadeooredoo.ui.detailleague.view
 
-import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
+import id.scode.kadeooredoo.data.db.entities.EventNext
 
 /**
  * @Authors scode | Yogi Arif Widodo
- * Created on 06 12/6/19 4:49 AM 2019
+ * Created on 05 12/5/19 11:44 AM 2019
  * id.scode.kadeooredoo.ui.detailLeague.view
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -13,11 +13,12 @@ import id.scode.kadeooredoo.data.db.entities.EventDetailMatch
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-interface DetailMatchView {
+interface NextMatchLeagueView {
 
     fun showLoading()
     fun hideLoading()
 
-    fun showDetailMatch(data: List<EventDetailMatch>?)
+    fun showNextLeague(data: List<EventNext>?)
+    fun exceptionNullObject(msg: String)
 
 }

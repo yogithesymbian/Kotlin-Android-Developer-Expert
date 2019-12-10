@@ -16,7 +16,7 @@ import id.scode.kadeooredoo.data.db.entities.FavTeamJoinDetail
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.databaseEventPrevMatch
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventAdapter

@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui
+package id.scode.kadeooredoo.ui.detailleague.ui
 
 import android.os.Bundle
 import android.util.Log

@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.next
+package id.scode.kadeooredoo.ui.detailleague.ui.next
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
@@ -21,10 +21,10 @@ import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
-import id.scode.kadeooredoo.ui.detailLeague.adapter.RvNextMatchLeague
-import id.scode.kadeooredoo.ui.detailLeague.presenter.NextPresenter
-import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
-import id.scode.kadeooredoo.ui.detailLeague.view.NextMatchLeagueView
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeague
+import id.scode.kadeooredoo.ui.detailleague.presenter.NextPresenter
+import id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_next.*
 import org.jetbrains.anko.AnkoLogger

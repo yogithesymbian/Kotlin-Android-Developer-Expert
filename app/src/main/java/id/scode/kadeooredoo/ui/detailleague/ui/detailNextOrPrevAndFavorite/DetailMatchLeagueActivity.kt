@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite
+package id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite
 
 import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteConstraintException
@@ -12,10 +12,10 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.ui.detailLeague.presenter.DetailMatchPresenter
-import id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
-import id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
-import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
+import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
+import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
+import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
+import id.scode.kadeooredoo.ui.detailleague.view.DetailMatchView
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter

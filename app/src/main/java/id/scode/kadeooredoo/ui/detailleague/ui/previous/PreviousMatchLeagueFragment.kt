@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.previous
+package id.scode.kadeooredoo.ui.detailleague.ui.previous
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
@@ -21,10 +21,10 @@ import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
-import id.scode.kadeooredoo.ui.detailLeague.adapter.RvPrevMatchLeague
-import id.scode.kadeooredoo.ui.detailLeague.presenter.PreviousPresenter
-import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
-import id.scode.kadeooredoo.ui.detailLeague.view.PreviousMatchLeagueView
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeague
+import id.scode.kadeooredoo.ui.detailleague.presenter.PreviousPresenter
+import id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_previous.*
 import org.jetbrains.anko.AnkoLogger

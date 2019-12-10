@@ -1,13 +1,13 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.dashboard
+package id.scode.kadeooredoo.ui.detailleague.ui.next
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class NextLeagueViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is Next Fragment"
     }
     val text: LiveData<String> = _text
 }

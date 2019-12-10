@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.view
+package id.scode.kadeooredoo.ui.detailleague.view
 
 import id.scode.kadeooredoo.data.db.entities.League
 

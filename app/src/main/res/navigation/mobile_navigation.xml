@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_previous"
-        android:name="id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment"
+        android:name="id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment"
         android:label="@string/title_previous"
         tools:layout="@layout/fragment_previous" >
 
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="id.scode.kadeooredoo.ui.detailLeague.ui.dashboard.DashboardFragment"
+        android:name="id.scode.kadeooredoo.ui.detailleague.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
 
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/navigation_next"
-        android:name="id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment"
+        android:name="id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment"
         android:label="@string/title_next"
         tools:layout="@layout/fragment_next" >
 

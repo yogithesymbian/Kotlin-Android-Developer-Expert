@@ -1,17 +1,17 @@
-package id.scode.kadeooredoo.ui.detailLeague.presenter
+package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
-import id.scode.kadeooredoo.data.db.network.responses.DetailMatchLeagueResponse
-import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
+import id.scode.kadeooredoo.data.db.network.responses.DetailLeagueResponse
+import id.scode.kadeooredoo.ui.detailleague.view.DetailLeagueView
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 /**
  * @Authors scode | Yogi Arif Widodo
- * Created on 06 12/6/19 4:48 AM 2019
+ * Created on 03 12/3/19 3:00 PM 2019
  * id.scode.kadeooredoo.ui.detailLeague.presenter
  * https://github.com/yogithesymbian
  * Android Studio 3.5.1
@@ -20,23 +20,23 @@ import org.jetbrains.anko.uiThread
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class DetailMatchPresenter (
-    private val view: DetailMatchView,
+class DetailLeaguePresenter (
+    private val view: DetailLeagueView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ){
     //behaviours getLeagueTeamList
-    fun getDetailMatchList(league: String){
+    fun getDetailLeagueList(league: String){
         view.showLoading()
         doAsync {
             val data =
                 gson.fromJson(
                     apiRepository.doRequest(
-                        TheSportDbApi.getDetailMatchEventTeams(league)
-                    ), DetailMatchLeagueResponse::class.java
+                        TheSportDbApi.getDetailLeagueTeams(league)
+                    ), DetailLeagueResponse::class.java
                 )
             uiThread {
-                view.showDetailMatch(data.eventDetailMatches.filter { it.strSport == SPORT })
+                view.showDetailLeague(data.leagues.filter { it.strSport == SPORT })
                 view.hideLoading()
             }
         }

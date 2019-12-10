@@ -18,7 +18,7 @@ import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.detailLeague.ui.DetailLeagueActivity
+import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView

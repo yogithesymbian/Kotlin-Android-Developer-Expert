@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.previous
+package id.scode.kadeooredoo.ui.detailleague.ui.previous
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

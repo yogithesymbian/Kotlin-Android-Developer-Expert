@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.presenter
+package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.EXCEPTION_NULL
@@ -7,7 +7,7 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueSearchResponse
-import id.scode.kadeooredoo.ui.detailLeague.view.NextMatchLeagueView
+import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.info

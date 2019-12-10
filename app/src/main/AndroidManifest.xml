@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity"
+            android:name=".ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.home.HomeActivity"
             />
         <activity
-            android:name=".ui.detailLeague.ui.DetailLeagueActivity"
+            android:name=".ui.detailleague.ui.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league" />
         <activity android:name=".ui.home.tmp.DetailActivity" />
         <activity android:name=".ui.home.tmp.TeamsActivity">

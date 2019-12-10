@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.adapter
+package id.scode.kadeooredoo.ui.detailleague.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
