@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <issues format="5" by="lint 3.5.1">
 
-<!--    i don't need xhdpi cause consume size zip -->
-    <issue
-        id="IconDensities"
-        message="Missing the following drawables in `drawable-xhdpi`: ic_favorite_border_red_a400_24dp.png (found in drawable-hdpi, drawable-mdpi)">
-        <location
-            file="src/main/res/drawable-xhdpi"/>
-    </issue>
-
-    <issue
-        id="IconDensities"
-        message="Missing the following drawables in `drawable-xxhdpi`: ic_favorite_border_red_a400_24dp.png (found in drawable-hdpi, drawable-mdpi)">
-        <location
-            file="src/main/res/drawable-xxhdpi"/>
-    </issue>
 
 </issues>

@@ -129,7 +129,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
                 id = intent.getStringExtra(DETAIL_KEY_FAV_TEAM)
                 favoriteStateDataSet =
-                    getString(R.string.detail_match_lague_activity_favorite_state)
+                    getString(R.string.detail_match_league_activity_favorite_state)
                 favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
             }
         }
@@ -147,7 +147,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             val zero = 0
             if (favorite.isNotEmpty()) {
                 isFavorite = true
-                if (fromState == getString(R.string.detail_match_lague_activity_favorite_state)) setDataTeamFavorite(
+                if (fromState == getString(R.string.detail_match_league_activity_favorite_state)) setDataTeamFavorite(
                     favorite[zero]
                 )
             }

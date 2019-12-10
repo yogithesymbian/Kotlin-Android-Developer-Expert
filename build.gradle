@@ -9,6 +9,7 @@ buildscript {
         
     }
     dependencies {
+        //noinspection GradleDependency // i dont want update before testing, linux have a lot bug
         classpath 'com.android.tools.build:gradle:3.5.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong

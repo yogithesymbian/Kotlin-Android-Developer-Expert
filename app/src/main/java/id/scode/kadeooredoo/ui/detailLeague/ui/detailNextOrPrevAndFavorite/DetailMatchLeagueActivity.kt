@@ -97,7 +97,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             eventPrevious != null -> {
 
                 favoriteQueryState =
-                    getString(R.string.detail_match_league_activitiy_event_previous_mi)
+                    getString(R.string.detail_match_league_activity_event_previous_mi)
 
                 eventPrevious?.also {
                     it.idEvent?.let { it1 ->
@@ -122,7 +122,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             }
             eventNext != null -> {
 
-                favoriteQueryState = getString(R.string.detail_match_league_activitiy_event_next_mi)
+                favoriteQueryState = getString(R.string.detail_match_league_activity_event_next_mi)
 
                 eventNext?.also {
                     it.idEvent?.let { it1 ->
@@ -149,7 +149,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             // SCRIPT offline ['Anko SQLite']
             favTeamJoinDetail == null -> { // null logic
 
-                info("hore load fav match detail : ${favTeamJoinDetail?.eventId}")
+                info("load fav match detail : ${favTeamJoinDetail?.eventId}")
 
                 intent?.also {
 
@@ -157,7 +157,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                     id = it.getStringExtra(DETAIL_KEY)
                     homeScore = it.getStringExtra(DETAIL_KEY_SCORE)
                     favoriteStateDataSet =
-                        getString(R.string.detail_match_lague_activity_favorite_state)
+                        getString(R.string.detail_match_league_activity_favorite_state)
 
 
                     info(
@@ -169,11 +169,11 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
                     // setPosQuery
                     favoriteQueryState = if (homeScore == "null") {
-                        info("score belum ada")
-                        getString(R.string.detail_match_league_activitiy_event_next_mi)
+                        info("score not yet")
+                        getString(R.string.detail_match_league_activity_event_next_mi)
                     } else {
-                        info("score sudah ada")
-                        getString(R.string.detail_match_league_activitiy_event_previous_mi)
+                        info("score [have]")
+                        getString(R.string.detail_match_league_activity_event_previous_mi)
                     }
 
 
@@ -206,7 +206,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
         when (favoriteQueryState) {
 
-            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+            getString(R.string.detail_match_league_activity_event_previous_mi) -> {
 
                 databaseEventPrevMatch.use {
                     val result =
@@ -226,7 +226,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                         )
                         isFavorite = true
 
-                        if (favoriteStateDataSet == getString(R.string.detail_match_lague_activity_favorite_state)) setDataMatchFavorite(
+                        if (favoriteStateDataSet == getString(R.string.detail_match_league_activity_favorite_state)) setDataMatchFavorite(
                             favorite[zero]
                         )
 
@@ -234,7 +234,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 }
 
             }
-            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+            getString(R.string.detail_match_league_activity_event_next_mi) -> {
 
                 databaseEventNextMatch.use {
                     val result =
@@ -254,7 +254,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                         )
                         isFavorite = true
 
-                        if (favoriteStateDataSet == getString(R.string.detail_match_lague_activity_favorite_state)) setDataMatchFavorite(
+                        if (favoriteStateDataSet == getString(R.string.detail_match_league_activity_favorite_state)) setDataMatchFavorite(
                             favorite[zero]
                         )
 
@@ -284,7 +284,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private fun addToFavorite(favoriteQueryState: String?) {
 
         when (favoriteQueryState) {
-            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+            getString(R.string.detail_match_league_activity_event_previous_mi) -> {
 
                 try {
                     databaseEventPrevMatch.use {
@@ -357,7 +357,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 }
 
             }
-            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+            getString(R.string.detail_match_league_activity_event_next_mi) -> {
 
                 try {
                     databaseEventNextMatch.use {
@@ -437,7 +437,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private fun removeFromFavorite(favoriteQueryState: String?) {
 
         when (favoriteQueryState) {
-            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+            getString(R.string.detail_match_league_activity_event_previous_mi) -> {
 
                 try {
                     info("try remove event prev id : $id, process")
@@ -455,7 +455,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 }
 
             }
-            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+            getString(R.string.detail_match_league_activity_event_next_mi) -> {
 
                 try {
                     info("try remove event next id : $id, process")
