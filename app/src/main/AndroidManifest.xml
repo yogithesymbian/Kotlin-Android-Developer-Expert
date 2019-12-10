@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity"
+            android:name=".ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.home.HomeActivity"

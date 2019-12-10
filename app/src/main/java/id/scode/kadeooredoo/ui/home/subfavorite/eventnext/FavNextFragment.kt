@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home.subFavorite.eventNext
+package id.scode.kadeooredoo.ui.home.subfavorite.eventnext
 
 
 import android.os.Bundle
@@ -16,7 +16,7 @@ import id.scode.kadeooredoo.data.db.entities.FavTeamJoinDetail
 import id.scode.kadeooredoo.data.db.entities.Team.Companion.TABLE_FAVORITE_NEXT
 import id.scode.kadeooredoo.databaseEventNextMatch
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventAdapter

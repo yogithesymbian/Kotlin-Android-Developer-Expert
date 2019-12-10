@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.scode.kadeooredoo.ui.home.subFavorite.eventNext.FavNextFragment">
+    tools:context="id.scode.kadeooredoo.ui.home.subfavorite.eventnext.FavNextFragment">
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

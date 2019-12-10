@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.google.android.material.tabs.TabLayout
-import id.scode.kadeooredoo.ui.home.subFavorite.eventNext.FavNextFragment
-import id.scode.kadeooredoo.ui.home.subFavorite.eventPrev.FavPrevFragment
+import id.scode.kadeooredoo.ui.home.subfavorite.eventnext.FavNextFragment
+import id.scode.kadeooredoo.ui.home.subfavorite.eventprev.FavPrevFragment
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 

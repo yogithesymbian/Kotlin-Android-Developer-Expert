@@ -34,7 +34,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "idClubFootball.scode.kadeooredoo"
+        applicationId "id.scode.kadeooredoo"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 2

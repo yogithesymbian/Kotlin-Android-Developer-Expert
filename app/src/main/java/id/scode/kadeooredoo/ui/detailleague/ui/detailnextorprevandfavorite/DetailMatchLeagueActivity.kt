@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailleague.ui.detailNextOrPrevAndFavorite
+package id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite
 
 import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteConstraintException
