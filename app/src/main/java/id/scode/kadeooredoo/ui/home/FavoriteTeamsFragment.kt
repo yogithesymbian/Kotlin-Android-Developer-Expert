@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.data.db.database
 import id.scode.kadeooredoo.data.db.entities.Favorite
+import id.scode.kadeooredoo.databaseTeams
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteTeamsAdapter
@@ -80,7 +80,7 @@ class FavoriteTeamsFragment : Fragment(), AnkoLogger {
         // clear before assign
         favoritesMutableList.clear()
 
-        context?.applicationContext?.database?.use {
+        context?.applicationContext?.databaseTeams?.use {
             // stop refresh if do
             swipeRefreshLayout.isRefreshing = false
 

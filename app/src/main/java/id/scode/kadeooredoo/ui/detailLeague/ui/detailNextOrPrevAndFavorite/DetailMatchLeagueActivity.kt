@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev
+package id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite
 
 import android.annotation.SuppressLint
 import android.database.sqlite.SQLiteConstraintException
@@ -17,6 +17,7 @@ import id.scode.kadeooredoo.ui.detailLeague.ui.next.NextMatchLeagueFragment.Comp
 import id.scode.kadeooredoo.ui.detailLeague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailLeague.view.DetailMatchView
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
@@ -52,7 +53,10 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     private var eventDetailMatchMutableListFavorite: EventDetailMatch? = null
     private var favTeamJoinDetail: FavTeamJoinDetail? = null
     private var isFavorite: Boolean = false
+
     private var favoriteStateDataSet: String? = null
+    private var favoriteQueryState: String? = null
+    private var homeScore: String? = null
 
     private lateinit var id: String
 
@@ -92,17 +96,25 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         when {
             eventPrevious != null -> {
 
+                favoriteQueryState =
+                    getString(R.string.detail_match_league_activitiy_event_previous_mi)
+
                 eventPrevious?.also {
                     it.idEvent?.let { it1 ->
                         detailMatchPresenter.getDetailMatchList(it1)
                         id = it1
-                        favoriteState(favoriteStateDataSet) // check the match prev team has been save ? return boolean true
+                        favoriteState(
+                            favoriteStateDataSet,
+                            favoriteQueryState
+                        ) // check the match prev team has been save ? return boolean true
                         setFavorite()
                     }
                 }
-
                 fab_favorite.setOnClickListener {
-                    if (isFavorite) removeFromFavorite() else addToFavorite()
+                    info("click fav -> $favoriteQueryState")
+                    if (isFavorite) removeFromFavorite(favoriteQueryState) else addToFavorite(
+                        favoriteQueryState
+                    )
                     isFavorite = !isFavorite
                     setFavorite()
                 }
@@ -110,17 +122,27 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             }
             eventNext != null -> {
 
+                favoriteQueryState = getString(R.string.detail_match_league_activitiy_event_next_mi)
+
                 eventNext?.also {
                     it.idEvent?.let { it1 ->
                         detailMatchPresenter.getDetailMatchList(it1)
                         id = it1
-                        favoriteState(favoriteStateDataSet) // check the match prev team has been save ? return boolean true
+                        favoriteState(
+                            favoriteStateDataSet,
+                            favoriteQueryState
+                        ) // check the match prev team has been save ? return boolean true
                         setFavorite()
                     }
                 }
 
                 fab_favorite.setOnClickListener {
-                    info("soon")
+                    info("click fav -> $favoriteQueryState")
+                    if (isFavorite) removeFromFavorite(favoriteQueryState) else addToFavorite(
+                        favoriteQueryState
+                    )
+                    isFavorite = !isFavorite
+                    setFavorite()
                 }
 
             }
@@ -128,21 +150,45 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
             favTeamJoinDetail == null -> { // null logic
 
                 info("hore load fav match detail : ${favTeamJoinDetail?.eventId}")
+
                 intent?.also {
 
                     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
                     id = it.getStringExtra(DETAIL_KEY)
-                    info("what ur event id i would load on anko sqlLite $id")
-
+                    homeScore = it.getStringExtra(DETAIL_KEY_SCORE)
                     favoriteStateDataSet =
                         getString(R.string.detail_match_lague_activity_favorite_state)
-                    favoriteState(favoriteStateDataSet) // check the match prev team has been save ? return boolean true
+
+
+                    info(
+                        """
+                        what ur event id i would load on anko sqlLite $id
+                        score $homeScore 
+                    """.trimIndent()
+                    )
+
+                    // setPosQuery
+                    favoriteQueryState = if (homeScore == "null") {
+                        info("score belum ada")
+                        getString(R.string.detail_match_league_activitiy_event_next_mi)
+                    } else {
+                        info("score sudah ada")
+                        getString(R.string.detail_match_league_activitiy_event_previous_mi)
+                    }
+
+
+
+                    info("user lookDetail and the query state is $favoriteQueryState")
+                    favoriteState(
+                        favoriteStateDataSet,
+                        favoriteQueryState
+                    ) // check the match prev team has been save ? return boolean true
                     setFavorite()
 
                 }
 
                 fab_favorite.setOnClickListener {
-                    if (isFavorite) removeFromFavorite() else addToFavorite()
+                    if (isFavorite) removeFromFavorite(favoriteQueryState)
                     isFavorite = !isFavorite
                     setFavorite()
                 }
@@ -154,31 +200,71 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     }
 
     // SCRIPT offline ['Anko SQLite']
-    private fun favoriteState(fromState: String?) {
-        databaseEventPrevMatch.use {
-            val result =
-                select(Team.TABLE_FAVORITE_PREV)
-                    .whereArgs(
-                        "(EVENT_ID = {id})",
-                        "id" to id
-                    )
-            val favorite = result.parseList(classParser<FavTeamJoinDetail>())
-            val zero = 0
-            if (favorite.isNotEmpty()) {
-                info(
-                    """
-                    this match have been added on favorite list with id $id
+    private fun favoriteState(favoriteStateDataSet: String?, favoriteQueryState: String?) {
+
+        info("favoriteQueryState is $favoriteQueryState")
+
+        when (favoriteQueryState) {
+
+            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+
+                databaseEventPrevMatch.use {
+                    val result =
+                        select(Team.TABLE_FAVORITE_PREV)
+                            .whereArgs(
+                                "(EVENT_ID = {id})",
+                                "id" to id
+                            )
+                    val favorite = result.parseList(classParser<FavTeamJoinDetail>())
+                    val zero = 0
+                    if (favorite.isNotEmpty()) {
+                        info(
+                            """
+                    this match have been added on favorite PREV list with id $id
                     nameEvent ${favorite[zero].event}
                 """.trimIndent()
-                )
-                isFavorite = true
+                        )
+                        isFavorite = true
 
-                if (fromState == getString(R.string.detail_match_lague_activity_favorite_state)) setDataMatchFavorite(
-                    favorite[zero]
-                )
+                        if (favoriteStateDataSet == getString(R.string.detail_match_lague_activity_favorite_state)) setDataMatchFavorite(
+                            favorite[zero]
+                        )
 
-            } else info("this match have not been add on favorite list the id $id")
+                    } else info("this match have not been add on favorite PREV list the id $id")
+                }
+
+            }
+            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+
+                databaseEventNextMatch.use {
+                    val result =
+                        select(Team.TABLE_FAVORITE_NEXT)
+                            .whereArgs(
+                                "(EVENT_ID = {id})",
+                                "id" to id
+                            )
+                    val favorite = result.parseList(classParser<FavTeamJoinDetail>())
+                    val zero = 0
+                    if (favorite.isNotEmpty()) {
+                        info(
+                            """
+                    this match have been added on favorite NEXT list with id $id
+                    nameEvent ${favorite[zero].event}
+                """.trimIndent()
+                        )
+                        isFavorite = true
+
+                        if (favoriteStateDataSet == getString(R.string.detail_match_lague_activity_favorite_state)) setDataMatchFavorite(
+                            favorite[zero]
+                        )
+
+                    } else info("this match have not been add on favorite NEXT list the id $id")
+                }
+
+            }
+
         }
+
     }
 
     // SCRIPT offline ['Anko SQLite']
@@ -195,94 +281,200 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
     }
 
     // !long code CTRL + [dot] fold | SCRIPT offline ['Anko SQLite']
-    private fun addToFavorite() {
-        try {
-            databaseEventPrevMatch.use {
-                info(
-                    """
+    private fun addToFavorite(favoriteQueryState: String?) {
+
+        when (favoriteQueryState) {
+            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+
+                try {
+                    databaseEventPrevMatch.use {
+                        info(
+                            """
                         inserting data 
                         ${eventDetailMatchMutableListFavorite?.idEvent} - 
                         ${eventDetailMatchMutableListFavorite?.strEvent} -
                         ${teamsPrevHomeFavorite?.teamBadge}
                     """.trimIndent()
-                )
-                insert(
-                    Team.TABLE_FAVORITE_PREV,
-                    Team.TEAM_ID to teamsPrevHomeFavorite?.teamId,
-                    Team.TEAM_ID_AWAY to teamsPrevAwayFavorite?.teamId,
-                    Team.TEAM_BADGE to teamsPrevHomeFavorite?.teamBadge,
-                    Team.TEAM_BADGE_AWAY to teamsPrevAwayFavorite?.teamBadge,
+                        )
+                        insert(
+                            Team.TABLE_FAVORITE_PREV,
+                            Team.TEAM_ID to teamsPrevHomeFavorite?.teamId,
+                            Team.TEAM_ID_AWAY to teamsPrevAwayFavorite?.teamId,
+                            Team.TEAM_BADGE to teamsPrevHomeFavorite?.teamBadge,
+                            Team.TEAM_BADGE_AWAY to teamsPrevAwayFavorite?.teamBadge,
 
-                    EventDetailMatch.EVENT_ID to eventDetailMatchMutableListFavorite?.idEvent,
-                    EventDetailMatch.EVENT to eventDetailMatchMutableListFavorite?.strEvent,
-                    EventDetailMatch.SEASON to eventDetailMatchMutableListFavorite?.strSeason,
+                            EventDetailMatch.EVENT_ID to eventDetailMatchMutableListFavorite?.idEvent,
+                            EventDetailMatch.EVENT to eventDetailMatchMutableListFavorite?.strEvent,
+                            EventDetailMatch.SEASON to eventDetailMatchMutableListFavorite?.strSeason,
 
-                    EventDetailMatch.HOME_TEAM to eventDetailMatchMutableListFavorite?.strHomeTeam,
-                    EventDetailMatch.HOME_SCORE to eventDetailMatchMutableListFavorite?.intHomeScore,
+                            EventDetailMatch.HOME_TEAM to eventDetailMatchMutableListFavorite?.strHomeTeam,
+                            EventDetailMatch.HOME_SCORE to eventDetailMatchMutableListFavorite?.intHomeScore,
 
-                    EventDetailMatch.AWAY_TEAM to eventDetailMatchMutableListFavorite?.strAwayTeam,
-                    EventDetailMatch.AWAY_SCORE to eventDetailMatchMutableListFavorite?.intAwayScore,
+                            EventDetailMatch.AWAY_TEAM to eventDetailMatchMutableListFavorite?.strAwayTeam,
+                            EventDetailMatch.AWAY_SCORE to eventDetailMatchMutableListFavorite?.intAwayScore,
 
-                    EventDetailMatch.DATE_EVENT to eventDetailMatchMutableListFavorite?.dateEvent,
-                    EventDetailMatch.TIME_EVENT to eventDetailMatchMutableListFavorite?.strTime,
+                            EventDetailMatch.DATE_EVENT to eventDetailMatchMutableListFavorite?.dateEvent,
+                            EventDetailMatch.TIME_EVENT to eventDetailMatchMutableListFavorite?.strTime,
 
-                    EventDetailMatch.LOCKED to eventDetailMatchMutableListFavorite?.strLocked,
-                    EventDetailMatch.SPORT_STR to eventDetailMatchMutableListFavorite?.strSport,
+                            EventDetailMatch.LOCKED to eventDetailMatchMutableListFavorite?.strLocked,
+                            EventDetailMatch.SPORT_STR to eventDetailMatchMutableListFavorite?.strSport,
 
-                    EventDetailMatch.HOME_FORMATION to eventDetailMatchMutableListFavorite?.strHomeFormation,
-                    EventDetailMatch.AWAY_FORMATION to eventDetailMatchMutableListFavorite?.strAwayFormation,
+                            EventDetailMatch.HOME_FORMATION to eventDetailMatchMutableListFavorite?.strHomeFormation,
+                            EventDetailMatch.AWAY_FORMATION to eventDetailMatchMutableListFavorite?.strAwayFormation,
 
-                    EventDetailMatch.HOME_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strHomeGoalDetails,
-                    EventDetailMatch.AWAY_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strAwayGoalDetails,
+                            EventDetailMatch.HOME_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strHomeGoalDetails,
+                            EventDetailMatch.AWAY_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strAwayGoalDetails,
 
-                    EventDetailMatch.HOME_SHOTS to eventDetailMatchMutableListFavorite?.intHomeShots,
-                    EventDetailMatch.AWAY_SHOTS to eventDetailMatchMutableListFavorite?.intAwayShots,
+                            EventDetailMatch.HOME_SHOTS to eventDetailMatchMutableListFavorite?.intHomeShots,
+                            EventDetailMatch.AWAY_SHOTS to eventDetailMatchMutableListFavorite?.intAwayShots,
 
-                    EventDetailMatch.HOME_RED_CARD to eventDetailMatchMutableListFavorite?.strHomeRedCards,
-                    EventDetailMatch.AWAY_RED_CARD to eventDetailMatchMutableListFavorite?.strAwayRedCards,
+                            EventDetailMatch.HOME_RED_CARD to eventDetailMatchMutableListFavorite?.strHomeRedCards,
+                            EventDetailMatch.AWAY_RED_CARD to eventDetailMatchMutableListFavorite?.strAwayRedCards,
 
-                    EventDetailMatch.HOME_YL_CARD to eventDetailMatchMutableListFavorite?.strHomeYellowCards,
-                    EventDetailMatch.AWAY_YL_CARD to eventDetailMatchMutableListFavorite?.strAwayYellowCards,
+                            EventDetailMatch.HOME_YL_CARD to eventDetailMatchMutableListFavorite?.strHomeYellowCards,
+                            EventDetailMatch.AWAY_YL_CARD to eventDetailMatchMutableListFavorite?.strAwayYellowCards,
 
-                    EventDetailMatch.HOME_GK_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupGoalkeeper,
-                    EventDetailMatch.AWAY_GK_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupGoalkeeper,
+                            EventDetailMatch.HOME_GK_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupGoalkeeper,
+                            EventDetailMatch.AWAY_GK_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupGoalkeeper,
 
-                    EventDetailMatch.HOME_DEF_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupDefense,
-                    EventDetailMatch.AWAY_DEF_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupDefense,
-                    EventDetailMatch.HOME_MID_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupMidfield,
-                    EventDetailMatch.AWAY_MID_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupMidfield,
+                            EventDetailMatch.HOME_DEF_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupDefense,
+                            EventDetailMatch.AWAY_DEF_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupDefense,
+                            EventDetailMatch.HOME_MID_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupMidfield,
+                            EventDetailMatch.AWAY_MID_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupMidfield,
 
-                    EventDetailMatch.HOME_FW_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupForward,
-                    EventDetailMatch.AWAY_FW_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupForward,
-                    EventDetailMatch.HOME_SUBST to eventDetailMatchMutableListFavorite?.strHomeLineupSubstitutes,
-                    EventDetailMatch.AWAY_SUBST to eventDetailMatchMutableListFavorite?.strAwayLineupSubstitutes,
+                            EventDetailMatch.HOME_FW_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupForward,
+                            EventDetailMatch.AWAY_FW_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupForward,
+                            EventDetailMatch.HOME_SUBST to eventDetailMatchMutableListFavorite?.strHomeLineupSubstitutes,
+                            EventDetailMatch.AWAY_SUBST to eventDetailMatchMutableListFavorite?.strAwayLineupSubstitutes,
 
-                    EventDetailMatch.LINK_TW to eventDetailMatchMutableListFavorite?.strTweet1
+                            EventDetailMatch.LINK_TW to eventDetailMatchMutableListFavorite?.strTweet1
 
-                )
-                fab_favorite.snackbar("Added to favorite").show()
+                        )
+                        fab_favorite.snackbar("Added to favorite").show()
+                    }
+                } catch (e: SQLiteConstraintException) {
+                    fab_favorite.snackbar("error ${e.localizedMessage}").show()
+                }
+
             }
-        } catch (e: SQLiteConstraintException) {
-            fab_favorite.snackbar("error ${e.localizedMessage}").show()
+            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+
+                try {
+                    databaseEventNextMatch.use {
+                        info(
+                            """
+                        inserting data 
+                        ${eventDetailMatchMutableListFavorite?.idEvent} - 
+                        ${eventDetailMatchMutableListFavorite?.strEvent} -
+                        ${teamsPrevHomeFavorite?.teamBadge}
+                    """.trimIndent()
+                        )
+                        insert(
+                            Team.TABLE_FAVORITE_NEXT,
+                            Team.TEAM_ID to teamsPrevHomeFavorite?.teamId,
+                            Team.TEAM_ID_AWAY to teamsPrevAwayFavorite?.teamId,
+                            Team.TEAM_BADGE to teamsPrevHomeFavorite?.teamBadge,
+                            Team.TEAM_BADGE_AWAY to teamsPrevAwayFavorite?.teamBadge,
+
+                            EventDetailMatch.EVENT_ID to eventDetailMatchMutableListFavorite?.idEvent,
+                            EventDetailMatch.EVENT to eventDetailMatchMutableListFavorite?.strEvent,
+                            EventDetailMatch.SEASON to eventDetailMatchMutableListFavorite?.strSeason,
+
+                            EventDetailMatch.HOME_TEAM to eventDetailMatchMutableListFavorite?.strHomeTeam,
+                            EventDetailMatch.HOME_SCORE to eventDetailMatchMutableListFavorite?.intHomeScore,
+
+                            EventDetailMatch.AWAY_TEAM to eventDetailMatchMutableListFavorite?.strAwayTeam,
+                            EventDetailMatch.AWAY_SCORE to eventDetailMatchMutableListFavorite?.intAwayScore,
+
+                            EventDetailMatch.DATE_EVENT to eventDetailMatchMutableListFavorite?.dateEvent,
+                            EventDetailMatch.TIME_EVENT to eventDetailMatchMutableListFavorite?.strTime,
+
+                            EventDetailMatch.LOCKED to eventDetailMatchMutableListFavorite?.strLocked,
+                            EventDetailMatch.SPORT_STR to eventDetailMatchMutableListFavorite?.strSport,
+
+                            EventDetailMatch.HOME_FORMATION to eventDetailMatchMutableListFavorite?.strHomeFormation,
+                            EventDetailMatch.AWAY_FORMATION to eventDetailMatchMutableListFavorite?.strAwayFormation,
+
+                            EventDetailMatch.HOME_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strHomeGoalDetails,
+                            EventDetailMatch.AWAY_GOALS_DETAIL to eventDetailMatchMutableListFavorite?.strAwayGoalDetails,
+
+                            EventDetailMatch.HOME_SHOTS to eventDetailMatchMutableListFavorite?.intHomeShots,
+                            EventDetailMatch.AWAY_SHOTS to eventDetailMatchMutableListFavorite?.intAwayShots,
+
+                            EventDetailMatch.HOME_RED_CARD to eventDetailMatchMutableListFavorite?.strHomeRedCards,
+                            EventDetailMatch.AWAY_RED_CARD to eventDetailMatchMutableListFavorite?.strAwayRedCards,
+
+                            EventDetailMatch.HOME_YL_CARD to eventDetailMatchMutableListFavorite?.strHomeYellowCards,
+                            EventDetailMatch.AWAY_YL_CARD to eventDetailMatchMutableListFavorite?.strAwayYellowCards,
+
+                            EventDetailMatch.HOME_GK_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupGoalkeeper,
+                            EventDetailMatch.AWAY_GK_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupGoalkeeper,
+
+                            EventDetailMatch.HOME_DEF_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupDefense,
+                            EventDetailMatch.AWAY_DEF_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupDefense,
+                            EventDetailMatch.HOME_MID_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupMidfield,
+                            EventDetailMatch.AWAY_MID_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupMidfield,
+
+                            EventDetailMatch.HOME_FW_LINE to eventDetailMatchMutableListFavorite?.strHomeLineupForward,
+                            EventDetailMatch.AWAY_FW_LINE to eventDetailMatchMutableListFavorite?.strAwayLineupForward,
+                            EventDetailMatch.HOME_SUBST to eventDetailMatchMutableListFavorite?.strHomeLineupSubstitutes,
+                            EventDetailMatch.AWAY_SUBST to eventDetailMatchMutableListFavorite?.strAwayLineupSubstitutes,
+
+                            EventDetailMatch.LINK_TW to eventDetailMatchMutableListFavorite?.strTweet1
+
+                        )
+                        fab_favorite.snackbar("Added to favorite").show()
+                    }
+                } catch (e: SQLiteConstraintException) {
+                    fab_favorite.snackbar("error ${e.localizedMessage}").show()
+                }
+
+            }
         }
     }
 
     // SCRIPT offline ['Anko SQLite']
-    private fun removeFromFavorite() {
-        try {
-            info("try remove event id : $id, process")
-            databaseEventPrevMatch.use {
-                delete(
-                    Team.TABLE_FAVORITE_PREV,
-                    "(EVENT_ID = {id})",
-                    "id" to id
-                )
+    private fun removeFromFavorite(favoriteQueryState: String?) {
+
+        when (favoriteQueryState) {
+            getString(R.string.detail_match_league_activitiy_event_previous_mi) -> {
+
+                try {
+                    info("try remove event prev id : $id, process")
+                    databaseEventPrevMatch.use {
+                        delete(
+                            Team.TABLE_FAVORITE_PREV,
+                            "(EVENT_ID = {id})",
+                            "id" to id
+                        )
+                    }
+                    info("try remove event prev id : $id, success")
+                    finish()
+                } catch (e: SQLiteConstraintException) {
+                    fab_favorite.snackbar("error ${e.localizedMessage}").show()
+                }
+
             }
-            info("try remove event id : $id, success")
-            finish()
-        } catch (e: SQLiteConstraintException) {
-            fab_favorite.snackbar("error ${e.localizedMessage}").show()
+            getString(R.string.detail_match_league_activitiy_event_next_mi) -> {
+
+                try {
+                    info("try remove event next id : $id, process")
+                    databaseEventNextMatch.use {
+                        delete(
+                            Team.TABLE_FAVORITE_NEXT,
+                            "(EVENT_ID = {id})",
+                            "id" to id
+                        )
+                    }
+                    info("try remove event next id : $id, success")
+                    finish()
+                } catch (e: SQLiteConstraintException) {
+                    fab_favorite.snackbar("error ${e.localizedMessage}").show()
+                }
+
+            }
         }
+
     }
 
     override fun showTeamList(data: List<Team>?) {
@@ -954,4 +1146,3 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         scrollMethodText()
     }
 }
-

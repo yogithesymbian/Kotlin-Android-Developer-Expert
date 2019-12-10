@@ -4,17 +4,32 @@
     android:layout_height="match_parent"
     tools:context="id.scode.kadeooredoo.ui.home.subFavorite.eventNext.FavNextFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        style="@style/TextAppearance.AppCompat.Title"
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swrl_event_next_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="next" />
+        android:layout_margin="4dp"
+        android:visibility="visible"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_event_next_match"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="4dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarTrackVertical="@color/colorPrimaryDark"
+            android:scrollbars="horizontal" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exception_favorite_event_next"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_exception_search_not_found"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_exception_favorite_empty_thanks_canva"
+        android:visibility="gone"
         />
 
 </FrameLayout>

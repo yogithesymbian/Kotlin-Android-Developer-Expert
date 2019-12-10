@@ -72,4 +72,6 @@
     <string name="fragment_favorite_main_event_prev">Event Prev</string>
     <string name="fragment_favorite_main_event_next">Event Next</string>
     <string name="detail_match_lague_activity_favorite_state">favorite</string>
+    <string name="detail_match_league_activitiy_event_previous_mi">event_previous_match_insert</string>
+    <string name="detail_match_league_activitiy_event_next_mi">event_next_match_insert</string>
 </resources>

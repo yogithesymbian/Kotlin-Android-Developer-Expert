@@ -23,7 +23,7 @@ import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailLeague.adapter.RvPrevMatchLeague
 import id.scode.kadeooredoo.ui.detailLeague.presenter.PreviousPresenter
-import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailLeague.view.PreviousMatchLeagueView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_previous.*

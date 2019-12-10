@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.data.db.databasePrevMatch
 import id.scode.kadeooredoo.data.db.entities.FavTeamJoinDetail
 import id.scode.kadeooredoo.data.db.entities.Team
+import id.scode.kadeooredoo.databaseEventPrevMatch
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrev.DetailMatchLeagueActivity
+import id.scode.kadeooredoo.ui.detailLeague.ui.detailNextOrPrevAndFavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventAdapter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
@@ -43,7 +44,10 @@ class FavPrevFragment : Fragment(), AnkoLogger {
 
         favoriteEventAdapter = FavoriteEventAdapter(favoritesMutableList) {
             info("move with ${it.eventId} - ${it.teamBadge}")
-            context?.startActivity<DetailMatchLeagueActivity>(DETAIL_KEY to "${it.eventId}")
+            context?.startActivity<DetailMatchLeagueActivity>(
+                DETAIL_KEY to "${it.eventId}",
+                DETAIL_KEY_SCORE to "${it.homeScore}"
+            )
         }
 
         recyclerView.adapter = favoriteEventAdapter
@@ -80,7 +84,7 @@ class FavPrevFragment : Fragment(), AnkoLogger {
         // clear before assign
         favoritesMutableList.clear()
 
-        requireContext().databasePrevMatch.use {
+        requireContext().databaseEventPrevMatch.use {
             // stop refresh if do
             swipeRefreshLayout.isRefreshing = false
 

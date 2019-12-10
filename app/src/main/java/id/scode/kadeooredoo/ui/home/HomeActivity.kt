@@ -29,6 +29,7 @@ class HomeActivity : AppCompatActivity(), AnkoLogger {
         tabLayout = findViewById(R.id.tabs)
         viewPager = findViewById(R.id.view_pager_container_home)
 
+
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.btm_teams -> {

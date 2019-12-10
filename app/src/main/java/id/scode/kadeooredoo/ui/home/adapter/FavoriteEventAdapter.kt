@@ -54,7 +54,9 @@ class FavoriteEventAdapter(
 
             txt_date_event.text = item.dateEvent
             txt_str_time_event.text = item.timeEvent
-            txt_unlocked_event.text = item.sportStr
+
+            txt_unlocked_event.text = item.locked
+
 
             Glide.with(context)
                 .load(item.teamBadge)
