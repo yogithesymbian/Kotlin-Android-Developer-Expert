@@ -31,9 +31,6 @@ android {
         ignoreWarnings true
         baseline file("lint-baseline.xml")
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
