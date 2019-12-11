@@ -1,6 +1,5 @@
 package id.scode.kadeooredoo.ui.detailleague.ui.previous
 
-import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
@@ -48,7 +47,6 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
     private lateinit var searchView: SearchView
 
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -84,7 +82,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
 
             // test obs
             previousLeagueViewModel.text.observe(this, Observer {
-                textView.text = "prev $id"
+                textView.text = context?.resources?.getString(R.string.title_previous)?.let {String.format(it, id)}
             })
         }
 

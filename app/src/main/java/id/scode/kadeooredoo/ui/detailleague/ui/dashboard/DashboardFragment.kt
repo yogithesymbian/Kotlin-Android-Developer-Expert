@@ -1,6 +1,5 @@
 package id.scode.kadeooredoo.ui.detailleague.ui.dashboard
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -41,7 +40,6 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     private lateinit var carouselView: CarouselView
     private lateinit var fantArt: Array<String>
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,7 +59,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // test obs
         dashboardViewModel.text.observe(this, Observer {
-            textView.text = "dashboard $idLeague"
+            textView.text = context?.resources?.getString(R.string.title_dashboard)?.let {String.format(it, idLeague)}
         })
 
         // init the presenter for injecting the constructor
@@ -81,9 +79,9 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         super.onViewCreated(view, savedInstanceState)
 
 
-        float_social_media?.setOnClickListener{
+        float_social_media?.setOnClickListener {
 
-            if (!float_social_media_yt.isShown){
+            if (!float_social_media_yt.isShown) {
                 float_social_media_yt.visible()
                 float_social_media_tw.visible()
                 float_social_media_fb.visible()
@@ -167,6 +165,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
 
     }
+
     override fun showLoading() {
         progressBar.visible()
     }
@@ -175,7 +174,6 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         progressBar.invisible()
     }
 
-    @SuppressLint("SetTextI18n")
     override fun showDetailLeague(data: List<League>?) {
         info("try show detail leaguesMutableList : process")
         leaguesMutableList.clear()
@@ -195,13 +193,13 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             )
 
         // set imageListener
-       val imageListener = ImageListener { position, imageView ->
-           activity?.applicationContext?.let {
-               Glide.with(it)
-                   .load(fantArt[position])
-                   .error(R.color.design_default_color_error)
-                   .into(imageView)
-           }
+        val imageListener = ImageListener { position, imageView ->
+            activity?.applicationContext?.let {
+                Glide.with(it)
+                    .load(fantArt[position])
+                    .error(R.color.design_default_color_error)
+                    .into(imageView)
+            }
         }
         // set carousel with imageListener
         carouselView.setImageListener(imageListener)
@@ -224,29 +222,35 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             txt_str_soccer.text = leaguesMutableList[i].strSport
             txt_str_gender.text = leaguesMutableList[i].strGender
             txt_str_first_event.text = leaguesMutableList[i].dateFirstEvent
-            txt_str_country.text = "Country : ${leaguesMutableList[i].strCountry}"
+            context?.resources.let { cores ->
+                txt_str_country.text = cores?.getString(R.string.country)?.let { it1 ->
+                    String.format(
+                        it1, leaguesMutableList[i].strCountry
+                    )
+                }
+            }
 
             val language = it.resources.getString(R.string.app_language)
             txt_desc_league.also { desc ->
-                when(language){
+                when (language) {
                     EN_LANG -> desc.text = leaguesMutableList[i].strDescriptionEN
                     JP_LANG -> desc.text = leaguesMutableList[i].strDescriptionJP
                 }
             }
 
-            float_social_media_yt.setOnClickListener{
+            float_social_media_yt.setOnClickListener {
                 intentSocial(leaguesMutableList[i].strYoutube)
             }
-            float_social_media_tw.setOnClickListener{
+            float_social_media_tw.setOnClickListener {
                 intentSocial(leaguesMutableList[i].strTwitter)
             }
-            float_social_media_fb.setOnClickListener{
+            float_social_media_fb.setOnClickListener {
                 intentSocial(leaguesMutableList[i].strFacebook)
             }
-            float_social_media_web.setOnClickListener{
+            float_social_media_web.setOnClickListener {
                 intentSocial(leaguesMutableList[i].strWebsite)
             }
-            float_social_media_rss.setOnClickListener{
+            float_social_media_rss.setOnClickListener {
                 intentSocial(leaguesMutableList[i].strRSS)
             }
 
@@ -257,9 +261,9 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
     private fun intentSocial(urlMedia: String) {
         info("url link clicked $urlMedia")
-        val intent : Intent = if (urlMedia.contains("http://")){
+        val intent: Intent = if (urlMedia.contains("http://")) {
             Intent(Intent.ACTION_VIEW, Uri.parse(urlMedia))
-        }else {
+        } else {
             Intent(Intent.ACTION_VIEW, Uri.parse("http://$urlMedia"))
         }
         startActivity(intent)

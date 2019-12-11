@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">yoBall</string>
-    <string name="item_list_footbal_name">football name</string>
-    <string name="main_activity_title_for_layout">League Football</string>
 
-    <array name="idLeague">
+    <string name="item_list_footbal_name">サッカー名</string>
+    <string name="main_activity_title_for_layout">リーグフットボール</string>
+
+    <array name="idLeague" tools:keep="@array/idLeague">
         <item>4328</item>
         <item>4329</item>
         <item>4331</item>
@@ -21,57 +21,169 @@
         <item>French Ligue 1</item>
         <item>Spanish La Liga</item>
     </array>
-    <string name="app_language">jp_lang</string>
-    <string name="title_activity_detail_league">DetailLeagueActivity</string>
-    <string name="title_previous">Previous</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_next">Next</string>
-    <string name="item_prev_match_league_seasons">Seasons</string>
-    <string name="item_next_match_league_date_event">DATE EVENT</string>
-    <string name="item_next_match_start_event">START EVENT</string>
-    <string name="item_prev_match_league_part">:</string>
-    <string name="content_detail_match_league_more_formation">Formation</string>
-    <string name="content_detail_match_league_more_goals">Goals</string>
-    <string name="content_detail_match_league_more_shoots">Shoots</string>
-    <string name="content_detail_match_league_more_cards">Cards</string>
-    <string name="content_detail_match_league_more_red">Red</string>
-    <string name="content_detail_match_league_more_yellow">Yellow</string>
-    <string name="content_detail_match_league_more_lineup">LineUp</string>
-    <string name="content_detail_match_league_more_goalkeeper">GoalKeeper</string>
-    <string name="content_detail_match_league_more_defense">Defense</string>
-    <string name="content_detail_match_league_more_midfield">Midfield</string>
-    <string name="content_detail_match_league_more_forward">Forward</string>
-    <string name="content_detail_match_league_more_substitutes">Substitutes</string>
-    <string name="empty_strips">-</string>
-    <string name="toolbar_previous_search_event_past">Search Event Past</string>
-    <string name="option_search_previous">Search Event Past</string>
-    <string name="toolbar_next_search_event_past">Search Event Next</string>
-    <string name="option_search_next">Search Event Next</string>
-    <string name="exception_search_not_found">The Teams Not Found</string>
+
     <string name="league_epl">English Premier League</string>
     <string name="league_elc">English League Championship</string>
     <string name="league_gb">German Bundesliga</string>
     <string name="league_isa">Italian Serie A</string>
     <string name="league_fl1">French Ligue 1</string>
     <string name="league_sll">Spanish La Liga</string>
+
     <string name="league_epl_id">4328</string>
     <string name="league_elc_id">4329</string>
     <string name="league_gb_id">4331</string>
     <string name="league_isa_id">4332</string>
     <string name="league_fl1_id">4334</string>
     <string name="league_sll_id">4335</string>
-    <string name="teams">Teams</string>
-    <string name="favorites">Favorite</string>
-    <string name="language_en" tools:keep="@string/language_en">en_lang</string>
-    <string name="title_team_detail">Team Detail</string>
-    <string name="activity_detail_match_league_favorite">Favorite</string>
+
+    <string name="title_activity_detail_league">詳細なリーグ活動</string>
+    <string name="title_previous">前 %1$s</string>
+    <string name="title_dashboard">ダッシュボード %1$s</string>
+    <string name="title_next">次 %1$s</string>
+
+    <string name="item_prev_match_league_seasons">季節</string>
+    <string name="item_next_match_league_date_event">日付イベント</string>
+    <string name="item_next_match_start_event">イベントを開始</string>
+    <string name="item_prev_match_league_part">：</string>
+    <string name="item_next_match_league_default_score_0"> 0 </string>
+    <string name="title_activity_detail_match_league">詳細試合リーグ</string>
+
+    <string name="large_text" tools:keep="@string/large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+
+    <string name="action_settings" tools:keep="@string/action_settings">設定</string>
+    <string name="content_detail_match_league_more_formation">フォーメーション</string>
+    <string name="content_detail_match_league_more_goals">目標</string>
+    <string name="content_detail_match_league_more_shoots">シュート</string>
+    <string name="content_detail_match_league_more_cards">カード</string>
+    <string name="content_detail_match_league_more_red">赤</string>
+    <string name="content_detail_match_league_more_yellow">黄色</string>
+    <string name="content_detail_match_league_more_lineup">ラインアップ</string>
+    <string name="content_detail_match_league_more_goalkeeper"> GoalKeeper </string>
+    <string name="content_detail_match_league_more_defense">防衛</string>
+    <string name="content_detail_match_league_more_midfield">ミッドフィールド</string>
+    <string name="content_detail_match_league_more_forward">転送</string>
+    <string name="content_detail_match_league_more_substitutes">置換</string>
+
+    <string name="empty_strips">-</string>
+
+    <string name="toolbar_previous_search_event_past">過去のイベントを検索</string>
+    <string name="option_search_previous">過去のイベントを検索</string>
+    <string name="toolbar_next_search_event_past">次のイベントを検索</string>
+    <string name="option_search_next">次のイベントを検索</string>
+    <string name="exception_search_not_found">​​チームが見つかりません</string>
+
+    <string name="teams">チーム</string>
+    <string name="favorites">お気に入り</string>
+
+    <string name="title_team_detail">チームの詳細</string>
+    <string name="activity_detail_match_league_favorite">お気に入り</string>
+
+    <string name="fragment_favorite_main_event_prev">イベント前</string>
+    <string name="fragment_favorite_main_event_next">次のイベント</string>
+
+    <string name="hello_blank_fragment" tools:keep="@ string / hello_blank_fragment">こんにちは空白のフラグメント</string>
+    <string name="detail_match_league_activity_favorite_state">お気に入り</string>
+
+    <string name="country">Country %1$s</string>
+
+    <!--    non translate-able -->
     <string name="key_id_league">ID_LEAGUE</string>
+    <string name="detail_match_league_activity_event_previous_mi"> event_previous_match_insert </string>
+    <string name="detail_match_league_activity_event_next_mi"> event_next_match_insert </string>
+
+    <string name="app_language">en_lang</string>
     <string name="utils_en_lang" tools:keep="@string/utils_en_lang">en_lang</string>
     <string name="utils_jp_lang" tools:keep="@string/utils_jp_lang">jp_lang</string>
+    <string name="language_en" tools:keep="@string/language_en">en_lang</string>
+
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
-    <string name="fragment_favorite_main_event_prev">Event Prev</string>
-    <string name="fragment_favorite_main_event_next">Event Next</string>
-    <string name="detail_match_league_activity_favorite_state">favorite</string>
-    <string name="detail_match_league_activity_event_previous_mi">event_previous_match_insert</string>
-    <string name="detail_match_league_activity_event_next_mi">event_next_match_insert</string>
+
 </resources>

@@ -1,6 +1,5 @@
 package id.scode.kadeooredoo.ui.detailleague.ui.next
 
-import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
@@ -47,7 +46,6 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
 
-    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,7 +79,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
             // test obs
             nextLeagueViewModel.text.observe(this, Observer {
-                textView.text = "next $id"
+                textView.text = context?.resources?.getString(R.string.title_next)?.let {String.format(it, id)}
             })
         }
 

@@ -19,7 +19,9 @@ import java.util.*
  * JRE: 1.8.0_202-release-1483-b49-5587405 amd64
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
+ * @SuppressLint("SetTextI18n")
  */
+
 const val EN_LANG = "en_lang"
 const val JP_LANG = "jp_lang"
 const val SPORT = "Soccer"
