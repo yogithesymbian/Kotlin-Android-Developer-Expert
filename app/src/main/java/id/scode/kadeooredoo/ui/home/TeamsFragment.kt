@@ -216,11 +216,13 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                         //                    lparams(width = matchParent, height = wrapContent)
 
                         recyclerViewListTeam = recyclerView {
+                            id = R.id.rv_list_team
                             lparams(width = matchParent, height = dip(400))
                             layoutManager = LinearLayoutManager(context)
                         }
 
                         progressBar = progressBar {
+                            id = R.id.progress_load_team
                         }.lparams {
                             centerHorizontally()
                         }

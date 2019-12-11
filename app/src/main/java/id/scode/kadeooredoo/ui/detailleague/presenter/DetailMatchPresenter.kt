@@ -1,12 +1,12 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.CoroutineContextProvider
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.DetailMatchLeagueResponse
 import id.scode.kadeooredoo.ui.detailleague.view.DetailMatchView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,15 +24,16 @@ import kotlinx.coroutines.launch
 class DetailMatchPresenter(
     private val view: DetailMatchView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
     //behaviours getLeagueTeamList
     fun getDetailMatchList(league: String) {
         view.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getDetailMatchEventTeams(league)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getDetailMatchEventTeams(league)).await(),
                     DetailMatchLeagueResponse::class.java
                 )
 

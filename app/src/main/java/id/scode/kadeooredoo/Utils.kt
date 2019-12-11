@@ -45,6 +45,11 @@ fun toGMTFormat(date: String, time: String): Date? { // nrohman dicoding discuss
     return formatter.parse(dateTime)
 }
 
+@SuppressLint("SimpleDateFormat")
+fun toSimpleString(date: Date?) : String? = with(date ?: Date()){
+    SimpleDateFormat("EEE, dd MMM yyy").format(this)
+}
+
 // Access Property For Context
 val Context.databaseTeams: TeamDatabaseOpenHelper
     get() = TeamDatabaseOpenHelper.getInstance(applicationContext)

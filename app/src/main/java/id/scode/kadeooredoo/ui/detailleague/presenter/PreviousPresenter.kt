@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.CoroutineContextProvider
 import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
@@ -8,7 +9,6 @@ import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.AnkoLogger
@@ -28,15 +28,16 @@ import org.jetbrains.anko.info
 class PreviousPresenter(
     private val viewMatch: PreviousMatchLeagueView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) : AnkoLogger {
     //behaviours getPrevLeagueList
     fun getPreviousLeagueList(league: String) {
         viewMatch.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getPreviousMatchTeams(league)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getPreviousMatchTeams(league)).await(),
                     PreviousLeagueResponse::class.java
                 )
             viewMatch.hideLoading()
@@ -47,10 +48,10 @@ class PreviousPresenter(
     //behaviours getSearchPrevLeagueList
     fun getSearchPreviousLeagueList(teamVsTeam: String) {
         viewMatch.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.searchTeams(teamVsTeam)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.searchTeams(teamVsTeam)).await(),
                     PreviousLeagueSearchResponse::class.java
                 )
             if (data.eventSearch.isNullOrEmpty()) {

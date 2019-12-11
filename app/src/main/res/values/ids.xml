@@ -10,4 +10,6 @@
     <item name="team_name" type="id"/>
     <item name="img_fav_empty" type="id" />
     <item name="fab_fav_event_pass" type="id" />
+    <item name="rv_list_team" type="id" />
+    <item name="progress_load_team" type="id" />
 </resources>

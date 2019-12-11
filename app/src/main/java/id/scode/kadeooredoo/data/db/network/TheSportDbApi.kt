@@ -1,6 +1,5 @@
 package id.scode.kadeooredoo.data.db.network
 
-import android.net.Uri
 import id.scode.kadeooredoo.BuildConfig
 
 /**
@@ -23,88 +22,46 @@ object TheSportDbApi {
     private const val JSON = "json"
 
     fun getLeagueTeams(idLeague: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath("api")
-            .appendPath("v1")
-            .appendPath("json")
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("search_all_teams.php")
-            .appendQueryParameter("l", idLeague)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/search_all_teams.php?l=" + idLeague
     }
 
 
     fun getLookupTeams(idTeam: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("lookupteam.php")
-            .appendQueryParameter("id", idTeam)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/lookupteam.php?id=" + idTeam
     }
 
     fun getDetailLeagueTeams(idLeague: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("lookupleague.php")
-            .appendQueryParameter("id", idLeague)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/lookupleague.php?id=" + idLeague
     }
 
     fun getNextMatchTeams(idLeague: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("eventsnextleague.php")
-            .appendQueryParameter("id", idLeague)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/eventsnextleague.php?id=" + idLeague
     }
 
     fun getPreviousMatchTeams(idLeague: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("eventspastleague.php")
-            .appendQueryParameter("id", idLeague)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/eventspastleague.php?id=" + idLeague
     }
 
 
     fun getDetailMatchEventTeams(idEvent: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("lookupevent.php")
-            .appendQueryParameter("id", idEvent)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/lookupevent.php?id=" + idEvent
     }
 
     fun searchTeams(teamVsTeam: String): String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-            .appendPath(API)
-            .appendPath(VERSI)
-            .appendPath(JSON)
-            .appendPath(BuildConfig.TSDB_API_KEY)
-            .appendPath("searchevents.php")
-            .appendQueryParameter("e", teamVsTeam)
-            .build()
-            .toString()
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/searchevents.php?e=" + teamVsTeam
     }
 }

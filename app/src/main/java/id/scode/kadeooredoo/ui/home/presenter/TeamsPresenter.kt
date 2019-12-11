@@ -1,12 +1,12 @@
 package id.scode.kadeooredoo.ui.home.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.CoroutineContextProvider
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,17 +24,18 @@ import kotlinx.coroutines.launch
 class TeamsPresenter(
     private val view: TeamsView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
     //behaviours getLeagueTeamList
     fun getLeagueTeamList(league: String) {
         view.showLoading()
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
 
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getLeagueTeams(league)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getLeagueTeams(league)).await(),
                     TeamResponse::class.java
                 )
             view.hideLoading()
@@ -46,10 +47,10 @@ class TeamsPresenter(
     //behaviours getLeagueTeamList
     fun getDetailLeagueTeamList(idTeams: String) {
         view.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getLookupTeams(idTeams)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getLookupTeams(idTeams)).await(),
                     TeamResponse::class.java
                 )
             view.hideLoading()
@@ -60,10 +61,10 @@ class TeamsPresenter(
     //behaviours getLeagueTeamList
     fun getDetailLeagueTeamAwayList(idTeams: String) {
         view.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getLookupTeams(idTeams)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getLookupTeams(idTeams)).await(),
                     TeamResponse::class.java
                 )
             view.hideLoading()

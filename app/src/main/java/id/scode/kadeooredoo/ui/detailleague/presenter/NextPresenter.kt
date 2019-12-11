@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
+import id.scode.kadeooredoo.CoroutineContextProvider
 import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
@@ -8,7 +9,6 @@ import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.AnkoLogger
@@ -28,15 +28,16 @@ import org.jetbrains.anko.info
 class NextPresenter(
     private val viewMatch: NextMatchLeagueView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) : AnkoLogger {
     //behaviours getNextLeagueList
     fun getNextLeagueList(league: String) {
         viewMatch.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.getNextMatchTeams(league)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getNextMatchTeams(league)).await(),
                     NextLeagueResponse::class.java
                 )
             viewMatch.hideLoading()
@@ -47,10 +48,10 @@ class NextPresenter(
     //behaviours getSearchPrevLeagueList
     fun getSearchNextLeagueList(teamVsTeam: String) {
         viewMatch.showLoading()
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequest(TheSportDbApi.searchTeams(teamVsTeam)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.searchTeams(teamVsTeam)).await(),
                     NextLeagueSearchResponse::class.java
                 )
             if (data.eventSearch.isNullOrEmpty()) {
