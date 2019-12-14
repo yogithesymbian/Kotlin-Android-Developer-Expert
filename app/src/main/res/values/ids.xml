@@ -12,4 +12,5 @@
     <item name="fab_fav_event_pass" type="id" />
     <item name="rv_list_team" type="id" />
     <item name="progress_load_team" type="id" />
+    <item name="toolbar_home" type="id" />
 </resources>

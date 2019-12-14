@@ -1,15 +1,7 @@
 package id.scode.kadeooredoo.ui.home
 
-import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.pressBack
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import id.scode.kadeooredoo.R.id.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,56 +18,41 @@ import org.junit.runner.RunWith
  * Linux 5.2.0-kali3-amd64
  */
 @RunWith(AndroidJUnit4::class)
-class HomeActivityTest {
+class HomeActivityTest(private val testFunction: TestFunction) {
     @Rule
-    @JvmField var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(HomeActivity::class.java)
-
+    @JvmField
+    var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(HomeActivity::class.java)
+    /**
+     * only this test run with position
+     * @root_run
+     */
     @Test
-    fun testAppBehaviour() {
+    fun allFunctionLoadTest() {
+        testFunction.testHomeLabel() //L
+        testFunction.testHomeComponentId() // C
+        testFunction.testHomeBehaviourOnClickRecyclerView()
+        testFunction.testDetailTeamLabel()
+        testFunction.testDetailTeamComponentId()
+        testFunction.testDetailTeamBehaviourOnClickFavorite()
+        testFunction.testCheckResultFavorite()
 
-        onView(withId(spinner))
-            .check(matches(isDisplayed()))
-
-        onView(withId(spinner)).perform(click())
-
-        onView(withText("Spanish La Liga")).perform(click())
-
-        Thread.sleep(10000)
-
-        onView(withText("Ath Bilbao"))
-            .check(matches(isDisplayed()))
-
-        onView(withText("Ath Bilbao")).perform(click())
-
-        onView(withId(add_to_favorite))
-            .check(matches(isDisplayed()))
-
-        onView(withId(add_to_favorite)).perform(click())
-
-        onView(withText("Added to favorite"))
-            .check(matches(isDisplayed()))
-
-        pressBack()
-
-        onView(withId(bottom_navigation))
-            .check(matches(isDisplayed()))
-
-        onView(withId(btm_fav)).perform(click())
     }
-    @Test
-    fun testRecyclerViewBehaviour() {
 
-        onView(withId(rv_list_team))
-            .check(matches(isDisplayed()))
 
-        onView(withId(rv_list_team)).perform(
-            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
-                10
-            )
-        )
-
-        onView(withId(rv_list_team)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click())
-        )
-    }
+//    @Test
+//    fun testRecyclerViewBehaviour() {
+//
+//        onView(withId(rv_list_team))
+//            .check(matches(isDisplayed()))
+//
+//        onView(withId(rv_list_team)).perform(
+//            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+//                10
+//            )
+//        )
+//
+//        onView(withId(rv_list_team)).perform(
+//            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click())
+//        )
+//    }
 }

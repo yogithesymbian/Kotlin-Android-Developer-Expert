@@ -169,7 +169,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                 rightPadding = dip(8)
 
                 toolbar {
-
+                    id = R.id.toolbar_home
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         logo =
                             resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)

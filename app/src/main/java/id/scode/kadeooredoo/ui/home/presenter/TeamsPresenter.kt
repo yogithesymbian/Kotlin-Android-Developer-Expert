@@ -27,7 +27,7 @@ class TeamsPresenter(
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    //behaviours getLeagueTeamList
+
     fun getLeagueTeamList(league: String) {
         view.showLoading()
 
@@ -44,7 +44,6 @@ class TeamsPresenter(
         }
     }
 
-    //behaviours getLeagueTeamList
     fun getDetailLeagueTeamList(idTeams: String) {
         view.showLoading()
         GlobalScope.launch(context.main) {
@@ -58,7 +57,6 @@ class TeamsPresenter(
         }
     }
 
-    //behaviours getLeagueTeamList
     fun getDetailLeagueTeamAwayList(idTeams: String) {
         view.showLoading()
         GlobalScope.launch(context.main) {
