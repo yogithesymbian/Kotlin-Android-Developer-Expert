@@ -38,9 +38,13 @@
 
 
     <string name="title_activity_detail_league">DetailLeagueActivity</string>
-    <string name="title_previous">Previous %1$s</string>
-    <string name="title_dashboard">Dashboard %1$s</string>
-    <string name="title_next">Next %1$s</string>
+    <string name="title_previous">Previous</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_next">Next</string>
+
+    <string name="title_previous_pl">Previous %1$s</string>
+    <string name="title_dashboard_pl">Dashboard %1$s</string>
+    <string name="title_next_pl">Next %1$s</string>
 
     <string name="item_prev_match_league_seasons">Seasons</string>
     <string name="item_next_match_league_date_event">DATE EVENT</string>

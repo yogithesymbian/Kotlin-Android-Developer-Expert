@@ -79,7 +79,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
             // test obs
             nextLeagueViewModel.text.observe(this, Observer {
-                textView.text = context?.resources?.getString(R.string.title_next)?.let {String.format(it, id)}
+                textView.text = context?.resources?.getString(R.string.title_next_pl)?.let {String.format(it, id)}
             })
         }
 

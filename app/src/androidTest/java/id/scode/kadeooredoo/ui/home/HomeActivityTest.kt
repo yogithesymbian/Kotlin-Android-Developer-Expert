@@ -35,7 +35,6 @@ class HomeActivityTest(private val testFunction: TestFunction) {
         testFunction.testDetailTeamComponentId()
         testFunction.testDetailTeamBehaviourOnClickFavorite()
         testFunction.testCheckResultFavorite()
-
     }
 
 

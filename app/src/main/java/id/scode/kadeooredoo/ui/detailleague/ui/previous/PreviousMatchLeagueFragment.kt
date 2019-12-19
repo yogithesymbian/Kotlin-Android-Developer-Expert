@@ -82,7 +82,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
 
             // test obs
             previousLeagueViewModel.text.observe(this, Observer {
-                textView.text = context?.resources?.getString(R.string.title_previous)?.let {String.format(it, id)}
+                textView.text = context?.resources?.getString(R.string.title_previous_pl)?.let {String.format(it, id)}
             })
         }
 

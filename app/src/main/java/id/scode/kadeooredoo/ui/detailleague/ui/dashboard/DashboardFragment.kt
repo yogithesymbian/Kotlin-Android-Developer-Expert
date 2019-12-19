@@ -59,7 +59,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // test obs
         dashboardViewModel.text.observe(this, Observer {
-            textView.text = context?.resources?.getString(R.string.title_dashboard)?.let {String.format(it, idLeague)}
+            textView.text = context?.resources?.getString(R.string.title_dashboard_pl)?.let {String.format(it, idLeague)}
         })
 
         // init the presenter for injecting the constructor

@@ -37,9 +37,13 @@
     <string name="league_sll_id">4335</string>
 
     <string name="title_activity_detail_league">詳細なリーグ活動</string>
-    <string name="title_previous">前 %1$s</string>
-    <string name="title_dashboard">ダッシュボード %1$s</string>
-    <string name="title_next">次 %1$s</string>
+    <string name="title_previous">前</string>
+    <string name="title_dashboard">ダッシュボード</string>
+    <string name="title_next">次</string>
+
+    <string name="title_previous_pl">前 %1$s</string>
+    <string name="title_dashboard_pl">ダッシュボード %1$s</string>
+    <string name="title_next_pl">次 %1$s</string>
 
     <string name="item_prev_match_league_seasons">季節</string>
     <string name="item_next_match_league_date_event">日付イベント</string>
