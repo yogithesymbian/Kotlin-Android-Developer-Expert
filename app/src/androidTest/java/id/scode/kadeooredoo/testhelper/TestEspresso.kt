@@ -222,8 +222,6 @@ class TestEspresso : AnkoLogger{
         Espresso.onView(ViewMatchers.withText("Ath Bilbao"))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        Thread.sleep(3000)
-
         Espresso.onView(ViewMatchers.withId(R.id.rv_list_team))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
@@ -352,7 +350,7 @@ class TestEspresso : AnkoLogger{
     fun testCheckResultFavorite() {
 
         Espresso.onView(ViewMatchers.withId(R.id.btm_fav)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withText("Ath"))
+        Espresso.onView(ViewMatchers.withText("Ath Bilbao"))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
     // #OtherFunction end of ---------------------------------

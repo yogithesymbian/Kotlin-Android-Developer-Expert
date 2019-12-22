@@ -15,7 +15,7 @@ import androidx.test.espresso.idling.CountingIdlingResource
  * Linux 5.2.0-kali3-amd64
  */
 object EspressoIdlingResource {
-    private val RESOURCE = "GLOBAL"
+    private const val RESOURCE = "GLOBAL"
     private val countingIdlingResource = CountingIdlingResource(RESOURCE)
 
     val idlingresource: IdlingResource

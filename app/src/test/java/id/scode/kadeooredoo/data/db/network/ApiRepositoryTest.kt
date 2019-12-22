@@ -20,7 +20,7 @@ class ApiRepositoryTest{
     fun testDoRequestAsync(){
         val apiRepository = mock(ApiRepository::class.java)
         val url = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League"
-        apiRepository.doRequestAsync(url)
-        verify(apiRepository).doRequestAsync(url)
+        apiRepository.doRequestAsync(url) // Deferred result is never used -> inspection result
+        verify(apiRepository).doRequestAsync(url) // Deferred result is never used -> inspection result
     }
 }

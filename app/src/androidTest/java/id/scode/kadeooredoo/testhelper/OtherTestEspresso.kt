@@ -43,7 +43,7 @@ class OtherTestEspresso : AnkoLogger{
     fun testCheckResultFavorite() {
 
         Espresso.onView(ViewMatchers.withId(R.id.btm_fav)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withText("Ath"))
+        Espresso.onView(ViewMatchers.withText("Ath Bilbao"))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }

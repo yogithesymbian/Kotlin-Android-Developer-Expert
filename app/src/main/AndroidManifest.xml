@@ -34,10 +34,6 @@
         <activity
             android:name=".ui.detailleague.ui.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league" />
-        <activity android:name=".ui.home.tmp.DetailActivity" />
-        <activity android:name=".ui.home.tmp.TeamsActivity">
-
-        </activity>
     </application>
 
 </manifest>
