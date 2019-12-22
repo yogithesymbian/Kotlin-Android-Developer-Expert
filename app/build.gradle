@@ -102,7 +102,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     // NEW MATERIAL DESIGN
-    implementation "com.google.android.material:material:1.2.0-alpha02"
+    implementation "com.google.android.material:material:1.2.0-alpha03"
 
     // Anko All Dependecy
     implementation "org.jetbrains.anko:anko:$anko_version"
