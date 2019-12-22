@@ -5,5 +5,5 @@ import id.scode.kadeooredoo.data.db.entities.EventPrevious
 
 data class PreviousLeagueSearchResponse(
     @SerializedName("event")
-    val eventSearch: List<EventPrevious>
+    val eventSearch: List<EventPrevious>?
 )

@@ -69,6 +69,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // call the data api
         idLeague?.let {
+            EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
         }
 
@@ -175,6 +176,10 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     }
 
     override fun showDetailLeague(data: List<League>?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         info("try show detail leaguesMutableList : process")
         leaguesMutableList.clear()
         data?.let {

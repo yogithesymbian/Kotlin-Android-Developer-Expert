@@ -18,7 +18,7 @@ import org.jetbrains.anko.info
 class HomeActivity : AppCompatActivity(), AnkoLogger {
 
     // tabs config
-    private lateinit var favoriteEventSectionPagerAdapter: FavoriteEventSectionPagerAdapter // bug onResume of FavoriteTeamsFragment so i move the pager into here activity
+    private lateinit var favoriteEventSectionPagerAdapter: FavoriteEventSectionPagerAdapter // bug onResume of TeamsFavoriteFragment so i move the pager into here activity
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
 
@@ -117,8 +117,8 @@ class HomeActivity : AppCompatActivity(), AnkoLogger {
                 .beginTransaction()
                 .replace(
                     R.id.main_container,
-                    FavoriteTeamsFragment(),
-                    FavoriteTeamsFragment::class.java.simpleName
+                    TeamsFavoriteFragment(),
+                    TeamsFavoriteFragment::class.java.simpleName
                 )
                 .commit()
         }

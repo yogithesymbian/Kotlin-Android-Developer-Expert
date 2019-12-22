@@ -46,12 +46,17 @@ class PreviousPresenter(
     }
 
     //behaviours getSearchPrevLeagueList
-    fun getSearchPreviousLeagueList(teamVsTeam: String) {
+    fun getSearchPreviousLeagueList(teamVsTeam: String?) {
         viewMatch.showLoading()
         GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequestAsync(TheSportDbApi.searchTeams(teamVsTeam)).await(),
+                    teamVsTeam?.let {
+                        TheSportDbApi.searchTeams(it) }?.let {
+                        apiRepository.doRequestAsync(
+                            it
+                        ).await()
+                    },
                     PreviousLeagueSearchResponse::class.java
                 )
             if (data.eventSearch.isNullOrEmpty()) {

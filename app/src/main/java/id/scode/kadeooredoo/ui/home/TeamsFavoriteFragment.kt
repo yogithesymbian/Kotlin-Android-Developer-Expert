@@ -28,7 +28,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 /**
  * A simple [Fragment] subclass.
  */
-class FavoriteTeamsFragment : Fragment(), AnkoLogger {
+class TeamsFavoriteFragment : Fragment(), AnkoLogger {
 
     private var favoritesMutableList: MutableList<Favorite> = mutableListOf()
     private lateinit var favoriteTeamsAdapter: FavoriteTeamsAdapter

@@ -2,6 +2,7 @@ package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.ContextProviderTest
+import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
@@ -102,6 +103,34 @@ class NextPresenterTest {
             presenter.getSearchNextLeagueList(teamVsTeam)
 
             Mockito.verify(nextMatchLeagueView).showLoading()
+            Mockito.verify(nextMatchLeagueView).hideLoading()
+
+        }
+    }
+
+    @Test
+    fun getNotFoundSearchNextLeagueList() {
+        val eventSearchNextMutableList: MutableList<EventNext> = mutableListOf()
+        val response = NextLeagueSearchResponse(eventSearchNextMutableList)
+        val teamVsTeam = "bruu"
+
+        runBlocking {
+            Mockito
+                .`when`(apiRepository.doRequestAsync(ArgumentMatchers.anyString()))
+                .thenReturn(apiResponse)
+
+            Mockito
+                .`when`(apiResponse.await())
+                .thenReturn("")
+
+            Mockito
+                .`when`(gson.fromJson("", NextLeagueSearchResponse::class.java))
+                .thenReturn(response)
+
+            presenter.getSearchNextLeagueList(teamVsTeam)
+            // AnkoLogger has mock by defaultValue = true
+            Mockito.verify(nextMatchLeagueView).showLoading()
+            Mockito.verify(nextMatchLeagueView).exceptionNullObject("data_x $EXCEPTION_NULL")
             Mockito.verify(nextMatchLeagueView).hideLoading()
 
         }

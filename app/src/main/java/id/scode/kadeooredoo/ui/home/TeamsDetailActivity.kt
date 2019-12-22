@@ -12,17 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.databaseTeams
-import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.db.classParser
@@ -122,6 +119,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         when {
             idOnline != null -> {
                 id = idOnline as String
+                EspressoIdlingResource.increment()
                 teamsPresenter.getDetailLeagueTeamList(id)
                 favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
             }
@@ -243,7 +241,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     }
 
     override fun showTeamList(data: List<Team>?) {
-
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         info("try show team list : process")
         val zero = 0
 

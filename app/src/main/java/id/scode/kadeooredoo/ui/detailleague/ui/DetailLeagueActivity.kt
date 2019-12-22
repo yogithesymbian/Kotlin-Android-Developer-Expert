@@ -75,16 +75,16 @@ class DetailLeagueActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener{ _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_previous -> {
-                    Log.d(TAG_LOG, "you are in dashboard league $idLeague")
+                    Log.d(TAG_LOG, "you are in previous league")
 
 
                 }
                 R.id.navigation_dashboard -> {
-                    Log.d(TAG_LOG, "you are in next league")
+                    Log.d(TAG_LOG, "you are in dashboard league $idLeague")
 
                 }
                 R.id.navigation_next -> {
-                    Log.d(TAG_LOG, "you are in previous league")
+                    Log.d(TAG_LOG, "you are in next league")
 
                 }
                 else -> Log.d(TAG_LOG, "you are in else")

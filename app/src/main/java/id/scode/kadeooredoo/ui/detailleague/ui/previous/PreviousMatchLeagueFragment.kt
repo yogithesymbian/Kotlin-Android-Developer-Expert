@@ -15,16 +15,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeague
 import id.scode.kadeooredoo.ui.detailleague.presenter.PreviousPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_previous.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -76,6 +73,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
         previousPresenter = PreviousPresenter(this, request, gson)
 
         idLeague?.let { id ->
+            EspressoIdlingResource.increment()
             // call the api
             previousPresenter.getPreviousLeagueList(id)
             info ("get data with $id")
@@ -149,6 +147,7 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
     }
 
     private fun resultSearch(query: String) {
+        EspressoIdlingResource.increment()
         previousPresenter.getSearchPreviousLeagueList(query)
     }
 
@@ -162,6 +161,10 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
     }
 
     override fun showPreviousLeague(data: List<EventPrevious>?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         info ("try show event past list : process")
         eventPreviousMutableList.clear()
         data?.let {
@@ -182,6 +185,10 @@ class PreviousMatchLeagueFragment : Fragment() , PreviousMatchLeagueView, AnkoLo
     }
 
     override fun exceptionNullObject(msg: String) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         img_exception_search_nf_fp?.visible()
         rv_prev_match_leagues?.gone()

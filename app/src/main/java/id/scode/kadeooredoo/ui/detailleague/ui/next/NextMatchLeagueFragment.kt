@@ -15,16 +15,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeague
 import id.scode.kadeooredoo.ui.detailleague.presenter.NextPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_next.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -73,6 +70,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         nextPresenter = NextPresenter(this, request, gson)
 
         idLeague?.let { id ->
+            EspressoIdlingResource.increment()
             // call the api
             nextPresenter.getNextLeagueList(id)
             info ("get data with $id")
@@ -143,6 +141,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     private fun resultSearch(query: String) {
+        EspressoIdlingResource.increment()
         nextPresenter.getSearchNextLeagueList(query)
     }
 
@@ -155,6 +154,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     override fun showNextLeague(data: List<EventNext>?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         info("try show next event past list : process")
         eventNextMutableList.clear()
         data?.let {
@@ -175,6 +178,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         }
     }
     override fun exceptionNullObject(msg: String) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            //Memberitahukan bahwa tugas sudah selesai dijalankan
+            EspressoIdlingResource.decrement()
+        }
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         img_exception_search_nf_fn.visible()
         rv_next_match_leagues.gone()
