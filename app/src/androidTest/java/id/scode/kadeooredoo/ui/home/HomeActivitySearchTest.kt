@@ -53,7 +53,7 @@ class HomeActivitySearchTest {
 
 
     @Test
-    fun testHomeActivityAddCatalogueToFavorite() {
+    fun testHomeActivitySearch() {
 
         // initialize the fun
         label = LabelTestEspresso()
