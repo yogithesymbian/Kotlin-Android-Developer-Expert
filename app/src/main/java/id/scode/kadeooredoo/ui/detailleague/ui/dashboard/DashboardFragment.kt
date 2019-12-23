@@ -59,7 +59,8 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // test obs
         dashboardViewModel.text.observe(this, Observer {
-            textView.text = context?.resources?.getString(R.string.title_dashboard_pl)?.let {String.format(it, idLeague)}
+            textView.text = context?.resources?.getString(R.string.title_dashboard_pl)
+                ?.let { String.format(it, idLeague) }
         })
 
         // init the presenter for injecting the constructor
@@ -69,7 +70,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // call the data api
         idLeague?.let {
-            EspressoIdlingResource.increment()
+            //EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
         }
 
@@ -176,10 +177,10 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     }
 
     override fun showDetailLeague(data: List<League>?) {
-        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-            //Memberitahukan bahwa tugas sudah selesai dijalankan
-            EspressoIdlingResource.decrement()
-        }
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show detail leaguesMutableList : process")
         leaguesMutableList.clear()
         data?.let {

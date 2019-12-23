@@ -59,7 +59,6 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     private var favoriteStateDataSet: String? = null
 
 
-
     //menu favorite
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -119,7 +118,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         when {
             idOnline != null -> {
                 id = idOnline as String
-                EspressoIdlingResource.increment()
+//                EspressoIdlingResource.increment()
                 teamsPresenter.getDetailLeagueTeamList(id)
                 favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
             }
@@ -241,10 +240,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     }
 
     override fun showTeamList(data: List<Team>?) {
-        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-            //Memberitahukan bahwa tugas sudah selesai dijalankan
-            EspressoIdlingResource.decrement()
-        }
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show team list : process")
         val zero = 0
 

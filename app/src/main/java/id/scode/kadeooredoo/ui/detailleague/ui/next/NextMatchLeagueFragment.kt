@@ -70,14 +70,15 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         nextPresenter = NextPresenter(this, request, gson)
 
         idLeague?.let { id ->
-            EspressoIdlingResource.increment()
+            //            EspressoIdlingResource.increment()
             // call the api
             nextPresenter.getNextLeagueList(id)
-            info ("get data with $id")
+            info("get data with $id")
 
             // test obs
             nextLeagueViewModel.text.observe(this, Observer {
-                textView.text = context?.resources?.getString(R.string.title_next_pl)?.let {String.format(it, id)}
+                textView.text = context?.resources?.getString(R.string.title_next_pl)
+                    ?.let { String.format(it, id) }
             })
         }
 
@@ -102,22 +103,25 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         return root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val toolbarNext = view.findViewById<Toolbar>(R.id.toolbar_next)
         ((activity as AppCompatActivity)).setSupportActionBar(toolbarNext)
         setHasOptionsMenu(true)
 
-        cd_toolbar.setOnClickListener{
-            
+        cd_toolbar.setOnClickListener {
+
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.toolbar_next, menu)
 
         // search view with
-        val searchManager = activity?.applicationContext?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchManager =
+            activity?.applicationContext?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView = menu.findItem(R.id.option_search_next)?.actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
@@ -158,10 +162,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     override fun showNextLeague(data: List<EventNext>?) {
-        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-            //Memberitahukan bahwa tugas sudah selesai dijalankan
-            EspressoIdlingResource.decrement()
-        }
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show next event past list : process")
         eventNextMutableList.clear()
         data?.let {
@@ -170,7 +174,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         rvNextMatchLeagueAdapter.notifyDataSetChanged()
         info("try show next event past list : done")
 
-        if (eventNextMutableList.isNullOrEmpty()){
+        if (eventNextMutableList.isNullOrEmpty()) {
             toast(getString(R.string.exception_search_not_found))
             img_exception_search_nf_fn?.visible()
             rv_next_match_leagues?.gone()
@@ -181,17 +185,18 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         }
     }
+
     override fun exceptionNullObject(msg: String) {
-        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-            //Memberitahukan bahwa tugas sudah selesai dijalankan
-            EspressoIdlingResource.decrement()
-        }
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         img_exception_search_nf_fn.visible()
         rv_next_match_leagues.gone()
     }
 
-    companion object{
+    companion object {
         const val DETAIL_NEXT_MATCH_LEAGUE = "detail_next_match_legaue"
     }
 }

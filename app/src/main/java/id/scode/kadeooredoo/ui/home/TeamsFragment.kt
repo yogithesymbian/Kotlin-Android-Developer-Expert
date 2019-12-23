@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
-import id.scode.kadeooredoo.EspressoIdlingResource
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
@@ -132,7 +131,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
                 }
                 //Memberitahukan Espresso bahwa aplikasi sedang sibuk
-                EspressoIdlingResource.increment()
+//                EspressoIdlingResource.increment()
                 teamsPresenter.getLeagueTeamList(leagueName)
             }
 
@@ -144,7 +143,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         // pull-down
         swipeRefreshLayoutListTeam.onRefresh {
             info("try swipe to refresh on select ${spinner.selectedItem}")
-            EspressoIdlingResource.increment()
+//            EspressoIdlingResource.increment()
             teamsPresenter.getLeagueTeamList(spinner.selectedItem.toString())
         }
 
@@ -249,10 +248,10 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     override fun showTeamList(data: List<Team>?) {
-        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-            //Memberitahukan bahwa tugas sudah selesai dijalankan
-            EspressoIdlingResource.decrement()
-        }
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show team list : process")
         swipeRefreshLayoutListTeam.isRefreshing = false
         teamsMutableList.clear()
