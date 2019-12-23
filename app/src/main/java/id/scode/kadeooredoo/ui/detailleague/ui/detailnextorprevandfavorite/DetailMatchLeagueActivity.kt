@@ -100,6 +100,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 eventPrevious?.also {
                     it.idEvent?.let { it1 ->
                         detailMatchPresenter.getDetailMatchList(it1)
+                        info("http://$LOOKUP_EVENT")
                         id = it1
                         favoriteState(
                             favoriteStateDataSet,
@@ -125,6 +126,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 eventNext?.also {
                     it.idEvent?.let { it1 ->
                         detailMatchPresenter.getDetailMatchList(it1)
+                        info("http://$LOOKUP_EVENT")
                         id = it1
                         favoriteState(
                             favoriteStateDataSet,

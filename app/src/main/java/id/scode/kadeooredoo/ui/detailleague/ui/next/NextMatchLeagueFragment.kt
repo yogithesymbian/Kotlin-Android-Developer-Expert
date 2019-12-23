@@ -73,6 +73,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
             //            EspressoIdlingResource.increment()
             // call the api
             nextPresenter.getNextLeagueList(id)
+            info("http://$EVENT_NEXT_LEAGUE")
             info("get data with $id")
 
             // test obs

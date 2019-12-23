@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.SEARCH_ALL_TEAM
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
@@ -133,6 +134,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                 //Memberitahukan Espresso bahwa aplikasi sedang sibuk
 //                EspressoIdlingResource.increment()
                 teamsPresenter.getLeagueTeamList(leagueName)
+                info("http://$SEARCH_ALL_TEAM")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -145,6 +147,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
             info("try swipe to refresh on select ${spinner.selectedItem}")
 //            EspressoIdlingResource.increment()
             teamsPresenter.getLeagueTeamList(spinner.selectedItem.toString())
+            info("http://$SEARCH_ALL_TEAM")
         }
 
     }

@@ -15,16 +15,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeague
 import id.scode.kadeooredoo.ui.detailleague.presenter.PreviousPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_previous.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -53,15 +50,44 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
         savedInstanceState: Bundle?
     ): View? {
 
-
         previousLeagueViewModel =
             ViewModelProviders.of(this).get(PreviousLeagueViewModel::class.java)
 
         // initialize binding
         val root = inflater.inflate(R.layout.fragment_previous, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        progressBar = root.findViewById(R.id.progress_detail_previous)
-        recyclerView = root.findViewById(R.id.rv_prev_match_leagues)
+
+        /**
+         * reviewer class MADE should listener click onCreateView after inflating
+         * declare & initialize adapter and presenter
+         * for the callBack a getLeagueTeamList
+         */
+        rvPrevMatchLeagueAdapter = activity?.applicationContext?.let { context ->
+            RvPrevMatchLeague(
+                context,
+                eventPreviousMutableList
+            ) {
+                info(
+                    """
+                           date : ${it.strDate}
+                    """.trimIndent()
+                )
+                context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
+            }
+        }!!
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val toolbarPrev = view.findViewById<Toolbar>(R.id.toolbar_previous)
+        ((activity as AppCompatActivity)).setSupportActionBar(toolbarPrev)
+        setHasOptionsMenu(true)
+
+        val textView: TextView = view.findViewById(R.id.text_home)
+        progressBar = view.findViewById(R.id.progress_detail_previous)
+        recyclerView = view.findViewById(R.id.rv_prev_match_leagues)
 
         // set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
@@ -79,6 +105,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             //            EspressoIdlingResource.increment()
             // call the api
             previousPresenter.getPreviousLeagueList(id)
+            info("http://$EVENT_PAST_LEAGUE")
             info("get data with $id")
 
             // test obs
@@ -88,34 +115,8 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             })
         }
 
-
-        /**
-         * declare & initialize adapter and presenter
-         * for the callBack a getLeagueTeamList
-         */
-        rvPrevMatchLeagueAdapter = activity?.applicationContext?.let { context ->
-            RvPrevMatchLeague(
-                context,
-                eventPreviousMutableList
-            ) {
-                info(
-                    """
-                           date : ${it.strDate}
-                    """.trimIndent()
-                )
-                context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
-            }
-        }!!
         recyclerView.adapter = rvPrevMatchLeagueAdapter
 
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val toolbarPrev = view.findViewById<Toolbar>(R.id.toolbar_previous)
-        ((activity as AppCompatActivity)).setSupportActionBar(toolbarPrev)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

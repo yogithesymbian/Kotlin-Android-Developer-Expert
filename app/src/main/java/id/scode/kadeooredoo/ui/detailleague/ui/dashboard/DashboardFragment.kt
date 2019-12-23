@@ -72,6 +72,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         idLeague?.let {
             //EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
+            info("http://$LOOKUP_LEAGUE")
         }
 
         return root

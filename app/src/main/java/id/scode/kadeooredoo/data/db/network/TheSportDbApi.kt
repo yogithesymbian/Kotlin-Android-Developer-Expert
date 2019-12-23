@@ -1,6 +1,6 @@
 package id.scode.kadeooredoo.data.db.network
 
-import id.scode.kadeooredoo.BuildConfig
+import id.scode.kadeooredoo.*
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -24,44 +24,44 @@ object TheSportDbApi {
     fun getLeagueTeams(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/search_all_teams.php?l=" + idLeague
+                "/$SEARCH_ALL_TEAM?l=" + idLeague
     }
 
 
     fun getLookupTeams(idTeam: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/lookupteam.php?id=" + idTeam
+                "/$LOOKUP_TEAM?id=" + idTeam
     }
 
     fun getDetailLeagueTeams(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/lookupleague.php?id=" + idLeague
+                "/$LOOKUP_LEAGUE?id=" + idLeague
     }
 
     fun getNextMatchTeams(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/eventsnextleague.php?id=" + idLeague
+                "/$EVENT_NEXT_LEAGUE?id=" + idLeague
     }
 
     fun getPreviousMatchTeams(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/eventspastleague.php?id=" + idLeague
+                "/$EVENT_PAST_LEAGUE?id=" + idLeague
     }
 
 
     fun getDetailMatchEventTeams(idEvent: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/lookupevent.php?id=" + idEvent
+                "/$LOOKUP_EVENT?id=" + idEvent
     }
 
     fun searchTeams(teamVsTeam: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/searchevents.php?e=" + teamVsTeam
+                "/$SEARCH_EVENT?e=" + teamVsTeam
     }
 }

@@ -120,6 +120,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 id = idOnline as String
 //                EspressoIdlingResource.increment()
                 teamsPresenter.getDetailLeagueTeamList(id)
+                info("http://$LOOKUP_TEAM")
                 favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
             }
             idOnline == null -> {

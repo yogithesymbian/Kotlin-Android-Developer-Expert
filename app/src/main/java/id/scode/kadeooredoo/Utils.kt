@@ -27,6 +27,30 @@ const val JP_LANG = "jp_lang"
 const val SPORT = "Soccer"
 const val EXCEPTION_NULL = "exception_null"
 
+// ID_LEAGUE={idLeague} param
+
+// in home | ui/home/HomeActivity.kt
+const val SEARCH_ALL_TEAM = "search_all_teams.php" // TeamsFragment.kt
+
+/**
+ *  in detailleague | ui/detailleague/DetailLeagueActivity.kt | NavigationGraph
+ * ----------------------------------------------------------------------------------------
+ */
+const val LOOKUP_LEAGUE = "lookupleague.php" // DashboardFragment.kt
+const val EVENT_NEXT_LEAGUE = "eventsnextleague.php" // PreviousMatchLeagueFragment.kt
+const val EVENT_PAST_LEAGUE = "eventspastleague.php" // NextMatchLeagueFragment.kt
+const val SEARCH_EVENT = "searchevents.php" // PreviousMatchLeagueFragment.kt && NextMatchLeagueFragment.kt
+
+// onClick recyclerView of event_next | event_past
+const val LOOKUP_EVENT = "lookupevent.php" // DetailMatchLeagueActivity.kt
+// ----------------------------------------------------------------------------------------
+
+// ID_TEAM={idTeam} param
+const val LOOKUP_TEAM = "lookupteam.php" // get badge logo team all activity and fragment who is load the img
+
+// FINAL PROJECT RESOURCE ADDED
+const val LOOKUP_TABLE = "lookuptable.php" //
+
 fun View.visible() {
     visibility = View.VISIBLE
 }
