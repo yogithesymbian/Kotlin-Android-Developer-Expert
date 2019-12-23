@@ -107,6 +107,10 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         val toolbarNext = view.findViewById<Toolbar>(R.id.toolbar_next)
         ((activity as AppCompatActivity)).setSupportActionBar(toolbarNext)
         setHasOptionsMenu(true)
+
+        cd_toolbar.setOnClickListener{
+            
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
