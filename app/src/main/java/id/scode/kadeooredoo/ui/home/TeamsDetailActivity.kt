@@ -271,13 +271,20 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                     JP_LANG -> desc.text = it[zero].strDescriptionJP
                 }
             }
+            var descEn = it[zero].strDescriptionEN
+            var descJp = it[zero].strDescriptionJP
+
+            if (descEn == null) descEn = ""
+            if (descJp == null) descJp = ""
 
             teams = Team(
                 teamId = it[zero].teamId,
                 teamName = it[zero].teamName,
                 teamBadge = it[zero].teamBadge,
-                strDescriptionEN = it[zero].strDescriptionEN,
-                strDescriptionJP = it[zero].strDescriptionJP
+//                strDescriptionEN = "hello worldEn",
+//                strDescriptionJP = "hello worldJP"
+                strDescriptionEN = descEn,
+                strDescriptionJP = descJp
             )
 
             info("try show team list : done")
