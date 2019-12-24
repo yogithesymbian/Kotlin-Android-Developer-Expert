@@ -189,5 +189,7 @@
     <string name="language_en" tools:keep="@string/language_en">en_lang</string>
 
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
+    <string name="activity_home_l_e_a_g_u_e">L E A G U E</string>
+    <string name="activity_home_t_e_a_m_s">T E A M S</string>
 
 </resources>

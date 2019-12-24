@@ -281,8 +281,6 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 teamId = it[zero].teamId,
                 teamName = it[zero].teamName,
                 teamBadge = it[zero].teamBadge,
-//                strDescriptionEN = "hello worldEn",
-//                strDescriptionJP = "hello worldJP"
                 strDescriptionEN = descEn,
                 strDescriptionJP = descJp
             )

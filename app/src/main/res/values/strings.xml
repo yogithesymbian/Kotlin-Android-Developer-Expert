@@ -171,8 +171,8 @@
     <string name="title_team_detail">Team Detail</string>
     <string name="activity_detail_match_league_favorite">Favorite</string>
 
-    <string name="fragment_favorite_main_event_prev">Event Prev</string>
-    <string name="fragment_favorite_main_event_next">Event Next</string>
+    <string name="fragment_favorite_main_event_prev">Prev</string>
+    <string name="fragment_favorite_main_event_next">Next</string>
 
     <string name="hello_blank_fragment" tools:keep="@string/hello_blank_fragment">Hello blank fragment</string>
     <string name="detail_match_league_activity_favorite_state">favorite</string>
@@ -190,5 +190,7 @@
     <string name="language_en" tools:keep="@string/language_en">en_lang</string>
 
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
+    <string name="activity_home_l_e_a_g_u_e">L E A G U E</string>
+    <string name="activity_home_t_e_a_m_s">T E A M S</string>
 
 </resources>

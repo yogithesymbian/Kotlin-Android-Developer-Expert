@@ -21,6 +21,60 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_event"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="E V E N T"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_teams"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_league" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_vertical_fav"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_event"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_event"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event"
+        tools:ignore="UnusedAttribute" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_league"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="@string/activity_home_l_e_a_g_u_e"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="@+id/tabs" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_teams"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="@string/activity_home_t_e_a_m_s"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="@+id/tabs" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -28,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="158dp"
         android:focusable="true"
         android:scrollbarStyle="outsideOverlay"
         android:visibility="gone"
@@ -46,6 +100,16 @@
         app:tabSelectedTextColor="@color/colorPrimaryDark"
         app:tabTextColor="@color/colorPrimary"
         tools:ignore="UnusedAttribute">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_favorite_main_event_prev" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_favorite_main_event_next" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
