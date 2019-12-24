@@ -48,7 +48,10 @@ const val LOOKUP_EVENT = "lookupevent.php" // DetailMatchLeagueActivity.kt
 const val LOOKUP_TEAM = "lookupteam.php" // get badge logo team all activity and fragment who is load the img
 
 // FINAL PROJECT RESOURCE ADDED
-const val LOOKUP_TABLE = "lookuptable.php" //
+const val LOOKUP_TABLE = "lookuptable.php" // idLeague
+const val LOOKUP_ALL_PLAYER = "lookup_all_players.php" //{idTeam}
+const val LOOKUP_PLAYER = "lookupplayer.php" // {idPemain}
+
 
 fun View.visible() {
     visibility = View.VISIBLE
