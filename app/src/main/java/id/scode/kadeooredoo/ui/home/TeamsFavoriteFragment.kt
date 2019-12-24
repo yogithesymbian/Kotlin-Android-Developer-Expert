@@ -50,6 +50,7 @@ class TeamsFavoriteFragment : Fragment(), AnkoLogger {
         recyclerView = view.findViewById(R.id.rv_teams)
         imageView = view.findViewById(R.id.img_exception_favorite)
         swipeRefreshLayout = view.findViewById(R.id.swrl_teams)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

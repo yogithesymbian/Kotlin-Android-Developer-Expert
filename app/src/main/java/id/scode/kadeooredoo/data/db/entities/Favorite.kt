@@ -12,13 +12,22 @@ package id.scode.kadeooredoo.data.db.entities
  * Linux 5.2.0-kali3-amd64
  */
 
-data class Favorite(val id: Long?, val teamId: String?, val teamName: String?, val teamBadge: String?) {
+data class Favorite(
+    val id: Long?,
+    val teamId: String?,
+    val teamName: String?,
+    val teamBadge: String?
+//    val teamDescEn: String?,
+//    val teamDescJp: String
+) {
 
     companion object {
-        const val TABLE_FAVORITE: String = "TABLE_FAVORITE_PREV"
+        const val TABLE_FAVORITE: String = "TABLE_FAVORITE_TEAM"
         const val ID: String = "ID_"
         const val TEAM_ID: String = "TEAM_ID"
         const val TEAM_NAME: String = "TEAM_NAME"
         const val TEAM_BADGE: String = "TEAM_BADGE"
+//        const val TEAM_DESC_EN: String = "TEAM_DESC_EN"
+//        const val TEAM_DESC_JP: String = "TEAM_DESC_JP"
     }
 }

@@ -19,7 +19,6 @@ import java.util.*
  * JRE: 1.8.0_202-release-1483-b49-5587405 amd64
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
- * @SuppressLint("SetTextI18n")
  */
 
 const val EN_LANG = "en_lang"
@@ -28,10 +27,9 @@ const val SPORT = "Soccer"
 const val EXCEPTION_NULL = "exception_null"
 
 // ID_LEAGUE={idLeague} param
-
 // in home | ui/home/HomeActivity.kt
 const val SEARCH_ALL_TEAM = "search_all_teams.php" // TeamsFragment.kt
-
+const val LOOKUP_ALL_TEAM = "lookup_all_teams.php" // TeamsFragment.kt
 /**
  *  in detailleague | ui/detailleague/DetailLeagueActivity.kt | NavigationGraph
  * ----------------------------------------------------------------------------------------
@@ -41,6 +39,7 @@ const val EVENT_NEXT_LEAGUE = "eventsnextleague.php" // PreviousMatchLeagueFragm
 const val EVENT_PAST_LEAGUE = "eventspastleague.php" // NextMatchLeagueFragment.kt
 const val SEARCH_EVENT = "searchevents.php" // PreviousMatchLeagueFragment.kt && NextMatchLeagueFragment.kt
 
+// ID_EVENT={idEvent} param
 // onClick recyclerView of event_next | event_past
 const val LOOKUP_EVENT = "lookupevent.php" // DetailMatchLeagueActivity.kt
 // ----------------------------------------------------------------------------------------

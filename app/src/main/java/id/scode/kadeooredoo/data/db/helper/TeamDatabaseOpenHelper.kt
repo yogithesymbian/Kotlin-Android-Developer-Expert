@@ -44,6 +44,8 @@ class TeamDatabaseOpenHelper(context: Context) : ManagedSQLiteOpenHelper(
             Favorite.TEAM_ID to TEXT + UNIQUE,
             Favorite.TEAM_NAME to TEXT,
             Favorite.TEAM_BADGE to TEXT
+//            Favorite.TEAM_DESC_EN to TEXT,
+//            Favorite.TEAM_DESC_JP to TEXT
         )
     }
 

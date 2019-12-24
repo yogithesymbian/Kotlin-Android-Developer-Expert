@@ -47,7 +47,6 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private lateinit var teamBadge: ImageView
     private lateinit var teamName: TextView
-
     private lateinit var teamDescription: TextView
 
     private lateinit var teamsPresenter: TeamsPresenter
@@ -58,10 +57,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private var favoriteStateDataSet: String? = null
 
-
     //menu favorite
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
+
+    // description language
+    private lateinit var language: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,6 +111,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
         }
 
+        language = resources.getString(R.string.app_language)
+
 
         val request = ApiRepository()
         val gson = Gson()
@@ -157,6 +160,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         Picasso.get().load(item.teamBadge).into(teamBadge)
         teamName.text = item.teamName
         teamDescription.text = item.teamName
+//        teamDescription.also { desc ->
+//            when (language) {
+//                EN_LANG -> desc.text = item.teamDescEn
+//                JP_LANG -> desc.text = item.teamDescJp
+//            }
+//        }
         progressBar.gone()
 
     }
@@ -208,6 +217,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                         Favorite.TEAM_ID to teams?.teamId,
                         Favorite.TEAM_NAME to teams?.teamName,
                         Favorite.TEAM_BADGE to teams?.teamBadge
+//                        Favorite.TEAM_DESC_EN to teams?.strDescriptionEN,
+//                        Favorite.TEAM_DESC_JP to teams?.strDescriptionJP
                     )
                     teamBadge.snackbar("Added to favorite").show()
                 }
@@ -254,12 +265,19 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             Picasso.get().load(it[zero].teamBadge).into(teamBadge)
 
             teamName.text = it[zero].teamName
-            teamDescription.text = it[zero].teamName
+            teamDescription.also { desc ->
+                when (language) {
+                    EN_LANG -> desc.text = it[zero].strDescriptionEN
+                    JP_LANG -> desc.text = it[zero].strDescriptionJP
+                }
+            }
 
             teams = Team(
                 teamId = it[zero].teamId,
                 teamName = it[zero].teamName,
                 teamBadge = it[zero].teamBadge
+//                strDescriptionEN = it[zero].strDescriptionEN,
+//                strDescriptionJP = it[zero].strDescriptionJP
             )
 
             info("try show team list : done")
