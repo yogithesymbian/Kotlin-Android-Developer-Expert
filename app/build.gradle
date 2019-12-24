@@ -92,7 +92,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
     implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
-//    Caused by: org.gradle.internal.resolve.ModuleVersionResolveException: Could not resolve com.android.support.test.espresso:espresso-idling-resource:3.0.2.
 
     // image
     implementation 'com.squareup.picasso:picasso:2.71828'

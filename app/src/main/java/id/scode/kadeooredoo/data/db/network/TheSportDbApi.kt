@@ -59,9 +59,14 @@ object TheSportDbApi {
                 "/$LOOKUP_EVENT?id=" + idEvent
     }
 
-    fun searchTeams(teamVsTeam: String): String {
+    fun getSearchEventTeams(teamVsTeam: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
                 "/$SEARCH_EVENT?e=" + teamVsTeam
+    }
+    fun getSearchTeams(teamQuery: String): String {
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/$SEARCH_EVENT?e=" + teamQuery
     }
 }

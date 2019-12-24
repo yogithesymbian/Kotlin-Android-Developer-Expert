@@ -521,6 +521,10 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         info("try show jersey team away list : done")
     }
 
+    override fun exceptionNullObject(msg: String) {
+        // just for in home | search
+    }
+
     override fun showLoading() {
         progressBar.visible()
     }

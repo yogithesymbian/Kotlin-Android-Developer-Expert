@@ -20,5 +20,6 @@ interface TeamsView {
 
     fun showTeamList(data: List<Team>?)
     fun showTeamAwayList(data: List<Team>?)
+    fun exceptionNullObject(msg: String)
 
 }

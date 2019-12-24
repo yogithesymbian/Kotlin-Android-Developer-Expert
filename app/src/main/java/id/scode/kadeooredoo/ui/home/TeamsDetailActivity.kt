@@ -296,4 +296,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
     override fun showTeamAwayList(data: List<Team>?) {
         // just for inside adapter previous and next
     }
+
+    override fun exceptionNullObject(msg: String) {
+        // just for in home | searchView
+    }
 }

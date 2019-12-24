@@ -163,6 +163,7 @@
     <string name="option_search_previous">Search Event Past</string>
     <string name="toolbar_next_search_event_past">Search Event Next</string>
     <string name="option_search_next">Search Event Next</string>
+    <string name="option_search_team">Search Event Team</string>
     <string name="exception_search_not_found">The Teams Not Found</string>
 
     <string name="teams">Teams</string>
@@ -190,5 +191,6 @@
     <string name="language_en" tools:keep="@string/language_en">en_lang</string>
 
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
+    <string name="toolbar_home_search_teams">Search Teams</string>
 
 </resources>

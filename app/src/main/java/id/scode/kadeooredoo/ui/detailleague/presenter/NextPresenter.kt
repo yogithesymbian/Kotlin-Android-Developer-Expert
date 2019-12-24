@@ -51,7 +51,7 @@ class NextPresenter(
         GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequestAsync(TheSportDbApi.searchTeams(teamVsTeam)).await(),
+                    apiRepository.doRequestAsync(TheSportDbApi.getSearchEventTeams(teamVsTeam)).await(),
                     NextLeagueSearchResponse::class.java
                 )
             if (data.eventSearch.isNullOrEmpty()) {

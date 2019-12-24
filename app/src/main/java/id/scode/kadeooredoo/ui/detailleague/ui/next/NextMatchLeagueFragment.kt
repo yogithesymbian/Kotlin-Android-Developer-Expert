@@ -155,7 +155,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     private fun resultSearch(query: String) {
-        EspressoIdlingResource.increment()
+//        EspressoIdlingResource.increment()
         nextPresenter.getSearchNextLeagueList(query)
     }
 

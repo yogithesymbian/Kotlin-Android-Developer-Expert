@@ -2,6 +2,7 @@ package id.scode.kadeooredoo.ui.home.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.CoroutineContextProvider
+import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
@@ -9,6 +10,8 @@ import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -26,7 +29,7 @@ class TeamsPresenter(
     private val apiRepository: ApiRepository,
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
-) {
+) : AnkoLogger{
 
     fun getLeagueTeamList(league: String) {
         view.showLoading()
@@ -67,6 +70,33 @@ class TeamsPresenter(
                 )
             view.hideLoading()
             view.showTeamAwayList(data.team?.filter { it.strSport == SPORT })
+        }
+    }
+
+    fun getSearchTeams(teamsQuery: String){
+        view.showLoading()
+        GlobalScope.launch (context.main) {
+            val data =
+                gson.fromJson(
+                    apiRepository.doRequestAsync(TheSportDbApi.getSearchTeams(teamsQuery)).await(),
+                    TeamResponse::class.java
+                )
+            if (data.team.isNullOrEmpty()){
+                info("data_x $EXCEPTION_NULL")
+                view.exceptionNullObject("data_x $EXCEPTION_NULL")
+                view.hideLoading()
+            } else {
+                val filterOne = data.team.filter { it.strSport == SPORT }
+
+                if (!filterOne.isNullOrEmpty()) {
+                    view.showTeamList(filterOne)
+                    view.hideLoading()
+                } else {
+                    info("data_y $EXCEPTION_NULL")
+                    view.exceptionNullObject("data_y $EXCEPTION_NULL")
+                    view.hideLoading()
+                }
+            }
         }
     }
 

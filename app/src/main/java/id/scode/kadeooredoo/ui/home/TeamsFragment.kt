@@ -1,14 +1,13 @@
 package id.scode.kadeooredoo.ui.home
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,11 +23,13 @@ import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
+import kotlinx.android.synthetic.main.fragment_favorite_main.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * A simple [Fragment] subclass.
@@ -41,6 +42,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     private lateinit var swipeRefreshLayoutListTeam: SwipeRefreshLayout
     private lateinit var spinner: Spinner
     private lateinit var btnDet: Button
+    private lateinit var searchView: SearchView
+    private lateinit var imageViewNotFound: ImageView
 
     /**
      * apply the TeamsPresenter and MainAdapter
@@ -112,6 +115,14 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                     gravity = Gravity.BOTTOM.and(Gravity.END)
                     margin = dip(8)
                 }
+
+                imageViewNotFound = imageView {
+                    id = R.id.img_exception_search_team
+                    setBackgroundResource(R.drawable.ic_exception_search_not_found)
+                    visibility = View.GONE
+                }.lparams(matchParent, matchParent)
+
+
                 swipeRefreshLayoutListTeam = swipeRefreshLayout {
                     setColorSchemeColors(
                         R.color.colorAccent,
@@ -119,8 +130,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                         android.R.color.holo_orange_light,
                         android.R.color.holo_red_light
                     )
+                    visibility = View.VISIBLE
                     relativeLayout {
-                        //                    lparams(width = matchParent, height = wrapContent)
 
                         recyclerViewListTeam = recyclerView {
                             id = R.id.rv_list_team
@@ -136,9 +147,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                     }
                 }.lparams(width = matchParent, height = wrapContent)
 
-
             }
-
 
         } //end of view
 
@@ -147,6 +156,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         // spinner config
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(
@@ -243,6 +253,42 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_home, menu)
+
+        // search view with
+        val searchManager =
+            activity?.applicationContext?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView = menu.findItem(R.id.option_search_team)?.actionView as SearchView
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+
+        searchView.queryHint = resources.getString(R.string.option_search_team)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                info("Search View onQueryTextSubmit")
+                toast(query)
+                resultSearch(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                info("Search View onQueryTextChange")
+//                resultAdapter.filter.filter(newText)
+                return false
+            }
+        })
+        searchView.setOnCloseListener {
+            //            rvNextMatchLeagueAdapter.filter.filter("")
+            true
+        }
+    }
+
+    private fun resultSearch(query: String) {
+//        EspressoIdlingResource.increment()
+        teamsPresenter.getSearchTeams(query)
+    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -265,10 +311,25 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         }
         teamsAdapter.notifyDataSetChanged()
         info("try show team list : done")
+        if (teamsMutableList.isNullOrEmpty()) {
+            toast(getString(R.string.exception_search_not_found))
+            imageViewNotFound.visible()
+            rv_teams?.gone()
+        } else {
+            imageViewNotFound.gone()
+            rv_teams?.visible()
+            info("hello prev ${teamsMutableList[0].teamName}")
+        }
     }
 
     override fun showTeamAwayList(data: List<Team>?) {
         // just for inside adapter previous and next
+    }
+
+    override fun exceptionNullObject(msg: String) {
+        toast("$msg ${getString(R.string.exception_search_not_found)}")
+        imageViewNotFound.visible()
+        rv_teams?.gone()
     }
 
     companion object {

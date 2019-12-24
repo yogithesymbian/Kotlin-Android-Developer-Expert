@@ -211,6 +211,10 @@ class RvPrevMatchLeague(
         info("try show jersey team away LOOKUP : done")
     }
 
+    override fun exceptionNullObject(msg: String) {
+        // just for in home | search
+    }
+
     companion object{
         val TAG_LOG = RvPrevMatchLeague::class.java.simpleName
     }
