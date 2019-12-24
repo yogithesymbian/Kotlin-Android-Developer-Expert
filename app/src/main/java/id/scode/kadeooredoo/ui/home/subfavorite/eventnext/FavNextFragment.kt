@@ -31,7 +31,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 /**
  * A simple [Fragment] subclass.
  */
-class FavNextFragment : Fragment(),AnkoLogger {
+class FavNextFragment : Fragment(), AnkoLogger {
 
     private var favoritesMutableList: MutableList<FavTeamJoinDetail> = mutableListOf()
     private lateinit var favoriteEventAdapter: FavoriteEventAdapter
@@ -39,6 +39,26 @@ class FavNextFragment : Fragment(),AnkoLogger {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fav_next, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = view.findViewById(R.id.rv_event_next_match)
+        imageView = view.findViewById(R.id.img_exception_favorite_event_next)
+        swipeRefreshLayout = view.findViewById(R.id.swrl_event_next_match)
+
+        // set the layout
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 1, GridLayoutManager.VERTICAL, false)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -58,28 +78,6 @@ class FavNextFragment : Fragment(),AnkoLogger {
             showFavorite()
         }
     }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_fav_next, container, false)
-
-        recyclerView = root.findViewById(R.id.rv_event_next_match)
-        imageView = root.findViewById(R.id.img_exception_favorite_event_next)
-        swipeRefreshLayout = root.findViewById(R.id.swrl_event_next_match)
-
-        // set the layout
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 1, GridLayoutManager.VERTICAL, false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-
-        return root
-    }
-
 
     // show data Anko SQLite
     private fun showFavorite() {

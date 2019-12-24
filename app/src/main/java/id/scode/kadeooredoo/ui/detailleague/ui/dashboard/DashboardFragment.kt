@@ -39,19 +39,32 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     private lateinit var progressBar: ProgressBar
     private lateinit var carouselView: CarouselView
     private lateinit var fantArt: Array<String>
+    private lateinit var textView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // initialize binding
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        textView = view.findViewById(R.id.text_dashboard)
+        progressBar = view.findViewById(R.id.progress_detail_dashboard)
+        carouselView = view.findViewById(R.id.carousel_fanart)
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        // initialize binding
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        progressBar = root.findViewById(R.id.progress_detail_dashboard)
-        carouselView = root.findViewById(R.id.carousel_fanart)
 
         // get pass data args
         val idLeagueKey = resources.getString(R.string.key_id_league)
@@ -74,13 +87,6 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             detailLeaguePresenter.getDetailLeagueList(it)
             info("http://$LOOKUP_LEAGUE")
         }
-
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
 
         float_social_media?.setOnClickListener {
 
@@ -165,8 +171,6 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             }
 
         }
-
-
     }
 
     override fun showLoading() {

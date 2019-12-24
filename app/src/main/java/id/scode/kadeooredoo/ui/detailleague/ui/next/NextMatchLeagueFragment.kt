@@ -42,20 +42,37 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
+    private lateinit var toolbarNext: Toolbar
+    private lateinit var textView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // initialize binding
+        return inflater.inflate(R.layout.fragment_next, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        toolbarNext = view.findViewById(R.id.toolbar_next)
+        textView = view.findViewById(R.id.text_notifications)
+        progressBar = view.findViewById(R.id.progress_detail_next)
+        recyclerView = view.findViewById(R.id.rv_next_match_leagues)
+
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        ((activity as AppCompatActivity)).setSupportActionBar(toolbarNext)
+        setHasOptionsMenu(true)
+
         nextLeagueViewModel =
             ViewModelProviders.of(this).get(NextLeagueViewModel::class.java)
-
-        // initialize binding
-        val root = inflater.inflate(R.layout.fragment_next, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        progressBar = root.findViewById(R.id.progress_detail_next)
-        recyclerView = root.findViewById(R.id.rv_next_match_leagues)
 
         //set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
@@ -101,20 +118,8 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
             }
         }!!
         recyclerView.adapter = rvNextMatchLeagueAdapter
-
-        return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val toolbarNext = view.findViewById<Toolbar>(R.id.toolbar_next)
-        ((activity as AppCompatActivity)).setSupportActionBar(toolbarNext)
-        setHasOptionsMenu(true)
-
-        cd_toolbar.setOnClickListener {
-
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

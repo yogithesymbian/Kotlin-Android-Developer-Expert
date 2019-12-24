@@ -39,9 +39,11 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
     private var eventPreviousMutableList: MutableList<EventPrevious> = mutableListOf()
     private lateinit var previousPresenter: PreviousPresenter
     private lateinit var rvPrevMatchLeagueAdapter: RvPrevMatchLeague
+    private lateinit var toolbarPrev: Toolbar
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
+    private lateinit var textView: TextView
 
 
     override fun onCreateView(
@@ -49,15 +51,9 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        previousLeagueViewModel =
-            ViewModelProviders.of(this).get(PreviousLeagueViewModel::class.java)
-
         // initialize binding
         val root = inflater.inflate(R.layout.fragment_previous, container, false)
-
         /**
-         * reviewer class MADE should listener click onCreateView after inflating
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
@@ -74,21 +70,27 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
                 context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
             }
         }!!
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbarPrev = view.findViewById<Toolbar>(R.id.toolbar_previous)
-        ((activity as AppCompatActivity)).setSupportActionBar(toolbarPrev)
-        setHasOptionsMenu(true)
-
-        val textView: TextView = view.findViewById(R.id.text_home)
+        toolbarPrev = view.findViewById(R.id.toolbar_previous)
+        textView = view.findViewById(R.id.text_home)
         progressBar = view.findViewById(R.id.progress_detail_previous)
         recyclerView = view.findViewById(R.id.rv_prev_match_leagues)
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        ((activity as AppCompatActivity)).setSupportActionBar(toolbarPrev)
+        setHasOptionsMenu(true)
+
+        previousLeagueViewModel =
+            ViewModelProviders.of(this).get(PreviousLeagueViewModel::class.java)
         // set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
@@ -116,7 +118,6 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
         }
 
         recyclerView.adapter = rvPrevMatchLeagueAdapter
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

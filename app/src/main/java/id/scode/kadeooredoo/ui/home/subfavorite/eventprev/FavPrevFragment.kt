@@ -39,6 +39,27 @@ class FavPrevFragment : Fragment(), AnkoLogger {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fav_prev, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = view.findViewById(R.id.rv_event_prev_match)
+        imageView = view.findViewById(R.id.img_exception_favorite_event_prev)
+        swipeRefreshLayout = view.findViewById(R.id.swrl_event_prev_match)
+
+        // set the layout
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 1, GridLayoutManager.VERTICAL, false)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -57,27 +78,6 @@ class FavPrevFragment : Fragment(), AnkoLogger {
             showFavorite()
         }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_fav_prev, container, false)
-
-        recyclerView = root.findViewById(R.id.rv_event_prev_match)
-        imageView = root.findViewById(R.id.img_exception_favorite_event_prev)
-        swipeRefreshLayout = root.findViewById(R.id.swrl_event_prev_match)
-
-        // set the layout
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 1, GridLayoutManager.VERTICAL, false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-
-        return root
-    }
-
 
     // show data Anko SQLite
     private fun showFavorite() {

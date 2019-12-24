@@ -54,6 +54,97 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     private lateinit var leagueName: String //for spinner
 
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return createView(AnkoContext.create(requireContext()))
+    }
+
+    @SuppressLint("ResourceAsColor")
+    override fun createView(ui: AnkoContext<Context>): View = with(ui) {
+
+        // view
+        verticalLayout {
+
+            linearLayout {
+                lparams(width = matchParent, height = matchParent)
+                orientation = LinearLayout.VERTICAL
+                topPadding = dip(8)
+                leftPadding = dip(8)
+                rightPadding = dip(8)
+
+                toolbar {
+                    id = R.id.toolbar_home
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        logo =
+                            resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
+                        title = context.getString(R.string.main_activity_title_for_layout)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            titleMarginStart = dip(32)
+                        }
+                        elevation = 12f
+                        backgroundColor = R.color.colorPrimaryBar
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            setBackgroundColor(
+                                resources.getColor(
+                                    R.color.colorPrimaryBar,
+                                    context.theme
+                                )
+                            )
+                        }
+                    }
+                }.lparams(matchParent, wrapContent) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                        margin = dip(16)
+                    }
+                }
+
+                spinner = spinner {
+                    id = R.id.spinner
+                }
+
+                btnDet = button("Detail League") {
+                    id = R.id.btn_det_1
+                    allCaps = false
+                }.lparams(width = matchParent, height = wrapContent) {
+                    gravity = Gravity.BOTTOM.and(Gravity.END)
+                    margin = dip(8)
+                }
+                swipeRefreshLayoutListTeam = swipeRefreshLayout {
+                    setColorSchemeColors(
+                        R.color.colorAccent,
+                        android.R.color.holo_green_light,
+                        android.R.color.holo_orange_light,
+                        android.R.color.holo_red_light
+                    )
+                    relativeLayout {
+                        //                    lparams(width = matchParent, height = wrapContent)
+
+                        recyclerViewListTeam = recyclerView {
+                            id = R.id.rv_list_team
+                            lparams(width = matchParent, height = dip(400))
+                            layoutManager = LinearLayoutManager(context)
+                        }
+
+                        progressBar = progressBar {
+                            id = R.id.progress_load_team
+                        }.lparams {
+                            centerHorizontally()
+                        }
+                    }
+                }.lparams(width = matchParent, height = wrapContent)
+
+
+            }
+
+
+        } //end of view
+
+    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // spinner config
@@ -152,95 +243,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return createView(AnkoContext.create(requireContext()))
-    }
-
-    @SuppressLint("ResourceAsColor")
-    override fun createView(ui: AnkoContext<Context>): View = with(ui) {
-
-        // view
-        verticalLayout {
-
-            linearLayout {
-                lparams(width = matchParent, height = matchParent)
-                orientation = LinearLayout.VERTICAL
-                topPadding = dip(8)
-                leftPadding = dip(8)
-                rightPadding = dip(8)
-
-                toolbar {
-                    id = R.id.toolbar_home
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        logo =
-                            resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
-                        title = context.getString(R.string.main_activity_title_for_layout)
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            titleMarginStart = dip(32)
-                        }
-                        elevation = 12f
-                        backgroundColor = R.color.colorPrimaryBar
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            setBackgroundColor(
-                                resources.getColor(
-                                    R.color.colorPrimaryBar,
-                                    context.theme
-                                )
-                            )
-                        }
-                    }
-                }.lparams(matchParent, wrapContent) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                        margin = dip(16)
-                    }
-                }
-
-                spinner = spinner {
-                    id = R.id.spinner
-                }
-
-                btnDet = button("Detail League") {
-                    id = R.id.btn_det_1
-                    allCaps = false
-                }.lparams(width = matchParent, height = wrapContent) {
-                    gravity = Gravity.BOTTOM.and(Gravity.END)
-                    margin = dip(8)
-                }
-                swipeRefreshLayoutListTeam = swipeRefreshLayout {
-                    setColorSchemeColors(
-                        R.color.colorAccent,
-                        android.R.color.holo_green_light,
-                        android.R.color.holo_orange_light,
-                        android.R.color.holo_red_light
-                    )
-                    relativeLayout {
-                        //                    lparams(width = matchParent, height = wrapContent)
-
-                        recyclerViewListTeam = recyclerView {
-                            id = R.id.rv_list_team
-                            lparams(width = matchParent, height = dip(400))
-                            layoutManager = LinearLayoutManager(context)
-                        }
-
-                        progressBar = progressBar {
-                            id = R.id.progress_load_team
-                        }.lparams {
-                            centerHorizontally()
-                        }
-                    }
-                }.lparams(width = matchParent, height = wrapContent)
-
-
-            }
-
-
-        } //end of view
-
-    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -270,7 +272,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     companion object {
-        const val DETAIL_KEY = "detail_key" //PAIR key for getParcelAble data obj // match and other see on ctrl + click
+        const val DETAIL_KEY =
+            "detail_key" //PAIR key for getParcelAble data obj // match and other see on ctrl + click
         const val DETAIL_KEY_SCORE = "detail_key_score"
         const val DETAIL_KEY_FAV_TEAM = "detail_key_fav_team"
 

@@ -15,7 +15,6 @@ import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.databaseTeams
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteTeamsAdapter
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
@@ -36,11 +35,34 @@ class TeamsFavoriteFragment : Fragment(), AnkoLogger {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_favorite_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView = view.findViewById(R.id.rv_teams)
+        imageView = view.findViewById(R.id.img_exception_favorite)
+        swipeRefreshLayout = view.findViewById(R.id.swrl_teams)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // set the layout
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =
+            GridLayoutManager(activity?.applicationContext, 1, GridLayoutManager.HORIZONTAL, false)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+
         favoriteTeamsAdapter = FavoriteTeamsAdapter(favoritesMutableList) {
-            context?.startActivity<TeamsDetailActivity>(DETAIL_KEY_FAV_TEAM to "${it.teamId}")
+            context?.startActivity<TeamsDetailActivity>(TeamsFragment.DETAIL_KEY_FAV_TEAM to "${it.teamId}")
         }
 
         recyclerView.adapter = favoriteTeamsAdapter
@@ -50,28 +72,6 @@ class TeamsFavoriteFragment : Fragment(), AnkoLogger {
             showFavorite()
         }
 
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_favorite_main, container, false)
-
-        recyclerView = root.findViewById(R.id.rv_teams)
-        imageView = root.findViewById(R.id.img_exception_favorite)
-        swipeRefreshLayout = root.findViewById(R.id.swrl_teams)
-
-
-        // set the layout
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = GridLayoutManager(activity?.applicationContext, 1, GridLayoutManager.HORIZONTAL, false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-
-        return root
     }
 
 
