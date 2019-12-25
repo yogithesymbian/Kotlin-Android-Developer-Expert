@@ -304,7 +304,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 toast("${it[zero].teamId}")
             }
 
-            imgEvent.setOnClickListener{_->
+            imgEvent.setOnClickListener { _ ->
                 toast("${it[zero].teamId}")
             }
 

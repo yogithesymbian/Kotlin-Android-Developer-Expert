@@ -37,7 +37,8 @@ const val LOOKUP_ALL_TEAM = "lookup_all_teams.php" // TeamsFragment.kt
 const val LOOKUP_LEAGUE = "lookupleague.php" // DashboardFragment.kt
 const val EVENT_NEXT_LEAGUE = "eventsnextleague.php" // PreviousMatchLeagueFragment.kt
 const val EVENT_PAST_LEAGUE = "eventspastleague.php" // NextMatchLeagueFragment.kt
-const val SEARCH_EVENT = "searchevents.php" // PreviousMatchLeagueFragment.kt && NextMatchLeagueFragment.kt
+const val SEARCH_EVENT =
+    "searchevents.php" // PreviousMatchLeagueFragment.kt && NextMatchLeagueFragment.kt
 
 // ID_EVENT={idEvent} param
 // onClick recyclerView of event_next | event_past
@@ -45,7 +46,8 @@ const val LOOKUP_EVENT = "lookupevent.php" // DetailMatchLeagueActivity.kt
 // ----------------------------------------------------------------------------------------
 
 // ID_TEAM={idTeam} param
-const val LOOKUP_TEAM = "lookupteam.php" // get badge logo team all activity and fragment who is load the img
+const val LOOKUP_TEAM =
+    "lookupteam.php" // get badge logo team all activity and fragment who is load the img
 
 // FINAL PROJECT RESOURCE ADDED
 const val LOOKUP_TABLE = "lookuptable.php" // idLeague
@@ -77,7 +79,7 @@ fun toGMTFormat(date: String, time: String): Date? { // nrohman dicoding discuss
 }
 
 @SuppressLint("SimpleDateFormat")
-fun toSimpleString(date: Date?) : String? = with(date ?: Date()){
+fun toSimpleString(date: Date?): String? = with(date ?: Date()) {
     SimpleDateFormat("EEE, dd MMM yyy").format(this)
 }
 

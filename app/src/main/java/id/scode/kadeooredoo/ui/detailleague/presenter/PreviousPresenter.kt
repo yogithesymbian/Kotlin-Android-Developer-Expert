@@ -52,7 +52,8 @@ class PreviousPresenter(
             val data =
                 gson.fromJson(
                     teamVsTeam?.let {
-                        TheSportDbApi.getSearchEventTeams(it) }?.let {
+                        TheSportDbApi.getSearchEventTeams(it)
+                    }?.let {
                         apiRepository.doRequestAsync(
                             it
                         ).await()

@@ -17,7 +17,7 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Team(
-    val idLeague:String? = null,
+    val idLeague: String? = null,
     val idSoccerXML: String? = null,
 
     @SerializedName("idTeam")
@@ -77,7 +77,7 @@ data class Team(
     val strYoutube: String? = null
 ) : Parcelable {
 
-    companion object{
+    companion object {
 
         const val TABLE_FAVORITE_PREV: String = "TABLE_FAVORITE_PREV"
         const val TABLE_FAVORITE_NEXT: String = "TABLE_FAVORITE_NEXT"

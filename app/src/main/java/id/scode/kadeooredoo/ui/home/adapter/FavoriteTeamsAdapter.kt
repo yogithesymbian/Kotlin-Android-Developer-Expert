@@ -25,7 +25,7 @@ import org.jetbrains.anko.*
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.2.0-kali3-amd64
  */
-class FavoriteTeamsAdapter (
+class FavoriteTeamsAdapter(
     private val favorite: List<Favorite>,
     private val listener: (Favorite) -> Unit
 ) : RecyclerView.Adapter<FavoriteViewHolder>() {
@@ -45,14 +45,14 @@ class FavoriteTeamsAdapter (
 class TeamUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
-            linearLayout{
+            linearLayout {
                 lparams(width = matchParent, height = wrapContent)
                 padding = dip(16)
                 orientation = LinearLayout.HORIZONTAL
 
                 imageView {
                     id = R.id.team_badge
-                }.lparams{
+                }.lparams {
                     height = dip(50)
                     width = dip(50)
                 }
@@ -60,7 +60,7 @@ class TeamUI : AnkoComponent<ViewGroup> {
                 textView {
                     id = R.id.team_name
                     textSize = 16f
-                }.lparams{
+                }.lparams {
                     margin = dip(15)
                 }
                 textView {
@@ -71,7 +71,7 @@ class TeamUI : AnkoComponent<ViewGroup> {
                     maxEms = 11
                     ellipsize = TextUtils.TruncateAt.END
 
-                }.lparams{
+                }.lparams {
                     margin = dip(15)
                 }
 
@@ -80,17 +80,17 @@ class TeamUI : AnkoComponent<ViewGroup> {
     }
 }
 
-class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view){
+class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val teamBadge: ImageView = view.find(R.id.team_badge)
-    private val teamName : TextView = view.find(R.id.team_name)
-    private val teamDesc : TextView = view.find(R.id.team_desc)
+    private val teamName: TextView = view.find(R.id.team_name)
+    private val teamDesc: TextView = view.find(R.id.team_desc)
     private val language = view.context.resources.getString(R.string.app_language)
 
     fun bindItem(
         favorite: Favorite,
         listener: (Favorite) -> Unit
-    ){
+    ) {
         Picasso.get()
             .load(favorite.teamBadge)
             .fit()
@@ -104,7 +104,7 @@ class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view){
             }
         }
 
-        itemView.setOnClickListener{listener(favorite)}
+        itemView.setOnClickListener { listener(favorite) }
     }
 
 }

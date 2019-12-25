@@ -18,7 +18,7 @@ data class Favorite(
     val teamName: String?,
     val teamBadge: String?,
     val teamDescEn: String?,
-    val teamDescJp: String
+    val teamDescJp: String?
 ) {
 
     companion object {

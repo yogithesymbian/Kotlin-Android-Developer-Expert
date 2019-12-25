@@ -23,7 +23,7 @@ class DetailLeagueActivity : AppCompatActivity() {
     // menu should be considered as top level destinations.
     private val appBarConfiguration = AppBarConfiguration(
         setOf(
-             R.id.navigation_dashboard, R.id.navigation_previous, R.id.navigation_next
+            R.id.navigation_dashboard, R.id.navigation_previous, R.id.navigation_next
         )
     )
 
@@ -52,9 +52,9 @@ class DetailLeagueActivity : AppCompatActivity() {
         val orderNavNext = navController.graph.findNode(R.id.navigation_next)
         orderNav?.addArgument(
             idLeagueKey, NavArgument.Builder()
-            .setType(NavType.StringType)
-            .setDefaultValue(idLeague)
-            .build()
+                .setType(NavType.StringType)
+                .setDefaultValue(idLeague)
+                .build()
         )
 
         orderNavPrev?.addArgument(
@@ -72,7 +72,7 @@ class DetailLeagueActivity : AppCompatActivity() {
         )
 
 
-        navController.addOnDestinationChangedListener{ _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_previous -> {
                     Log.d(TAG_LOG, "you are in previous league")
@@ -92,11 +92,13 @@ class DetailLeagueActivity : AppCompatActivity() {
         }
 
 
-
     }
+
     // https://codelabs.developers.google.com/codelabs/android-navigation/index.html?index=..%2F..index#8
     override fun onOptionsItemSelected(item: MenuItem) =
-        item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment)) || super.onOptionsItemSelected(item)
+        item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment)) || super.onOptionsItemSelected(
+            item
+        )
 
     override fun onSupportNavigateUp() =
         findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
@@ -106,7 +108,7 @@ class DetailLeagueActivity : AppCompatActivity() {
         finish()
     }
 
-    companion object{
+    companion object {
         private val TAG_LOG = DetailLeagueActivity::class.java.simpleName
     }
 }

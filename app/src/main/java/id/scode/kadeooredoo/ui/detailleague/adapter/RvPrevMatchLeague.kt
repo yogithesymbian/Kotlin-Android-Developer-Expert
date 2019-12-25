@@ -108,11 +108,11 @@ class RvPrevMatchLeague(
 
                 teamsPresenter.getDetailLeagueTeamAwayList(item.idAwayTeam.toString())
 
-                Log.d(TAG_LOG,"set badge outer ${teamsAway?.teamBadge}")
+                Log.d(TAG_LOG, "set badge outer ${teamsAway?.teamBadge}")
 
-                if (teamsAway != null){
+                if (teamsAway != null) {
 
-                    Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
+                    Log.d(TAG_LOG, "set badge deeper ${teamsAway.teamBadge}")
 
                     img_away_team_jersey.let { img ->
                         Glide.with(this.itemView.context)
@@ -246,12 +246,14 @@ class RvPrevMatchLeague(
                 teamName = it[0].teamName
             )
 
-            info("""
+            info(
+                """
                 
                 [ ${it[0].teamName} ] match [ ${teamsAway?.teamName} ]
                 [ $checkIdTeam ] match [ ${teamsAway?.teamId} ]
                 
-            """.trimIndent())
+            """.trimIndent()
+            )
 
         }
         info("try show jersey team away LOOKUP : done")

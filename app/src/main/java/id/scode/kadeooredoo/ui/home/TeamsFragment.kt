@@ -87,14 +87,14 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
                     //https://github.com/Kotlin/anko/blob/c9f90b85310f49fc487d6f3856b2d6af880ac1d7/anko/library/robolectricTests/src/main/java/AndroidMultiMethodListenersActivity.kt
                     //https://github.com/Kotlin/anko/blob/master/anko/library/generated/appcompat-v7-listeners/src/main/java/Listeners.kt
-                    searchView{
+                    searchView {
 
                         queryHint = context.resources.getString(R.string.option_search_team)
 
                         onQueryTextListener {
 
-                            onQueryTextSubmit { query  ->
-                                info (query.toString())
+                            onQueryTextSubmit { query ->
+                                info(query.toString())
                                 resultSearch(query.toString())
                                 true
                             }
@@ -104,7 +104,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                             }
                         }
 
-                    }.lparams{
+                    }.lparams {
                         gravity = Gravity.END
                     }
 

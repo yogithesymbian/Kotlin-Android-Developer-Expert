@@ -89,7 +89,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             //EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
             info("http://$LOOKUP_LEAGUE")
-            img_classification_match.setOnClickListener{_->
+            img_classification_match.setOnClickListener { _ ->
                 toast(it)
             }
         }
@@ -97,7 +97,10 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         Handler().postDelayed({
             img_classification_match?.performLongClick()
         }, 2000)
-        TooltipCompat.setTooltipText(img_classification_match, getString(R.string.dashboard_fragment_classification_match))
+        TooltipCompat.setTooltipText(
+            img_classification_match,
+            getString(R.string.dashboard_fragment_classification_match)
+        )
 
         float_social_media?.setOnClickListener {
 
