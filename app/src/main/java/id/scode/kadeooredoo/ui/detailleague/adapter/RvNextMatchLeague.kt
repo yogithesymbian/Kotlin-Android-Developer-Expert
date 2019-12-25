@@ -12,20 +12,18 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_next_match_league.*
 import kotlinx.android.synthetic.main.item_next_match_league.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import java.text.SimpleDateFormat
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -59,6 +57,7 @@ class RvNextMatchLeague(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
+        @SuppressLint("SimpleDateFormat")
         fun bindItem(item: EventNext, listener: (EventNext) -> Unit) {
 
             if (item.strSport == SPORT) {
@@ -83,8 +82,31 @@ class RvNextMatchLeague(
                     }
                 }
 
-                txt_date_event_next.text = item.dateEvent
-                txt_str_time_next.text = item.strTime
+                item.dateEvent?.let { date ->
+                    txt_date_event_next.text = date
+
+                    item.strTime?.let { time ->
+
+                        val timeEvent = toGMTFormat(date, time)
+                        Log.d(
+                            TAG_LOG,
+                            """
+                            GMT+7 event   : $timeEvent
+                            DEFAULT event : $date $time
+                            """.trimIndent()
+                        ) //GMT+8 ?
+
+                        val timeFormat = SimpleDateFormat("HH:mm:ss")
+
+                        timeEvent?.let {
+                            val getTime = timeFormat.format(it)
+                            txt_str_time_next.text = getTime
+                        }
+
+                    }
+
+                }
+
                 txt_unlocked_event_next.text = item.strLocked
             } else {
                 Log.d(

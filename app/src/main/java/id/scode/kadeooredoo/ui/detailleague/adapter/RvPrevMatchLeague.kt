@@ -12,20 +12,18 @@ import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_previous_match_league.*
 import kotlinx.android.synthetic.main.item_previous_match_league.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import java.text.SimpleDateFormat
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -52,8 +50,7 @@ class RvPrevMatchLeague(
      * to the this context
      */
     private var teams: MutableList<Team> = mutableListOf()
-    //    private var teamsAway: MutableList<Team> = mutableListOf()
-    private var teamsAway: Team ? = null
+    private var teamsAway: MutableList<Team> = mutableListOf()
     private lateinit var teamsPresenter: TeamsPresenter
     private var progressBar: ProgressBar? = null
     private var progressBarAway: ProgressBar? = null
@@ -61,10 +58,11 @@ class RvPrevMatchLeague(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
+        @SuppressLint("SimpleDateFormat")
         fun bindItem(item: EventPrevious, listener: (EventPrevious) -> Unit) {
 
             // twice checking measure data is soccer
-            if (item.strSport == SPORT) {
+            if (item.strSport == SPORT){
                 txt_str_events.text = item.strEvent
                 txt_str_seasons.text = item.strSeason
 
@@ -74,17 +72,39 @@ class RvPrevMatchLeague(
                 txt_away_team.text = item.strAwayTeam
                 txt_score_away.text = item.intAwayScore
 
-                txt_date_event.text = item.dateEvent
-                txt_str_time_event.text = item.strTime
+
+                item.dateEvent?.let { date ->
+                    txt_date_event.text = date
+
+                    item.strTime?.let { time ->
+
+                        val timeEvent = toGMTFormat(date, time)
+                        Log.d(
+                            TAG_LOG,
+                            """
+                            GMT+7 event   : $timeEvent
+                            DEFAULT event : $date $time
+                            """.trimIndent()
+                        ) //GMT+8 ?
+
+                        val timeFormat = SimpleDateFormat("HH:mm:ss")
+
+                        timeEvent?.let {
+                            val getTime = timeFormat.format(it)
+                            txt_str_time_event.text = getTime
+                        }
+
+                    }
+
+                }
+
                 txt_unlocked_event.text = item.strSport
             } else {
-                Log.d(
-                    TAG_LOG, """
+                Log.d(TAG_LOG, """
                     the data is'nt soccer
                     name team ${item.strFilename}
                     home ${item.strHomeTeam}
-                """.trimIndent()
-                )
+                """.trimIndent())
             }
 
             containerView.setOnClickListener { listener(item) }
@@ -115,7 +135,7 @@ class RvPrevMatchLeague(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.bindItem(items[position], listener)
 
         items[position].idHomeTeam?.let {
 
@@ -125,45 +145,29 @@ class RvPrevMatchLeague(
             if (!teams.isNullOrEmpty()) {
 
                 info("ohJersey : ${teams[0].strTeamLogo}")
-
                 Glide.with(holder.itemView)
                     .load(teams[0].teamBadge)
                     .into(holder.img_home_team_jersey)
-
             } else {
                 info("ohJersey null, still loading")
             }
         }
         items[position].idAwayTeam?.let {
 
-            info("idAwayTeam : $it")
-
+            info("idAwayTeam : $it") //13612
             teamsPresenter.getDetailLeagueTeamAwayList(it)
 
-            if (!listOf(teamsAway).toMutableList().isNullOrEmpty()) {
-
-                info("ohJerseyAway : ${teamsAway?.strTeamLogo}")
-                val arrayList = arrayListOf(teamsAway)
-                for (i in arrayList.indices) {
-                    info("data ${arrayList[i]?.teamName}")
-                    info("""
-                        arrayId   = ${arrayList[i]?.teamId}
-                        adapterId = $it
-                    """.trimIndent())
-                    if (it == arrayList[i]?.teamId ){
-                        Glide.with(holder.itemView)
-                            .load(arrayList[i]?.teamBadge)
-                            .into(holder.img_away_team_jersey)
-                    }
-                    else info ("skip set image ------------------------")
-                }
+            if (!teamsAway.isNullOrEmpty()) {
+                info("ohJerseyAway : ${teamsAway[0].strTeamLogo} ")
+                info("idMatch ? check : ${teamsAway[0].teamId}")
+                Glide.with(holder.itemView)
+                    .load(teamsAway[0].teamBadge)
+                    .into(holder.img_away_team_jersey)
 
             } else {
                 info("ohJerseyAway null, still loading")
             }
         }
-
-        holder.bindItem(items[position], listener)
 
     }
 
@@ -223,19 +227,10 @@ class RvPrevMatchLeague(
     }
 
     override fun showTeamAwayList(data: List<Team>?) {
-
         info("try show jersey team away LOOKUP : process")
-
-        listOf(teamsAway).toMutableList().clear()
-
+        teamsAway.clear()
         data?.let {
-
-            listOf(teamsAway).toMutableList().addAll(it)
-
-            teamsAway = Team(
-                teamBadge = it[0].teamBadge,
-                teamId = it[0].teamId
-            )
+            teamsAway.addAll(it)
         }
         info("try show jersey team away LOOKUP : done")
     }
@@ -244,7 +239,7 @@ class RvPrevMatchLeague(
         // just for in home | search
     }
 
-    companion object {
+    companion object{
         val TAG_LOG = RvPrevMatchLeague::class.java.simpleName
     }
 }
