@@ -14,4 +14,5 @@
     <item name="progress_load_team" type="id" />
     <item name="toolbar_home" type="id" />
     <item name="img_exception_search_team" type="id" />
+    <item name="team_desc" type="id" />
 </resources>

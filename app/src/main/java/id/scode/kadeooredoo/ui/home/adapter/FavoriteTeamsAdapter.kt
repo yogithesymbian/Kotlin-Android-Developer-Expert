@@ -1,5 +1,6 @@
 package id.scode.kadeooredoo.ui.home.adapter
 
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -7,6 +8,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import id.scode.kadeooredoo.EN_LANG
+import id.scode.kadeooredoo.JP_LANG
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import org.jetbrains.anko.*
@@ -60,6 +63,17 @@ class TeamUI : AnkoComponent<ViewGroup> {
                 }.lparams{
                     margin = dip(15)
                 }
+                textView {
+
+                    id = R.id.team_desc
+                    textSize = 16f
+                    maxLines = 1
+                    maxEms = 11
+                    ellipsize = TextUtils.TruncateAt.END
+
+                }.lparams{
+                    margin = dip(15)
+                }
 
             }
         }
@@ -70,6 +84,8 @@ class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
     private val teamBadge: ImageView = view.find(R.id.team_badge)
     private val teamName : TextView = view.find(R.id.team_name)
+    private val teamDesc : TextView = view.find(R.id.team_desc)
+    private val language = view.context.resources.getString(R.string.app_language)
 
     fun bindItem(
         favorite: Favorite,
@@ -81,6 +97,13 @@ class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view){
             .into(teamBadge)
 
         teamName.text = favorite.teamName
+        teamDesc.also { desc ->
+            when (language) {
+                EN_LANG -> desc.text = favorite.teamDescEn
+                JP_LANG -> desc.text = favorite.teamDescJp
+            }
+        }
+
         itemView.setOnClickListener{listener(favorite)}
     }
 
