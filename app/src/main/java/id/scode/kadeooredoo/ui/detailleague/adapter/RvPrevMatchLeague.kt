@@ -59,10 +59,17 @@ class RvPrevMatchLeague(
         LayoutContainer {
 
         @SuppressLint("SimpleDateFormat")
-        fun bindItem(item: EventPrevious, listener: (EventPrevious) -> Unit) {
+        fun bindItem(
+            item: EventPrevious,
+            listener: (EventPrevious) -> Unit,
+            context: Context,
+            teamsAway: MutableList<Team>,
+            teamsPresenter: TeamsPresenter,
+            teams: MutableList<Team>
+        ) {
 
             // twice checking measure data is soccer
-            if (item.strSport == SPORT){
+            if (item.strSport == SPORT) {
                 txt_str_events.text = item.strEvent
                 txt_str_seasons.text = item.strSeason
 
@@ -99,12 +106,44 @@ class RvPrevMatchLeague(
                 }
 
                 txt_unlocked_event.text = item.strSport
+
+                // badge set
+
+                item.idHomeTeam?.let {
+                    Log.d(TAG_LOG, "idHomeTeam : $it")
+                    teamsPresenter.getDetailLeagueTeamList(it)
+
+                    if (!teams.isNullOrEmpty()) {
+
+                        Log.d(TAG_LOG, "ohJersey : ${teams[0].strTeamLogo}")
+
+                        Glide.with(context)
+                            .load(teams[0].teamBadge)
+                            .into(img_home_team_jersey)
+                    }
+                }
+                item.idAwayTeam?.let {
+
+                    Log.d(TAG_LOG, "idAwayTeam : $it") //13612
+                    teamsPresenter.getDetailLeagueTeamAwayList(it)
+
+                    if (!teamsAway.isNullOrEmpty()) {
+                        Log.d(TAG_LOG, "ohJerseyAway : ${teamsAway[0].strTeamLogo} ")
+                        Log.d(TAG_LOG, "idMatch ? check : ${teamsAway[0].teamId}")
+                        Glide.with(context)
+                            .load(teamsAway[0].teamBadge)
+                            .into(img_away_team_jersey)
+
+                    }
+                }
             } else {
-                Log.d(TAG_LOG, """
+                Log.d(
+                    TAG_LOG, """
                     the data is'nt soccer
                     name team ${item.strFilename}
                     home ${item.strHomeTeam}
-                """.trimIndent())
+                """.trimIndent()
+                )
             }
 
             containerView.setOnClickListener { listener(item) }
@@ -134,42 +173,8 @@ class RvPrevMatchLeague(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items[position], listener)
-
-        items[position].idHomeTeam?.let {
-
-            info("idHomeTeam : $it")
-            teamsPresenter.getDetailLeagueTeamList(it)
-
-            if (!teams.isNullOrEmpty()) {
-
-                info("ohJersey : ${teams[0].strTeamLogo}")
-                Glide.with(holder.itemView)
-                    .load(teams[0].teamBadge)
-                    .into(holder.img_home_team_jersey)
-            } else {
-                info("ohJersey null, still loading")
-            }
-        }
-        items[position].idAwayTeam?.let {
-
-            info("idAwayTeam : $it") //13612
-            teamsPresenter.getDetailLeagueTeamAwayList(it)
-
-            if (!teamsAway.isNullOrEmpty()) {
-                info("ohJerseyAway : ${teamsAway[0].strTeamLogo} ")
-                info("idMatch ? check : ${teamsAway[0].teamId}")
-                Glide.with(holder.itemView)
-                    .load(teamsAway[0].teamBadge)
-                    .into(holder.img_away_team_jersey)
-
-            } else {
-                info("ohJerseyAway null, still loading")
-            }
-        }
-
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bindItem(items[position], listener, context, teamsAway, teamsPresenter, teams)
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -206,7 +211,6 @@ class RvPrevMatchLeague(
         }
     }
 
-
     override fun showLoading() {
         progressBar?.visible()
         progressBarAway?.visible()
@@ -239,7 +243,7 @@ class RvPrevMatchLeague(
         // just for in home | search
     }
 
-    companion object{
+    companion object {
         val TAG_LOG = RvPrevMatchLeague::class.java.simpleName
     }
 }
