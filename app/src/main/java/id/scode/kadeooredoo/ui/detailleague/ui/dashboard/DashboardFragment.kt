@@ -3,12 +3,14 @@ package id.scode.kadeooredoo.ui.detailleague.ui.dashboard
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.TooltipCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +26,7 @@ import id.scode.kadeooredoo.ui.detailleague.view.DetailLeagueView
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.toast
 
 class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
@@ -86,7 +89,15 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             //EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
             info("http://$LOOKUP_LEAGUE")
+            img_classification_match.setOnClickListener{_->
+                toast(it)
+            }
         }
+
+        Handler().postDelayed({
+            img_classification_match?.performLongClick()
+        }, 2000)
+        TooltipCompat.setTooltipText(img_classification_match, getString(R.string.dashboard_fragment_classification_match))
 
         float_social_media?.setOnClickListener {
 

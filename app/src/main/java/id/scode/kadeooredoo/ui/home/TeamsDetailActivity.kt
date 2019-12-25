@@ -45,7 +45,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var teamBadge: ImageView
+    private lateinit var imgTeamBadge: ImageView
+    private lateinit var imgListPlayer: ImageView
+    private lateinit var imgEvent: ImageView
+
     private lateinit var teamName: TextView
     private lateinit var teamDescription: TextView
 
@@ -79,22 +82,27 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             padding = dip(16)
 
             cardView {
-                padding = dip(8)
+
                 teamName = textView {
-                    padding = dip(16)
+                    padding = dip(12)
                     textSize = 18f
                 }.lparams(wrapContent, wrapContent) {
-                    margin = dip(16)
+                    margin = dip(12)
                     gravity = Gravity.CENTER
                 }
+
             }.lparams(matchParent, wrapContent) {
                 margin = dip(8)
             }
-
-            teamBadge = imageView()
-                .lparams(width = dip(125), height = dip(125)) {
-                    margin = dip(8)
-                }
+            linearLayout {
+                imgTeamBadge = imageView()
+                    .lparams(width = dip(125), height = dip(125)) {
+                        margin = dip(8)
+                    }
+                imgListPlayer = imageView {
+                    backgroundResource = R.drawable.ic_list_player_team_by_canva
+                }.lparams(matchParent, matchParent)
+            }.lparams(matchParent, wrapContent)
 
             cardView {
                 padding = dip(8)
@@ -105,14 +113,16 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
                 progressBar = progressBar()
 
-            }.lparams(matchParent, wrapContent) {
+            }.lparams(matchParent, dip(220)) {
                 margin = dip(8)
             }
+            imgEvent = imageView {
+                backgroundResource = R.drawable.ic_event_next_and_past_team_by_canva
+            }.lparams(matchParent, wrapContent)
 
         }
 
         language = resources.getString(R.string.app_language)
-
 
         val request = ApiRepository()
         val gson = Gson()
@@ -157,7 +167,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private fun setDataTeamFavorite(item: Favorite) {
 
-        Picasso.get().load(item.teamBadge).into(teamBadge)
+        Picasso.get().load(item.teamBadge).into(imgTeamBadge)
         teamName.text = item.teamName
 //        teamDescription.text = item.teamName
         teamDescription.also { desc ->
@@ -165,6 +175,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 EN_LANG -> desc.text = item.teamDescEn
                 JP_LANG -> desc.text = item.teamDescJp
             }
+        }
+        imgListPlayer.setOnClickListener {
+            toast("${item.teamId}")
+        }
+        imgEvent.setOnClickListener {
+            toast("${item.teamId}")
         }
         progressBar.gone()
 
@@ -205,7 +221,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private fun addToFavorite() {
         if (teams?.teamId.isNullOrEmpty()) {
-            teamBadge.snackbar("Please wait data loads, and try against")
+            imgTeamBadge.snackbar("Please wait data loads, and try against")
                 .show() // debug with low connection can insert null obj
             isFavorite = !isFavorite
         } else {
@@ -220,10 +236,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                         Favorite.TEAM_DESC_EN to teams?.strDescriptionEN,
                         Favorite.TEAM_DESC_JP to teams?.strDescriptionJP
                     )
-                    teamBadge.snackbar("Added to favorite").show()
+                    imgTeamBadge.snackbar("Added to favorite").show()
                 }
             } catch (e: SQLiteConstraintException) {
-                teamBadge.snackbar("error ${e.localizedMessage}").show()
+                imgTeamBadge.snackbar("error ${e.localizedMessage}").show()
             }
         }
     }
@@ -239,7 +255,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             }
             finish()
         } catch (e: SQLiteConstraintException) {
-            teamBadge.snackbar("error ${e.localizedMessage}").show()
+            imgTeamBadge.snackbar("error ${e.localizedMessage}").show()
         }
     }
 
@@ -262,7 +278,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         data?.let {
             listOf(teams).toMutableList().addAll(it)
 
-            Picasso.get().load(it[zero].teamBadge).into(teamBadge)
+            Picasso.get().load(it[zero].teamBadge).into(imgTeamBadge)
 
             teamName.text = it[zero].teamName
             teamDescription.also { desc ->
@@ -284,6 +300,13 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 strDescriptionEN = descEn,
                 strDescriptionJP = descJp
             )
+            imgListPlayer.setOnClickListener { _ ->
+                toast("${it[zero].teamId}")
+            }
+
+            imgEvent.setOnClickListener{_->
+                toast("${it[zero].teamId}")
+            }
 
             info("try show team list : done")
             info("hello teams -> ${it[zero].teamName}")

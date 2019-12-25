@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <ProgressBar
         android:id="@+id/progress_detail_dashboard"
@@ -74,16 +74,16 @@
         android:id="@+id/img_poster_league"
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:elevation="5dp"
         app:civ_border_color="@android:color/white"
         app:civ_border_width="4dp"
-        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/card_fantart"
         app:layout_constraintStart_toStartOf="@+id/card_fantart"
         app:layout_constraintTop_toTopOf="@+id/card_fantart"
         app:layout_constraintVertical_bias="0.18"
-        tools:src="@mipmap/ic_launcher_yoball_round"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="UnusedAttribute"
+        tools:src="@mipmap/ic_launcher_yoball_round" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txt_str_league"
@@ -184,10 +184,28 @@
 
     </androidx.cardview.widget.CardView>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_classification_match"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_classification_soccer_yo_ball_by_canva"
+        android:elevation="4dp"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_width="1dp"
+        app:civ_border_overlay="true"
+        app:layout_constraintBottom_toBottomOf="@+id/img_poster_league"
+        app:layout_constraintEnd_toStartOf="@+id/img_poster_league"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/card_fantart"
+        app:layout_constraintTop_toTopOf="@+id/float_social_media"
+        app:layout_constraintVertical_bias="0.83"
+        tools:ignore="UnusedAttribute" />
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/float_social_media"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:backgroundTint="@android:color/white"

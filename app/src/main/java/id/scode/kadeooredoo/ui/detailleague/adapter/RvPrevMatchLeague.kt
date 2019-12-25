@@ -119,6 +119,7 @@ class RvPrevMatchLeague(
                             .load(teamsAway.teamBadge)
                             .into(img)
                     }
+
                 }
 
 //                Handler().postDelayed({

@@ -15,4 +15,5 @@
     <item name="toolbar_home" type="id" />
     <item name="img_exception_search_team" type="id" />
     <item name="team_desc" type="id" />
+    <item name="btn_list_player" type="id" />
 </resources>

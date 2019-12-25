@@ -190,5 +190,6 @@
     <string name="language_en" tools:keep="@string/language_en">en_lang</string>
 
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
+    <string name="dashboard_fragment_classification_match">Classification Match</string>
 
 </resources>

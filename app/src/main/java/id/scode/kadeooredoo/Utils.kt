@@ -53,8 +53,8 @@ const val LOOKUP_ALL_PLAYER = "lookup_all_players.php" //{idTeam}
 const val LOOKUP_PLAYER = "lookupplayer.php" // {idPemain}
 const val SEARCH_TEAM = "searchteams.php" //t=query
 // {idTeam}
-const val EVENT_NEXT = "eventsnext.php"
-const val EVENT_LAST = "eventslast.php"
+const val EVENT_NEXT = "eventsnext.php" //{idTeam}
+const val EVENT_LAST = "eventslast.php" //{idTeam}
 
 fun View.visible() {
     visibility = View.VISIBLE
