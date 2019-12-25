@@ -1,13 +1,14 @@
 package id.scode.kadeooredoo.ui.home
 
 import android.annotation.SuppressLint
-import android.app.SearchManager
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,8 @@ import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_favorite_main.*
 import org.jetbrains.anko.*
+import org.jetbrains.anko.appcompat.v7.coroutines.onQueryTextListener
+import org.jetbrains.anko.appcompat.v7.searchView
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
@@ -42,8 +45,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     private lateinit var swipeRefreshLayoutListTeam: SwipeRefreshLayout
     private lateinit var spinner: Spinner
     private lateinit var btnDet: Button
-    private lateinit var searchView: SearchView
     private lateinit var imageViewNotFound: ImageView
+    private lateinit var toolbar: Toolbar
 
     /**
      * apply the TeamsPresenter and MainAdapter
@@ -78,8 +81,33 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                 leftPadding = dip(8)
                 rightPadding = dip(8)
 
-                toolbar {
+                toolbar = toolbar {
+
                     id = R.id.toolbar_home
+
+                    //https://github.com/Kotlin/anko/blob/c9f90b85310f49fc487d6f3856b2d6af880ac1d7/anko/library/robolectricTests/src/main/java/AndroidMultiMethodListenersActivity.kt
+                    //https://github.com/Kotlin/anko/blob/master/anko/library/generated/appcompat-v7-listeners/src/main/java/Listeners.kt
+                    searchView{
+
+                        queryHint = context.resources.getString(R.string.option_search_team)
+
+                        onQueryTextListener {
+
+                            onQueryTextSubmit { query  ->
+                                info (query.toString())
+                                resultSearch(query.toString())
+                                true
+                            }
+                            onQueryTextChange { newText ->
+                                info(newText)
+                                true
+                            }
+                        }
+
+                    }.lparams{
+                        gravity = Gravity.END
+                    }
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         logo =
                             resources.getDrawable(R.drawable.ic_home_green_400_24dp, context.theme)
@@ -98,6 +126,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                             )
                         }
                     }
+
                 }.lparams(matchParent, wrapContent) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                         margin = dip(16)
@@ -151,6 +180,12 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
         } //end of view
 
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        toolbar = view.findViewById(R.id.toolbar_home)
     }
 
 
@@ -251,38 +286,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
             info("http://$SEARCH_ALL_TEAM")
         }
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.toolbar_home, menu)
-
-        // search view with
-        val searchManager =
-            activity?.applicationContext?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        searchView = menu.findItem(R.id.option_search_team)?.actionView as SearchView
-
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
-
-        searchView.queryHint = resources.getString(R.string.option_search_team)
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                info("Search View onQueryTextSubmit")
-                toast(query)
-                resultSearch(query)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                info("Search View onQueryTextChange")
-//                resultAdapter.filter.filter(newText)
-                return false
-            }
-        })
-        searchView.setOnCloseListener {
-            //            rvNextMatchLeagueAdapter.filter.filter("")
-            true
-        }
     }
 
     private fun resultSearch(query: String) {

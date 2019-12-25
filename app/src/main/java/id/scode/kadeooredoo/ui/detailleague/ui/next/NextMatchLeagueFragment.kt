@@ -72,7 +72,8 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         setHasOptionsMenu(true)
 
         nextLeagueViewModel =
-            ViewModelProviders.of(this).get(NextLeagueViewModel::class.java)
+            ViewModelProviders.of(this)
+                .get(NextLeagueViewModel::class.java)
 
         //set the layout
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)
@@ -148,6 +149,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
                 return false
             }
         })
+
         searchView.setOnCloseListener {
             rvNextMatchLeagueAdapter.filter.filter("")
             true
