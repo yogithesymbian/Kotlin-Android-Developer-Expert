@@ -114,6 +114,7 @@ class TeamsPresenterTest {
         val teams: MutableList<Team> = mutableListOf()
         val response = TeamResponse(teams)
         val idAwayTeam = "133599"
+        val idAwayTeamCheck = "133599"
 
         runBlocking {
             Mockito
