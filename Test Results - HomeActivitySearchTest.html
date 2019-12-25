@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns:str="http://exslt.org/strings" xmlns="http://www.w3.org/1999/xhtml">
+<!--suppress CheckValidXmlInScriptTagBody, XmlHighlighting -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Test Results &mdash; HomeActivitySearchTest</title>
@@ -288,7 +289,7 @@ jQuery.cookie = function(name, value, options) {
             options.expires = -1;
         }
         var expires = '';
-        if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
+        if (options.expires &amp;&amp; (typeof options.expires == 'number' || options.expires.toUTCString)) {
             var date;
             if (typeof options.expires == 'number') {
                 date = new Date();
@@ -304,7 +305,7 @@ jQuery.cookie = function(name, value, options) {
         document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
     } else { // only name given, get cookie
         var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
+        if (document.cookie &amp;&amp; document.cookie != '') {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
                 var cookie = jQuery.trim(cookies[i]);
@@ -560,7 +561,7 @@ jQuery.cookie = function(name, value, options) {
                 animated: "fast",
                 collapsed: true,
                 toggle: function() {
-                    window.console && console.log("%o was toggled", this);
+                    window.console &amp;&amp; console.log("%o was toggled", this);
                 }
             });
 

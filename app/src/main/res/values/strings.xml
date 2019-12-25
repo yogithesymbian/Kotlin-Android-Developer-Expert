@@ -191,6 +191,5 @@
     <string name="language_en" tools:keep="@string/language_en">en_lang</string>
 
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
-    <string name="toolbar_home_search_teams">Search Teams</string>
 
 </resources>
