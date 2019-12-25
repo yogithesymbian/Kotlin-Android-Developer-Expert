@@ -39,6 +39,7 @@
       <w>ceda</w>
       <w>chel</w>
       <w>chelx</w>
+      <w>classificationmatch</w>
       <w>colg</w>
       <w>colgroup</w>
       <w>collapsable</w>
@@ -54,6 +55,9 @@
       <w>eventsnext</w>
       <w>ffff</w>
       <w>fieldset</w>
+      <w>goalsagainst</w>
+      <w>goalsdifference</w>
+      <w>goalsfor</w>
       <w>hitarea</w>
       <w>hitareas</w>
       <w>idlingresource</w>
@@ -97,6 +101,7 @@
       <w>sudah</w>
       <w>tahoma</w>
       <w>tbody</w>
+      <w>teamid</w>
       <w>textarea</w>
       <w>tfoot</w>
       <w>thead</w>

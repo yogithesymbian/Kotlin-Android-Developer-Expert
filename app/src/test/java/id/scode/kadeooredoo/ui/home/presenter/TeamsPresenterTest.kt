@@ -132,7 +132,7 @@ class TeamsPresenterTest {
             presenter.getDetailLeagueTeamAwayList(idAwayTeam)
 
             Mockito.verify(teamsView).hideLoading()
-            Mockito.verify(teamsView).showTeamAwayList(teams)
+            Mockito.verify(teamsView).showTeamAwayList(teams, idAwayTeamCheck)
             Mockito.verify(teamsView).hideLoading()
 
         }
