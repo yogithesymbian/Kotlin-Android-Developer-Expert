@@ -2,7 +2,6 @@ package id.scode.kadeooredoo.ui.detailleague.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -111,22 +110,33 @@ class RvPrevMatchLeague(
 
                 Log.d(TAG_LOG,"set badge outer ${teamsAway?.teamBadge}")
 
-                Handler().postDelayed({
+                if (teamsAway != null){
 
-                    Log.d(TAG_LOG,"set badge inner ${teamsAway?.teamBadge}")
+                    Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
 
-                    if (teamsAway != null){
-
-                        Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
-
-                        img_away_team_jersey.let { img ->
-                            Glide.with(this.itemView.context)
-                                .load(teamsAway.teamBadge)
-                                .into(img)
-                        }
+                    img_away_team_jersey.let { img ->
+                        Glide.with(this.itemView.context)
+                            .load(teamsAway.teamBadge)
+                            .into(img)
                     }
+                }
 
-                }, 5000)
+//                Handler().postDelayed({
+//
+//                    Log.d(TAG_LOG,"set badge inner ${teamsAway?.teamBadge}")
+//                    if (teamsAway != null){
+//
+//                        Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
+//
+//                        img_away_team_jersey.let { img ->
+//                            Glide.with(this.itemView.context)
+//                                .load(teamsAway.teamBadge)
+//                                .into(img)
+//                        }
+//                    }
+//
+//
+//                }, 5000)
 
             } else {
                 Log.d(
