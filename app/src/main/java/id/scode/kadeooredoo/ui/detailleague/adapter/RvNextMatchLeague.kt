@@ -42,8 +42,8 @@ class RvNextMatchLeague(
     private val context: Context,
     private var items: List<EventNext>,
     private val listener: (EventNext) -> Unit
-) : RecyclerView.Adapter<RvNextMatchLeague.ViewHolder>() ,
-    TeamsView, AnkoLogger, Filterable{
+) : RecyclerView.Adapter<RvNextMatchLeague.ViewHolder>(),
+    TeamsView, AnkoLogger, Filterable {
 
     private var itemsInit: List<EventNext> = items
     /**
@@ -61,7 +61,7 @@ class RvNextMatchLeague(
 
         fun bindItem(item: EventNext, listener: (EventNext) -> Unit) {
 
-            if(item.strSport == SPORT){
+            if (item.strSport == SPORT) {
                 txt_str_events_next.text = item.strEvent
                 txt_str_seasons_next.text = item.strSeason
 
@@ -92,7 +92,8 @@ class RvNextMatchLeague(
                     the data is'nt soccer
                     name team ${item.strFilename}
                     home ${item.strHomeTeam}
-                """.trimIndent())
+                """.trimIndent()
+                )
             }
             containerView.setOnClickListener { listener(item) }
 
@@ -193,8 +194,6 @@ class RvNextMatchLeague(
     }
 
 
-
-
     override fun showLoading() {
         progressBar?.visible()
         progressBarAway?.visible()
@@ -227,7 +226,7 @@ class RvNextMatchLeague(
         // just for in home | search
     }
 
-    companion object{
+    companion object {
         val TAG_LOG = RvNextMatchLeague::class.java.simpleName
     }
 }
