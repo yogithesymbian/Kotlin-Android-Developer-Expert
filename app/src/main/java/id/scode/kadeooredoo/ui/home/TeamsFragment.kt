@@ -325,7 +325,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         }
     }
 
-    override fun showTeamAwayList(data: List<Team>?) {
+    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
         // just for inside adapter previous and next
     }
 

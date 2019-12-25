@@ -19,7 +19,7 @@ interface TeamsView {
     fun hideLoading()
 
     fun showTeamList(data: List<Team>?)
-    fun showTeamAwayList(data: List<Team>?)
+    fun showTeamAwayList(data: List<Team>?, checkIdTeam: String)
     fun exceptionNullObject(msg: String)
 
 }

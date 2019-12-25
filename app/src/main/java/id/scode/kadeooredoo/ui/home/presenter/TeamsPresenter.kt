@@ -69,7 +69,7 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT })
+            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams)
         }
     }
 

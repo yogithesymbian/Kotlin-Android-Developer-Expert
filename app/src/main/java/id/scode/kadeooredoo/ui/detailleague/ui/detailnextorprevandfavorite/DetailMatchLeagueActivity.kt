@@ -500,7 +500,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         info("try show jersey team LOOKUP : done")
     }
 
-    override fun showTeamAwayList(data: List<Team>?) {
+    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
         info("try show jersey team away LOOKUP : process")
 
         val zero = 0

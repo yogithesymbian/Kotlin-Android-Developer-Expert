@@ -2,12 +2,14 @@ package id.scode.kadeooredoo.ui.detailleague.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -43,17 +45,17 @@ class RvPrevMatchLeague(
 ) : RecyclerView.Adapter<RvPrevMatchLeague.ViewHolder>(), Filterable,
     TeamsView, AnkoLogger {
 
-
     private var itemsInit: List<EventPrevious> = items
     /**
      * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
     private var teams: MutableList<Team> = mutableListOf()
-    private var teamsAway: MutableList<Team> = mutableListOf()
+    private var teamsAway: Team? = null
     private lateinit var teamsPresenter: TeamsPresenter
     private var progressBar: ProgressBar? = null
     private var progressBarAway: ProgressBar? = null
+    private var imageView: ImageView? = null
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
@@ -62,10 +64,8 @@ class RvPrevMatchLeague(
         fun bindItem(
             item: EventPrevious,
             listener: (EventPrevious) -> Unit,
-            context: Context,
-            teamsAway: MutableList<Team>,
             teamsPresenter: TeamsPresenter,
-            teams: MutableList<Team>
+            teamsAway: Team?
         ) {
 
             // twice checking measure data is soccer
@@ -107,35 +107,27 @@ class RvPrevMatchLeague(
 
                 txt_unlocked_event.text = item.strSport
 
-                // badge set
+                teamsPresenter.getDetailLeagueTeamAwayList(item.idAwayTeam.toString())
 
-                item.idHomeTeam?.let {
-                    Log.d(TAG_LOG, "idHomeTeam : $it")
-                    teamsPresenter.getDetailLeagueTeamList(it)
+                Log.d(TAG_LOG,"set badge outer ${teamsAway?.teamBadge}")
 
-                    if (!teams.isNullOrEmpty()) {
+                Handler().postDelayed({
 
-                        Log.d(TAG_LOG, "ohJersey : ${teams[0].strTeamLogo}")
+                    Log.d(TAG_LOG,"set badge inner ${teamsAway?.teamBadge}")
 
-                        Glide.with(context)
-                            .load(teams[0].teamBadge)
-                            .into(img_home_team_jersey)
+                    if (teamsAway != null){
+
+                        Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
+
+                        img_away_team_jersey.let { img ->
+                            Glide.with(this.itemView.context)
+                                .load(teamsAway.teamBadge)
+                                .into(img)
+                        }
                     }
-                }
-                item.idAwayTeam?.let {
 
-                    Log.d(TAG_LOG, "idAwayTeam : $it") //13612
-                    teamsPresenter.getDetailLeagueTeamAwayList(it)
+                }, 5000)
 
-                    if (!teamsAway.isNullOrEmpty()) {
-                        Log.d(TAG_LOG, "ohJerseyAway : ${teamsAway[0].strTeamLogo} ")
-                        Log.d(TAG_LOG, "idMatch ? check : ${teamsAway[0].teamId}")
-                        Glide.with(context)
-                            .load(teamsAway[0].teamBadge)
-                            .into(img_away_team_jersey)
-
-                    }
-                }
             } else {
                 Log.d(
                     TAG_LOG, """
@@ -163,6 +155,7 @@ class RvPrevMatchLeague(
             )
         progressBar = parent.progress_load_jersey_home
         progressBarAway = parent.progress_load_jersey_away
+        imageView = parent.img_away_team_jersey
 
         val request = ApiRepository()
         val gson = Gson()
@@ -174,7 +167,7 @@ class RvPrevMatchLeague(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(items[position], listener, context, teamsAway, teamsPresenter, teams)
+        holder.bindItem(items[position], listener, teamsPresenter, teamsAway)
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -230,11 +223,25 @@ class RvPrevMatchLeague(
         info("try show jersey team LOOKUP : done")
     }
 
-    override fun showTeamAwayList(data: List<Team>?) {
+    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
         info("try show jersey team away LOOKUP : process")
-        teamsAway.clear()
+        listOf(teamsAway).toMutableList().clear()
         data?.let {
-            teamsAway.addAll(it)
+            listOf(teamsAway).toMutableList().addAll(it)
+
+            teamsAway = Team(
+                teamId = it[0].teamId,
+                teamBadge = it[0].teamBadge,
+                teamName = it[0].teamName
+            )
+
+            info("""
+                
+                [ ${it[0].teamName} ] match [ ${teamsAway?.teamName} ]
+                [ $checkIdTeam ] match [ ${teamsAway?.teamId} ]
+                
+            """.trimIndent())
+
         }
         info("try show jersey team away LOOKUP : done")
     }

@@ -291,7 +291,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         }
     }
 
-    override fun showTeamAwayList(data: List<Team>?) {
+    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
         // just for inside adapter previous and next
     }
 
