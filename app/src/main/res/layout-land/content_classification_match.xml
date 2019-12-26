@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_title_classification_match"
@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:keepScreenOn="true"
         android:padding="4dp"
         android:text="@string/content_classification_match_classification_match"
         android:textColor="@color/colorPrimaryDark"
@@ -25,7 +24,7 @@
         android:id="@+id/btn_title_sub_classification_match"
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:background="@color/colorPrimaryLight"
@@ -35,28 +34,41 @@
         android:paddingEnd="8dp"
         android:textAllCaps="false"
         android:textColor="@color/colorWhiteText65"
+        android:textSize="8sp"
         android:textStyle="bold|italic"
+        app:icon="@drawable/ic_filter_1_black_24dp"
+        app:iconSize="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_lbl_tag"
         app:layout_constraintStart_toEndOf="@+id/txt_lbl_tag_div"
         app:layout_constraintTop_toTopOf="@+id/btn_lbl_tag"
         app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SmallSp"
         tools:text="English Premier League" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_lbl_tag"
         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
+
+        android:gravity="start"
         android:text="@string/content_classification_match_tag"
         android:textColor="@color/colorWhiteText65"
+        android:textSize="8sp"
         android:textStyle="bold"
+
+        app:icon="@drawable/ic_filter_list_black_24dp"
+        app:iconGravity="start"
+        app:iconSize="16dp"
+
         app:layout_constraintEnd_toStartOf="@+id/txt_lbl_tag_div"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_classification_match" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_classification_match"
+        tools:ignore="SmallSp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_lbl_tag_div"
@@ -94,10 +106,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:keepScreenOn="true"
-        android:scrollbarSize="2dp"
+        android:scrollbarSize="1dp"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbarTrackHorizontal="@color/colorPrimary"
-        android:scrollbars="vertical"
+        android:scrollbars="vertical|horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

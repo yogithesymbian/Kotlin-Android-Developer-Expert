@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
@@ -90,7 +91,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         idLeague?.let {
             //EspressoIdlingResource.increment()
             detailLeaguePresenter.getDetailLeagueList(it)
-            info("http://$LOOKUP_LEAGUE")
+            info("http://$LOOKUP_LEAGUE WITH $it")
             img_classification_match.setOnClickListener { _ ->
                 startActivity<ClassificationMatchActivity>(DETAIL_KEY to it) //intent with the obj
             }
@@ -237,48 +238,55 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
         // set detail of league data
         activity?.applicationContext?.let {
 
-            Glide.with(it)
-                .load(leaguesMutableList[i].strPoster)
-                .into(img_poster_league)
+            if (leaguesMutableList[i].strPoster.isEmpty()) {
+                toast("data is empty")
+            } else {
 
-            Glide.with(it)
-                .load(leaguesMutableList[i].strTrophy)
-                .into(img_trophy)
 
-            txt_str_league.text = leaguesMutableList[i].strLeague
-            txt_str_soccer.text = leaguesMutableList[i].strSport
-            txt_str_gender.text = leaguesMutableList[i].strGender
-            txt_str_first_event.text = leaguesMutableList[i].dateFirstEvent
-            context?.resources.let { cores ->
-                txt_str_country.text = cores?.getString(R.string.country)?.let { it1 ->
-                    String.format(
-                        it1, leaguesMutableList[i].strCountry
-                    )
+                Glide.with(it)
+                    .load(leaguesMutableList[i].strPoster)
+                    .into(img_poster_league)
+
+                Glide.with(it)
+                    .load(leaguesMutableList[i].strTrophy)
+                    .into(img_trophy)
+
+                txt_str_league.text = leaguesMutableList[i].strLeague
+                txt_str_soccer.text = leaguesMutableList[i].strSport
+                txt_str_gender.text = leaguesMutableList[i].strGender
+                txt_str_first_event.text = leaguesMutableList[i].dateFirstEvent
+                context?.resources.let { cores ->
+                    txt_str_country.text = cores?.getString(R.string.country)?.let { it1 ->
+                        String.format(
+                            it1, leaguesMutableList[i].strCountry
+                        )
+                    }
                 }
-            }
 
-            val language = it.resources.getString(R.string.app_language)
-            txt_desc_league.also { desc ->
-                when (language) {
-                    EN_LANG -> desc.text = leaguesMutableList[i].strDescriptionEN
-                    JP_LANG -> desc.text = leaguesMutableList[i].strDescriptionJP
+                val language = it.resources.getString(R.string.app_language)
+                txt_desc_league.also { desc ->
+                    when (language) {
+                        EN_LANG -> desc.text = leaguesMutableList[i].strDescriptionEN
+                        JP_LANG -> desc.text = leaguesMutableList[i].strDescriptionJP
+                    }
                 }
-            }
 
-            float_social_media_yt.setOnClickListener {
-                intentSocial(leaguesMutableList[i].strYoutube)
-            }
-            float_social_media_tw.setOnClickListener {
-                intentSocial(leaguesMutableList[i].strTwitter)
-            }
-            float_social_media_fb.setOnClickListener {
-                intentSocial(leaguesMutableList[i].strFacebook)
-            }
-            float_social_media_web.setOnClickListener {
-                intentSocial(leaguesMutableList[i].strWebsite)
-            }
-            float_social_media_rss.setOnClickListener {
-                intentSocial(leaguesMutableList[i].strRSS)
+                float_social_media_yt.setOnClickListener {
+                    intentSocial(leaguesMutableList[i].strYoutube)
+                }
+                float_social_media_tw.setOnClickListener {
+                    intentSocial(leaguesMutableList[i].strTwitter)
+                }
+                float_social_media_fb.setOnClickListener {
+                    intentSocial(leaguesMutableList[i].strFacebook)
+                }
+                float_social_media_web.setOnClickListener {
+                    intentSocial(leaguesMutableList[i].strWebsite)
+                }
+                float_social_media_rss.setOnClickListener {
+                    intentSocial(leaguesMutableList[i].strRSS)
+                }
+
             }
 
         }

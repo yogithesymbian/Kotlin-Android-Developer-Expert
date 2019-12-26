@@ -1,12 +1,16 @@
 package id.scode.kadeooredoo.ui.classificationmatch.ui
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.AdapterView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import id.scode.kadeooredoo.LOOKUP_TABLE
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Table
 import id.scode.kadeooredoo.data.db.network.ApiRepository
@@ -30,6 +34,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
     private val hideHandler = Handler()
     private var visibleState: Boolean = false
     private var idLeague: String? = null
+    private lateinit var leagueName: String //for spinner //declare a view for choose
 
     private var tableMutableList: MutableList<Table> = mutableListOf()
     private lateinit var classificationMatchPresenter: ClassificationMatchPresenter
@@ -75,7 +80,8 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
         setContentView(R.layout.activity_classification_match)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        rv_classification_match.layoutManager = LinearLayoutManager(applicationContext)
+        rv_classification_match.layoutManager =
+            LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         // Set up the user interaction to manually show or hide the system UI.
         btn_lbl_tag.setOnClickListener { toggle() }
         visibleState = true
@@ -89,14 +95,20 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
         val gson = Gson()
         classificationMatchPresenter = ClassificationMatchPresenter(this, request, gson)
 
-
-
         intent.also {
             idLeague = it.getStringExtra(DETAIL_KEY)
-            btn_title_sub_classification_match?.text = idLeague
-            classificationMatchPresenter.getClassificationMatchTable(idLeague.toString())
+//            when (idLeague) {
+//                getString(R.string.league_epl_id) -> leagueName = getString(R.string.league_epl)
+//                getString(R.string.league_elc_id) -> leagueName = getString(R.string.league_elc)
+//                getString(R.string.league_gb_id) -> leagueName = getString(R.string.league_gb)
+//                getString(R.string.league_isa_id) -> leagueName = getString(R.string.league_isa)
+//                getString(R.string.league_fl1_id) -> leagueName = getString(R.string.league_fl1)
+//                getString(R.string.league_sll_id) -> leagueName = getString(R.string.league_sll)
+//            }
+//            btn_title_sub_classification_match?.text = "$idLeague - $leagueName"
+//            classificationMatchPresenter.getClassificationMatchTable(idLeague.toString())
+//            info("http://$LOOKUP_TABLE WITH $idLeague")
         }
-
         /**
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
@@ -117,6 +129,44 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
             }
         }!!
         rv_classification_match.adapter = rvClassificationMatchAdapter
+
+        // spinner listener
+        spinner_classification.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+
+                    (parent.getChildAt(0) as TextView).setTextColor(Color.WHITE)
+                    (parent.getChildAt(0) as TextView).textSize = 16f
+
+                    info("spinner selected ${spinner_classification.selectedItem}")
+                    leagueName = spinner_classification.selectedItem.toString()
+                    when (leagueName) {
+                        getString(R.string.league_epl) -> idLeague =
+                            getString(R.string.league_epl_id)
+                        getString(R.string.league_elc) -> idLeague =
+                            getString(R.string.league_elc_id)
+                        getString(R.string.league_gb) -> idLeague = getString(R.string.league_gb_id)
+                        getString(R.string.league_isa) -> idLeague =
+                            getString(R.string.league_isa_id)
+                        getString(R.string.league_fl1) -> idLeague =
+                            getString(R.string.league_fl1_id)
+                        getString(R.string.league_sll) -> idLeague =
+                            getString(R.string.league_sll_id)
+                    }
+                    btn_title_sub_classification_match?.text = leagueName
+                    idLeague?.let { classificationMatchPresenter.getClassificationMatchTable(it) }
+                    info("http://$LOOKUP_TABLE WITH $idLeague")
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    info("onNothingSelected")
+                }
+            }
 
     }
 

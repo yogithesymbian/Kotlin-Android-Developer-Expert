@@ -10,7 +10,7 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <include layout="@layout/content_classification_match"/>
+    <include layout="@layout/content_classification_match" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
@@ -25,8 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"
+            android:padding="8dp"
             tools:ignore="UselessParent">
 
             <androidx.appcompat.widget.AppCompatSpinner

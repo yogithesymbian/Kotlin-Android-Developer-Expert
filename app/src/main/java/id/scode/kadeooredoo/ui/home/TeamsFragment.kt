@@ -270,7 +270,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                 //Memberitahukan Espresso bahwa aplikasi sedang sibuk
 //                EspressoIdlingResource.increment()
                 teamsPresenter.getLeagueTeamList(leagueName)
-                info("http://$SEARCH_ALL_TEAM")
+                info("http://$SEARCH_ALL_TEAM WITH $leagueName")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -280,10 +280,11 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
         // pull-down
         swipeRefreshLayoutListTeam.onRefresh {
-            info("try swipe to refresh on select ${spinner.selectedItem}")
+            val leagueSwipe = spinner.selectedItem
+            info("try swipe to refresh on select $leagueSwipe")
 //            EspressoIdlingResource.increment()
-            teamsPresenter.getLeagueTeamList(spinner.selectedItem.toString())
-            info("http://$SEARCH_ALL_TEAM")
+            teamsPresenter.getLeagueTeamList(leagueSwipe.toString())
+            info("http://$SEARCH_ALL_TEAM WITH $leagueSwipe")
         }
 
     }

@@ -107,7 +107,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             //            EspressoIdlingResource.increment()
             // call the api
             previousPresenter.getPreviousLeagueList(id)
-            info("http://$EVENT_PAST_LEAGUE")
+            info("http://$EVENT_PAST_LEAGUE $id")
             info("get data with $id")
 
             // test obs
