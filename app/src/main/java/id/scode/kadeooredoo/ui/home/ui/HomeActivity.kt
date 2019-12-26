@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.home.ui
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
@@ -10,6 +10,8 @@ import com.google.android.material.tabs.TabLayout
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventSectionPagerAdapter
+import id.scode.kadeooredoo.ui.home.ui.favorite.TeamsFavoriteFragment
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.AnkoLogger

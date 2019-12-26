@@ -207,5 +207,8 @@
     <string name="content_classification_match_played">Played</string>
     <string name="content_classification_match_total">Total</string>
     <string name="content_classification_match_draw">Draw</string>
+    <string name="classification_match_activity_goals_against">Goals Against</string>
+    <string name="classification_match_activity_goals_difference">Goals Difference</string>
+    <string name="classification_match_activity_goals_for">Goals For</string>
 
 </resources>

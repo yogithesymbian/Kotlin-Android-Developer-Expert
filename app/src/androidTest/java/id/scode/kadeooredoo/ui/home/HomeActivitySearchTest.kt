@@ -9,6 +9,7 @@ import id.scode.kadeooredoo.testhelper.TestEspresso.Companion.NEXT_TEXT_FOUND
 import id.scode.kadeooredoo.testhelper.TestEspresso.Companion.NEXT_TEXT_NOT_FOUND
 import id.scode.kadeooredoo.testhelper.TestEspresso.Companion.PREV_TEXT_FOUND
 import id.scode.kadeooredoo.testhelper.TestEspresso.Companion.PREV_TEXT_NOT_FOUND
+import id.scode.kadeooredoo.ui.home.ui.HomeActivity
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
@@ -38,7 +39,8 @@ class HomeActivitySearchTest {
 
     @Rule
     @JvmField
-    var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(HomeActivity::class.java)
+    var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(
+        HomeActivity::class.java)
 
 
     @Before

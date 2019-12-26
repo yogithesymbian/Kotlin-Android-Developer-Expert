@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.home.ui.team
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -22,6 +22,7 @@ import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
+import id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite.TeamsDetailActivity
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_favorite_main.*
@@ -215,7 +216,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
             )
             debug(8)
             error(null)
-            startActivity<TeamsDetailActivity>(DETAIL_KEY to it.teamId) //intent with the obj
+            startActivity<TeamsDetailActivity>(
+                DETAIL_KEY to it.teamId) //intent with the obj
         }
         recyclerViewListTeam.adapter = teamsAdapter
 

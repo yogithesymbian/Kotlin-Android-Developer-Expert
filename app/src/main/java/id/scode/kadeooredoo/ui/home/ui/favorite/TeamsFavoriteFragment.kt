@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home.subfavorite.eventnext
+package id.scode.kadeooredoo.ui.home.ui.favorite
 
 
 import android.os.Bundle
@@ -12,14 +12,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.data.db.entities.FavTeamJoinDetail
-import id.scode.kadeooredoo.data.db.entities.Team.Companion.TABLE_FAVORITE_NEXT
-import id.scode.kadeooredoo.databaseEventNextMatch
+import id.scode.kadeooredoo.data.db.entities.Favorite
+import id.scode.kadeooredoo.databaseTeams
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
-import id.scode.kadeooredoo.ui.home.adapter.FavoriteEventAdapter
+import id.scode.kadeooredoo.ui.home.adapter.FavoriteTeamsAdapter
+import id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite.TeamsDetailActivity
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment
 import id.scode.kadeooredoo.visible
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
@@ -31,66 +29,67 @@ import org.jetbrains.anko.support.v4.onRefresh
 /**
  * A simple [Fragment] subclass.
  */
-class FavNextFragment : Fragment(), AnkoLogger {
+class TeamsFavoriteFragment : Fragment(), AnkoLogger {
 
-    private var favoritesMutableList: MutableList<FavTeamJoinDetail> = mutableListOf()
-    private lateinit var favoriteEventAdapter: FavoriteEventAdapter
+    private var favoritesMutableList: MutableList<Favorite> = mutableListOf()
+    private lateinit var favoriteTeamsAdapter: FavoriteTeamsAdapter
     private lateinit var imageView: ImageView
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fav_next, container, false)
+        return inflater.inflate(R.layout.fragment_favorite_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.rv_event_next_match)
-        imageView = view.findViewById(R.id.img_exception_favorite_event_next)
-        swipeRefreshLayout = view.findViewById(R.id.swrl_event_next_match)
 
-        // set the layout
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 1, GridLayoutManager.VERTICAL, false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView = view.findViewById(R.id.rv_teams)
+        imageView = view.findViewById(R.id.img_exception_favorite)
+        swipeRefreshLayout = view.findViewById(R.id.swrl_teams)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        favoriteEventAdapter = FavoriteEventAdapter(favoritesMutableList) {
-            info("move with ${it.eventId} - ${it.teamBadge}")
-            context?.startActivity<DetailMatchLeagueActivity>(
-                DETAIL_KEY to "${it.eventId}",
-                DETAIL_KEY_SCORE to "${it.homeScore}"
-            )
+        // set the layout
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =
+            GridLayoutManager(activity?.applicationContext, 1, GridLayoutManager.HORIZONTAL, false)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+
+        favoriteTeamsAdapter = FavoriteTeamsAdapter(favoritesMutableList) {
+            context?.startActivity<TeamsDetailActivity>(TeamsFragment.DETAIL_KEY_FAV_TEAM to "${it.teamId}")
         }
 
-        recyclerView.adapter = favoriteEventAdapter
+        recyclerView.adapter = favoriteTeamsAdapter
 
         swipeRefreshLayout.onRefresh {
             info("onRefresh showFav")
             showFavorite()
         }
+
     }
+
 
     // show data Anko SQLite
     private fun showFavorite() {
         // clear before assign
         favoritesMutableList.clear()
 
-        requireContext().databaseEventNextMatch.use {
+        context?.applicationContext?.databaseTeams?.use {
             // stop refresh if do
             swipeRefreshLayout.isRefreshing = false
 
             // query anko SQLite select and parser the result
-            val result = select(TABLE_FAVORITE_NEXT)
-            val favorite = result.parseList(classParser<FavTeamJoinDetail>())
+            val result = select(Favorite.TABLE_FAVORITE)
+            val favorite = result.parseList(classParser<Favorite>())
 
             // assign all data to favorite mutableList
             favoritesMutableList.addAll(favorite)
@@ -100,13 +99,13 @@ class FavNextFragment : Fragment(), AnkoLogger {
                 swipeRefreshLayout.gone()
                 imageView.visible()
             } else {
-                info("$ showing favorite ${favoritesMutableList[0].homeTeam}")
+                info("$ showing favorite ${favoritesMutableList[0].teamName}")
                 swipeRefreshLayout.visible()
                 imageView.gone()
             }
 
             // getNot-if the adapter if change
-            favoriteEventAdapter.notifyDataSetChanged()
+            favoriteTeamsAdapter.notifyDataSetChanged()
         }
     }
 
@@ -116,6 +115,5 @@ class FavNextFragment : Fragment(), AnkoLogger {
         showFavorite()
 
     }
-
 
 }

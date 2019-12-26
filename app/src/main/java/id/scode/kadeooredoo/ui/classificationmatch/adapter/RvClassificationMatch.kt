@@ -43,8 +43,7 @@ class RvClassificationMatch(
         fun bindItem(
             item: Table,
             listener: (Table) -> Unit,
-            position: Int,
-            context: Context
+            position: Int
         ) {
 
 
@@ -155,6 +154,6 @@ class RvClassificationMatch(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(items[position], listener, position, context)
+        holder.bindItem(items[position], listener, position)
 
 }

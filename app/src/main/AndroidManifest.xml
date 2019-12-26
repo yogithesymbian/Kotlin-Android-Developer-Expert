@@ -13,18 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+<!--        [BUG] land variant i don't know why, already debug on 24 hour, still problem layout
+             i don't save saveInstanceState - i know this rule
+             but the layout is still same , only on #content_classification_match (land) # -->
         <activity
-            android:name=".ui.classificationmatch.ui.ClassificationMatchActivity"
+            android:name="id.scode.kadeooredoo.ui.classificationmatch.ui.ClassificationMatchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classification_match"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="portrait"/>
+
         <activity
-            android:name=".ui.home.TeamsDetailActivity"
-            android:parentActivityName=".ui.home.HomeActivity"
+            android:name=".ui.home.ui.detailteamandfavorite.TeamsDetailActivity"
+            android:parentActivityName=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithBar" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +40,7 @@
         <activity
             android:name=".ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
-            android:parentActivityName=".ui.home.HomeActivity"
+            android:parentActivityName=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

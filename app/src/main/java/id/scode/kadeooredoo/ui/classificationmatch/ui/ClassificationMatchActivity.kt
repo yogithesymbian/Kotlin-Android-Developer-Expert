@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import id.scode.kadeooredoo.LOOKUP_TABLE
@@ -18,7 +20,7 @@ import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.classificationmatch.adapter.RvClassificationMatch
 import id.scode.kadeooredoo.ui.classificationmatch.presenter.ClassificationMatchPresenter
 import id.scode.kadeooredoo.ui.classificationmatch.view.ClassificationMatchView
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_classification_match.*
 import kotlinx.android.synthetic.main.content_classification_match.*
@@ -98,17 +100,6 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
 
         intent.also {
             idLeague = it.getStringExtra(DETAIL_KEY)
-//            when (idLeague) {
-//                getString(R.string.league_epl_id) -> leagueName = getString(R.string.league_epl)
-//                getString(R.string.league_elc_id) -> leagueName = getString(R.string.league_elc)
-//                getString(R.string.league_gb_id) -> leagueName = getString(R.string.league_gb)
-//                getString(R.string.league_isa_id) -> leagueName = getString(R.string.league_isa)
-//                getString(R.string.league_fl1_id) -> leagueName = getString(R.string.league_fl1)
-//                getString(R.string.league_sll_id) -> leagueName = getString(R.string.league_sll)
-//            }
-//            btn_title_sub_classification_match?.text = "$idLeague - $leagueName"
-//            classificationMatchPresenter.getClassificationMatchTable(idLeague.toString())
-//            info("http://$LOOKUP_TABLE WITH $idLeague")
         }
         /**
          * declare & initialize adapter and presenter
@@ -168,6 +159,32 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                     info("onNothingSelected")
                 }
             }
+
+        // tooltip for three icon goal
+        setThreeIconTooltip(
+            img_lbl_team_goals_against,
+            getString(R.string.classification_match_activity_goals_against)
+        )
+        setThreeIconTooltip(
+            img_lbl_team_goals_different,
+            getString(R.string.classification_match_activity_goals_difference)
+        )
+        setThreeIconTooltip(
+            img_lbl_team_goals_for,
+            getString(R.string.classification_match_activity_goals_for)
+        )
+
+
+
+    }
+
+    private fun setThreeIconTooltip(appCompatImageView: AppCompatImageView?, msg: String) {
+        appCompatImageView?.let {
+            TooltipCompat.setTooltipText(
+                it,
+                msg
+            )
+        }
 
     }
 

@@ -16,8 +16,8 @@ import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.view.DetailMatchView
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_SCORE
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY_SCORE
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.android.synthetic.main.activity_detail_match_league.*

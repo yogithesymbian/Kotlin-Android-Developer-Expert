@@ -14,7 +14,7 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_LEAGUE
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_LEAGUE
 
 class DetailLeagueActivity : AppCompatActivity() {
 

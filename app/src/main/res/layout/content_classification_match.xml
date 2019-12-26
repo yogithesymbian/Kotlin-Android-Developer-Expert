@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_title_classification_match"
@@ -366,6 +365,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
         android:backgroundTint="@color/colorAccent"
+        android:alpha="0.5"
         app:icon="@drawable/ic_subdirectory_arrow_left_black_24dp"
         app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -52,7 +52,7 @@
             <output type="stdout">W/art: Before Android 4.1, method android.graphics.PorterDuffColorFilter androidx.vectordrawable.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
 W/ResourceType: No package identifier when getting name for resource number 0x00000000
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: PRE_ON_CREATE
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PRE_ON_CREATE
 D/AccessibilityManager: current package=id.scode.kadeooredoo, accessibility manager mIsFinalEnabled=false, mOptimizeEnabled=false, mIsUiAutomationEnabled=false, mIsInterestedPackage=false
 </output>
             <output type="stdout">I/art: Rejecting re-init on previously-failed class java.lang.Class&amp;lt;androidx.core.view.ViewCompat$2&amp;gt;: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/view/View$OnUnhandledKeyEventListener;
@@ -61,7 +61,7 @@ D/AccessibilityManager: current package=id.scode.kadeooredoo, accessibility mana
         at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)
         at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)
         at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)
-        at void id.scode.kadeooredoo.ui.home.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)
+        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)
         at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)
         at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)
         at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)
@@ -84,7 +84,7 @@ I/art:     at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) 
         at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)
         at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)
         at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)
-        at void id.scode.kadeooredoo.ui.home.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)
+        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)
         at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)
         at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)
         at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)
@@ -104,13 +104,13 @@ I/art:     at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) 
 V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ec4f529
 V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ac28786
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: CREATED
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: CREATED
 </output>
             <output type="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@8106640
     BoostFramework() : mPerf = com.qualcomm.qti.Performance@3a33979
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: STARTED
-D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: RESUMED
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STARTED
+D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESUMED
 </output>
             <output type="stdout">I/Adreno-EGL: &amp;lt;qeglDrvAPI_eglInitialize:379&amp;gt;: EGL 1.4 QUALCOMM build: Nondeterministic_AU_msm8937_64_LA.UM.5.5.R1__release_AU (I83a540a04a)
     OpenGL ES Shader Compiler Version: XE031.09.00.04
@@ -148,7 +148,7 @@ I/ViewInteraction: Performing &amp;#39;single click&amp;#39; action on view with
 </output>
             <output type="stdout">I/Timeline: Timeline: Activity_launch_request time:40853159 intent:Intent { cmp=id.scode.kadeooredoo/.ui.detailleague.ui.DetailLeagueActivity (has extras) }
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: PAUSED
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED
 D/LifecycleMonitor: running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
 D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: PRE_ON_CREATE
@@ -185,7 +185,7 @@ D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleagu
 I/art: Starting a blocking GC JitCodeCache
     After code cache collection, code=89KB, data=79KB
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: STOPPED
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STOPPED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
 D/LifecycleMonitor: callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
 </output>
@@ -416,13 +416,13 @@ W/RippleUtils: Use a non-transparent color for the default color as it will be u
             <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: PAUSED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
-D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: RESTARTED
+D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESTARTED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
-D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: STARTED
+D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STARTED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
-D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: RESUMED
+D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESUMED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
 D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: STOPPED
@@ -435,7 +435,7 @@ D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleagu
             <output type="stdout">I/DashboardFragment: try show detail leaguesMutableList : process
 I/DashboardFragment: try show leaguesMutableList : done 
 </output>
-            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.HomeActivity@e9de08b in: PAUSED
+            <output type="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED
     running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
     callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c
 </output>

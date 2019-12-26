@@ -1,4 +1,4 @@
-package id.scode.kadeooredoo.ui.home
+package id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -16,9 +16,9 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView

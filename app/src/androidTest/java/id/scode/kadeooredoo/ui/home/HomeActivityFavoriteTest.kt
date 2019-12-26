@@ -5,6 +5,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import id.scode.kadeooredoo.EspressoIdlingResource
 import id.scode.kadeooredoo.testhelper.TestEspresso
+import id.scode.kadeooredoo.ui.home.ui.HomeActivity
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
@@ -30,7 +31,8 @@ class HomeActivityFavoriteTest {
 
     @Rule
     @JvmField
-    var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(HomeActivity::class.java)
+    var activityRule: ActivityTestRule<HomeActivity> = ActivityTestRule(
+        HomeActivity::class.java)
 
 
     @Before

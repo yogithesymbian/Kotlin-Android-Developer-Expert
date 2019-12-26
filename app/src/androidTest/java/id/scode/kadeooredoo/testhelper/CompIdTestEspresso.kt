@@ -6,7 +6,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.ui.home.HomeActivity
+import id.scode.kadeooredoo.ui.home.ui.HomeActivity
 import org.jetbrains.anko.AnkoLogger
 import org.junit.FixMethodOrder
 import org.junit.Rule

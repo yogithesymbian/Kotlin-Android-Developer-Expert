@@ -24,7 +24,7 @@ import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.ui.classificationmatch.ui.ClassificationMatchActivity
 import id.scode.kadeooredoo.ui.detailleague.presenter.DetailLeaguePresenter
 import id.scode.kadeooredoo.ui.detailleague.view.DetailLeagueView
-import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
+import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
