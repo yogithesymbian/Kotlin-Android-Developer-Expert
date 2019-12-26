@@ -17,12 +17,15 @@
             android:name=".ui.classificationmatch.ui.ClassificationMatchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classification_match"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.home.TeamsDetailActivity"
             android:parentActivityName=".ui.home.HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithBar" />
-        <activity android:name=".ui.home.HomeActivity">
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +36,12 @@
             android:name=".ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
             android:parentActivityName=".ui.home.HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.detailleague.ui.DetailLeagueActivity"
-            android:label="@string/title_activity_detail_league" />
+            android:label="@string/title_activity_detail_league"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

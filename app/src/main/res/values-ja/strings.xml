@@ -195,5 +195,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="content_classification_match_classification_match">Classification Team Match</string>
+    <string name="content_classification_match_tag">TAG</string>
+    <string name="div">:</string>
 
 </resources>

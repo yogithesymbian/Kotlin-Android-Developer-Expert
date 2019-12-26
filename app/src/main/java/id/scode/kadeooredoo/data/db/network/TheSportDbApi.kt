@@ -43,7 +43,7 @@ object TheSportDbApi {
     fun getClassificationLeagueTeams(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/$LOOKUP_TABLE?id=" + idLeague
+                "/$LOOKUP_TABLE?l=" + idLeague
     }
 
     fun getNextMatchTeams(idLeague: String): String {

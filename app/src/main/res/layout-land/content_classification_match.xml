@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_title_classificaton_match"
+        android:id="@+id/txt_title_classification_match"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,10 +21,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_title_sub_classification_match"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:padding="4dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhiteText65"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_lbl_tag"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_tag_div"
+        app:layout_constraintTop_toTopOf="@+id/btn_lbl_tag"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="English Premier League" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_lbl_tag"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="@string/content_classification_match_tag"
+        android:textColor="@color/colorWhiteText65"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txt_lbl_tag_div"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_classification_match" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_lbl_tag_div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="@string/div"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_lbl_tag"
+        app:layout_constraintEnd_toStartOf="@+id/btn_title_sub_classification_match"
+        app:layout_constraintStart_toEndOf="@+id/btn_lbl_tag"
+        app:layout_constraintTop_toTopOf="@+id/btn_lbl_tag" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_classification"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_title_classification_match"
+        tools:ignore="UnusedAttribute" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_classification_match"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:keepScreenOn="true"
         android:scrollbarSize="2dp"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbarTrackHorizontal="@color/colorPrimary"
@@ -32,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title_classificaton_match"
+        app:layout_constraintTop_toBottomOf="@+id/btn_title_sub_classification_match"
         tools:listitem="@layout/item_classification_match" />
 
 

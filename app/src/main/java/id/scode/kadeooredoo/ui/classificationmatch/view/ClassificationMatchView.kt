@@ -18,6 +18,6 @@ interface ClassificationMatchView {
 
     fun showLoading()
     fun hideLoading()
-    fun showClassificationMatchTable(data: List<Table>)
+    fun showClassificationMatchTable(data: List<Table>?)
 
 }

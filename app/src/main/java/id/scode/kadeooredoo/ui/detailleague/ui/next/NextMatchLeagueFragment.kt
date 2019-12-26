@@ -39,6 +39,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     private var eventNextMutableList: MutableList<EventNext> = mutableListOf()
     private lateinit var nextPresenter: NextPresenter
     private lateinit var rvNextMatchLeagueAdapter: RvNextMatchLeague
+
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
