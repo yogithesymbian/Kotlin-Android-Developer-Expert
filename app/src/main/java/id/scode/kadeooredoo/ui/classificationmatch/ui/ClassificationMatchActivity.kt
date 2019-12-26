@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_classification_match.*
 import kotlinx.android.synthetic.main.content_classification_match.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.toast
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -221,10 +222,12 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
 
     override fun showLoading() {
         progress_bar_classification.visible()
+        toast("Please wait . . .")
     }
 
     override fun hideLoading() {
         progress_bar_classification.invisible()
+        toast("Data has load . . .")
     }
 
     override fun showClassificationMatchTable(data: List<Table>?) {

@@ -116,7 +116,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_title_sub_classification_match"
         tools:listitem="@layout/item_classification_match" />
 
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_back_classification"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
