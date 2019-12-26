@@ -58,7 +58,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_home_green_400_24dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_num"
                 app:layout_constraintStart_toEndOf="@+id/txt_team_name"
                 app:layout_constraintTop_toTopOf="@+id/txt_num" />
