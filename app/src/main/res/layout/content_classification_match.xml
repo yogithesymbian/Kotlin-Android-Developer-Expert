@@ -101,19 +101,259 @@
         app:layout_constraintTop_toTopOf="@+id/txt_title_classification_match"
         tools:ignore="UnusedAttribute" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_num"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_lbl_num"
+        app:layout_constraintEnd_toEndOf="@+id/txt_lbl_num"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="@+id/txt_lbl_num"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lbl_tag"
+        app:srcCompat="@drawable/ic_format_list_numbered_black_24dp"
+        app:tint="@color/colorAccent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_name"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/ic_classification_for_team_name_by_canva"
+        app:layout_constraintBottom_toBottomOf="@+id/img_lbl_team_num"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_num"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_num" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_goals_against"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_goals_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_name"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lbl_tag" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_goals_different"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/ic_classification_for_goals_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_goals_against"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_goals_against" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_goals_for"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_goals_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_goals_different"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_goals_different" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_win"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_win_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_goals_for"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_goals_for" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_loss"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_loss_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_win"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_win" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_draw"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_draw_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_loss"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_loss" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_total"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_classification_for_total_by_canva"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_draw"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_draw" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_lbl_team_played"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ic_classification_for_played_by_canva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_total"
+        app:layout_constraintTop_toTopOf="@+id/img_lbl_team_total" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_no"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_goals_against"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_name"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_num"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_num"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_num"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_ga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_against"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_team_name"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_team_name"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_gd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_difference"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_team_ga"
+        app:layout_constraintStart_toEndOf="@+id/txt_lbl_team_ga"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_goals_against"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_gf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_for"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_lbl_team_goals_for"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@+id/img_lbl_team_goals_for"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_win"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_lbl_team_win"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@+id/img_lbl_team_win"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_loss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_loss"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_lbl_team_loss"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_win"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_draw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_draw"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_lbl_team_draw"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="@+id/img_lbl_team_draw"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_total"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/img_lbl_team_total"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_draw"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_team_played"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:elevation="2dp"
+        android:text="@string/content_classification_match_played"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toEndOf="@+id/img_lbl_team_total"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
+        tools:ignore="SmallSp,UnusedAttribute" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_classification_match"
         android:layout_width="0dp"
         android:layout_height="0dp"
+
         android:keepScreenOn="true"
-        android:scrollbarSize="1dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbarTrackHorizontal="@color/colorPrimary"
-        android:scrollbars="vertical|horizontal"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_title_sub_classification_match"
+        app:layout_constraintTop_toBottomOf="@+id/img_lbl_team_name"
         tools:listitem="@layout/item_classification_match" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -124,10 +364,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/white"
-        android:backgroundTint="@android:color/white"
+        android:background="@color/colorAccent"
+        android:backgroundTint="@color/colorAccent"
         app:icon="@drawable/ic_subdirectory_arrow_left_black_24dp"
-        app:iconTint="@color/colorPrimaryDark"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

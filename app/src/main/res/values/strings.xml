@@ -199,5 +199,15 @@
     <string name="content_classification_match_classification_match">Classification Team Match</string>
     <string name="content_classification_match_tag">TAG</string>
     <string name="div">:</string>
+    <string name="content_classification_match_no">No</string>
+    <string name="content_classification_match_name">Name</string>
+    <string name="content_classification_match_against">Against</string>
+    <string name="content_classification_match_difference">Difference</string>
+    <string name="content_classification_match_for">For</string>
+    <string name="content_classification_match_win">Win</string>
+    <string name="content_classification_match_loss">Loss</string>
+    <string name="content_classification_match_played">Played</string>
+    <string name="content_classification_match_total">Total</string>
+    <string name="content_classification_match_draw">Draw</string>
 
 </resources>
