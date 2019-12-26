@@ -21,12 +21,14 @@ import com.synnapps.carouselview.ImageListener
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.League
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.classificationmatch.ui.ClassificationMatchActivity
 import id.scode.kadeooredoo.ui.detailleague.presenter.DetailLeaguePresenter
 import id.scode.kadeooredoo.ui.detailleague.view.DetailLeagueView
+import id.scode.kadeooredoo.ui.home.TeamsFragment.Companion.DETAIL_KEY
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.startActivity
 
 class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
@@ -90,7 +92,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
             detailLeaguePresenter.getDetailLeagueList(it)
             info("http://$LOOKUP_LEAGUE")
             img_classification_match.setOnClickListener { _ ->
-                toast(it)
+                startActivity<ClassificationMatchActivity>(DETAIL_KEY to it) //intent with the obj
             }
         }
 

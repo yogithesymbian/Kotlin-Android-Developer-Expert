@@ -193,4 +193,9 @@
     <string name="utils_exception_null" tools:keep="@string/utils_exception_null">exception_null</string>
     <string name="dashboard_fragment_classification_match">Classification Match</string>
 
+    <string name="title_activity_classification_match">ClassificationMatchActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="content_classification_match_classification_match">Classification Team Match</string>
+
 </resources>

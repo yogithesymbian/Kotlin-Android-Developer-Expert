@@ -14,10 +14,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.classificationmatch.ui.ClassificationMatchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_classification_match"
+            android:theme="@style/FullscreenTheme"></activity>
+        <activity
             android:name=".ui.home.TeamsDetailActivity"
-            android:theme="@style/AppThemeWithBar"
             android:parentActivityName=".ui.home.HomeActivity"
-            />
+            android:theme="@style/AppThemeWithBar" />
         <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +32,8 @@
         <activity
             android:name=".ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity"
             android:label="@string/title_activity_detail_match_league"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ui.home.HomeActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.detailleague.ui.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league" />
