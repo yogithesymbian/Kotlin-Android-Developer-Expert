@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_team_event"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_event_fant_art_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            tools:background="@android:color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_team_logo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_event_prev_match_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cv_team_event"
+        app:layout_constraintVertical_bias="0.39"
+        tools:background="@android:color/holo_red_dark"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_event_next_team"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_event_team_more_next"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/img_team_logo"
+        app:layout_constraintTop_toBottomOf="@+id/rv_event_prev_match_team" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_next_for_next"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_navigate_next_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_event_next_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_lbl_event_next_team" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_event_next_match_team"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_next_team"
+        tools:listitem="@layout/item_previous_match_league" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_lbl_event_prev_team"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/content_event_team_previous"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/img_team_logo"
+        app:layout_constraintTop_toBottomOf="@+id/img_team_logo" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_next_for_prev"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_navigate_next_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_event_prev_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_lbl_event_prev_team" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_event_prev_match_team"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_team_event"
+        tools:listitem="@layout/item_previous_match_league" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

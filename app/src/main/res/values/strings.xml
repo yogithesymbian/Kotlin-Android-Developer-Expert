@@ -212,5 +212,7 @@
     <string name="classification_match_activity_goals_for">Goals For</string>
     <string name="teams_detail_activity_list_player_unavailable">List Player Unavailable</string>
     <string name="title_activity_event_team">EventTeamActivity</string>
+    <string name="content_event_team_previous">Previous</string>
+    <string name="content_event_team_more_next">Next</string>
 
 </resources>

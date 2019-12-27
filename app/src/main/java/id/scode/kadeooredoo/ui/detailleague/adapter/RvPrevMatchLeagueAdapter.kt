@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
@@ -59,7 +61,7 @@ class RvPrevMatchLeagueAdapter(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
-        @SuppressLint("SimpleDateFormat")
+        @SuppressLint("SimpleDateFormat", "PrivateResource")
         fun bindItem(
             item: EventPrevious,
             listener: (EventPrevious) -> Unit,
@@ -116,7 +118,11 @@ class RvPrevMatchLeagueAdapter(
 
                     img_away_team_jersey.let { img ->
                         Glide.with(this.itemView.context)
+                            .asBitmap()
                             .load(teamsAway.teamBadge)
+                            .error(R.color.error_color_material_light)
+                            .format(DecodeFormat.PREFER_ARGB_8888)
+                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                             .into(img)
                     }
 

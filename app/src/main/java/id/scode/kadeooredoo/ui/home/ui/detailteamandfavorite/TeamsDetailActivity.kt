@@ -180,10 +180,9 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         imgListPlayer.setOnClickListener {
             toast(getString(R.string.teams_detail_activity_list_player_unavailable))
         }
-        imgEvent.setOnClickListener {
-            toast("${item.teamId}")
-            startActivity<EventTeamActivity>(TEAM_KEY to item)
-        }
+//        imgEvent.setOnClickListener {
+//            startActivity<EventTeamActivity>(TEAM_KEY to item)
+//        }
         progressBar.gone()
 
     }
@@ -302,7 +301,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 strDescriptionEN = descEn,
                 strDescriptionJP = descJp
             )
-            imgListPlayer.setOnClickListener { _ ->
+            imgListPlayer.setOnClickListener {
                 toast(getString(R.string.teams_detail_activity_list_player_unavailable))
             }
 

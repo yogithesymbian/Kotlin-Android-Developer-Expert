@@ -11,6 +11,8 @@ import android.widget.Filterable
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
@@ -145,6 +147,7 @@ class RvNextMatchLeagueAdapter(
 
     override fun getItemCount(): Int = items.size
 
+    @SuppressLint("PrivateResource")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(items[position], listener)
 
@@ -157,7 +160,11 @@ class RvNextMatchLeagueAdapter(
 
                 info("ohJersey : ${teams[0].strTeamLogo}")
                 Glide.with(holder.itemView)
+                    .asBitmap()
                     .load(teams[0].teamBadge)
+                    .error(R.color.error_color_material_light)
+                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.img_home_team_jersey_next)
             } else {
                 info("ohJersey null, still loading")
@@ -172,7 +179,11 @@ class RvNextMatchLeagueAdapter(
 
                 info("ohJerseyAway : ${teamsAway[0].strTeamLogo}")
                 Glide.with(holder.itemView)
+                    .asBitmap()
                     .load(teamsAway[0].teamBadge)
+                    .error(R.color.error_color_material_light)
+                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(holder.img_away_team_jersey_next)
             } else {
                 info("ohJerseyAway null, still loading")
