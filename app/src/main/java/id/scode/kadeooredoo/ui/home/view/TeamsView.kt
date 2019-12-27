@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.home.view
 
 import id.scode.kadeooredoo.data.db.entities.Team
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -19,7 +20,12 @@ interface TeamsView {
     fun hideLoading()
 
     fun showTeamList(data: List<Team>?)
-    fun showTeamAwayList(data: List<Team>?, checkIdTeam: String)
+    fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int? = null,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
+    )
     fun exceptionNullObject(msg: String)
 
 }

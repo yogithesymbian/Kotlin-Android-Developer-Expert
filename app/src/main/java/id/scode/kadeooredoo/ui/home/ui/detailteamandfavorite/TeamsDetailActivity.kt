@@ -16,6 +16,7 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.eventteam.ui.EventTeamActivity
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
@@ -315,7 +316,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         }
     }
 
-    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
+    override fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         // just for inside adapter previous and next
     }
 

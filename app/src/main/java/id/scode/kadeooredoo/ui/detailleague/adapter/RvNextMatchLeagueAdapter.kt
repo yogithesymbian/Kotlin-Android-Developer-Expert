@@ -246,7 +246,12 @@ class RvNextMatchLeagueAdapter(
         info("try show jersey team LOOKUP : done")
     }
 
-    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
+    override fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         info("try show jersey team away LOOKUP : process")
         teamsAway.clear()
         data?.let {

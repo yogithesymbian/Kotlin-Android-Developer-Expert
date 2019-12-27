@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
@@ -500,7 +501,12 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         info("try show jersey team LOOKUP : done")
     }
 
-    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
+    override fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         info("try show jersey team away LOOKUP : process")
 
         val zero = 0

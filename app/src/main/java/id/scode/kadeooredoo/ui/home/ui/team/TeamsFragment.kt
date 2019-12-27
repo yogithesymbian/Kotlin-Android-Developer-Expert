@@ -19,6 +19,7 @@ import id.scode.kadeooredoo.SEARCH_ALL_TEAM
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
@@ -329,7 +330,12 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         }
     }
 
-    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
+    override fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         // just for inside adapter previous and next
     }
 

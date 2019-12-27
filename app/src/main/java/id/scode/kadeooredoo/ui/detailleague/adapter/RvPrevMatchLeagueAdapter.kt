@@ -51,26 +51,32 @@ class RvPrevMatchLeagueAdapter(
      * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
-    private var teams: MutableList<Team> = mutableListOf()
-    private var teamsAway: Team? = null
+    private var teams: MutableList<Team> = mutableListOf() // teamsHome
+    private var teamsAway: Team? = null // teamsAway
+
     private lateinit var teamsPresenter: TeamsPresenter
     private var progressBar: ProgressBar? = null
     private var progressBarAway: ProgressBar? = null
     private var imageView: ImageView? = null
 
+    // logic for badge saving 2 array with same id
+    private var arrayListTeamsAwayOne: MutableList<EventPrevious> = mutableListOf()
+
+
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
+
 
         @SuppressLint("SimpleDateFormat", "PrivateResource")
         fun bindItem(
             item: EventPrevious,
             listener: (EventPrevious) -> Unit,
-            teamsPresenter: TeamsPresenter,
             teamsAway: Team?
         ) {
 
             // twice checking measure data is soccer
             if (item.strSport == SPORT) {
+                Log.d(TAG_LOG, "first setData with ${item.strFilename}")
                 txt_str_events.text = item.strEvent
                 txt_str_seasons.text = item.strSeason
 
@@ -82,6 +88,7 @@ class RvPrevMatchLeagueAdapter(
 
 
                 item.dateEvent?.let { date ->
+
                     txt_date_event.text = date
 
                     item.strTime?.let { time ->
@@ -108,42 +115,15 @@ class RvPrevMatchLeagueAdapter(
 
                 txt_unlocked_event.text = item.strSport
 
-                teamsPresenter.getDetailLeagueTeamAwayList(item.idAwayTeam.toString())
-
-                Log.d(TAG_LOG, "set badge outer ${teamsAway?.teamBadge}")
-
-                if (teamsAway != null) {
-
-                    Log.d(TAG_LOG, "set badge deeper ${teamsAway.teamBadge}")
-
-                    img_away_team_jersey.let { img ->
-                        Glide.with(this.itemView.context)
-                            .asBitmap()
-                            .load(teamsAway.teamBadge)
-                            .error(R.color.error_color_material_light)
-                            .format(DecodeFormat.PREFER_ARGB_8888)
-                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                            .into(img)
-                    }
-
+                img_away_team_jersey.let { img ->
+                    Glide.with(this.itemView.context)
+                        .asBitmap()
+                        .load(teamsAway?.teamBadge)
+                        .error(R.color.error_color_material_light)
+                        .format(DecodeFormat.PREFER_ARGB_8888)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .into(img)
                 }
-
-//                Handler().postDelayed({
-//
-//                    Log.d(TAG_LOG,"set badge inner ${teamsAway?.teamBadge}")
-//                    if (teamsAway != null){
-//
-//                        Log.d(TAG_LOG,"set badge deeper ${teamsAway.teamBadge}")
-//
-//                        img_away_team_jersey.let { img ->
-//                            Glide.with(this.itemView.context)
-//                                .load(teamsAway.teamBadge)
-//                                .into(img)
-//                        }
-//                    }
-//
-//
-//                }, 5000)
 
             } else {
                 Log.d(
@@ -158,6 +138,7 @@ class RvPrevMatchLeagueAdapter(
             containerView.setOnClickListener { listener(item) }
 
         }
+
 
     }
 
@@ -183,8 +164,31 @@ class RvPrevMatchLeagueAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(items[position], listener, teamsPresenter, teamsAway)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        info(
+            """
+            [*]
+            ${items.size}
+        """.trimIndent()
+        )
+
+        arrayListTeamsAwayOne.clear() //clear
+        for (i in items.indices) { //add item to anArray
+            info("hello ${items[i].idAwayTeam}")
+            arrayListTeamsAwayOne.add(items[i]) //
+        }
+
+        // call api with position and holder for re-bind , and measure item is match [check twice]
+        for (i in arrayListTeamsAwayOne.indices) {
+            val item1 = items[i].idAwayTeam
+            val item2 = arrayListTeamsAwayOne[i].idAwayTeam
+            if (item1 == item2) {
+                info("[$item1] match [$item2]")
+                teamsPresenter.getDetailLeagueTeamAwayList(item1.toString(), position, holder)
+            }
+        }
+    }
 
     override fun getFilter(): Filter {
         return object : Filter() {
@@ -240,10 +244,19 @@ class RvPrevMatchLeagueAdapter(
         info("try show jersey team LOOKUP : done")
     }
 
-    override fun showTeamAwayList(data: List<Team>?, checkIdTeam: String) {
+    @SuppressLint("PrivateResource")
+    override fun showTeamAwayList(
+        data: List<Team>?,
+        checkIdTeam: String,
+        position: Int?,
+        holder: ViewHolder?
+    ) {
+
         info("try show jersey team away LOOKUP : process")
         listOf(teamsAway).toMutableList().clear()
+
         data?.let {
+
             listOf(teamsAway).toMutableList().addAll(it)
 
             teamsAway = Team(
@@ -252,14 +265,16 @@ class RvPrevMatchLeagueAdapter(
                 teamName = it[0].teamName
             )
 
-            info(
-                """
-                
-                [ ${it[0].teamName} ] match [ ${teamsAway?.teamName} ]
-                [ $checkIdTeam ] match [ ${teamsAway?.teamId} ]
-                
-            """.trimIndent()
-            )
+
+            for (i in arrayListTeamsAwayOne.indices)
+                reBindingAnEvent(
+                    arrayListBind = arrayListTeamsAwayOne,
+                    listTeam = it,
+                    forIterate = i,
+                    viewHolder = holder,
+                    dataPosition = position,
+                    teamBind = teamsAway
+                )
 
         }
         info("try show jersey team away LOOKUP : done")
@@ -267,6 +282,36 @@ class RvPrevMatchLeagueAdapter(
 
     override fun exceptionNullObject(msg: String) {
         // just for in home | search
+    }
+
+    private fun reBindingAnEvent(
+        arrayListBind: MutableList<EventPrevious>,
+        listTeam: List<Team>,
+        forIterate: Int,
+        viewHolder: ViewHolder?,
+        dataPosition: Int?,
+        teamBind: Team?
+    ) {
+        dataPosition?.let { post ->
+            if (arrayListBind[post].idAwayTeam == listTeam[0].teamId) {
+                info(
+                    """
+                        [*]
+                        alright set badge here
+                        [${listTeam[0].teamId}] == [${arrayListBind[forIterate].idAwayTeam}]
+                    """.trimIndent()
+                )
+
+                // try re-bind for items
+                viewHolder?.bindItem(
+                    arrayListBind[post],
+                    listener,
+                    teamBind
+                )
+
+            }
+
+        }
     }
 
     companion object {
