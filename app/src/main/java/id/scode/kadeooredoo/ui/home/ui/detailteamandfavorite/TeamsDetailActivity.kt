@@ -269,7 +269,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         progressBar.gone()
     }
 
-    override fun showTeamList(data: List<Team>?) {
+    override fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
 //            EspressoIdlingResource.decrement()
@@ -318,7 +323,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     override fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?,
         position: Int?,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?
     ) {

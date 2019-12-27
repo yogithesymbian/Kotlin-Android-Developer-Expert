@@ -52,25 +52,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
         savedInstanceState: Bundle?
     ): View? {
         // initialize binding
-        val root = inflater.inflate(R.layout.fragment_previous, container, false)
-        /**
-         * declare & initialize adapter and presenter
-         * for the callBack a getLeagueTeamList
-         */
-        rvPrevMatchLeagueAdapterAdapter = activity?.applicationContext?.let { context ->
-            RvPrevMatchLeagueAdapter(
-                context,
-                eventPreviousMutableList
-            ) {
-                info(
-                    """
-                           date : ${it.strDate}
-                    """.trimIndent()
-                )
-                context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
-            }
-        }!!
-        return root
+        return inflater.inflate(R.layout.fragment_previous, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -117,7 +99,25 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             })
         }
 
+        /**
+         * declare & initialize adapter and presenter
+         * for the callBack a getLeagueTeamList
+         */
+        rvPrevMatchLeagueAdapterAdapter = activity?.applicationContext?.let { context ->
+            RvPrevMatchLeagueAdapter(
+                context,
+                eventPreviousMutableList
+            ) {
+                info(
+                    """
+                           date : ${it.strDate}
+                    """.trimIndent()
+                )
+                context.startActivity<DetailMatchLeagueActivity>(DETAIL_PREV_MATCH_LEAGUE to it)
+            }
+        }!!
         recyclerView.adapter = rvPrevMatchLeagueAdapterAdapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

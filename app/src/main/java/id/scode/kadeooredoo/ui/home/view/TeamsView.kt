@@ -19,13 +19,19 @@ interface TeamsView {
     fun showLoading()
     fun hideLoading()
 
-    fun showTeamList(data: List<Team>?)
+    fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?= null,
+        position: Int? = null,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder? = null
+    )
     fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?= null,
         position: Int? = null,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
     )
+
     fun exceptionNullObject(msg: String)
 
 }

@@ -21,10 +21,10 @@ object TheSportDbApi {
     private const val VERSI = "v1"
     private const val JSON = "json"
 
-    fun getLeagueTeams(idLeague: String): String {
+    fun getLeagueTeams(leagueName: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
-                "/$SEARCH_ALL_TEAM?l=" + idLeague
+                "/$SEARCH_ALL_TEAM?l=" + leagueName
     }
 
 

@@ -6,10 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.widget.*
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
@@ -51,7 +49,7 @@ class RvPrevMatchLeagueAdapter(
      * apply the TeamsPresenter and MainAdapter
      * to the this context
      */
-    private var teams: MutableList<Team> = mutableListOf() // teamsHome
+    private var teams: Team? = null // teamsHome
     private var teamsAway: Team? = null // teamsAway
 
     private lateinit var teamsPresenter: TeamsPresenter
@@ -60,8 +58,8 @@ class RvPrevMatchLeagueAdapter(
     private var imageView: ImageView? = null
 
     // logic for badge saving 2 array with same id
+    private var arrayListTeamsHomeOne: MutableList<EventPrevious> = mutableListOf()
     private var arrayListTeamsAwayOne: MutableList<EventPrevious> = mutableListOf()
-
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
@@ -71,7 +69,9 @@ class RvPrevMatchLeagueAdapter(
         fun bindItem(
             item: EventPrevious,
             listener: (EventPrevious) -> Unit,
-            teamsAway: Team?
+            teamsBadgeYoBall: Team?,
+            logicPostBadge: Int,
+            progressBar: ProgressBar?
         ) {
 
             // twice checking measure data is soccer
@@ -115,14 +115,25 @@ class RvPrevMatchLeagueAdapter(
 
                 txt_unlocked_event.text = item.strSport
 
-                img_away_team_jersey.let { img ->
-                    Glide.with(this.itemView.context)
-                        .asBitmap()
-                        .load(teamsAway?.teamBadge)
-                        .error(R.color.error_color_material_light)
-                        .format(DecodeFormat.PREFER_ARGB_8888)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .into(img)
+                when (logicPostBadge) {
+                    1 -> img_home_team_jersey.let { img ->
+                        Glide.with(this.itemView.context)
+                            .asBitmap()
+                            .load(teamsBadgeYoBall?.teamBadge)
+                            .error(R.color.error_color_material_light)
+                            .format(DecodeFormat.PREFER_ARGB_8888)
+                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                            .into(img)
+                    }
+                    2 -> img_away_team_jersey.let { img ->
+                        Glide.with(this.itemView.context)
+                            .asBitmap()
+                            .load(teamsBadgeYoBall?.teamBadge)
+                            .error(R.color.error_color_material_light)
+                            .format(DecodeFormat.PREFER_ARGB_8888)
+                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                            .into(img)
+                    }
                 }
 
             } else {
@@ -135,7 +146,15 @@ class RvPrevMatchLeagueAdapter(
                 )
             }
 
-            containerView.setOnClickListener { listener(item) }
+            progressBar?.let{
+                if (it.isVisible){
+                    containerView.setOnClickListener{con ->
+                        Toast.makeText(con.context,"Please wait", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    containerView.setOnClickListener { listener(item) }
+                }
+            }
 
         }
 
@@ -173,21 +192,54 @@ class RvPrevMatchLeagueAdapter(
         """.trimIndent()
         )
 
-        arrayListTeamsAwayOne.clear() //clear
+        arrayListTeamsHomeOne.clear()//clear arr[beforeAdded]
+        arrayListTeamsAwayOne.clear()
+
         for (i in items.indices) { //add item to anArray
-            info("hello ${items[i].idAwayTeam}")
-            arrayListTeamsAwayOne.add(items[i]) //
+
+            info("hello home ${items[i].idHomeTeam} | away ${items[i].idAwayTeam}")
+            arrayListTeamsHomeOne.add(items[i]) // assign items to arrayList[home]
+            arrayListTeamsAwayOne.add(items[i]) // away
+
         }
 
         // call api with position and holder for re-bind , and measure item is match [check twice]
         for (i in arrayListTeamsAwayOne.indices) {
+
             val item1 = items[i].idAwayTeam
             val item2 = arrayListTeamsAwayOne[i].idAwayTeam
-            if (item1 == item2) {
-                info("[$item1] match [$item2]")
+
+            val item3 = items[i].idHomeTeam
+            val item4 = arrayListTeamsHomeOne[i].idHomeTeam
+
+            if (item1 == item2) { // re-check match or nah then presenter the data
+
+                info(
+                    """
+                    [*] awayTeam
+                    [$item1] match [$item2]
+                """.trimIndent()
+                )
+
                 teamsPresenter.getDetailLeagueTeamAwayList(item1.toString(), position, holder)
+
             }
+
+            if (item3 == item4) { // re-check match or nah then presenter the data
+
+                info(
+                    """
+                    [*] homeTeam
+                    [$item3] match [$item4]
+                """.trimIndent()
+                )
+
+                teamsPresenter.getDetailLeagueTeamList(item3.toString(), position, holder)
+
+            }
+
         }
+
     }
 
     override fun getFilter(): Filter {
@@ -235,11 +287,37 @@ class RvPrevMatchLeagueAdapter(
         progressBarAway?.gone()
     }
 
-    override fun showTeamList(data: List<Team>?) {
+    override fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?,
+        position: Int?,
+        holder: ViewHolder?
+    ) {
+
         info("try show jersey team LOOKUP : process")
-        teams.clear()
+        listOf(teams).toMutableList().clear()
+
         data?.let {
-            teams.addAll(it)
+
+            listOf(teams).toMutableList().addAll(it)
+
+            teams = Team(
+                teamId = it[0].teamId,
+                teamBadge = it[0].teamBadge,
+                teamName = it[0].teamName
+            )
+
+            // leak memory \ this can only solved by backEnd API | join badgeUrl into event | #lumenAPI
+            for (i in arrayListTeamsHomeOne.indices)
+                reBindingAnEvent(
+                    arrayListBind = arrayListTeamsHomeOne,
+                    listTeam = it,
+                    forIterate = i,
+                    viewHolder = holder,
+                    dataPosition = position,
+                    teamBind = teams,
+                    logicPostBadge = logicOne
+                )
         }
         info("try show jersey team LOOKUP : done")
     }
@@ -247,7 +325,7 @@ class RvPrevMatchLeagueAdapter(
     @SuppressLint("PrivateResource")
     override fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?,
         position: Int?,
         holder: ViewHolder?
     ) {
@@ -265,7 +343,7 @@ class RvPrevMatchLeagueAdapter(
                 teamName = it[0].teamName
             )
 
-
+            // leak memory \ this can only solved by backEnd API | join badgeUrl into event | #lumenAPI
             for (i in arrayListTeamsAwayOne.indices)
                 reBindingAnEvent(
                     arrayListBind = arrayListTeamsAwayOne,
@@ -273,7 +351,8 @@ class RvPrevMatchLeagueAdapter(
                     forIterate = i,
                     viewHolder = holder,
                     dataPosition = position,
-                    teamBind = teamsAway
+                    teamBind = teamsAway,
+                    logicPostBadge = logicTwo
                 )
 
         }
@@ -290,31 +369,65 @@ class RvPrevMatchLeagueAdapter(
         forIterate: Int,
         viewHolder: ViewHolder?,
         dataPosition: Int?,
-        teamBind: Team?
+        teamBind: Team?,
+        logicPostBadge: Int
     ) {
-        dataPosition?.let { post ->
-            if (arrayListBind[post].idAwayTeam == listTeam[0].teamId) {
-                info(
-                    """
+        when (logicPostBadge) {
+            1 -> {
+                dataPosition?.let { post ->
+                    if (arrayListBind[post].idHomeTeam == listTeam[0].teamId) {
+                        info(
+                            """
+                        [*]
+                        alright set badge here
+                        [${listTeam[0].teamId}] == [${arrayListBind[forIterate].idHomeTeam}]
+                    """.trimIndent()
+                        )
+
+                        // try re-bind for items
+                        viewHolder?.bindItem(
+                            arrayListBind[post],
+                            listener,
+                            teamBind,
+                            logicPostBadge,
+                            progressBar
+                        )
+
+                    }
+
+                }
+            }
+            2 -> {
+                dataPosition?.let { post ->
+                    if (arrayListBind[post].idAwayTeam == listTeam[0].teamId) {
+                        info(
+                            """
                         [*]
                         alright set badge here
                         [${listTeam[0].teamId}] == [${arrayListBind[forIterate].idAwayTeam}]
                     """.trimIndent()
-                )
+                        )
 
-                // try re-bind for items
-                viewHolder?.bindItem(
-                    arrayListBind[post],
-                    listener,
-                    teamBind
-                )
+                        // try re-bind for items
+                        viewHolder?.bindItem(
+                            arrayListBind[post],
+                            listener,
+                            teamBind,
+                            logicPostBadge,
+                            progressBar
+                        )
 
+                    }
+
+                }
             }
-
         }
     }
 
     companion object {
         val TAG_LOG = RvPrevMatchLeagueAdapter::class.java.simpleName
+
+        const val logicOne = 1
+        const val logicTwo = 2
     }
 }

@@ -48,7 +48,11 @@ class TeamsPresenter(
         }
     }
 
-    fun getDetailLeagueTeamList(idTeams: String) {
+    fun getDetailLeagueTeamList(
+        idTeams: String,
+        position: Int? =null,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
+    ) {
         view.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -57,7 +61,7 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamList(data.team?.filter { it.strSport == SPORT })
+            view.showTeamList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder)
         }
     }
 

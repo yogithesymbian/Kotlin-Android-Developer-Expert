@@ -306,7 +306,12 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         progressBar.gone()
     }
 
-    override fun showTeamList(data: List<Team>?) {
+    override fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
 //            EspressoIdlingResource.decrement()
@@ -332,7 +337,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
     override fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?,
         position: Int?,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?
     ) {

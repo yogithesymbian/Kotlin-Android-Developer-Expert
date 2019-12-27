@@ -154,7 +154,7 @@ class RvNextMatchLeagueAdapter(
         items[position].idHomeTeam?.let {
 
             info("idHomeTeam : $it")
-            teamsPresenter.getDetailLeagueTeamList(it)
+            teamsPresenter.getDetailLeagueTeamList(it, position)
 
             if (!teams.isNullOrEmpty()) {
 
@@ -237,7 +237,12 @@ class RvNextMatchLeagueAdapter(
         progressBarAway?.gone()
     }
 
-    override fun showTeamList(data: List<Team>?) {
+    override fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         info("try show jersey team LOOKUP : process")
         teams.clear()
         data?.let {
@@ -248,7 +253,7 @@ class RvNextMatchLeagueAdapter(
 
     override fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?,
         position: Int?,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?
     ) {

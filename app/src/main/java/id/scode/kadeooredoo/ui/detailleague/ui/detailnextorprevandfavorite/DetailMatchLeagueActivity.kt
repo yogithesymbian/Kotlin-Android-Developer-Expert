@@ -17,9 +17,9 @@ import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.view.DetailMatchView
+import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY_SCORE
-import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.android.synthetic.main.activity_detail_match_league.*
 import kotlinx.android.synthetic.main.content_detail_match_league_more.*
@@ -478,7 +478,12 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     }
 
-    override fun showTeamList(data: List<Team>?) {
+    override fun showTeamList(
+        data: List<Team>?,
+        checkIdTeamHome: String?,
+        position: Int?,
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+    ) {
         info("try show jersey team list : process")
 
         val zero = 0
@@ -503,7 +508,7 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     override fun showTeamAwayList(
         data: List<Team>?,
-        checkIdTeam: String,
+        checkIdTeamAway: String?,
         position: Int?,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?
     ) {
