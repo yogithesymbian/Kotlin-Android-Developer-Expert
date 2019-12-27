@@ -2,7 +2,6 @@ package id.scode.kadeooredoo.ui.home.ui.team
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
@@ -18,9 +17,8 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.SEARCH_ALL_TEAM
 import id.scode.kadeooredoo.data.db.entities.Team
-import id.scode.kadeooredoo.data.db.network.*
+import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.ui.NetworkFragment
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
@@ -40,16 +38,8 @@ import org.jetbrains.anko.support.v4.toast
 /**
  * A simple [Fragment] subclass.
  */
-class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView,
-    DownloadCallback<String> {
+class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView {
 
-    // Keep a reference to the NetworkFragment, which owns the AsyncTask object
-    // that is used to execute network ops.
-    private var networkFragment: NetworkFragment? = null
-
-    // Boolean telling us whether a download is in progress, so we don't trigger overlapping
-    // downloads with consecutive button clicks.
-    private var downloading = false
 
     // declare a view
     private lateinit var recyclerViewListTeam: RecyclerView
@@ -78,27 +68,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView,
         savedInstanceState: Bundle?
     ): View? {
         return createView(AnkoContext.create(requireContext()))
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        networkFragment = activity?.supportFragmentManager?.let {
-            NetworkFragment.getInstance(
-                it,
-                "https://www.google.com"
-            )
-        }
-    }
-
-
-    private fun startDownload() {
-        if (!downloading) {
-            // Execute the async download.
-            networkFragment?.apply {
-                startDownload()
-                downloading = true
-            }
-        }
     }
 
     @SuppressLint("ResourceAsColor")
@@ -225,7 +194,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        startDownload()
         // spinner config
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(
@@ -372,44 +340,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView,
     }
 
 
-    override fun updateFromDownload(result: String?) {
-
-    }
-
-    @Suppress("DEPRECATION")
-    override fun getActiveNetworkInfo(): NetworkInfo {
-//        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val connectivityManager = context?.connectivityManager
-        return connectivityManager?.activeNetworkInfo!! // sorry double bang operator needed
-
-    }
-
-    override fun onProgressUpdate(progressCode: Int, percentComplete: Int) {
-        when (progressCode) {
-            // You can add UI behavior for progress updates here.
-            ERROR -> {
-                info("connection error")
-            }
-            CONNECT_SUCCESS -> {
-                info("connection work")
-            }
-            GET_INPUT_STREAM_SUCCESS -> {
-                info("stream work")
-            }
-            PROCESS_INPUT_STREAM_IN_PROGRESS -> {
-                info("stream work progress")
-            }
-            PROCESS_INPUT_STREAM_SUCCESS -> {
-                info("stream work success")
-            }
-        }
-
-    }
-
-    override fun finishDownloading() {
-        downloading = false
-        networkFragment?.cancelDownload()
-    }
 
     companion object {
         const val DETAIL_KEY =
