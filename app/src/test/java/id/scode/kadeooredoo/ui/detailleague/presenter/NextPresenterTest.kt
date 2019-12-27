@@ -5,7 +5,7 @@ import id.scode.kadeooredoo.ContextProviderTest
 import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
+import id.scode.kadeooredoo.data.db.network.responses.NextLeagueAndTeamResponse
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
 import kotlinx.coroutines.Deferred
@@ -55,7 +55,7 @@ class NextPresenterTest {
     fun getNextLeagueList() {
 
         val eventNextMutableList: MutableList<EventNext> = mutableListOf()
-        val response = NextLeagueResponse(eventNextMutableList)
+        val response = NextLeagueAndTeamResponse(eventNextMutableList)
         val idLeague = "4328"
 
         runBlocking {
@@ -68,7 +68,7 @@ class NextPresenterTest {
                 .thenReturn("")
 
             Mockito
-                .`when`(gson.fromJson("", NextLeagueResponse::class.java))
+                .`when`(gson.fromJson("", NextLeagueAndTeamResponse::class.java))
                 .thenReturn(response)
 
             presenter.getNextLeagueList(idLeague)

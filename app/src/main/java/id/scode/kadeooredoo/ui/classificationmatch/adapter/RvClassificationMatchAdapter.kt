@@ -25,11 +25,11 @@ import org.jetbrains.anko.AnkoLogger
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
  * Linux 5.3.0-kali3-amd64
  */
-class RvClassificationMatch(
+class RvClassificationMatchAdapter(
     private val context: Context,
     private var items: List<Table>,
     private val listener: (Table) -> Unit
-) : RecyclerView.Adapter<RvClassificationMatch.ViewHolder>(),
+) : RecyclerView.Adapter<RvClassificationMatchAdapter.ViewHolder>(),
     AnkoLogger {
 
     /**

@@ -46,18 +46,30 @@ object TheSportDbApi {
                 "/$LOOKUP_TABLE?l=" + idLeague
     }
 
-    fun getNextMatchTeams(idLeague: String): String {
+    // LEAGUE
+    fun getNextMatchLeague(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
                 "/$EVENT_NEXT_LEAGUE?id=" + idLeague
     }
 
-    fun getPreviousMatchTeams(idLeague: String): String {
+    fun getPreviousMatchLeague(idLeague: String): String {
         return BuildConfig.BASE_URL +
                 "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
                 "/$EVENT_PAST_LEAGUE?id=" + idLeague
     }
+    // TEAM
+    fun getNextMatchTeams(idTeam: String): String {
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/$EVENT_NEXT_TEAM?id=" + idTeam
+    }
 
+    fun getPreviousMatchTeams(idTeam: String): String {
+        return BuildConfig.BASE_URL +
+                "$API/$VERSI/$JSON/${BuildConfig.TSDB_API_KEY}" +
+                "/$EVENT_LAST_TEAM?id=" + idTeam
+    }
 
     fun getDetailMatchEventTeams(idEvent: String): String {
         return BuildConfig.BASE_URL +

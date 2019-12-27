@@ -4,6 +4,7 @@
     package="id.scode.kadeooredoo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,16 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-<!--        [BUG] land variant i don't know why, already debug on 24 hour, still problem layout
-             i don't save saveInstanceState - i know this rule
-             but the layout is still same , only on #content_classification_match (land) # -->
         <activity
-            android:name="id.scode.kadeooredoo.ui.classificationmatch.ui.ClassificationMatchActivity"
+            android:name=".ui.eventteam.ui.EventTeamActivity"
+            android:label="@string/title_activity_event_team"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <!--
+                [BUG] land variant i don't know why, already debug on 24 hour, still problem layout
+             i don't save saveInstanceState - i know this rule
+             but the layout is still same , only on #content_classification_match (land) #
+        -->
+        <activity
+            android:name=".ui.classificationmatch.ui.ClassificationMatchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_classification_match"
-            android:theme="@style/FullscreenTheme"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.home.ui.detailteamandfavorite.TeamsDetailActivity"
             android:parentActivityName=".ui.home.ui.HomeActivity"

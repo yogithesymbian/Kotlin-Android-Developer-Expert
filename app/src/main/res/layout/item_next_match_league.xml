@@ -41,7 +41,6 @@
             tools:text="1920" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_lbl_seasons_next"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -227,7 +226,6 @@
 
 
         <View
-            android:id="@+id/v_title"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_marginStart="8dp"
@@ -241,7 +239,6 @@
 
 
         <View
-            android:id="@+id/v_title_left"
             android:layout_width="30dp"
             android:layout_height="4dp"
             android:background="@color/colorPrimary"

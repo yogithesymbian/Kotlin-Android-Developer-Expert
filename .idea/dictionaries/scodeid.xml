@@ -47,6 +47,7 @@
       <w>dblclick</w>
       <w>detailleague</w>
       <w>detailnextorprevandfavorite</w>
+      <w>detailteamandfavorite</w>
       <w>didn</w>
       <w>dijalankan</w>
       <w>eventnext</w>
@@ -110,6 +111,7 @@
       <w>treecontroller</w>
       <w>treeview</w>
       <w>tugas</w>
+      <w>unelevated</w>
       <w>unshift</w>
       <w>vectordrawable</w>
       <w>xmlhttp</w>

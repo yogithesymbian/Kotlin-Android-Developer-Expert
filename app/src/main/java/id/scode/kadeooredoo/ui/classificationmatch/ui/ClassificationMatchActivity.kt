@@ -17,7 +17,7 @@ import id.scode.kadeooredoo.R
 import id.scode.kadeooredoo.data.db.entities.Table
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.invisible
-import id.scode.kadeooredoo.ui.classificationmatch.adapter.RvClassificationMatch
+import id.scode.kadeooredoo.ui.classificationmatch.adapter.RvClassificationMatchAdapter
 import id.scode.kadeooredoo.ui.classificationmatch.presenter.ClassificationMatchPresenter
 import id.scode.kadeooredoo.ui.classificationmatch.view.ClassificationMatchView
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
@@ -41,7 +41,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
 
     private var tableMutableList: MutableList<Table> = mutableListOf()
     private lateinit var classificationMatchPresenter: ClassificationMatchPresenter
-    private lateinit var rvClassificationMatchAdapter: RvClassificationMatch
+    private lateinit var rvClassificationMatchAdapterAdapter: RvClassificationMatchAdapter
 
     @SuppressLint("InlinedApi")
     private val hidePart2Runnable = Runnable {
@@ -71,9 +71,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
      * while interacting with activity UI.
      */
     private val delayHideTouchListener = View.OnTouchListener { _, _ ->
-        if (AUTO_HIDE) {
-            delayedHide(AUTO_HIDE_DELAY_MILLIS)
-        }
+        delayedHide(AUTO_HIDE_DELAY_MILLIS)
         false
     }
 
@@ -105,8 +103,8 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
-        rvClassificationMatchAdapter = applicationContext?.let { context ->
-            RvClassificationMatch(
+        rvClassificationMatchAdapterAdapter = applicationContext?.let { context ->
+            RvClassificationMatchAdapter(
                 context,
                 tableMutableList
             ) {
@@ -120,7 +118,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                 delayHideTouchListener
             }
         }!!
-        rv_classification_match.adapter = rvClassificationMatchAdapter
+        rv_classification_match.adapter = rvClassificationMatchAdapterAdapter
 
         // spinner listener
         spinner_classification.onItemSelectedListener =
@@ -257,7 +255,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
             tableMutableList.addAll(it)
         }
 
-        rvClassificationMatchAdapter.notifyDataSetChanged()
+        rvClassificationMatchAdapterAdapter.notifyDataSetChanged()
 
         info("try show classification list : done")
 

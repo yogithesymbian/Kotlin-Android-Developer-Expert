@@ -18,7 +18,7 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeague
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.presenter.NextPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
@@ -38,7 +38,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
      */
     private var eventNextMutableList: MutableList<EventNext> = mutableListOf()
     private lateinit var nextPresenter: NextPresenter
-    private lateinit var rvNextMatchLeagueAdapter: RvNextMatchLeague
+    private lateinit var rvNextMatchLeagueAdapterAdapter: RvNextMatchLeagueAdapter
 
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
@@ -106,8 +106,8 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
-        rvNextMatchLeagueAdapter = activity?.applicationContext?.let { context ->
-            RvNextMatchLeague(
+        rvNextMatchLeagueAdapterAdapter = activity?.applicationContext?.let { context ->
+            RvNextMatchLeagueAdapter(
                 context,
                 eventNextMutableList
             ) {
@@ -119,7 +119,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
                 context.startActivity<DetailMatchLeagueActivity>(DETAIL_NEXT_MATCH_LEAGUE to it)
             }
         }!!
-        recyclerView.adapter = rvNextMatchLeagueAdapter
+        recyclerView.adapter = rvNextMatchLeagueAdapterAdapter
     }
 
 
@@ -152,7 +152,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         })
 
         searchView.setOnCloseListener {
-            rvNextMatchLeagueAdapter.filter.filter("")
+            rvNextMatchLeagueAdapterAdapter.filter.filter("")
             true
         }
     }
@@ -180,7 +180,7 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         data?.let {
             eventNextMutableList.addAll(it)
         }
-        rvNextMatchLeagueAdapter.notifyDataSetChanged()
+        rvNextMatchLeagueAdapterAdapter.notifyDataSetChanged()
         info("try show next event past list : done")
 
         if (eventNextMutableList.isNullOrEmpty()) {

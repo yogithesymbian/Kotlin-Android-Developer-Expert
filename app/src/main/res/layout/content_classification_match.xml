@@ -238,7 +238,6 @@
         tools:ignore="SmallSp,UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_lbl_team_gd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -253,7 +252,6 @@
         tools:ignore="SmallSp,UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_lbl_team_gf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
@@ -281,7 +279,6 @@
         tools:ignore="SmallSp,UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_lbl_team_loss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
@@ -311,7 +308,6 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_lbl_team_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
@@ -326,7 +322,6 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_lbl_team_played"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
@@ -356,7 +351,6 @@
         tools:listitem="@layout/item_classification_match" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_back_classification"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

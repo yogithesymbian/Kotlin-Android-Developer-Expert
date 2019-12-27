@@ -18,7 +18,9 @@ import java.net.URL
  * Linux 5.2.0-kali3-amd64
  */
 class ApiRepository {
+
     fun doRequestAsync(url: String): Deferred<String> = GlobalScope.async {
         URL(url).readText()
     }
+
 }

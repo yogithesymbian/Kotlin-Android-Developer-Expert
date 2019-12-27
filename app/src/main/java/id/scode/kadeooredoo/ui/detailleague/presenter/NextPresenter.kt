@@ -6,7 +6,7 @@ import id.scode.kadeooredoo.EXCEPTION_NULL
 import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
-import id.scode.kadeooredoo.data.db.network.responses.NextLeagueResponse
+import id.scode.kadeooredoo.data.db.network.responses.NextLeagueAndTeamResponse
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueSearchResponse
 import id.scode.kadeooredoo.ui.detailleague.view.NextMatchLeagueView
 import kotlinx.coroutines.GlobalScope
@@ -37,8 +37,8 @@ class NextPresenter(
         GlobalScope.launch(context.main) {
             val data =
                 gson.fromJson(
-                    apiRepository.doRequestAsync(TheSportDbApi.getNextMatchTeams(league)).await(),
-                    NextLeagueResponse::class.java
+                    apiRepository.doRequestAsync(TheSportDbApi.getNextMatchLeague(league)).await(),
+                    NextLeagueAndTeamResponse::class.java
                 )
             viewMatch.hideLoading()
             viewMatch.showNextLeague(data.eventNexts)

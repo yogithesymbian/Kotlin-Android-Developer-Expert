@@ -47,7 +47,6 @@
             tools:text="1920" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_lbl_seasons"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,7 +200,6 @@
         tools:text="unlocked" />
 
         <View
-            android:id="@+id/v_title"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_marginStart="8dp"
@@ -214,7 +212,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_str_events" />
 
         <View
-            android:id="@+id/v_title_left"
             android:layout_width="30dp"
             android:layout_height="4dp"
             android:background="@color/colorPrimary"
@@ -370,7 +367,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_ln_fw" />
 
     <View
-        android:id="@+id/v_hr_left_1"
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:layout_marginStart="8dp"
@@ -382,7 +378,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_shoots" />
 
     <View
-        android:id="@+id/v_hr_left_2"
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:layout_marginStart="8dp"
@@ -394,7 +389,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_yl_cd" />
 
     <View
-        android:id="@+id/v_hr_right_1"
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:background="@color/colorPrimary"
@@ -404,7 +398,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_shoots" />
 
     <View
-        android:id="@+id/v_hr_right_2"
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:background="@color/colorPrimary"

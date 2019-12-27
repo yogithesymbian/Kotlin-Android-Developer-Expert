@@ -194,8 +194,6 @@
     <string name="dashboard_fragment_classification_match">Classification Match</string>
 
     <string name="title_activity_classification_match">ClassificationMatchActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="content_classification_match_classification_match">Classification Team Match</string>
     <string name="content_classification_match_tag">TAG</string>
     <string name="div">:</string>
@@ -212,5 +210,7 @@
     <string name="classification_match_activity_goals_against">Goals Against</string>
     <string name="classification_match_activity_goals_difference">Goals Difference</string>
     <string name="classification_match_activity_goals_for">Goals For</string>
+    <string name="teams_detail_activity_list_player_unavailable">List Player Unavailable</string>
+    <string name="title_activity_event_team">EventTeamActivity</string>
 
 </resources>

@@ -18,7 +18,7 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeague
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.presenter.PreviousPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.view.PreviousMatchLeagueView
@@ -38,7 +38,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
      */
     private var eventPreviousMutableList: MutableList<EventPrevious> = mutableListOf()
     private lateinit var previousPresenter: PreviousPresenter
-    private lateinit var rvPrevMatchLeagueAdapter: RvPrevMatchLeague
+    private lateinit var rvPrevMatchLeagueAdapterAdapter: RvPrevMatchLeagueAdapter
     private lateinit var toolbarPrev: Toolbar
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
@@ -57,8 +57,8 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
          * declare & initialize adapter and presenter
          * for the callBack a getLeagueTeamList
          */
-        rvPrevMatchLeagueAdapter = activity?.applicationContext?.let { context ->
-            RvPrevMatchLeague(
+        rvPrevMatchLeagueAdapterAdapter = activity?.applicationContext?.let { context ->
+            RvPrevMatchLeagueAdapter(
                 context,
                 eventPreviousMutableList
             ) {
@@ -117,7 +117,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             })
         }
 
-        recyclerView.adapter = rvPrevMatchLeagueAdapter
+        recyclerView.adapter = rvPrevMatchLeagueAdapterAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -148,7 +148,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             }
         })
         searchView.setOnCloseListener {
-            rvPrevMatchLeagueAdapter.filter.filter("")
+            rvPrevMatchLeagueAdapterAdapter.filter.filter("")
             true
         }
     }
@@ -178,7 +178,7 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
             eventPreviousMutableList.addAll(it)
         }
 
-        rvPrevMatchLeagueAdapter.notifyDataSetChanged()
+        rvPrevMatchLeagueAdapterAdapter.notifyDataSetChanged()
         info("try show event past list : done")
         if (eventPreviousMutableList.isNullOrEmpty()) {
             toast(getString(R.string.exception_search_not_found))

@@ -1,12 +1,16 @@
 package id.scode.kadeooredoo.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.R.color.error_color_material_light
 import id.scode.kadeooredoo.data.db.entities.FavTeamJoinDetail
 import id.scode.kadeooredoo.gone
 import kotlinx.android.extensions.LayoutContainer
@@ -33,6 +37,7 @@ class FavoriteEventAdapter(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
+        @SuppressLint("PrivateResource")
         fun bindItem(
             item: FavTeamJoinDetail,
             listener: (FavTeamJoinDetail) -> Unit,
@@ -59,11 +64,19 @@ class FavoriteEventAdapter(
 
 
             Glide.with(context)
+                .asBitmap()
                 .load(item.teamBadge)
+                .error(error_color_material_light)
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(img_home_team_jersey)
 
             Glide.with(context)
+                .asBitmap()
                 .load(item.teamBadgeAway)
+                .error(error_color_material_light)
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(img_away_team_jersey)
 
 

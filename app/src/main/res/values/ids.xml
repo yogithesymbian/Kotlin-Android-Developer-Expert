@@ -8,12 +8,9 @@
     <item name="spinner" type="id" />
     <item name="team_badge" type="id" />
     <item name="team_name" type="id" />
-    <item name="img_fav_empty" type="id" />
-    <item name="fab_fav_event_pass" type="id" />
     <item name="rv_list_team" type="id" />
     <item name="progress_load_team" type="id" />
     <item name="toolbar_home" type="id" />
     <item name="img_exception_search_team" type="id" />
     <item name="team_desc" type="id" />
-    <item name="btn_list_player" type="id" />
 </resources>

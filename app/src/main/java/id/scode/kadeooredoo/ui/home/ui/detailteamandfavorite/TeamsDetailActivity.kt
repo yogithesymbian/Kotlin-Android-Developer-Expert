@@ -16,6 +16,7 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.eventteam.ui.EventTeamActivity
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY_FAV_TEAM
@@ -177,10 +178,11 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             }
         }
         imgListPlayer.setOnClickListener {
-            toast("${item.teamId}")
+            toast(getString(R.string.teams_detail_activity_list_player_unavailable))
         }
         imgEvent.setOnClickListener {
             toast("${item.teamId}")
+            startActivity<EventTeamActivity>(TEAM_KEY to item)
         }
         progressBar.gone()
 
@@ -301,11 +303,11 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 strDescriptionJP = descJp
             )
             imgListPlayer.setOnClickListener { _ ->
-                toast("${it[zero].teamId}")
+                toast(getString(R.string.teams_detail_activity_list_player_unavailable))
             }
 
             imgEvent.setOnClickListener { _ ->
-                toast("${it[zero].teamId}")
+                startActivity<EventTeamActivity>(TEAM_KEY to it)
             }
 
             info("try show team list : done")
@@ -320,5 +322,9 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     override fun exceptionNullObject(msg: String) {
         // just for in home | searchView
+    }
+
+    companion object{
+        const val TEAM_KEY = "team_key"
     }
 }
