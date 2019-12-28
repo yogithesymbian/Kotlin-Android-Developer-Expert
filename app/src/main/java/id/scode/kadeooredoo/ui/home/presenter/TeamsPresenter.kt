@@ -7,6 +7,7 @@ import id.scode.kadeooredoo.SPORT
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.coroutines.GlobalScope
@@ -51,7 +52,8 @@ class TeamsPresenter(
     fun getDetailLeagueTeamList(
         idTeams: String,
         position: Int? =null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null
     ) {
         view.showLoading()
         GlobalScope.launch(context.main) {
@@ -61,14 +63,15 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder)
+            view.showTeamList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1)
         }
     }
 
     fun getDetailLeagueTeamAwayList(
         idTeams: String,
         position: Int? =null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null
     ) {
         view.showLoading()
         GlobalScope.launch(context.main) {
@@ -78,7 +81,7 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder)
+            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1)
         }
     }
 

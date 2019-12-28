@@ -1,6 +1,7 @@
 package id.scode.kadeooredoo.ui.home.view
 
 import id.scode.kadeooredoo.data.db.entities.Team
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 
 /**
@@ -23,13 +24,16 @@ interface TeamsView {
         data: List<Team>?,
         checkIdTeamHome: String?= null,
         position: Int? = null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder? = null
+        holder: RvPrevMatchLeagueAdapter.ViewHolder? = null,
+        holder1 : RvNextMatchLeagueAdapter.ViewHolder? = null
     )
+
     fun showTeamAwayList(
         data: List<Team>?,
         checkIdTeamAway: String?= null,
         position: Int? = null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
+        holder1 : RvNextMatchLeagueAdapter.ViewHolder? = null
     )
 
     fun exceptionNullObject(msg: String)

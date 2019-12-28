@@ -16,6 +16,7 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Favorite
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.eventteam.ui.EventTeamActivity
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
@@ -273,7 +274,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
@@ -325,7 +327,8 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
         // just for inside adapter previous and next
     }

@@ -63,7 +63,6 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         progressBar = view.findViewById(R.id.progress_detail_next)
         recyclerView = view.findViewById(R.id.rv_next_match_leagues)
 
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

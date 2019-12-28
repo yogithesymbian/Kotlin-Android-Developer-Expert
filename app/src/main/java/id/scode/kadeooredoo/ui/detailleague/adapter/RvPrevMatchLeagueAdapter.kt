@@ -6,7 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -55,11 +58,10 @@ class RvPrevMatchLeagueAdapter(
     private lateinit var teamsPresenter: TeamsPresenter
     private var progressBar: ProgressBar? = null
     private var progressBarAway: ProgressBar? = null
-    private var imageView: ImageView? = null
 
     // logic for badge saving 2 array with same id
-    private var arrayListTeamsHomeOne: MutableList<EventPrevious> = mutableListOf()
-    private var arrayListTeamsAwayOne: MutableList<EventPrevious> = mutableListOf()
+    private var mutableListEventPrevOne: MutableList<EventPrevious> = mutableListOf()
+    private var mutableListEventPrevTwo: MutableList<EventPrevious> = mutableListOf()
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
@@ -172,7 +174,6 @@ class RvPrevMatchLeagueAdapter(
             )
         progressBar = parent.progress_load_jersey_home
         progressBarAway = parent.progress_load_jersey_away
-        imageView = parent.img_away_team_jersey
 
         val request = ApiRepository()
         val gson = Gson()
@@ -192,25 +193,25 @@ class RvPrevMatchLeagueAdapter(
         """.trimIndent()
         )
 
-        arrayListTeamsHomeOne.clear()//clear arr[beforeAdded]
-        arrayListTeamsAwayOne.clear()
+        mutableListEventPrevOne.clear()//clear arr[beforeAdded]
+        mutableListEventPrevTwo.clear()
 
         for (i in items.indices) { //add item to anArray
 
             info("hello home ${items[i].idHomeTeam} | away ${items[i].idAwayTeam}")
-            arrayListTeamsHomeOne.add(items[i]) // assign items to arrayList[home]
-            arrayListTeamsAwayOne.add(items[i]) // away
+            mutableListEventPrevOne.add(items[i]) // assign items to arrayList[home]
+            mutableListEventPrevTwo.add(items[i]) // away
 
         }
 
         // call api with position and holder for re-bind , and measure item is match [check twice]
-        for (i in arrayListTeamsAwayOne.indices) {
+        for (i in mutableListEventPrevTwo.indices) {
 
             val item1 = items[i].idAwayTeam
-            val item2 = arrayListTeamsAwayOne[i].idAwayTeam
+            val item2 = mutableListEventPrevTwo[i].idAwayTeam
 
             val item3 = items[i].idHomeTeam
-            val item4 = arrayListTeamsHomeOne[i].idHomeTeam
+            val item4 = mutableListEventPrevOne[i].idHomeTeam
 
             if (item1 == item2) { // re-check match or nah then presenter the data
 
@@ -291,7 +292,8 @@ class RvPrevMatchLeagueAdapter(
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: ViewHolder?
+        holder: ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
 
         info("try show jersey team LOOKUP : process")
@@ -308,9 +310,9 @@ class RvPrevMatchLeagueAdapter(
             )
 
             // leak memory \ this can only solved by backEnd API | join badgeUrl into event | #lumenAPI
-            for (i in arrayListTeamsHomeOne.indices)
+            for (i in mutableListEventPrevOne.indices)
                 reBindingAnEvent(
-                    arrayListBind = arrayListTeamsHomeOne,
+                    arrayListBind = mutableListEventPrevOne,
                     listTeam = it,
                     forIterate = i,
                     viewHolder = holder,
@@ -327,7 +329,8 @@ class RvPrevMatchLeagueAdapter(
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: ViewHolder?
+        holder: ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
 
         info("try show jersey team away LOOKUP : process")
@@ -344,9 +347,9 @@ class RvPrevMatchLeagueAdapter(
             )
 
             // leak memory \ this can only solved by backEnd API | join badgeUrl into event | #lumenAPI
-            for (i in arrayListTeamsAwayOne.indices)
+            for (i in mutableListEventPrevTwo.indices)
                 reBindingAnEvent(
-                    arrayListBind = arrayListTeamsAwayOne,
+                    arrayListBind = mutableListEventPrevTwo,
                     listTeam = it,
                     forIterate = i,
                     viewHolder = holder,

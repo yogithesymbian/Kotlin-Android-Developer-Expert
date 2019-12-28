@@ -19,6 +19,7 @@ import id.scode.kadeooredoo.SEARCH_ALL_TEAM
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.gone
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
@@ -310,7 +311,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
@@ -339,7 +341,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
         // just for inside adapter previous and next
     }
@@ -349,8 +352,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         imageViewNotFound.visible()
         rv_teams?.gone()
     }
-
-
 
     companion object {
         const val DETAIL_KEY =

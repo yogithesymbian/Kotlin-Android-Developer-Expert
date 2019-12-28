@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
@@ -482,7 +483,8 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
         info("try show jersey team list : process")
 
@@ -510,7 +512,8 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?
+        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?
     ) {
         info("try show jersey team away LOOKUP : process")
 
