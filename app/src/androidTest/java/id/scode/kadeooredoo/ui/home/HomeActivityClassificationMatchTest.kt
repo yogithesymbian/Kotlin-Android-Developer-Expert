@@ -68,8 +68,23 @@ class HomeActivityClassificationMatchTest {
         labelAndData.testDetailMatchLeagueLabelAndData() // see text and data on detailMatchLeague
         behaviour.testDetailMatchLeagueBehaviour() // click Float_Button ( float_social )
         behaviour.testDetailMatchLeagueClassificationBehaviour()
+        behaviour.testOpenTagClassificationBehaviour()
+        behaviour.testChooseTagClassificationBehaviour()
+        behaviour.testFabBackClassificationBehaviour()
 
-        behaviour.gotoHomeFromNextMatch()
+        behaviour.gotoHomeFromDashboardFragment()
+
+        // cloning | copy script from HomeActivityFavoriteTest
+        behaviour.testHomeBehaviourRecycler()
+
+        behaviour.testImgEventTeamDetailBehaviour()
+        behaviour.testWaitBackBehaviour()
+
+        componentId.testDetailTeamComponentId()
+        behaviour.testDetailTeamBehaviourAddToFavorite()
+
+        other.testCheckResultFavorite()
+
     }
 
 }

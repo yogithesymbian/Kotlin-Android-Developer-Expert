@@ -33,7 +33,7 @@ import org.junit.runners.MethodSorters
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) // ref google to order function by nameAscending
 @RunWith(AndroidJUnit4::class)
-class BehaviourTestEspresso : AnkoLogger{
+class BehaviourTestEspresso : AnkoLogger {
 
     @Rule
     @JvmField
@@ -96,9 +96,69 @@ class BehaviourTestEspresso : AnkoLogger{
     @Test
     fun testDetailMatchLeagueClassificationBehaviour() {
 
-        Espresso.onView(ViewMatchers.withId(R.id.img_classification_match)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.img_classification_match))
+            .perform(ViewActions.click())
 
     }
+
+    @Test
+    fun testOpenTagClassificationBehaviour() {
+
+        Espresso.onView(ViewMatchers.withId(R.id.btn_lbl_tag)).perform(ViewActions.click())
+
+    }
+
+    @Test
+    fun testChooseTagClassificationBehaviour() {
+
+
+        Thread.sleep(100)
+
+        Espresso.onView(ViewMatchers.withId(R.id.spinner_classification))
+            .perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withText("Spanish La Liga")).perform(ViewActions.click())
+
+
+        Espresso.onView(ViewMatchers.withText("Ath Bilbao"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        Espresso.onView(ViewMatchers.withText("Ath Bilbao"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+
+        Espresso.onView(ViewMatchers.withId(R.id.rv_classification_match))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        Espresso.onView(ViewMatchers.withId(R.id.rv_classification_match)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2)
+        )
+
+        Espresso.onView(ViewMatchers.withText("Ath Bilbao")).perform(ViewActions.click())
+
+    }
+
+    @Test
+    fun testFabBackClassificationBehaviour() {
+
+        Espresso.onView(ViewMatchers.withId(R.id.fab_classification_back))
+            .perform(ViewActions.click())
+
+    }
+
+    @Test
+    fun testImgEventTeamDetailBehaviour() {
+
+        Espresso.onView(ViewMatchers.withId(R.id.img_event_team_detail))
+            .perform(ViewActions.click())
+
+    }
+
+    @Test
+    fun testWaitBackBehaviour() {
+        Espresso.pressBack()
+    }
+
 
     @Test
     fun testDetailMatchLeagueBehaviourToPrev() {
@@ -214,12 +274,18 @@ class BehaviourTestEspresso : AnkoLogger{
     }
 
     @Test
-    fun gotoHomeFromNextMatch(){
+    fun gotoHomeFromNextMatch() {
+        Espresso.pressBack()
+    }
+
+    @Test
+    fun gotoHomeFromDashboardFragment() {
+        Espresso.pressBack()
         Espresso.pressBack()
     }
     // #BehaviourFunction end of ---------------------
 
-    companion object{
+    companion object {
 
         const val PREV_TEXT_FOUND = "bru"
         const val PREV_TEXT_NOT_FOUND = "bruuuu"

@@ -52,7 +52,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
 
     private lateinit var imgTeamBadge: ImageView
     private lateinit var imgListPlayer: ImageView
-    private lateinit var imgEvent: ImageView
+    private var imgEvent: ImageView? = null
 
     private lateinit var teamName: TextView
     private lateinit var teamDescription: TextView
@@ -121,8 +121,12 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             }.lparams(matchParent, dip(220)) {
                 margin = dip(8)
             }
+
             imgEvent = imageView {
+
+                id = R.id.img_event_team_detail
                 backgroundResource = R.drawable.ic_event_next_and_past_team_by_canva
+
             }.lparams(matchParent, wrapContent)
 
         }
@@ -189,7 +193,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
             toast(getString(R.string.teams_detail_activity_list_player_unavailable))
         }
 
-        imgEvent.setOnClickListener {
+        imgEvent?.setOnClickListener {
             toast("cannot open event team from favorite view")
         }
 
@@ -327,7 +331,7 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 toast(getString(R.string.teams_detail_activity_list_player_unavailable))
             }
 
-            imgEvent.setOnClickListener { _ ->
+            imgEvent?.setOnClickListener { _->
                 startActivity<EventTeamActivity>(TEAM_KEY to it)
             }
 
