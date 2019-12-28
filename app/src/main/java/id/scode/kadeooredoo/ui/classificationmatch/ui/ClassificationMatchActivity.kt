@@ -149,7 +149,10 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                             getString(R.string.league_sll_id)
                     }
                     btn_title_sub_classification_match?.text = leagueName
-                    idLeague?.let { classificationMatchPresenter.getClassificationMatchTable(it) }
+                    idLeague?.let {
+                        //        EspressoIdlingResource.increment()
+                        classificationMatchPresenter.getClassificationMatchTable(it)
+                    }
                     info("http://$LOOKUP_TABLE WITH $idLeague")
                 }
 
@@ -246,7 +249,10 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
     }
 
     override fun showClassificationMatchTable(data: List<Table>?) {
-
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show classification list : process")
 
         tableMutableList.clear()

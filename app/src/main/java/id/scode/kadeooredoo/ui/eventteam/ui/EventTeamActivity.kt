@@ -93,8 +93,9 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
         eventTeamPresenter = EventTeamPresenter(this, request, gson)
 
         listTeam?.get(0)?.teamId.toString().also {
-
+            //        EspressoIdlingResource.increment()
             eventTeamPresenter.getEventPrevTeamList(it)
+            //        EspressoIdlingResource.increment()
             eventTeamPresenter.getEventNextTeamList(it)
 
         }
@@ -144,10 +145,10 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
             val art3 = it.strTeamFanart3
             val art4 = it.strTeamFanart4
 
-            if ( art1 != null && art2 != null && art3 != null && art4 != null){
+            if (art1 != null && art2 != null && art3 != null && art4 != null) {
                 fantArt =
                     arrayOf(
-                        art1,art2,art3,art4
+                        art1, art2, art3, art4
                     )
 
                 // set imageListener
@@ -207,11 +208,14 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     }
 
     override fun showEventTeamPrev(data: List<EventPrevious>?) {
-
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show event team past list : process")
 
         eventPreviousMutableList.clear()
-        data?.let {eventPreviousMutableList.addAll(it)}
+        data?.let { eventPreviousMutableList.addAll(it) }
         eventTeamPrevAdapter.notifyDataSetChanged()
 
         if (eventPreviousMutableList.isNullOrEmpty()) {
@@ -233,11 +237,14 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     }
 
     override fun showEventTeamNext(data: List<EventNext>?) {
-
+//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//            //Memberitahukan bahwa tugas sudah selesai dijalankan
+//            EspressoIdlingResource.decrement()
+//        }
         info("try show event team next list : process")
 
         eventNextMutableList.clear()
-        data?.let {eventNextMutableList.addAll(it)}
+        data?.let { eventNextMutableList.addAll(it) }
         eventTeamNextAdapter.notifyDataSetChanged()
 
         if (eventNextMutableList.isNullOrEmpty()) {
