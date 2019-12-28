@@ -342,6 +342,20 @@ class TestEspresso : AnkoLogger{
         Espresso.pressBack()
 
     }
+
+    @Test
+    fun testImgEventTeamDetailBehaviour() {
+
+        Espresso.onView(ViewMatchers.withId(R.id.img_event_team_detail))
+            .perform(ViewActions.click())
+
+    }
+
+    @Test
+    fun testWaitBackBehaviour() {
+        Espresso.pressBack()
+    }
+
     // #BehaviourFunction end of ---------------------
 
 

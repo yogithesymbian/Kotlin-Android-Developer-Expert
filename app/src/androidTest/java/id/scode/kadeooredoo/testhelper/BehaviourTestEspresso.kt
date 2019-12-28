@@ -136,6 +136,8 @@ class BehaviourTestEspresso : AnkoLogger {
 
         Espresso.onView(ViewMatchers.withText("Ath Bilbao")).perform(ViewActions.click())
 
+        Thread.sleep(1000) // user just bengong in 1 min see the favorite team
+
     }
 
     @Test

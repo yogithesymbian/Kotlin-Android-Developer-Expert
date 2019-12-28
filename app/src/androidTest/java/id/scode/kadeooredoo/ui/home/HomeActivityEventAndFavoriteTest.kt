@@ -11,21 +11,23 @@ import org.junit.runner.RunWith
 import org.junit.runners.MethodSorters
 
 /**
- * @Authors scode | Yogi Arif Widodo
- * Created on 11 12/11/19 7:23 AM 2019
+ * @Authors scodeid | Yogi Arif Widodo
+ * Created on 28 12/28/19 4:28 PM 2019
  * id.scode.kadeooredoo.ui.home
  * https://github.com/yogithesymbian
- * Android Studio 3.5.1
- * Build #AI-191.8026.42.35.5900203, built on September 26, 2019
+ * Android Studio 3.5.3
+ * Build #AI-191.8026.42.35.6010548, built on November 15, 2019
  * JRE: 1.8.0_202-release-1483-b49-5587405 amd64
  * JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
- * Linux 5.2.0-kali3-amd64
+ * Linux 5.3.0-kali3-amd64
  */
 
-
+//androidx.test.espresso.PerformException:
+// Error performing 'single click - At Coordinates: 359, 1179 and precision: 16, 16'
+// on view 'with id: id.scode.kadeooredoo:id/img_event_team_detail'.
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) // ref google to order function by nameAscending
 @RunWith(AndroidJUnit4::class)
-class HomeActivityFavoriteTest {
+class HomeActivityEventAndFavoriteTest {
 
     private lateinit var testEspresso: TestEspresso
 
@@ -57,6 +59,9 @@ class HomeActivityFavoriteTest {
         testEspresso.testHomeLabel()
         testEspresso.testHomeComponentId()
         testEspresso.testHomeBehaviourRecycler()
+
+        testEspresso.testImgEventTeamDetailBehaviour() // check event teams
+        testEspresso.testWaitBackBehaviour() // check event teams
 
         testEspresso.testDetailTeamComponentId()
         testEspresso.testDetailTeamBehaviourAddToFavorite()

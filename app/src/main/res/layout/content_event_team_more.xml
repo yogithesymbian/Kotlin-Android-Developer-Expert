@@ -56,7 +56,6 @@
         app:layout_constraintTop_toBottomOf="@+id/img_team_logo" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_next_for_prev"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:background="@drawable/ic_navigate_next_black_24dp"
@@ -89,7 +88,6 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_event_prev_match_team" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_next_for_next"
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:background="@drawable/ic_navigate_next_black_24dp"

@@ -50,7 +50,7 @@ class HomeActivityClassificationMatchTest {
 
 
     @Test
-    fun testHomeActivitySearch() {
+    fun testHomeActivityClassificationMatch() {
 
         // initialize the fun
         label = LabelTestEspresso()
@@ -73,17 +73,6 @@ class HomeActivityClassificationMatchTest {
         behaviour.testFabBackClassificationBehaviour()
 
         behaviour.gotoHomeFromDashboardFragment()
-
-        // cloning | copy script from HomeActivityFavoriteTest
-        behaviour.testHomeBehaviourRecycler()
-
-        behaviour.testImgEventTeamDetailBehaviour()
-        behaviour.testWaitBackBehaviour()
-
-        componentId.testDetailTeamComponentId()
-        behaviour.testDetailTeamBehaviourAddToFavorite()
-
-        other.testCheckResultFavorite()
 
     }
 

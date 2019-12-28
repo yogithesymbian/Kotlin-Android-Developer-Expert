@@ -127,7 +127,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
                 id = R.id.img_event_team_detail
                 backgroundResource = R.drawable.ic_event_next_and_past_team_by_canva
 
-            }.lparams(matchParent, wrapContent)
+
+            }.lparams(matchParent, wrapContent){
+                gravity = Gravity.BOTTOM
+            }
 
         }
 
