@@ -203,6 +203,7 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     }
 
     override fun showDetailLeague(data: List<League>?) {
+
         if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
             if (!EspressoIdlingResource.idlingresource.isIdleNow) {
                 //Memberitahukan bahwa tugas sudah selesai dijalankan
