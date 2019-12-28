@@ -56,7 +56,9 @@ class EventTeamPresenter (
                     PreviousLeagueAndTeamResponse::class.java
                 )
             view.hideLoading()
-            view.showEventTeamPrev(data.eventPreviousTeam)
+            if (data.eventPreviousTeam != null){
+                view.showEventTeamPrev(data.eventPreviousTeam)
+            }
 
         }
     }

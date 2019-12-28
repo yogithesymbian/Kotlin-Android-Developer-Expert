@@ -30,12 +30,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_event_prev_match_team"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_team_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cv_team_event"
-        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintTop_toBottomOf="@+id/cv_team_event"
+        app:layout_constraintVertical_bias="1.0"
         tools:background="@android:color/holo_red_dark"
         tools:ignore="UnusedAttribute" />
 
@@ -44,9 +45,11 @@
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:padding="8dp"
         android:text="@string/content_event_team_previous"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/img_team_logo"
@@ -57,6 +60,7 @@
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:background="@drawable/ic_navigate_next_black_24dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_event_prev_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txt_lbl_event_prev_team" />
@@ -65,10 +69,10 @@
         android:id="@+id/rv_event_prev_match_team"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_team_event" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_prev_team" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/txt_lbl_event_next_team"
@@ -78,6 +82,7 @@
         android:padding="8dp"
         android:text="@string/content_event_team_more_next"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/img_team_logo"
@@ -88,6 +93,7 @@
         android:layout_width="50dp"
         android:layout_height="0dp"
         android:background="@drawable/ic_navigate_next_black_24dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/txt_lbl_event_next_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txt_lbl_event_next_team" />
@@ -97,10 +103,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_event_prev_match_team"
-        tools:listitem="@layout/item_next_match_league" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_event_prev_match_team" />
 
     <ProgressBar
         android:id="@+id/progress_bar_event_prev_team"
@@ -110,11 +116,9 @@
         android:elevation="12dp"
         android:indeterminate="true"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/txt_lbl_event_next_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_team_logo"
-        app:layout_constraintVertical_bias="0.13999999"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_prev_team"
         tools:ignore="UnusedAttribute" />
 
     <ProgressBar
@@ -125,12 +129,32 @@
         android:elevation="12dp"
         android:indeterminate="true"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_event_prev_match_team"
-        app:layout_constraintVertical_bias="0.18"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_next_team"
         tools:ignore="UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exception_event_team_prev"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_exception_search_not_found"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_event_prev_match_team"
+        app:layout_constraintEnd_toEndOf="@+id/rv_event_prev_match_team"
+        app:layout_constraintStart_toStartOf="@+id/rv_event_prev_match_team"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_prev_team" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exception_event_team_next"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_exception_search_not_found"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_event_next_match_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rv_event_next_match_team"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_event_next_team" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

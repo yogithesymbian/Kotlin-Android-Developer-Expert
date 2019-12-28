@@ -5,7 +5,7 @@ import id.scode.kadeooredoo.data.db.entities.EventPrevious
 
 data class PreviousLeagueAndTeamResponse(
     @SerializedName("events")
-    val eventPrevious: List<EventPrevious>,
+    val eventPrevious: List<EventPrevious>? = null,
     @SerializedName("results")
-    val eventPreviousTeam: List<EventPrevious>
+    val eventPreviousTeam: List<EventPrevious>? = null
 )

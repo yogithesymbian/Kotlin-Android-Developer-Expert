@@ -17,6 +17,7 @@ import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment
@@ -32,6 +33,7 @@ import kotlinx.android.synthetic.main.content_event_team_more.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
 
@@ -147,25 +149,25 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
                     arrayOf(
                         art1,art2,art3,art4
                     )
-            }
 
-        }
-        // set imageListener
-        val imageListener = ImageListener { position, imageView ->
-            applicationContext?.let {
-                Glide.with(it)
-                    .asBitmap()
-                    .load(fantArt[position])
-                    .error(R.color.design_default_color_error)
-                    .format(DecodeFormat.PREFER_ARGB_8888)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(imageView)
+                // set imageListener
+                val imageListener = ImageListener { position, imageView ->
+                    applicationContext?.let { ctx ->
+                        Glide.with(ctx)
+                            .asBitmap()
+                            .load(fantArt[position])
+                            .error(R.color.error_color_material_light)
+                            .format(DecodeFormat.PREFER_ARGB_8888)
+                            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                            .into(imageView)
+                    }
+                }
+                // set carousel with imageListener
+                carousel_fanart_team?.setImageListener(imageListener)
+                // count them
+                carousel_fanart_team?.pageCount = fantArt.size
             }
         }
-        // set carousel with imageListener
-        carousel_fanart_team.setImageListener(imageListener)
-        // count them
-        carousel_fanart_team.pageCount = fantArt.size
         // end of carousel image setting
 
         Glide.with(this)
@@ -212,6 +214,20 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
         data?.let {eventPreviousMutableList.addAll(it)}
         eventTeamPrevAdapter.notifyDataSetChanged()
 
+        if (eventPreviousMutableList.isNullOrEmpty()) {
+
+            toast(getString(R.string.event_team_activity_event_team_is_not_found_prev))
+            img_exception_event_team_prev?.visible()
+            rv_event_prev_match_team?.invisible()
+
+        } else {
+
+            img_exception_event_team_prev?.gone()
+            rv_event_prev_match_team?.visible()
+            info("hello prev ${eventPreviousMutableList[0].idHomeTeam}")
+
+        }
+
         info("try show event team past list : done")
 
     }
@@ -223,6 +239,21 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
         eventNextMutableList.clear()
         data?.let {eventNextMutableList.addAll(it)}
         eventTeamNextAdapter.notifyDataSetChanged()
+
+        if (eventNextMutableList.isNullOrEmpty()) {
+
+
+            toast(getString(R.string.event_team_activity_event_team_is_not_found_next))
+            img_exception_event_team_next?.visible()
+            rv_event_prev_match_team?.invisible()
+
+        } else {
+
+            img_exception_event_team_next?.gone()
+            rv_event_prev_match_team?.visible()
+            info("hello prev ${eventNextMutableList[0].idHomeTeam}")
+
+        }
 
         info("try show event team next list : done")
 
