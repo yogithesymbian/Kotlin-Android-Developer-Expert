@@ -12,13 +12,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.synnapps.carouselview.ImageListener
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.EventPrevious
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
-import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.detailleague.ui.detailnextorprevandfavorite.DetailMatchLeagueActivity
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment
 import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment
@@ -27,7 +25,6 @@ import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.eventteam.presenter.EventTeamPresenter
 import id.scode.kadeooredoo.ui.eventteam.view.EventTeamView
 import id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite.TeamsDetailActivity.Companion.TEAM_KEY
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_event_team.*
 import kotlinx.android.synthetic.main.content_event_team_more.*
 import org.jetbrains.anko.AnkoLogger
@@ -51,6 +48,7 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     //carouselView
     private lateinit var fantArt: Array<String>
 
+    // @SEE OnCreate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_team)
@@ -93,9 +91,13 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
         eventTeamPresenter = EventTeamPresenter(this, request, gson)
 
         listTeam?.get(0)?.teamId.toString().also {
-            //        EspressoIdlingResource.increment()
+            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                EspressoIdlingResource.increment()
+            }
             eventTeamPresenter.getEventPrevTeamList(it)
-            //        EspressoIdlingResource.increment()
+            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                EspressoIdlingResource.increment()
+            }
             eventTeamPresenter.getEventNextTeamList(it)
 
         }
@@ -208,10 +210,12 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     }
 
     override fun showEventTeamPrev(data: List<EventPrevious>?) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show event team past list : process")
 
         eventPreviousMutableList.clear()
@@ -237,10 +241,13 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     }
 
     override fun showEventTeamNext(data: List<EventNext>?) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show event team next list : process")
 
         eventNextMutableList.clear()

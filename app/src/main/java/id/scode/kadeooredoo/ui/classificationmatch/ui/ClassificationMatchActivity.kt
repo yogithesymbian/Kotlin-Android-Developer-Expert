@@ -12,19 +12,17 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.TooltipCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import id.scode.kadeooredoo.LOOKUP_TABLE
-import id.scode.kadeooredoo.R
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Table
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.invisible
 import id.scode.kadeooredoo.ui.classificationmatch.adapter.RvClassificationMatchAdapter
 import id.scode.kadeooredoo.ui.classificationmatch.presenter.ClassificationMatchPresenter
 import id.scode.kadeooredoo.ui.classificationmatch.view.ClassificationMatchView
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.activity_classification_match.*
 import kotlinx.android.synthetic.main.content_classification_match.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 
@@ -115,6 +113,7 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                     name : ${it.name} 
                     """.trimIndent()
                 )
+                btn_lbl_tag.snackbar("Team ${it.name}")
                 delayHideTouchListener
             }
         }!!
@@ -150,7 +149,11 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                     }
                     btn_title_sub_classification_match?.text = leagueName
                     idLeague?.let {
-                        //        EspressoIdlingResource.increment()
+
+                        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                            EspressoIdlingResource.increment()
+                        }
+
                         classificationMatchPresenter.getClassificationMatchTable(it)
                     }
                     info("http://$LOOKUP_TABLE WITH $idLeague")
@@ -160,6 +163,10 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
                     info("onNothingSelected")
                 }
             }
+
+        fab_classification_back?.setOnClickListener{
+            onBackPressed()
+        }
 
         // tooltip for three icon goal
         setThreeIconTooltip(
@@ -174,9 +181,6 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
             img_lbl_team_goals_for,
             getString(R.string.classification_match_activity_goals_for)
         )
-
-
-
     }
 
     private fun setThreeIconTooltip(appCompatImageView: AppCompatImageView?, msg: String) {
@@ -249,10 +253,12 @@ class ClassificationMatchActivity : AppCompatActivity(), ClassificationMatchView
     }
 
     override fun showClassificationMatchTable(data: List<Table>?) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show classification list : process")
 
         tableMutableList.clear()

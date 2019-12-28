@@ -86,7 +86,10 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
         previousPresenter = PreviousPresenter(this, request, gson)
 
         idLeague?.let { id ->
-            //            EspressoIdlingResource.increment()
+
+            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                EspressoIdlingResource.increment()
+            }
             // call the api
             previousPresenter.getPreviousLeagueList(id)
             info("http://$EVENT_PAST_LEAGUE $id")
@@ -154,7 +157,9 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
     }
 
     private fun resultSearch(query: String) {
-//        EspressoIdlingResource.increment()
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            EspressoIdlingResource.increment()
+        }
         previousPresenter.getSearchPreviousLeagueList(query)
     }
 
@@ -168,10 +173,12 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
     }
 
     override fun showPreviousLeague(data: List<EventPrevious>?) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show event past list : process")
         eventPreviousMutableList.clear()
         data?.let {
@@ -192,10 +199,12 @@ class PreviousMatchLeagueFragment : Fragment(), PreviousMatchLeagueView, AnkoLog
     }
 
     override fun exceptionNullObject(msg: String) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         img_exception_search_nf_fp?.visible()
         rv_prev_match_leagues?.gone()

@@ -94,6 +94,13 @@ class BehaviourTestEspresso : AnkoLogger{
     }
 
     @Test
+    fun testDetailMatchLeagueClassificationBehaviour() {
+
+        Espresso.onView(ViewMatchers.withId(R.id.img_classification_match)).perform(ViewActions.click())
+
+    }
+
+    @Test
     fun testDetailMatchLeagueBehaviourToPrev() {
 
         Espresso.onView(ViewMatchers.withId(R.id.navigation_previous)).perform(ViewActions.click())
@@ -172,6 +179,41 @@ class BehaviourTestEspresso : AnkoLogger{
     }
 
     @Test
+    fun testHomeSearch(text: String) {
+
+        info("search : $text")
+
+        Espresso.onView(ViewMatchers.withId(R.id.option_search_home))
+            .perform(ViewActions.click())
+
+        // ref https://stackoverflow.com/questions/42561245/can-one-test-support-v7-searchview-with-espresso-on-android
+        // ref https://www.dicoding.com/academies/55/discussions/14079
+        Espresso.onView(ViewMatchers.withId(androidx.appcompat.R.id.search_src_text))
+            .perform(ViewActions.typeText(text))
+            .perform(ViewActions.pressImeActionButton())
+
+        when (text) {
+            HOME_TEXT_FOUND -> {
+                Espresso.onView(ViewMatchers.withId(R.id.rv_list_team))
+                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+
+            }
+            HOME_TEXT_NOT_FOUND -> {
+                Espresso.onView(ViewMatchers.withId(R.id.img_exception_search_team))
+                    .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            }
+        }
+
+        Espresso.onView(ViewMatchers.withId(androidx.appcompat.R.id.search_close_btn))
+            .perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(androidx.appcompat.R.id.search_close_btn))
+            .perform(ViewActions.click())
+
+    }
+
+    @Test
     fun gotoHomeFromNextMatch(){
         Espresso.pressBack()
     }
@@ -184,6 +226,9 @@ class BehaviourTestEspresso : AnkoLogger{
 
         const val NEXT_TEXT_FOUND = "chel"
         const val NEXT_TEXT_NOT_FOUND = "chelx"
+
+        const val HOME_TEXT_FOUND = "arsenal"
+        const val HOME_TEXT_NOT_FOUND = "arsenalx"
     }
 
 }

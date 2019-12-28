@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--suppress CheckValidXmlInScriptTagBody, XmlHighlighting -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:str="http://exslt.org/strings" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Test Results &mdash; HomeActivitySearchTest</title>
@@ -289,7 +288,7 @@ jQuery.cookie = function(name, value, options) {
             options.expires = -1;
         }
         var expires = '';
-        if (options.expires &amp;&amp; (typeof options.expires == 'number' || options.expires.toUTCString)) {
+        if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
             var date;
             if (typeof options.expires == 'number') {
                 date = new Date();
@@ -305,7 +304,7 @@ jQuery.cookie = function(name, value, options) {
         document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
     } else { // only name given, get cookie
         var cookieValue = null;
-        if (document.cookie &amp;&amp; document.cookie != '') {
+        if (document.cookie && document.cookie != '') {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
                 var cookie = jQuery.trim(cookies[i]);
@@ -561,7 +560,7 @@ jQuery.cookie = function(name, value, options) {
                 animated: "fast",
                 collapsed: true,
                 toggle: function() {
-                    window.console &amp;&amp; console.log("%o was toggled", this);
+                    window.console && console.log("%o was toggled", this);
                 }
             });
 
@@ -573,7 +572,7 @@ jQuery.cookie = function(name, value, options) {
 <body>
 <div id="container">
 <div id="header">
-<div class="time" xmlns="">22.79 s</div>
+<div class="time" xmlns="">37.66 s</div>
 <h1>HomeActivitySearchTest: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">1 total, </span><span class="passed">1 passed</span></strong>
 </h1>
 <div id="treecontrol">
@@ -592,22 +591,31 @@ jQuery.cookie = function(name, value, options) {
 <ul id="tree">
 <li xmlns="" class="level top open">
 <span><em class="time">
-<div class="time">22.79 s</div>
+<div class="time">37.66 s</div>
 </em>id.scode.kadeooredoo.ui.home.HomeActivitySearchTest</span>
 <ul>
 <li class="level test">
 <span><em class="time">
-<div class="time">22.79 s</div>
-</em><em class="status">passed</em>testHomeActivityAddCatalogueToFavorite</span>
+<div class="time">37.66 s</div>
+</em><em class="status">passed</em>testHomeActivitySearch</span>
 <ul>
+<li class="text">
+<span class="stdout">I/TestRunner: started: testHomeActivitySearch(id.scode.kadeooredoo.ui.home.HomeActivitySearchTest)<br/>I/MonitoringInstr: Activities that are still in CREATED to STOPPED: 0<br/></span>
+</li>
+<li class="text">
+<span class="stdout">W/ActivityTestRule: getActivityIntent() returned null using default: Intent(Intent.ACTION_MAIN)<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/Timeline: Timeline: Activity_launch_request time:484258781 intent:Intent { act=android.intent.action.MAIN flg=0x14000000 cmp=id.scode.kadeooredoo/.ui.home.ui.HomeActivity }<br/></span>
+</li>
 <li class="text">
 <span class="stdout">W/art: Before Android 4.1, method android.graphics.PorterDuffColorFilter androidx.vectordrawable.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable<br/>W/ResourceType: No package identifier when getting name for resource number 0x00000000<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PRE_ON_CREATE<br/>D/AccessibilityManager: current package=id.scode.kadeooredoo, accessibility manager mIsFinalEnabled=false, mOptimizeEnabled=false, mIsUiAutomationEnabled=false, mIsInterestedPackage=false<br/></span>
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PRE_ON_CREATE<br/>D/AccessibilityManager: current package=id.scode.kadeooredoo, accessibility manager mIsFinalEnabled=true, mOptimizeEnabled=false, mIsUiAutomationEnabled=false, mIsInterestedPackage=false<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/art: Rejecting re-init on previously-failed class java.lang.Class&lt;androidx.core.view.ViewCompat$2&gt;: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/view/View$OnUnhandledKeyEventListener;<br/>        at void androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(android.view.View, androidx.core.view.OnApplyWindowInsetsListener) (ViewCompat.java:2421)<br/>        at android.view.ViewGroup androidx.appcompat.app.AppCompatDelegateImpl.createSubDecor() (AppCompatDelegateImpl.java:779)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)<br/>        at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)<br/>        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)<br/>        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)<br/>        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)<br/>        at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)<br/>        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2676)<br/>        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2784)<br/>        at void android.app.ActivityThread.-wrap12(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)<br/>        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1523)<br/>        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:102)<br/>        at void android.os.Looper.loop() (Looper.java:163)<br/>        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6238)<br/>        at java.lang.Object java.lang.reflect.Method.invoke!(java.lang.Object, java.lang.Object[]) (Method.java:-2)<br/>        at void com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run() (ZygoteInit.java:933)<br/>        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:823)<br/>    Caused by: java.lang.ClassNotFoundException: Didn&#39;t find class &quot;android.view.View$OnUnhandledKeyEventListener&quot; on path: DexPathList[[zip file &quot;/system/framework/android.test.runner.jar&quot;, zip file &quot;/data/app/id.scode.kadeooredoo.test-2/base.apk&quot;, zip file &quot;/data/app/id.scode.kadeooredoo-2/base.apk&quot;],nativeLibraryDirectories=[/data/app/id.scode.kadeooredoo.test-2/lib/arm64, /data/app/id.scode.kadeooredoo-2/lib/arm64, /system/lib64, /vendor/lib64]]<br/>        at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:56)<br/>        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:380)<br/>I/art:     at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)<br/>        at void androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(android.view.View, androidx.core.view.OnApplyWindowInsetsListener) (ViewCompat.java:2421)<br/>        at android.view.ViewGroup androidx.appcompat.app.AppCompatDelegateImpl.createSubDecor() (AppCompatDelegateImpl.java:779)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)<br/>        at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)<br/>        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:27)<br/>        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)<br/>        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)<br/>        at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)<br/>        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2676)<br/>        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2784)<br/>        at void android.app.ActivityThread.-wrap12(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)<br/>        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1523)<br/>        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:102)<br/>        at void android.os.Looper.loop() (Looper.java:163)<br/>        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6238)<br/>        at java.lang.Object java.lang.reflect.Method.invoke!(java.lang.Object, java.lang.Object[]) (Method.java:-2)<br/>        at void com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run() (ZygoteInit.java:933)<br/>        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:823)<br/></span>
+<span class="stdout">I/art: Rejecting re-init on previously-failed class java.lang.Class&lt;androidx.core.view.ViewCompat$2&gt;: java.lang.NoClassDefFoundError: Failed resolution of: Landroid/view/View$OnUnhandledKeyEventListener;<br/>        at void androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(android.view.View, androidx.core.view.OnApplyWindowInsetsListener) (ViewCompat.java:2421)<br/>        at android.view.ViewGroup androidx.appcompat.app.AppCompatDelegateImpl.createSubDecor() (AppCompatDelegateImpl.java:779)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)<br/>        at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)<br/>        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:29)<br/>        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)<br/>        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)<br/>        at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)<br/>        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2676)<br/>        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2784)<br/>        at void android.app.ActivityThread.-wrap12(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)<br/>        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1523)<br/>        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:102)<br/>        at void android.os.Looper.loop() (Looper.java:163)<br/>        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6238)<br/>        at java.lang.Object java.lang.reflect.Method.invoke!(java.lang.Object, java.lang.Object[]) (Method.java:-2)<br/>        at void com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run() (ZygoteInit.java:933)<br/>        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:823)<br/>    Caused by: java.lang.ClassNotFoundException: Didn&#39;t find class &quot;android.view.View$OnUnhandledKeyEventListener&quot; on path: DexPathList[[zip file &quot;/system/framework/android.test.runner.jar&quot;, zip file &quot;/data/app/id.scode.kadeooredoo.test-1/base.apk&quot;, zip file &quot;/data/app/id.scode.kadeooredoo-1/base.apk&quot;],nativeLibraryDirectories=[/data/app/id.scode.kadeooredoo.test-1/lib/arm64, /data/app/id.scode.kadeooredoo-1/lib/arm64, /system/lib64, /vendor/lib64]]<br/>        at java.lang.Class dalvik.system.BaseDexClassLoader.findClass(java.lang.String) (BaseDexClassLoader.java:56)<br/>        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String, boolean) (ClassLoader.java:380)<br/>        at java.lang.Class java.lang.ClassLoader.loadClass(java.lang.String) (ClassLoader.java:312)<br/>        at void androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(android.view.View, androidx.core.view.OnApplyWindowInsetsListener) (ViewCompat.java:2421)<br/>        at android.view.ViewGroup androidx.appcompat.app.AppCompatDelegateImpl.createSubDecor() (AppCompatDelegateImpl.java:779)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.ensureSubDecor() (AppCompatDelegateImpl.java:659)<br/>        at void androidx.appcompat.app.AppCompatDelegateImpl.setContentView(int) (AppCompatDelegateImpl.java:552)<br/>        at void androidx.appcompat.app.AppCompatActivity.setContentView(int) (AppCompatActivity.java:161)<br/>        at void id.scode.kadeooredoo.ui.home.ui.HomeActivity.onCreate(android.os.Bundle) (HomeActivity.kt:29)<br/>        at void android.app.Activity.performCreate(android.os.Bundle) (Activity.java:6868)<br/>        at void android.app.Instrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (Instrumentation.java:1119)<br/>        at void androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(android.app.Activity, android.os.Bundle) (MonitoringInstrumentation.java:702)<br/>        at android.app.Activity android.app.ActivityThread.performLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent) (ActivityThread.java:2676)<br/>        at void android.app.ActivityThread.handleLaunchActivity(android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:2784)<br/>        at void android.app.ActivityThread.-wrap12(android.app.ActivityThread, android.app.ActivityThread$ActivityClientRecord, android.content.Intent, java.lang.String) (ActivityThread.java:-1)<br/>        at void android.app.ActivityThread$H.handleMessage(android.os.Message) (ActivityThread.java:1523)<br/>        at void android.os.Handler.dispatchMessage(android.os.Message) (Handler.java:102)<br/>        at void android.os.Looper.loop() (Looper.java:163)<br/>        at void android.app.ActivityThread.main(java.lang.String[]) (ActivityThread.java:6238)<br/>        at java.lang.Object java.lang.reflect.Method.invoke!(java.lang.Object, java.lang.Object[]) (Method.java:-2)<br/>        at void com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run() (ZygoteInit.java:933)<br/>        at void com.android.internal.os.ZygoteInit.main(java.lang.String[]) (ZygoteInit.java:823)<br/></span>
 </li>
 <li class="text">
 <span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@1d54a75<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@ffe8a0a<br/>V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ec4f529<br/>V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ac28786<br/></span>
@@ -616,7 +624,7 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: CREATED<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@8106640<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@3a33979<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ed4b115<br/>V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@9c1fc2a<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STARTED<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESUMED<br/></span>
@@ -631,52 +639,70 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">W/Adreno-ES20: &lt;get_gpu_clk:229&gt;: open failed: errno 13<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/TeamsFragment: spinner selected English Premier League<br/>I/Choreographer: Skipped 34 frames!  The application may be doing too much work on its main thread.<br/></span>
+<span class="stdout">I/TeamsFragment: spinner selected English Premier League<br/>I/TeamsFragment: http://search_all_teams.php WITH English Premier League<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/NetworkSecurityConfig: No Network Security Config specified, using platform default<br/>D/EventInjectionStrategy: Creating injection strategy with input manager.<br/></span>
+<span class="stdout">D/EventInjectionStrategy: Creating injection strategy with input manager.<br/>D/NetworkSecurityConfig: No Network Security Config specified, using platform default<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/art: Do partial code cache collection, code=30KB, data=29KB<br/>I/art: After code cache collection, code=29KB, data=29KB<br/>    Increasing code cache capacity to 128KB<br/>I/TeamsFragment: try show team list : process<br/>I/TeamsFragment: try show team list : done<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;League Football&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;English Premier League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/toolbar_home<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/spinner<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/btn_det_1<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/bottom_navigation<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/btn_det_1<br/></span>
+<span class="stdout">I/art: Do partial code cache collection, code=23KB, data=28KB<br/>    After code cache collection, code=23KB, data=28KB<br/>    Increasing code cache capacity to 128KB<br/>I/TeamsFragment: try show team list : process<br/>    try show team list : done<br/>I/TeamsFragment: hello prev Arsenal<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;League Football&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;English Premier League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/toolbar_home<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/spinner<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/btn_det_1<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/bottom_navigation<br/>I/BehaviourTestEspresso: search : arsenal<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_home<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@adf0252<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@d067bed<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/Timeline: Timeline: Activity_launch_request time:40853159 intent:Intent { cmp=id.scode.kadeooredoo/.ui.detailleague.ui.DetailLeagueActivity (has extras) }<br/></span>
+<span class="stdout">I/art: Do partial code cache collection, code=54KB, data=58KB<br/>I/art: After code cache collection, code=53KB, data=58KB<br/>    Increasing code cache capacity to 256KB<br/>I/ViewInteraction: Performing &#39;type text(arsenal)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED<br/>D/LifecycleMonitor: running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: PRE_ON_CREATE<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/DetailLeagueActivity: you are in dashboard league 4328<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: CREATED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/></span>
+<span class="stdout">D/UiControllerImpl: Injecting string: &quot;arsenal&quot;<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@a5de4ba<br/>V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@7873f6b<br/></span>
+<span class="stdout">I/TeamsFragment: a<br/>I/TeamsFragment: ar<br/>I/TeamsFragment: ars<br/>I/TeamsFragment: arse<br/>I/TeamsFragment: arsen<br/>I/TeamsFragment: arsena<br/>I/TeamsFragment: arsenal<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/TeamsFragment: arsenal<br/>I/TeamsFragment: try show team list : process<br/>I/TeamsFragment: try show team list : done<br/>    hello prev Arsenal<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/rv_list_team<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/search_close_btn<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/search_close_btn<br/>I/BehaviourTestEspresso: search : arsenalx<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_home<br/>I/art: Do full code cache collection, code=118KB, data=123KB<br/>I/art: Starting a blocking GC JitCodeCache<br/>    After code cache collection, code=110KB, data=93KB<br/>I/ViewInteraction: Performing &#39;type text(arsenalx)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
-<span class="stdout">W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/></span>
+<span class="stdout">D/UiControllerImpl: Injecting string: &quot;arsenalx&quot;<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/art: Do partial code cache collection, code=61KB, data=59KB<br/>I/art: After code cache collection, code=61KB, data=59KB<br/>I/art: Increasing code cache capacity to 256KB<br/></span>
+<span class="stdout">I/TeamsFragment: a<br/>I/TeamsFragment: ar<br/>I/TeamsFragment: ars<br/>I/TeamsFragment: arse<br/>I/TeamsFragment: arsen<br/>I/TeamsFragment: arsena<br/>I/TeamsFragment: arsenal<br/>I/TeamsFragment: arsenalx<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/TeamsFragment: arsenalx<br/>I/TeamsPresenter: data_x exception_null<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/img_exception_search_team<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/search_close_btn<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/search_close_btn<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/btn_det_1<br/>I/Timeline: Timeline: Activity_launch_request time:484266999 intent:Intent { cmp=id.scode.kadeooredoo/.ui.detailleague.ui.DetailLeagueActivity (has extras) }<br/></span>
 </li>
 <li class="text">
-<span class="stdout">W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/></span>
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: PRE_ON_CREATE<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: STARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: RESUMED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/></span>
+<span class="stdout">W/ResourceType: No package identifier when getting name for resource number 0x00000000<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/art: Do full code cache collection, code=123KB, data=121KB<br/>I/art: Starting a blocking GC JitCodeCache<br/>    After code cache collection, code=89KB, data=79KB<br/></span>
+<span class="stdout">D/DetailLeagueActivity: you are in dashboard league 4328<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: CREATED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STOPPED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@dfa3ece<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@403b1ef<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/DashboardFragment: try show detail leaguesMutableList : process<br/></span>
+<span class="stdout">I/art: Do partial code cache collection, code=116KB, data=119KB<br/>I/art: After code cache collection, code=116KB, data=119KB<br/>    Increasing code cache capacity to 512KB<br/></span>
+</li>
+<li class="text">
+<span class="stdout">W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/DashboardFragment: http://lookupleague.php WITH 4328<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: STARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: RESUMED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/Choreographer: Skipped 32 frames!  The application may be doing too much work on its main thread.<br/>I/DashboardFragment: try show detail leaguesMutableList : process<br/></span>
 </li>
 <li class="text">
 <span class="stdout">W/Glide: Failed to find GeneratedAppGlideModule. You should include an annotationProcessor compile dependency on com.github.bumptech.glide:compiler in your application and a @GlideModule annotated AppGlideModule implementation or LibraryGlideModules will be silently ignored<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/DashboardFragment: try show leaguesMutableList : done <br/>I/art: Do partial code cache collection, code=124KB, data=119KB<br/>I/art: After code cache collection, code=123KB, data=119KB<br/>    Increasing code cache capacity to 512KB<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/float_social_media<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_next<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_previous<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_dashboard<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Country England&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Soccer&quot;<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/float_social_media<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/navigation_previous<br/></span>
+<span class="stdout">I/DashboardFragment: try show leaguesMutableList : done <br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STOPPED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/float_social_media<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_next<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_previous<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/navigation_dashboard<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Country England&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Soccer&quot;<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/float_social_media<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/navigation_previous<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/DetailLeagueActivity: you are in previous league<br/></span>
@@ -685,40 +711,454 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">I/AppCompatViewInflater: app:theme is now deprecated. Please move to using android:theme instead.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@d837e0b<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@8e634e8<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@d820580<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@f0987b9<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/PreviousMatchLeagueFrag: get data with 4328<br/></span>
+<span class="stdout">I/PreviousMatchLeagueFrag: http://eventspastleague.php 4328<br/>    get data with 4328<br/></span>
 </li>
 <li class="text">
 <span class="stdout">W/art: Before Android 4.1, method int androidx.appcompat.widget.DropDownListView.lookForSelectablePosition(int, boolean) would have incorrectly overridden the package-private method in android.widget.ListView<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/PreviousMatchLeagueFrag: try show event past list : process<br/>I/PreviousMatchLeagueFrag: try show event past list : done<br/>    hello prev 133615<br/>I/RvPrevMatchLeague: idHomeTeam : 133615<br/>I/RvPrevMatchLeague: ohJersey null, still loading<br/>    idAwayTeam : 133604<br/>I/RvPrevMatchLeague: ohJerseyAway null, still loading<br/>I/RvPrevMatchLeague: idHomeTeam : 133636<br/>I/RvPrevMatchLeague: ohJersey null, still loading<br/>    idAwayTeam : 133602<br/>I/RvPrevMatchLeague: ohJerseyAway null, still loading<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Event Past League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/BehaviourTestEspresso: search : bru<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/RvPrevMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;type text(bru)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/></span>
+<span class="stdout">I/PreviousMatchLeagueFrag: try show event past list : process<br/>    try show event past list : done<br/>I/PreviousMatchLeagueFrag: hello prev 133599<br/>I/art: Do full code cache collection, code=251KB, data=219KB<br/>I/art: Starting a blocking GC JitCodeCache<br/>    After code cache collection, code=226KB, data=182KB<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    15<br/>    hello home 133599 | away 133613<br/>    hello home 133612 | away 134777<br/>    hello home 133626 | away 133602<br/>    hello home 133615 | away 133623<br/>    hello home 133632 | away 133636<br/>    hello home 133610 | away 134778<br/>I/RvPrevMatchLeagueAdapte: hello home 133616 | away 133619<br/>    hello home 134301 | away 133604<br/>    hello home 133811 | away 133624<br/>    hello home 133601 | away 133608<br/>    hello home 133624 | away 133612<br/>    hello home 133616 | away 133610<br/>    hello home 133615 | away 133604<br/>    hello home 133636 | away 133602<br/>    hello home 133619 | away 133811<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133613] match [133613]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133599] match [133599]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [134777] match [134777]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133612] match [133612]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133602] match [133602]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133626] match [133626]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133623] match [133623]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133615] match [133615]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133636] match [133636]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133632] match [133632]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [134778] match [134778]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133610] match [133610]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133619] match [133619]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133616] match [133616]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133604] match [133604]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [134301] match [134301]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133624] match [133624]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133811] match [133811]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133608] match [133608]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133601] match [133601]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133616] match [133616]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133604] match [133604]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133615] match [133615]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133602] match [133602]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133636] match [133636]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133811] match [133811]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    15<br/>    hello home 133599 | away 133613<br/>    hello home 133612 | away 134777<br/>    hello home 133626 | away 133602<br/>    hello home 133615 | away 133623<br/>    hello home 133632 | away 133636<br/>    hello home 133610 | away 134778<br/>I/RvPrevMatchLeagueAdapte: hello home 133616 | away 133619<br/>    hello home 134301 | away 133604<br/>    hello home 133811 | away 133624<br/>    hello home 133601 | away 133608<br/>    hello home 133624 | away 133612<br/>    hello home 133616 | away 133610<br/>    hello home 133615 | away 133604<br/>    hello home 133636 | away 133602<br/>    hello home 133619 | away 133811<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133613] match [133613]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133599] match [133599]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [134777] match [134777]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133612] match [133612]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133602] match [133602]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133626] match [133626]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133623] match [133623]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133615] match [133615]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133636] match [133636]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133632] match [133632]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [134778] match [134778]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133610] match [133610]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133619] match [133619]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133616] match [133616]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133604] match [133604]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [134301] match [134301]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133624] match [133624]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133811] match [133811]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133608] match [133608]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133601] match [133601]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133616] match [133616]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133604] match [133604]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133615] match [133615]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133602] match [133602]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133636] match [133636]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133811] match [133811]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/art: Do partial code cache collection, code=249KB, data=204KB<br/>    After code cache collection, code=248KB, data=203KB<br/>    Increasing code cache capacity to 1024KB<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133613]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [134777]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133623]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133613] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133626]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [134301]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133601]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133599] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Wolves vs Man City<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Fri Dec 27 20:45:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-27 19:45:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133613]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [134777]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133623]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    [*]<br/>    alright set badge here<br/>    [133612] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133626]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [134301]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133601]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133612] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with English Premier League 2019-12-26 Man United vs Newcastle<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Thu Dec 26 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-26 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/></span>
+</li>
+<li class="text">
+<span class="stdout">W/IdlingPolicy: These resources are not idle: [GLOBAL]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Event Past League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/BehaviourTestEspresso: search : bru<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;type text(bru)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/UiControllerImpl: Injecting string: &quot;bru&quot;<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextSubmit<br/>I/PreviousMatchLeagueFrag: try show event past list : process<br/>I/PreviousMatchLeagueFrag: try show event past list : done<br/>    hello prev 133789<br/>I/RvPrevMatchLeague: idHomeTeam : 133789<br/>I/RvPrevMatchLeague: ohJersey : https://www.thesportsdb.com/images/media/team/logo/xqyrtw1420477561.png<br/>I/RvPrevMatchLeague: idAwayTeam : 133738<br/>I/RvPrevMatchLeague: ohJerseyAway : https://www.thesportsdb.com/images/media/team/logo/q2mxlz1512644512.png<br/>I/RvPrevMatchLeague: idHomeTeam : 133804<br/>I/RvPrevMatchLeague: ohJersey : https://www.thesportsdb.com/images/media/team/logo/xqyrtw1420477561.png<br/>I/RvPrevMatchLeague: idAwayTeam : 133789<br/>I/RvPrevMatchLeague: ohJerseyAway : https://www.thesportsdb.com/images/media/team/logo/q2mxlz1512644512.png<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/rv_prev_match_leagues<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
+<span class="stdout">I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextSubmit<br/>I/PreviousMatchLeagueFrag: try show event past list : process<br/>I/PreviousMatchLeagueFrag: try show event past list : done<br/>    hello prev 133789<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    2<br/>    hello home 133789 | away 133738<br/>    hello home 133804 | away 133789<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133738] match [133738]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133789] match [133789]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133789] match [133789]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133804] match [133804]<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    2<br/>    hello home 133789 | away 133738<br/>    hello home 133804 | away 133789<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133738] match [133738]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133789] match [133789]<br/>I/RvPrevMatchLeagueAdapte: [*] awayTeam<br/>    [133789] match [133789]<br/>I/RvPrevMatchLeagueAdapte: [*] homeTeam<br/>    [133804] match [133804]<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133789] == [133789]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-12-11 Club Brugge vs Real Madrid<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Wed Dec 11 21:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-11 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133789] == [133804]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-12-11 Club Brugge vs Real Madrid<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Wed Dec 11 21:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-11 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133738] == [133738]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-12-11 Club Brugge vs Real Madrid<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Wed Dec 11 21:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-11 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133738] == [133789]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-12-11 Club Brugge vs Real Madrid<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Wed Dec 11 21:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-11 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133789] == [133738]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-11-26 Galatasaray vs Club Brugge<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Tue Nov 26 18:55:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-11-26 17:55:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133789] == [133789]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-11-26 Galatasaray vs Club Brugge<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Tue Nov 26 18:55:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-11-26 17:55:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133804] == [133789]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-11-26 Galatasaray vs Club Brugge<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Tue Nov 26 18:55:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-11-26 17:55:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133804] == [133804]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvPrevMatchLeagueAdapter: first setData with UEFA Champions League 2019-11-26 Galatasaray vs Club Brugge<br/>D/RvPrevMatchLeagueAdapter: GMT+7 event   : Tue Nov 26 18:55:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-11-26 17:55:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvPrevMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/rv_prev_match_leagues<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
 </li>
 <li class="text">
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/RvPrevMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/></span>
+<span class="stdout">I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/></span>
 </li>
 <li class="text">
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/BehaviourTestEspresso: search : bruuuu<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvPrevMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : process<br/>I/RvPrevMatchLeague: try show jersey team away LOOKUP : done<br/>I/ViewInteraction: Performing &#39;type text(bruuuu)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
+<span class="stdout">I/BehaviourTestEspresso: search : bruuuu<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_previous<br/>I/ViewInteraction: Performing &#39;type text(bruuuu)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/UiControllerImpl: Injecting string: &quot;bruuuu&quot;<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextSubmit<br/>I/art: Do full code cache collection, code=252KB, data=221KB<br/>I/art: Starting a blocking GC JitCodeCache<br/>    After code cache collection, code=237KB, data=189KB<br/>I/PreviousPresenter: data_x exception_null<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/img_exception_search_nf_fp<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
+<span class="stdout">I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/PreviousMatchLeagueFrag: Search View onQueryTextSubmit<br/>I/PreviousPresenter: data_x exception_null<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/img_exception_search_nf_fp<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
 </li>
 <li class="text">
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
@@ -739,16 +1179,568 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">I/AppCompatViewInflater: app:theme is now deprecated. Please move to using android:theme instead.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@b342a20<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@ecbdfd9<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@cbae5da<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@e387a0b<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/NextMatchLeagueFragment: get data with 4328<br/>I/NextMatchLeagueFragment: try show next event past list : process<br/>I/NextMatchLeagueFragment: try show next event past list : done<br/>I/NextMatchLeagueFragment: hello prev 133616<br/>I/RvNextMatchLeague: idHomeTeam : 133616<br/>I/RvNextMatchLeague: ohJersey null, still loading<br/>    idAwayTeam : 133610<br/>    ohJerseyAway null, still loading<br/>I/RvNextMatchLeague: idHomeTeam : 133624<br/>I/RvNextMatchLeague: ohJersey null, still loading<br/>    idAwayTeam : 133612<br/>I/RvNextMatchLeague: ohJerseyAway null, still loading<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Event Next League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/BehaviourTestEspresso: search : chel<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/RvNextMatchLeague: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeague: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeague: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/ViewInteraction: Performing &#39;type text(chel)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
+<span class="stdout">I/NextMatchLeagueFragment: http://eventsnextleague.php 4328<br/>    get data with 4328<br/>I/NextMatchLeagueFragment: try show next event past list : process<br/>I/NextMatchLeagueFragment: try show next event past list : done<br/>    hello prev 134777<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    15<br/>I/RvNextMatchLeagueAdapte: hello home 134777 | away 133615<br/>    hello home 133608 | away 133616<br/>    hello home 134778 | away 133632<br/>    hello home 133619 | away 134301<br/>    hello home 133624 | away 133601<br/>    hello home 133623 | away 133612<br/>    hello home 133636 | away 133626<br/>    hello home 133602 | away 133599<br/>I/RvNextMatchLeagueAdapte: hello home 133613 | away 133811<br/>    hello home 133604 | away 133610<br/>    hello home 133608 | away 133632<br/>    hello home 133604 | away 133612<br/>    hello home 134778 | away 133616<br/>    hello home 133619 | away 133610<br/>    hello home 133624 | away 133599<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133615] match [133615]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134777] match [134777]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133616] match [133616]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133608] match [133608]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133632] match [133632]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134778] match [134778]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [134301] match [134301]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133601] match [133601]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133623] match [133623]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133626] match [133626]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133636] match [133636]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133599] match [133599]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133602] match [133602]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133811] match [133811]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133613] match [133613]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133604] match [133604]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133632] match [133632]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133608] match [133608]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133604] match [133604]<br/>    [*] awayTeam<br/>    [133616] match [133616]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134778] match [134778]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133599] match [133599]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    15<br/>I/RvNextMatchLeagueAdapte: hello home 134777 | away 133615<br/>    hello home 133608 | away 133616<br/>    hello home 134778 | away 133632<br/>    hello home 133619 | away 134301<br/>    hello home 133624 | away 133601<br/>    hello home 133623 | away 133612<br/>    hello home 133636 | away 133626<br/>    hello home 133602 | away 133599<br/>    hello home 133613 | away 133811<br/>    hello home 133604 | away 133610<br/>    hello home 133608 | away 133632<br/>    hello home 133604 | away 133612<br/>    hello home 134778 | away 133616<br/>    hello home 133619 | away 133610<br/>    hello home 133624 | away 133599<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133615] match [133615]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134777] match [134777]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133616] match [133616]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133608] match [133608]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133632] match [133632]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134778] match [134778]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [134301] match [134301]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133601] match [133601]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133623] match [133623]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133626] match [133626]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133636] match [133636]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133599] match [133599]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133602] match [133602]<br/>    [*] awayTeam<br/>    [133811] match [133811]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133613] match [133613]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133604] match [133604]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133632] match [133632]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133608] match [133608]<br/>    [*] awayTeam<br/>    [133612] match [133612]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133604] match [133604]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133616] match [133616]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [134778] match [134778]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133610] match [133610]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133619] match [133619]<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133599] match [133599]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133624] match [133624]<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [134301]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133601]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133626]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133615] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [134777]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133623]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133613]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [134777] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Newcastle vs Everton<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 16:00:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 15:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [134301]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133601]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133626]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134777]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133623]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133613]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134777]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133623]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133636]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133602]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133613]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133608]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133604]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [134778]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133619]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133608] == [133624]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    [*]<br/>    alright set badge here<br/>    [133616] == [133615]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [134301]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133601]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133626]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133811]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133632]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133612]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133616]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133616] == [133599]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with English Premier League 2019-12-28 Norwich vs Tottenham<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Sat Dec 28 18:30:00 GMT+08:00 2019<br/>    DEFAULT event : 2019-12-28 17:30:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with text: is &quot;Event Next League&quot;<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/BehaviourTestEspresso: search : chel<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;type text(chel)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/UiControllerImpl: Injecting string: &quot;chel&quot;<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/NextMatchLeagueFragment: Search View onQueryTextSubmit<br/>I/NextMatchLeagueFragment: try show next event past list : process<br/>    try show next event past list : done<br/>I/NextMatchLeagueFragment: hello prev 133610<br/>I/RvNextMatchLeague: idHomeTeam : 133610<br/>    ohJersey : https://www.thesportsdb.com/images/media/team/logo/bpt0h61549381309.png<br/>I/RvNextMatchLeague: idAwayTeam : 133664<br/>I/RvNextMatchLeague: ohJerseyAway : https://www.thesportsdb.com/images/media/team/logo/urupss1421777612.png<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/rv_next_match_leagues<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
+<span class="stdout">I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/ViewInteraction: Performing &#39;input method editor&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/>I/NextMatchLeagueFragment: Search View onQueryTextSubmit<br/>I/NextMatchLeagueFragment: try show next event past list : process<br/>I/NextMatchLeagueFragment: try show next event past list : done<br/>    hello prev 133610<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    1<br/>    hello home 133610 | away 133664<br/>I/RvNextMatchLeagueAdapte: [*] awayTeam<br/>    [133664] match [133664]<br/>I/RvNextMatchLeagueAdapte: [*] homeTeam<br/>    [133610] match [133610]<br/>I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : process<br/>I/RvNextMatchLeagueAdapte: [*]<br/>    alright set badge here<br/>    [133664] == [133664]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with UEFA Champions League 2020-02-25 Chelsea vs Bayern Munich<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Tue Feb 25 21:00:00 GMT+08:00 2020<br/>    DEFAULT event : 2020-02-25 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team away LOOKUP : done<br/>I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : process<br/>    [*]<br/>    alright set badge here<br/>    [133610] == [133610]<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/RvNextMatchLeagueAdapter: first setData with UEFA Champions League 2020-02-25 Chelsea vs Bayern Munich<br/>D/RvNextMatchLeagueAdapter: GMT+7 event   : Tue Feb 25 21:00:00 GMT+08:00 2020<br/>    DEFAULT event : 2020-02-25 20:00:00<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/RvNextMatchLeagueAdapte: try show jersey team LOOKUP : done<br/>I/ViewInteraction: Checking &#39;MatchesViewAssertion{viewMatcher=is displayed on the screen to the user}&#39; assertion on view with id: id.scode.kadeooredoo:id/rv_next_match_leagues<br/>I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/></span>
 </li>
 <li class="text">
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
@@ -760,7 +1752,7 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/BehaviourTestEspresso: search : chelx<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/RvNextMatchLeague: try show jersey team LOOKUP : process<br/>    try show jersey team LOOKUP : done<br/>I/RvNextMatchLeague: try show jersey team away LOOKUP : process<br/>    try show jersey team away LOOKUP : done<br/>I/ViewInteraction: Performing &#39;type text(chelx)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
+<span class="stdout">I/BehaviourTestEspresso: search : chelx<br/>I/ViewInteraction: Performing &#39;single click&#39; action on view with id: id.scode.kadeooredoo:id/option_search_next<br/>I/ViewInteraction: Performing &#39;type text(chelx)&#39; action on view with id: id.scode.kadeooredoo:id/search_src_text<br/></span>
 </li>
 <li class="text">
 <span class="stdout">D/UiControllerImpl: Injecting string: &quot;chelx&quot;<br/></span>
@@ -772,7 +1764,7 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/>I/art: Do partial code cache collection, code=249KB, data=226KB<br/>I/art: After code cache collection, code=249KB, data=226KB<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/>I/art: Increasing code cache capacity to 1024KB<br/></span>
+<span class="stdout">I/ViewInteraction: Performing &#39;send keyCode: 4, metaState: 0 key event&#39; action on view is a root view.<br/>I/NextMatchLeagueFragment: Search View onQueryTextChange<br/></span>
 </li>
 <li class="text">
 <span class="stdout">E/KeyEventActionBase: Back was pressed but there was no Activity stage transition in 150ms, possibly due to a delay calling super.onBackPressed() from your Activity.<br/></span>
@@ -784,22 +1776,31 @@ jQuery.cookie = function(name, value, options) {
 <span class="stdout">D/DetailLeagueActivity: you are in dashboard league 4328<br/></span>
 </li>
 <li class="text">
-<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@ebae9ab<br/>V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@e09c808<br/></span>
+<span class="stdout">V/BoostFramework: BoostFramework() : mPerf = com.qualcomm.qti.Performance@5c95e66<br/>    BoostFramework() : mPerf = com.qualcomm.qti.Performance@a6475a7<br/></span>
 </li>
 <li class="text">
 <span class="stdout">W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/>W/RippleUtils: Use a non-transparent color for the default color as it will be used to finish ripple animations.<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: PAUSED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESTARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESUMED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: STOPPED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@71c5511 in: DESTROYED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/></span>
+<span class="stdout">I/DashboardFragment: http://lookupleague.php WITH 4328<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/DashboardFragment: try show detail leaguesMutableList : process<br/>I/DashboardFragment: try show leaguesMutableList : done <br/></span>
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: PAUSED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESTARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: STARTED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: RESUMED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
 </li>
 <li class="text">
-<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@34a3c4c<br/></span>
+<span class="stdout">I/DashboardFragment: try show detail leaguesMutableList : process<br/>I/DashboardFragment: try show leaguesMutableList : done <br/>I/art: Do full code cache collection, code=505KB, data=435KB<br/></span>
 </li>
 <li class="text">
-<span class="stdout">I/TestRunner: finished: testHomeActivityAddCatalogueToFavorite(id.scode.kadeooredoo.ui.home.HomeActivitySearchTest)<br/>I/MonitoringInstr: Activities that are still in CREATED to STOPPED: 1<br/>I/MonitoringInstr: Unstopped activity count: 1<br/></span>
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: STOPPED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/art: Starting a blocking GC JitCodeCache<br/>    After code cache collection, code=474KB, data=375KB<br/></span>
+</li>
+<li class="text">
+<span class="stdout">D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity@41b86ca in: DESTROYED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>D/LifecycleMonitor: Lifecycle status change: id.scode.kadeooredoo.ui.home.ui.HomeActivity@e9de08b in: PAUSED<br/>    running callback: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/>    callback completes: androidx.test.rule.ActivityTestRule$LifecycleCallback@cea779<br/></span>
+</li>
+<li class="text">
+<span class="stdout">I/TestRunner: finished: testHomeActivitySearch(id.scode.kadeooredoo.ui.home.HomeActivitySearchTest)<br/></span>
 </li>
 </ul>
 </li>
@@ -809,7 +1810,7 @@ jQuery.cookie = function(name, value, options) {
 </div>
 </div>
 <div id="footer">
-<p>Generated by Android Studio on 12/22/19 11:37 AM</p>
+<p>Generated by Android Studio on 12/28/19 2:40 PM</p>
 </div>
 </body>
 </html>

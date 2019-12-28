@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
-import id.scode.kadeooredoo.R
-import id.scode.kadeooredoo.SEARCH_ALL_TEAM
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
-import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
@@ -28,7 +26,6 @@ import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite.TeamsDetailActivity
 import id.scode.kadeooredoo.ui.home.view.TeamsView
-import id.scode.kadeooredoo.visible
 import kotlinx.android.synthetic.main.fragment_favorite_main.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.coroutines.onQueryTextListener
@@ -94,6 +91,8 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                     //https://github.com/Kotlin/anko/blob/c9f90b85310f49fc487d6f3856b2d6af880ac1d7/anko/library/robolectricTests/src/main/java/AndroidMultiMethodListenersActivity.kt
                     //https://github.com/Kotlin/anko/blob/master/anko/library/generated/appcompat-v7-listeners/src/main/java/Listeners.kt
                     searchView {
+
+                        id = R.id.option_search_home
 
                         queryHint = context.resources.getString(R.string.option_search_team)
 
@@ -275,7 +274,9 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
 
                 }
                 //Memberitahukan Espresso bahwa aplikasi sedang sibuk
-//                EspressoIdlingResource.increment()
+                if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
                 teamsPresenter.getLeagueTeamList(leagueName)
                 info("http://$SEARCH_ALL_TEAM WITH $leagueName")
             }
@@ -289,7 +290,11 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         swipeRefreshLayoutListTeam.onRefresh {
             val leagueSwipe = spinner.selectedItem
             info("try swipe to refresh on select $leagueSwipe")
-//            EspressoIdlingResource.increment()
+
+            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                EspressoIdlingResource.increment()
+            }
+
             teamsPresenter.getLeagueTeamList(leagueSwipe.toString())
             info("http://$SEARCH_ALL_TEAM WITH $leagueSwipe")
         }
@@ -297,7 +302,11 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     private fun resultSearch(query: String) {
-//        EspressoIdlingResource.increment()
+
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            EspressoIdlingResource.increment()
+        }
+
         teamsPresenter.getSearchTeams(query)
     }
 
@@ -318,10 +327,12 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show team list : process")
         swipeRefreshLayoutListTeam.isRefreshing = false
         teamsMutableList.clear()
@@ -354,9 +365,18 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     override fun exceptionNullObject(msg: String) {
+
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
+
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         imageViewNotFound.visible()
         rv_teams?.gone()
+
     }
 
     companion object {

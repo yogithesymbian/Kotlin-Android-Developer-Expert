@@ -234,6 +234,10 @@ class RvNextMatchLeagueAdapter(
                 """.trimIndent()
                 )
 
+                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
+
                 teamsPresenter.getDetailLeagueTeamAwayList(item1.toString(), position, holder1 = holder)
 
             }
@@ -246,6 +250,10 @@ class RvNextMatchLeagueAdapter(
                     [$item3] match [$item4]
                 """.trimIndent()
                 )
+
+                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
 
                 teamsPresenter.getDetailLeagueTeamList(item3.toString(), position, holder1 = holder)
 
@@ -313,6 +321,13 @@ class RvNextMatchLeagueAdapter(
 
     ) {
 
+        if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
+
         info("try show jersey team LOOKUP : process")
         listOf(teams).toMutableList().clear()
 
@@ -354,6 +369,13 @@ class RvNextMatchLeagueAdapter(
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
 
     ) {
+
+        if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
 
         info("try show jersey team away LOOKUP : process")
         listOf(teamsAway).toMutableList().clear()

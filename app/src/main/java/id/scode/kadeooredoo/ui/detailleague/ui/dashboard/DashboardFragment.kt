@@ -89,7 +89,11 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
 
         // call the data api
         idLeague?.let {
-            //EspressoIdlingResource.increment()
+
+            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                EspressoIdlingResource.increment()
+            }
+
             detailLeaguePresenter.getDetailLeagueList(it)
             info("http://$LOOKUP_LEAGUE WITH $it")
             img_classification_match.setOnClickListener { _ ->
@@ -199,10 +203,12 @@ class DashboardFragment : Fragment(), DetailLeagueView, AnkoLogger {
     }
 
     override fun showDetailLeague(data: List<League>?) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
         info("try show detail leaguesMutableList : process")
         leaguesMutableList.clear()
         data?.let {

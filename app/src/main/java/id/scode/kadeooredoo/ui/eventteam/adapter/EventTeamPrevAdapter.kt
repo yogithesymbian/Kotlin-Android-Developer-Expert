@@ -228,6 +228,9 @@ class EventTeamPrevAdapter(
                 """.trimIndent()
                 )
 
+                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
                 teamsPresenter.getDetailLeagueTeamAwayList(item1.toString(), position, holder2 = holder)
 
             }
@@ -240,6 +243,10 @@ class EventTeamPrevAdapter(
                     [$item3] match [$item4]
                 """.trimIndent()
                 )
+
+                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
 
                 teamsPresenter.getDetailLeagueTeamList(item3.toString(), position, holder2 = holder)
 

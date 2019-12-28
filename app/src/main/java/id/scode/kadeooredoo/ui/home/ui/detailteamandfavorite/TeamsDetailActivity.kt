@@ -136,7 +136,11 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         when {
             idOnline != null -> {
                 id = idOnline as String
-//                EspressoIdlingResource.increment()
+
+                if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+                    EspressoIdlingResource.increment()
+                }
+
                 teamsPresenter.getDetailLeagueTeamList(id)
                 info("http://$LOOKUP_TEAM WITH $id")
                 favoriteState(favoriteStateDataSet) // check the team has been save ? return boolean true
@@ -283,10 +287,14 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
-//        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//            //Memberitahukan bahwa tugas sudah selesai dijalankan
-//            EspressoIdlingResource.decrement()
-//        }
+
+        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                //Memberitahukan bahwa tugas sudah selesai dijalankan
+                EspressoIdlingResource.decrement()
+            }
+        }
+
         info("try show team list : process")
         val zero = 0
 
