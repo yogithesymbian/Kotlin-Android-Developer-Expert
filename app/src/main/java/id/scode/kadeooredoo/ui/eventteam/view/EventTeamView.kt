@@ -18,6 +18,6 @@ interface EventTeamView {
     fun showLoading()
     fun hideLoading()
 
-    fun showEventTeamPrev(data: List<EventPrevious>)
-    fun showEventTeamNext(data: List<EventNext>)
+    fun showEventTeamPrev(data: List<EventPrevious>?)
+    fun showEventTeamNext(data: List<EventNext>?)
 }

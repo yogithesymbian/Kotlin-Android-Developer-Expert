@@ -18,6 +18,8 @@ import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.eventteam.ui.EventTeamActivity
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
@@ -182,9 +184,11 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         imgListPlayer.setOnClickListener {
             toast(getString(R.string.teams_detail_activity_list_player_unavailable))
         }
-//        imgEvent.setOnClickListener {
-//            startActivity<EventTeamActivity>(TEAM_KEY to item)
-//        }
+
+        imgEvent.setOnClickListener {
+            toast("cannot open event team from favorite view")
+        }
+
         progressBar.gone()
 
     }
@@ -274,8 +278,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
@@ -327,8 +333,10 @@ class TeamsDetailActivity : AppCompatActivity(), TeamsView, AnkoLogger {
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
         // just for inside adapter previous and next
     }

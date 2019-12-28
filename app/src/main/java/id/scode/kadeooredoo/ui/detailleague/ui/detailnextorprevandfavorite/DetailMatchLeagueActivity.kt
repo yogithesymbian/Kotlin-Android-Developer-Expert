@@ -18,6 +18,8 @@ import id.scode.kadeooredoo.ui.detailleague.presenter.DetailMatchPresenter
 import id.scode.kadeooredoo.ui.detailleague.ui.next.NextMatchLeagueFragment.Companion.DETAIL_NEXT_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.ui.previous.PreviousMatchLeagueFragment.Companion.DETAIL_PREV_MATCH_LEAGUE
 import id.scode.kadeooredoo.ui.detailleague.view.DetailMatchView
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY
 import id.scode.kadeooredoo.ui.home.ui.team.TeamsFragment.Companion.DETAIL_KEY_SCORE
@@ -483,8 +485,10 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
         info("try show jersey team list : process")
 
@@ -512,8 +516,10 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
         info("try show jersey team away LOOKUP : process")
 

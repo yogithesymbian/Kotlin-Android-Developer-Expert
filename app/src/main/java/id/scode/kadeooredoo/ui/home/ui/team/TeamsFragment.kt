@@ -22,6 +22,8 @@ import id.scode.kadeooredoo.gone
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.ui.DetailLeagueActivity
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.home.adapter.TeamsAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.ui.detailteamandfavorite.TeamsDetailActivity
@@ -311,8 +313,10 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
 //        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
 //            //Memberitahukan bahwa tugas sudah selesai dijalankan
@@ -341,8 +345,10 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: RvNextMatchLeagueAdapter.ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
         // just for inside adapter previous and next
     }

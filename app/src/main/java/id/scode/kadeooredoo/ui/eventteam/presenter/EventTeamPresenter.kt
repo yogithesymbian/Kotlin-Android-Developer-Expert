@@ -36,11 +36,11 @@ class EventTeamPresenter (
 
             val data =
                 gson.fromJson(
-                    apiRepository.doRequestAsync(TheSportDbApi.getPreviousMatchTeams(idTeam)).await(),
-                    PreviousLeagueAndTeamResponse::class.java
+                    apiRepository.doRequestAsync(TheSportDbApi.getNextMatchTeams(idTeam)).await(),
+                    NextLeagueAndTeamResponse::class.java
                 )
             view.hideLoading()
-            view.showEventTeamPrev(data.eventPrevious)
+            view.showEventTeamNext(data.eventNexts)
 
         }
     }
@@ -52,11 +52,11 @@ class EventTeamPresenter (
 
             val data =
                 gson.fromJson(
-                    apiRepository.doRequestAsync(TheSportDbApi.getNextMatchTeams(idTeam)).await(),
-                    NextLeagueAndTeamResponse::class.java
+                    apiRepository.doRequestAsync(TheSportDbApi.getPreviousMatchTeams(idTeam)).await(),
+                    PreviousLeagueAndTeamResponse::class.java
                 )
             view.hideLoading()
-            view.showEventTeamNext(data.eventNexts)
+            view.showEventTeamPrev(data.eventPreviousTeam)
 
         }
     }

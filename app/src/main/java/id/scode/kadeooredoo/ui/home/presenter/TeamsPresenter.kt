@@ -9,6 +9,8 @@ import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -53,7 +55,9 @@ class TeamsPresenter(
         idTeams: String,
         position: Int? =null,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null,
+        holder2: EventTeamPrevAdapter.ViewHolder?= null,
+        holder3: EventTeamNextAdapter.ViewHolder?= null
     ) {
         view.showLoading()
         GlobalScope.launch(context.main) {
@@ -63,7 +67,7 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1)
+            view.showTeamList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1, holder2, holder3)
         }
     }
 
@@ -71,7 +75,9 @@ class TeamsPresenter(
         idTeams: String,
         position: Int? =null,
         holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
-        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null
+        holder1: RvNextMatchLeagueAdapter.ViewHolder?= null,
+        holder2: EventTeamPrevAdapter.ViewHolder?= null,
+        holder3: EventTeamNextAdapter.ViewHolder?= null
     ) {
         view.showLoading()
         GlobalScope.launch(context.main) {
@@ -81,7 +87,7 @@ class TeamsPresenter(
                     TeamResponse::class.java
                 )
             view.hideLoading()
-            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1)
+            view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1, holder2, holder3)
         }
     }
 

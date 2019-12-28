@@ -3,6 +3,8 @@ package id.scode.kadeooredoo.ui.home.view
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvNextMatchLeagueAdapter
 import id.scode.kadeooredoo.ui.detailleague.adapter.RvPrevMatchLeagueAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 
 /**
  * @Authors scode | Yogi Arif Widodo
@@ -21,19 +23,29 @@ interface TeamsView {
     fun hideLoading()
 
     fun showTeamList(
+
         data: List<Team>?,
         checkIdTeamHome: String?= null,
         position: Int? = null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder? = null,
-        holder1 : RvNextMatchLeagueAdapter.ViewHolder? = null
+
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder? = null,
+        holderRvNextMatchLeagueAdapter : RvNextMatchLeagueAdapter.ViewHolder? = null,
+        holderEventTeamPrevAdapter : EventTeamPrevAdapter.ViewHolder? = null,
+        holderEventTeamNextAdapter : EventTeamNextAdapter.ViewHolder? = null
+
     )
 
     fun showTeamAwayList(
+
         data: List<Team>?,
         checkIdTeamAway: String?= null,
         position: Int? = null,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?= null,
-        holder1 : RvNextMatchLeagueAdapter.ViewHolder? = null
+
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?= null,
+        holderRvNextMatchLeagueAdapter : RvNextMatchLeagueAdapter.ViewHolder? = null,
+        holderEventTeamPrevAdapter : EventTeamPrevAdapter.ViewHolder? = null,
+        holderEventTeamNextAdapter : EventTeamNextAdapter.ViewHolder? = null
+
     )
 
     fun exceptionNullObject(msg: String)

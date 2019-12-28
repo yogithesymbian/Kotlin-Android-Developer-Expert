@@ -20,6 +20,8 @@ import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.entities.EventNext
 import id.scode.kadeooredoo.data.db.entities.Team
 import id.scode.kadeooredoo.data.db.network.ApiRepository
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamNextAdapter
+import id.scode.kadeooredoo.ui.eventteam.adapter.EventTeamPrevAdapter
 import id.scode.kadeooredoo.ui.home.presenter.TeamsPresenter
 import id.scode.kadeooredoo.ui.home.view.TeamsView
 import kotlinx.android.extensions.LayoutContainer
@@ -299,11 +301,16 @@ class RvNextMatchLeagueAdapter(
     }
 
     override fun showTeamList(
+
         data: List<Team>?,
         checkIdTeamHome: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: ViewHolder?
+
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
+
     ) {
 
         info("try show jersey team LOOKUP : process")
@@ -325,7 +332,7 @@ class RvNextMatchLeagueAdapter(
                     arrayListBind = mutableListEventNextOne,
                     listTeam = it,
                     forIterate = i,
-                    viewHolder = holder1,
+                    viewHolder = holderRvNextMatchLeagueAdapter,
                     dataPosition = position,
                     teamBind = teams,
                     logicPostBadge = logicOne
@@ -336,11 +343,16 @@ class RvNextMatchLeagueAdapter(
 
     @SuppressLint("PrivateResource")
     override fun showTeamAwayList(
+
         data: List<Team>?,
         checkIdTeamAway: String?,
         position: Int?,
-        holder: RvPrevMatchLeagueAdapter.ViewHolder?,
-        holder1: ViewHolder?
+
+        holderRvPrevMatchLeagueAdapter: RvPrevMatchLeagueAdapter.ViewHolder?,
+        holderRvNextMatchLeagueAdapter: ViewHolder?,
+        holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
+        holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
+
     ) {
 
         info("try show jersey team away LOOKUP : process")
@@ -362,7 +374,7 @@ class RvNextMatchLeagueAdapter(
                     arrayListBind = mutableListEventNextTwo,
                     listTeam = it,
                     forIterate = i,
-                    viewHolder = holder1,
+                    viewHolder = holderRvNextMatchLeagueAdapter,
                     dataPosition = position,
                     teamBind = teamsAway,
                     logicPostBadge = logicTwo
@@ -438,7 +450,7 @@ class RvNextMatchLeagueAdapter(
     }
 
     companion object {
-        val TAG_LOG = RvPrevMatchLeagueAdapter::class.java.simpleName
+        val TAG_LOG = RvNextMatchLeagueAdapter::class.java.simpleName
 
         const val logicOne = 1
         const val logicTwo = 2
