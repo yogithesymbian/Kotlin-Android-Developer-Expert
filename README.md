@@ -2,12 +2,12 @@
 
 ## branch 
 
-1.master : exercise and submission
-2.submission-1
-3.submission-2
-4.submission-3
-5.submission-4
-6.final-project
+- 1.master : exercise and submission
+- 2.submission-1
+- 3.submission-2
+- 4.submission-3
+- 5.submission-4
+- 6.final-project
 
 ## KadeOoredoo
 - Thanks to Allah
@@ -30,3 +30,4 @@ JRE: 1.8.0_202-release-1483-b49-5587405 amd64
 JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
 Linux 5.2.0-kali3-amd64
 ```
+other : [https://github.com/yogithesymbian/submission-scholarship-google-kejar-2019/tree/final-project-almost](https://github.com/yogithesymbian/submission-scholarship-google-kejar-2019/tree/final-project-almost)
