@@ -273,10 +273,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
                     }
 
                 }
-                //Memberitahukan Espresso bahwa aplikasi sedang sibuk
-                if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                    EspressoIdlingResource.increment()
-                }
                 teamsPresenter.getLeagueTeamList(leagueName)
                 info("http://$SEARCH_ALL_TEAM WITH $leagueName")
             }
@@ -291,24 +287,14 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
             val leagueSwipe = spinner.selectedItem
             info("try swipe to refresh on select $leagueSwipe")
 
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
-
             teamsPresenter.getLeagueTeamList(leagueSwipe.toString())
             info("http://$SEARCH_ALL_TEAM WITH $leagueSwipe")
         }
 
     }
 
-    private fun resultSearch(query: String) {
-
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            EspressoIdlingResource.increment()
-        }
-
+    private fun resultSearch(query: String) =
         teamsPresenter.getSearchTeams(query)
-    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -327,12 +313,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
         holderEventTeamPrevAdapter: EventTeamPrevAdapter.ViewHolder?,
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show team list : process")
         swipeRefreshLayoutListTeam.isRefreshing = false
         teamsMutableList.clear()
@@ -365,18 +345,9 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, AnkoLogger, TeamsView 
     }
 
     override fun exceptionNullObject(msg: String) {
-
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
-
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         imageViewNotFound.visible()
         rv_teams?.gone()
-
     }
 
     companion object {

@@ -91,15 +91,8 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
         eventTeamPresenter = EventTeamPresenter(this, request, gson)
 
         listTeam?.get(0)?.teamId.toString().also {
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
             eventTeamPresenter.getEventPrevTeamList(it)
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
             eventTeamPresenter.getEventNextTeamList(it)
-
         }
 
         //listener previous event
@@ -210,12 +203,6 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
     }
 
     override fun showEventTeamPrev(data: List<EventPrevious>?) {
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show event team past list : process")
 
         eventPreviousMutableList.clear()
@@ -242,12 +229,6 @@ class EventTeamActivity : AppCompatActivity(), EventTeamView, AnkoLogger {
 
     override fun showEventTeamNext(data: List<EventNext>?) {
 
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show event team next list : process")
 
         eventNextMutableList.clear()

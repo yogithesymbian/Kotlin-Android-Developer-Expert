@@ -1,9 +1,7 @@
 package id.scode.kadeooredoo.ui.home.presenter
 
 import com.google.gson.Gson
-import id.scode.kadeooredoo.CoroutineContextProvider
-import id.scode.kadeooredoo.EXCEPTION_NULL
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.TeamResponse
@@ -36,6 +34,10 @@ class TeamsPresenter(
 ) : AnkoLogger {
 
     fun getLeagueTeamList(league: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
 
         GlobalScope.launch(context.main) {
@@ -59,6 +61,10 @@ class TeamsPresenter(
         holder2: EventTeamPrevAdapter.ViewHolder?= null,
         holder3: EventTeamNextAdapter.ViewHolder?= null
     ) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -79,6 +85,10 @@ class TeamsPresenter(
         holder2: EventTeamPrevAdapter.ViewHolder?= null,
         holder3: EventTeamNextAdapter.ViewHolder?= null
     ) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -89,9 +99,16 @@ class TeamsPresenter(
             view.hideLoading()
             view.showTeamAwayList(data.team?.filter { it.strSport == SPORT }, idTeams, position, holder, holder1, holder2, holder3)
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
     }
 
     fun getSearchTeams(teamsQuery: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -116,6 +133,9 @@ class TeamsPresenter(
                 }
             }
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
     }
 
 }

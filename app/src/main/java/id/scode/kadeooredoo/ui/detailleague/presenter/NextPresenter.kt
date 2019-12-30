@@ -1,9 +1,7 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
-import id.scode.kadeooredoo.CoroutineContextProvider
-import id.scode.kadeooredoo.EXCEPTION_NULL
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueAndTeamResponse
@@ -33,6 +31,10 @@ class NextPresenter(
 ) : AnkoLogger {
     //behaviours getNextLeagueList
     fun getNextLeagueList(league: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         viewMatch.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -43,6 +45,11 @@ class NextPresenter(
             viewMatch.hideLoading()
             viewMatch.showNextLeague(data.eventNexts)
         }
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
+
     }
 
     //behaviours getSearchPrevLeagueList
@@ -75,6 +82,11 @@ class NextPresenter(
                     viewMatch.hideLoading()
                 }
             }
+
+            if (TESTING_FLAG == TESTING_FLAG_MATCH)
+                if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                    EspressoIdlingResource.decrement()
+
         }
     }
 }

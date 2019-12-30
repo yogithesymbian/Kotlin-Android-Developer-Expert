@@ -347,6 +347,9 @@ class TestEspresso : AnkoLogger{
     fun testImgEventTeamDetailBehaviour() {
 
         Espresso.onView(ViewMatchers.withId(R.id.img_event_team_detail))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        Espresso.onView(ViewMatchers.withId(R.id.img_event_team_detail))
             .perform(ViewActions.click())
 
     }

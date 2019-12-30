@@ -2,6 +2,9 @@ package id.scode.kadeooredoo.ui.classificationmatch.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.CoroutineContextProvider
+import id.scode.kadeooredoo.EspressoIdlingResource
+import id.scode.kadeooredoo.TESTING_FLAG
+import id.scode.kadeooredoo.TESTING_FLAG_MATCH
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.ClassificationMatchResponse
@@ -29,6 +32,10 @@ class ClassificationMatchPresenter (
 ) : AnkoLogger {
 
     fun getClassificationMatchTable(idLeague: String){
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
 
         GlobalScope.launch(context.main) {
@@ -41,6 +48,11 @@ class ClassificationMatchPresenter (
             view.hideLoading()
             view.showClassificationMatchTable(data.table)
         }
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
+
     }
 
 }

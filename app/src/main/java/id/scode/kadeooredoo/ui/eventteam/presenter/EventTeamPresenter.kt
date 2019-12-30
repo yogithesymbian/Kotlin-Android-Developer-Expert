@@ -2,6 +2,9 @@ package id.scode.kadeooredoo.ui.eventteam.presenter
 
 import com.google.gson.Gson
 import id.scode.kadeooredoo.CoroutineContextProvider
+import id.scode.kadeooredoo.EspressoIdlingResource
+import id.scode.kadeooredoo.TESTING_FLAG
+import id.scode.kadeooredoo.TESTING_FLAG_MATCH
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.NextLeagueAndTeamResponse
@@ -30,6 +33,10 @@ class EventTeamPresenter (
 ) : AnkoLogger {
 
     fun getEventNextTeamList(idTeam: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
 
         GlobalScope.launch(context.main) {
@@ -43,9 +50,16 @@ class EventTeamPresenter (
             view.showEventTeamNext(data.eventNexts)
 
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
     }
 
     fun getEventPrevTeamList(idTeam: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         view.showLoading()
 
         GlobalScope.launch(context.main) {
@@ -61,5 +75,8 @@ class EventTeamPresenter (
             }
 
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
     }
 }

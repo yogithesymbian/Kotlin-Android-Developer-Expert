@@ -104,10 +104,6 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
                 eventPrevious?.also {
                     it.idEvent?.let { it1 ->
 
-                        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                            EspressoIdlingResource.increment()
-                        }
-
                         detailMatchPresenter.getDetailMatchList(it1)
                         info("http://$LOOKUP_EVENT WITH $it1")
                         id = it1
@@ -134,10 +130,6 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
                 eventNext?.also {
                     it.idEvent?.let { it1 ->
-
-                        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                            EspressoIdlingResource.increment()
-                        }
 
                         detailMatchPresenter.getDetailMatchList(it1)
                         info("http://$LOOKUP_EVENT WITH $it1")
@@ -501,13 +493,6 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
 
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
-
         info("try show jersey team list : process")
 
         val zero = 0
@@ -540,12 +525,6 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
         holderEventTeamNextAdapter: EventTeamNextAdapter.ViewHolder?
     ) {
 
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show jersey team away LOOKUP : process")
 
         val zero = 0
@@ -580,12 +559,6 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
     override fun showDetailMatch(data: List<EventDetailMatch>?) {
 
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show team list : process")
 
         val zero = 0
@@ -658,20 +631,10 @@ class DetailMatchLeagueActivity : AppCompatActivity(), DetailMatchView, AnkoLogg
 
         // get Logo
         item.idHomeTeam?.let {
-
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
-
             teamsPresenter.getDetailLeagueTeamList(it)
             info("looking for logo $it")
         }
         item.idAwayTeam?.let {
-
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
-
             teamsPresenter.getDetailLeagueTeamAwayList(it)
             info("looking for logo $it")
         }

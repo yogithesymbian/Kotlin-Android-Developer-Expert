@@ -1,9 +1,7 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
-import id.scode.kadeooredoo.CoroutineContextProvider
-import id.scode.kadeooredoo.EXCEPTION_NULL
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.PreviousLeagueAndTeamResponse
@@ -33,6 +31,10 @@ class PreviousPresenter(
 ) : AnkoLogger {
     //behaviours getPrevLeagueList
     fun getPreviousLeagueList(league: String) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         viewMatch.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -43,10 +45,18 @@ class PreviousPresenter(
             viewMatch.hideLoading()
             viewMatch.showPreviousLeague(data.eventPrevious)
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
+
     }
 
     //behaviours getSearchPrevLeagueList
     fun getSearchPreviousLeagueList(teamVsTeam: String?) {
+
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
+
         viewMatch.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -80,6 +90,10 @@ class PreviousPresenter(
                     viewMatch.hideLoading()
                 }
             }
+            if (TESTING_FLAG == TESTING_FLAG_MATCH)
+                if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                    EspressoIdlingResource.decrement()
+
         }
     }
 

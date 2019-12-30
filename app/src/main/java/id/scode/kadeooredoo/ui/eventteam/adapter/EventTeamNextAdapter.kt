@@ -237,13 +237,7 @@ class EventTeamNextAdapter(
                     [$item1] match [$item2]
                 """.trimIndent()
                 )
-
-                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
-                    EspressoIdlingResource.increment()
-                }
-
                 teamsPresenter.getDetailLeagueTeamAwayList(item1.toString(), position, holder3 = holder)
-
             }
 
             if (item3 == item4) { // re-check match or nah then presenter the data
@@ -254,10 +248,6 @@ class EventTeamNextAdapter(
                     [$item3] match [$item4]
                 """.trimIndent()
                 )
-
-                if (UJI_COBA_TESTING_FLAG == context.getString(R.string.isTest)){
-                    EspressoIdlingResource.increment()
-                }
 
                 teamsPresenter.getDetailLeagueTeamList(item3.toString(), position, holder3 = holder)
 

@@ -1,8 +1,7 @@
 package id.scode.kadeooredoo.ui.detailleague.presenter
 
 import com.google.gson.Gson
-import id.scode.kadeooredoo.CoroutineContextProvider
-import id.scode.kadeooredoo.SPORT
+import id.scode.kadeooredoo.*
 import id.scode.kadeooredoo.data.db.network.ApiRepository
 import id.scode.kadeooredoo.data.db.network.TheSportDbApi
 import id.scode.kadeooredoo.data.db.network.responses.DetailMatchLeagueResponse
@@ -29,6 +28,8 @@ class DetailMatchPresenter(
 ) {
     //behaviours getLeagueTeamList
     fun getDetailMatchList(league: String) {
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            EspressoIdlingResource.increment()
         view.showLoading()
         GlobalScope.launch(context.main) {
             val data =
@@ -40,5 +41,9 @@ class DetailMatchPresenter(
             view.showDetailMatch(data.eventDetailMatches.filter { it.strSport == SPORT })
             view.hideLoading()
         }
+        if (TESTING_FLAG == TESTING_FLAG_MATCH)
+            if (!EspressoIdlingResource.idlingresource.isIdleNow)
+                EspressoIdlingResource.decrement()
+
     }
 }

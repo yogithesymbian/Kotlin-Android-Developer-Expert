@@ -59,8 +59,9 @@ const val EVENT_LAST_TEAM = "eventslast.php" //{idTeam} // Serialized LAST | PAS
  * value isTest = isForTesting
  * value isNotTest or null = isForDeploy
  */
-//const val UJI_COBA_TESTING_FLAG = "isTest"
-const val UJI_COBA_TESTING_FLAG = "isNotTest"
+const val TESTING_FLAG = "isTest"
+const val TESTING_FLAG_MATCH = "isTest"
+//const val TESTING_FLAG = "isNotTest"
 
 fun View.visible() {
     visibility = View.VISIBLE

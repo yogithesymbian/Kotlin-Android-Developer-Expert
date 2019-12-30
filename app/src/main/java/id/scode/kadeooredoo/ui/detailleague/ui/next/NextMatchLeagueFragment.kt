@@ -89,10 +89,6 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
 
         idLeague?.let { id ->
 
-            if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-                EspressoIdlingResource.increment()
-            }
-
             // call the api
             nextPresenter.getNextLeagueList(id)
             info("http://$EVENT_NEXT_LEAGUE $id")
@@ -160,14 +156,8 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
         }
     }
 
-    private fun resultSearch(query: String) {
-
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            EspressoIdlingResource.increment()
-        }
-
+    private fun resultSearch(query: String) =
         nextPresenter.getSearchNextLeagueList(query)
-    }
 
     override fun showLoading() {
         progressBar.visible()
@@ -178,12 +168,6 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     override fun showNextLeague(data: List<EventNext>?) {
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         info("try show next event past list : process")
         eventNextMutableList.clear()
         data?.let {
@@ -205,12 +189,6 @@ class NextMatchLeagueFragment : Fragment(), NextMatchLeagueView, AnkoLogger {
     }
 
     override fun exceptionNullObject(msg: String) {
-        if (UJI_COBA_TESTING_FLAG == getString(R.string.isTest)){
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                //Memberitahukan bahwa tugas sudah selesai dijalankan
-                EspressoIdlingResource.decrement()
-            }
-        }
         toast("$msg ${getString(R.string.exception_search_not_found)}")
         img_exception_search_nf_fn.visible()
         rv_next_match_leagues.gone()
