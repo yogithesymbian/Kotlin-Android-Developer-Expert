@@ -216,6 +216,5 @@
     <string name="content_event_team_more_next">Next</string>
     <string name="event_team_activity_event_team_is_not_found_prev">event prev the team is not found</string>
     <string name="event_team_activity_event_team_is_not_found_next">event next the team is not found</string>
-    <string name="isTest">isTest</string>
 
 </resources>
