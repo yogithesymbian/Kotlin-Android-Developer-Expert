@@ -20,7 +20,7 @@ class UtilsKtTest {
     @Test
     fun toSimpleString() {
         val dateFormat = SimpleDateFormat("MM/dd/yyyy")
-        val date = dateFormat.parse("12/10/2019")
-        assertEquals("Tue, 10 Dec 2019", toSimpleString(date))
+        val date = dateFormat.parse("12/10/2019") // actual
+        assertEquals("Tue, 10 Dec 2019", toSimpleString(date)) // first param is expected
     }
 }
